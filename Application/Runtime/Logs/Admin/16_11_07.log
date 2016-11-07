@@ -18,3 +18,872 @@ INFO: [ app_end ] --START--
 INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
 INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
 
+[ 2016-11-07T21:36:24+08:00 ] ::1 /project/Admin/Index/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_parse ] --START--
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.015000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.015000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.002000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.003000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.003000s ]
+
+[ 2016-11-07T21:36:27+08:00 ] ::1 /project/Admin/Index/show
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+ERR: 非法操作:show
+
+[ 2016-11-07T21:39:58+08:00 ] ::1 /project/Admin/Index/show
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+ERR: 非法操作:show
+
+[ 2016-11-07T21:39:59+08:00 ] ::1 /project/Admin/Index/show
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+ERR: 非法操作:show
+
+[ 2016-11-07T21:40:12+08:00 ] ::1 /project/Admin/Index/show
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002001s ]
+ERR: syntax error, unexpected ''/404.html'' (T_CONSTANT_ENCAPSED_STRING), expecting ',' or ')'
+
+[ 2016-11-07T21:40:38+08:00 ] ::1 /project/Admin/Index/show
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-07T21:40:38+08:00 ] ::1 /project/Admin/Index/__PUBLIC__/404.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-07T21:40:38+08:00 ] ::1 /project/Admin/Index/__PUBLIC__/__PUBLIC__/404.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-07T21:40:38+08:00 ] ::1 /project/Admin/Index/__PUBLIC__/__PUBLIC__/__PUBLIC__/404.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-07T21:40:38+08:00 ] ::1 /project/Admin/Index/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/404.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-07T21:40:38+08:00 ] ::1 /project/Admin/Index/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/404.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-07T21:40:38+08:00 ] ::1 /project/Admin/Index/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/404.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-07T21:40:38+08:00 ] ::1 /project/Admin/Index/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/404.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001001s ]
+
+[ 2016-11-07T21:40:38+08:00 ] ::1 /project/Admin/Index/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/404.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-07T21:40:38+08:00 ] ::1 /project/Admin/Index/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/404.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000000s ]
+
+[ 2016-11-07T21:40:38+08:00 ] ::1 /project/Admin/Index/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/404.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-07T21:40:38+08:00 ] ::1 /project/Admin/Index/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/404.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001001s ]
+
+[ 2016-11-07T21:40:38+08:00 ] ::1 /project/Admin/Index/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/404.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-07T21:40:38+08:00 ] ::1 /project/Admin/Index/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/404.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-07T21:40:38+08:00 ] ::1 /project/Admin/Index/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/404.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-07T21:40:38+08:00 ] ::1 /project/Admin/Index/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/404.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-07T21:40:39+08:00 ] ::1 /project/Admin/Index/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/404.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-07T21:40:39+08:00 ] ::1 /project/Admin/Index/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/404.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-07T21:40:39+08:00 ] ::1 /project/Admin/Index/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/404.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-07T21:40:39+08:00 ] ::1 /project/Admin/Index/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/404.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-07T21:40:39+08:00 ] ::1 /project/Admin/Index/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/404.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-07T21:40:39+08:00 ] ::1 /project/Admin/Index/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/404.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-07T21:40:39+08:00 ] ::1 /project/Admin/Index/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/404.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-07T21:40:39+08:00 ] ::1 /project/Admin/Index/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/404.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-07T21:40:39+08:00 ] ::1 /project/Admin/Index/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/404.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-07T21:40:39+08:00 ] ::1 /project/Admin/Index/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/404.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-11-07T21:40:39+08:00 ] ::1 /project/Admin/Index/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/404.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-07T21:40:39+08:00 ] ::1 /project/Admin/Index/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/404.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-07T21:40:40+08:00 ] ::1 /project/Admin/Index/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/404.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-07T21:40:40+08:00 ] ::1 /project/Admin/Index/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/404.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-07T21:40:40+08:00 ] ::1 /project/Admin/Index/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/404.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-07T21:40:40+08:00 ] ::1 /project/Admin/Index/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/404.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-07T21:40:40+08:00 ] ::1 /project/Admin/Index/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/404.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-07T21:40:40+08:00 ] ::1 /project/Admin/Index/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/404.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001001s ]
+
+[ 2016-11-07T21:40:40+08:00 ] ::1 /project/Admin/Index/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/404.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-07T21:40:40+08:00 ] ::1 /project/Admin/Index/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/404.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-11-07T21:40:40+08:00 ] ::1 /project/Admin/Index/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/404.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001001s ]
+
+[ 2016-11-07T21:40:40+08:00 ] ::1 /project/Admin/Index/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/404.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-07T21:40:40+08:00 ] ::1 /project/Admin/Index/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/404.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-11-07T21:40:40+08:00 ] ::1 /project/Admin/Index/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/404.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-07T21:40:40+08:00 ] ::1 /project/Admin/Index/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/404.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-07T21:40:40+08:00 ] ::1 /project/Admin/Index/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/404.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-07T21:40:45+08:00 ] ::1 /project/Admin/Index/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/404.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-07T21:40:45+08:00 ] ::1 /project/Admin/Index/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/404.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-07T21:40:45+08:00 ] ::1 /project/Admin/Index/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/404.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-07T21:40:45+08:00 ] ::1 /project/Admin/Index/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/404.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-07T21:40:45+08:00 ] ::1 /project/Admin/Index/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/404.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-07T21:40:46+08:00 ] ::1 /project/Admin/Index/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/404.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002001s ]
+
+[ 2016-11-07T21:40:46+08:00 ] ::1 /project/Admin/Index/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/404.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-07T21:40:46+08:00 ] ::1 /project/Admin/Index/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/404.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-07T21:40:46+08:00 ] ::1 /project/Admin/Index/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/404.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001001s ]
+
+[ 2016-11-07T21:40:46+08:00 ] ::1 /project/Admin/Index/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/404.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001001s ]
+
+[ 2016-11-07T21:40:46+08:00 ] ::1 /project/Admin/Index/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/404.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002001s ]
+
+[ 2016-11-07T21:40:46+08:00 ] ::1 /project/Admin/Index/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/404.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-07T21:40:46+08:00 ] ::1 /project/Admin/Index/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/404.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-07T21:40:46+08:00 ] ::1 /project/Admin/Index/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/404.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001001s ]
+
+[ 2016-11-07T21:40:46+08:00 ] ::1 /project/Admin/Index/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/404.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-07T21:40:46+08:00 ] ::1 /project/Admin/Index/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/404.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-07T21:40:46+08:00 ] ::1 /project/Admin/Index/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/404.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-07T21:40:46+08:00 ] ::1 /project/Admin/Index/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/404.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-11-07T21:40:46+08:00 ] ::1 /project/Admin/Index/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/404.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-07T21:40:46+08:00 ] ::1 /project/Admin/Index/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/404.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-07T21:40:46+08:00 ] ::1 /project/Admin/Index/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/404.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-07T21:40:52+08:00 ] ::1 /project/Admin/Index/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/__PUBLIC__/404.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-07T21:41:26+08:00 ] ::1 /project/Admin/Index/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_parse ] --START--
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.001000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001001s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001001s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-07T21:41:28+08:00 ] ::1 /project/Admin/Index/show
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-07T21:42:17+08:00 ] ::1 /project/Admin/Index/show
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-07T21:43:42+08:00 ] ::1 /project/Admin/Index/show
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-11-07T21:45:55+08:00 ] ::1 /project/Admin/Index/show
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001001s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.536030s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.536030s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.013001s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.013001s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-11-07T21:48:14+08:00 ] ::1 /project/Admin/Index/show
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.008000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.008000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-07T21:50:14+08:00 ] ::1 /project/Admin/Index/show
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.135007s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.135007s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.010001s ]
+INFO: [ app_end ] --END-- [ RunTime:0.010001s ]
+
+[ 2016-11-07T21:52:10+08:00 ] ::1 /project/Admin/Index/show
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.041002s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.041002s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.278016s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.284016s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-07T21:56:16+08:00 ] ::1 /project/Admin/Index/show
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.003000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.014001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.014001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-07T21:56:55+08:00 ] ::1 /project/Admin/Index/show
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.009000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.009000s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001001s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001001s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-11-07T21:57:41+08:00 ] ::1 /project/Admin/Index/show
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.012001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.012001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.002000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-11-07T21:57:57+08:00 ] ::1 /project/Admin/Index/show
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.459027s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.459027s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.002000s ]
+
+[ 2016-11-07T21:58:28+08:00 ] ::1 /project/Admin/Index/show
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.020001s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.020001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-07T21:59:43+08:00 ] ::1 /project/Admin/Index/show
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.001000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.032002s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.032002s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
+[ 2016-11-07T22:04:08+08:00 ] ::1 /project/Admin/show/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.223013s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.223013s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.006000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.006000s ]
+
+[ 2016-11-07T22:14:27+08:00 ] ::1 /project/Admin/show/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.017001s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.016001s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.016001s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.074004s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.074004s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.012001s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.012001s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.021001s ]
+INFO: [ app_end ] --END-- [ RunTime:0.021001s ]
+
+[ 2016-11-07T22:15:15+08:00 ] ::1 /project/Admin/show/index
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000000s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001000s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000000s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000000s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.006000s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.016001s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.001000s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.001000s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.001000s ]
+INFO: [ app_end ] --END-- [ RunTime:0.001000s ]
+
