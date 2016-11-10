@@ -45,15 +45,19 @@ class LoginController extends Controller
 	    $map = [];
 	    $map['u_username'] = $username;
 	    $map['u_password'] = $password;
-
+		$user = M('user')->where($map)->find();
 	   		//执行添加
-	    	$user = M('user')->where($map)->find();
+
 	        if (!empty($user)) {
 	            session('name',$username);
 	            session('id',$user['u_id']);
-	           $this->success('恭喜您,登录成功!', U('Index/index'));
+	            // $this->success('恭喜您,登录成功!', U('Index/index'));
+        		$this->redirect('Index/index');
 	        } else {
-	           $this->error('登录失败....');
+	           // $this->error('登录失败....');
+        		$this->redirect('Login/index', array('tip' => '账号或密码错误'));
+
+
 	        }
 
     }
