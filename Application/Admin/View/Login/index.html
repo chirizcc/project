@@ -134,7 +134,11 @@ $('#code').focusout(function(){
 				}); 
 				$('#btn').attr('disabled','disabled');
             }else{
-            	layer.msg('验证码正确'); 
+            	layer.tips('验证码正确', '#code', {
+				  tips: [1, 'lightgreen'],
+				  time: 4000
+				}); 
+				$('#btn').attr('disabled','disabled');
             	$('#btn').removeAttr('disabled');
             }
         }
