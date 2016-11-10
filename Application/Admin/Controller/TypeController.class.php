@@ -16,18 +16,12 @@ class TypeController extends AdminController
 		    $map['t_pid'] = $pid;
 
 			$data = $type->where($map)->select();
-			if(empty($data)){
-				
-			}
 			$this->assign('type',$data);
 		}else{
 			$map = [];
 		    $map['t_pid'] = $pid;
 
 			$data = $type->where($map)->select();
-			if(empty($data)){
-				
-			}
 			$this->assign('type',$data);
 		}
 
@@ -35,4 +29,115 @@ class TypeController extends AdminController
 		$this->assign('time',$time);
 		$this->display();
 	}
+
+	public function del()
+    {
+        //判断有无传递ID
+        if (empty($_GET['id'])) {
+            $this->redirect('Admin/Type/index');
+            exit;
+        }
+        //接收参数
+        // $id = $_GET['id'];
+        // I() 方法 过滤输入的数据 
+        $id = I('get.id/d');
+        // echo $id;exit;
+
+        //判断是否有子分类
+        $type = M('type');
+        $map = [];
+		$map['t_pid'] = $id;
+		$data = $type->where($map)->select();
+		if(!empty($data)){
+			echo "<script>alert('该类别还有子分类，无法删除');</script>";
+			$this->redirect('Type/index', array('tip' => '该类别还有子分类，无法删除'));
+			exit;
+		}
+
+        //执行删除
+        if ($type->delete($id) > 0) {
+           $this->success('恭喜您,删除成功!', U('index'));
+        } else {
+           $this->error('删除失败....', U('index'));
+        }
+    }
+
+    //添加页面
+    public function add()
+    {
+    	$type = M('type');
+    	$map = [];
+		$map['t_pid'] = 0;
+    	$data = $type->where($map)->select();
+    	$time = date('Y-m-d',time());
+    	$this->assign('time',$time);
+    	$this->assign('list',$data);
+        $this->display('Type/add');
+    }
+
+    //执行添加
+    public function insert()
+    {
+        if (empty($_POST['t_name'])) {
+            $this->redirect('Admin/Type/add');
+            exit;
+        }
+        // 拼接$_POST['t_path'];
+        if($_POST['t_pid'] == 0){
+        	$_POST['t_path'] = $_POST['t_pid'].",";
+        }else{
+        	$_POST['t_path'] = "0,".$_POST['t_pid'];
+        }
+
+        //1.自己手动过滤POST数据
+        //2.M('user')->data()  自动生成数据
+        //3.推荐!
+        M('type')->create();
+
+        //执行添加
+        if (M('type')->add() > 0) {
+           $this->success('恭喜您,添加成功!', U('index'));
+        } else {
+           $this->error('添加失败....');
+        }
+    }
+
+    //编辑页面
+    public function edit($id)
+    {
+    	if (empty($_GET['id'])) {
+            $this->redirect('Admin/Type/index');
+            exit;
+        }
+
+        //接收ID
+        $id = I('get.id/d');
+        //查找
+    	$type = M('type');
+        $list = $type->find($id);
+
+        $time = date('Y-m-d',time());
+    	$this->assign('time',$time);
+
+        $this->assign('list',$list);
+        $this->display('Type/edit');
+    }
+
+    //执行修改
+    public function update()
+    {
+        if (empty($_POST)) {
+            $this->redirect('Admin/Type/edit');
+            exit;
+        }
+        $type = M('type');
+
+        $type->create();
+        //执行修改
+        if (M('type')->save() > 0) {
+           $this->success('恭喜您,编辑成功!', U('index'));
+        } else {
+           $this->error('编辑失败....');
+        }
+    }
 }

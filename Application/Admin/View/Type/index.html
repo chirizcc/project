@@ -14,6 +14,7 @@
 
 			<li>
 				<a href="<{:U('Type/index')}>">顶级分类页</a>
+				
 			</li>
 			<!-- <li class="active">Invoice</li> -->
 		</ul><!-- .breadcrumb -->
@@ -62,7 +63,8 @@
 
 							<div class="widget-body">
 								<div class="widget-main padding-24">
-									<span><a href="<{:U('Type/index')}>">返回顶级分类</a></span>
+									<a href="<{:U('Type/index')}>" class="btn btn-info">返回顶级分类</a>
+									<a href="<{:U('Type/add')}>" class="btn btn-success">添加新分类</a>
 									<div class="space"></div>
 									<div>
 										<if condition="$type neq null">
@@ -95,8 +97,8 @@
 										                    </if>
 														</td>
 														<td>
-															<a href="#" class="btn btn-danger btn-xs">删除</a>
-															<a href="#" class="btn btn-warning btn-xs">编辑</a>
+															<a href="<{:U('Type/del',array('id'=>$v['t_id']))}>" class="btn btn-danger btn-xs">删除</a>
+															<a href="<{:U('Type/edit',array('id'=>$v['t_id']))}>" class="btn btn-warning btn-xs">编辑</a>
 															<if condition="$v.t_pid eq '0'">
 															<a href="<{:U('Type/index',array('pid'=>$v['t_id']))}>" class="btn btn-info btn-xs" id="sontype">查看子分类</a>
 															</if>

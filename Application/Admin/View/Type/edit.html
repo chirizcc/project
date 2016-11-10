@@ -1,0 +1,112 @@
+<extend name="Public/layout"/>
+<block name="content">
+<div>
+	<div class="breadcrumbs" id="breadcrumbs">
+		<script type="text/javascript">
+			try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+		</script>
+
+		<ul class="breadcrumb">
+			<li>
+				<i class="icon-home home-icon"></i>
+				<a href="#">Home</a>
+			</li>
+
+			<li>
+				<a href="<{:U('Type/index')}>">顶级分类页</a>
+				
+			</li>
+			<!-- <li class="active">Invoice</li> -->
+		</ul><!-- .breadcrumb -->
+
+		<div class="nav-search" id="nav-search">
+			<form class="form-search">
+				<span class="input-icon">
+					<input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+					<i class="icon-search nav-search-icon"></i>
+				</span>
+			</form>
+		</div><!-- #nav-search -->
+	</div>
+
+	<div class="page-content">
+		<div class="row">
+			<div class="col-xs-12">
+				<!-- PAGE CONTENT BEGINS -->
+
+				<div class="space-6"></div>
+
+				<div class="row">
+					<div class="col-sm-10 col-sm-offset-1">
+						<div class="widget-box transparent invoice-box">
+							<div class="widget-header widget-header-large">
+								<h3 class="grey lighter pull-left position-relative">
+									<i class="icon-leaf green"></i>
+									书籍分类编辑
+								</h3>
+
+								<div class="widget-toolbar no-border invoice-info">
+									<span class="invoice-info-label">终点</span>
+									<span class="red">中文网</span>
+
+									<br />
+									<span class="invoice-info-label">当前日期:</span>
+									<span class="blue"><{$time}></span>
+								</div>
+
+								<div class="widget-toolbar hidden-480">
+									<a href="#">
+										<i class="icon-print"></i>
+									</a>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-12">
+									<form action="<{:U('Type/update')}>" method="post" class="form-horizontal" style="margin-top:40px;">
+										<div class="form-group">
+											<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 分类名称 </label>
+
+											<div class="col-sm-9">
+												<input type="text" id="form-field-1" placeholder="Typename" class="col-xs-10 col-sm-5" name="t_name" value="<{$list.t_name}>" />
+											</div>
+										</div>
+										<input type="hidden" name="t_id" value="<{$list.t_id}>">
+										<input type="hidden" name="t_pid" value="<{$list.t_pid}>">
+										<input type="hidden" name="t_path" value="<{$list.t_path}>">
+										<div class="space-4"></div>
+										<!-- <div class="form-group">
+											<div style="margin-left:70px;">
+												<label for="form-field-select-1" class="col-sm-3 control-label no-padding-right">请选择父级分类&nbsp;&nbsp;</label>
+												<div class="col-sm-9">
+
+													<select class="form-control" id="form-field-select-1" style="width:210px;" name="t_pid">
+
+															<option value="<{$list.t_id}>"><{$list.t_name}></option>
+														<volist name="data" id="v">
+															<option value="<{$v.t_id}>"><{$v.t_name}></option>
+														</volist>
+													</select>
+												</div>
+											</div>
+										</div> -->
+
+										<div class="space-4"></div>
+
+										<div class="form-group" style="margin-left:300px;">
+											<button class="btn btn-success btn-md">提交</button>
+										</div>
+									</form>
+
+									<div style="height:200px;"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- PAGE CONTENT ENDS -->
+			</div><!-- /.col -->
+		</div><!-- /.row -->
+	</div><!-- /.page-content -->
+</div><!-- /.main-content -->
+</block>
