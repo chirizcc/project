@@ -20,7 +20,7 @@
 					<ul class="nav ace-nav">
 						<li class="light-blue">
 							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
-								<img class="nav-user-photo" src="__PUBLIC__/ace/assets/avatars/user.jpg" alt="Jason's Photo" />
+								<img class="nav-user-photo" src="/Uploads/<{$img}>" alt="Jason's Photo" />
 								<span class="user-info">
 									<small>欢迎光临,</small>
 									<{:I('session.name')}>
@@ -212,7 +212,7 @@
 				</div>
 
                 <div class="main-content">
-                    <iframe src="" frameborder="0" width="100%" height="640px" name="main"></iframe>
+                    <iframe src="<{:U('Admin/Conventional/index')}>" frameborder="0" width="100%" height="640px" name="main"></iframe>
                 </div>
 
 			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
@@ -231,9 +231,6 @@
         <![endif]-->
 
 		<!--[if !IE]> -->
-
-
-
 		<script type="text/javascript">
 			window.jQuery || document.write("<script src='__PUBLIC__/ace/assets/js/jquery-2.0.3.min.js'>"+"<"+"script>");
 		</script>
@@ -244,7 +241,7 @@
         <script type="text/javascript">
             window.jQuery || document.write("<script src='__PUBLIC__/ace/assets/js/jquery-1.10.2.min.js'>"+"<"+"script>");
         </script>
-<![endif]-->
+		<![endif]-->
 
 		<script type="text/javascript">
 			if("ontouchend" in document) document.write("<script src='__PUBLIC__/ace/assets/js/jquery.mobile.custom.min.js'>"+"<"+"script>");
