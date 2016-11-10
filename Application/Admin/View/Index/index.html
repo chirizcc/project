@@ -20,7 +20,7 @@
 					<ul class="nav ace-nav">
 						<li class="light-blue">
 							<a data-toggle="dropdown" href="#" class="dropdown-toggle">
-								<img class="nav-user-photo" src="/Uploads/<{$img}>" alt="Jason's Photo" />
+								<img class="nav-user-photo" src="/Uploads/<if condition="$img == null">Portrait/profile-pic.jpg<else /><{$img}></if>" alt="头像" />
 								<span class="user-info">
 									<small>欢迎光临,</small>
 									<{:I('session.name')}>
@@ -113,7 +113,7 @@
 						</li>
 
 						<li>
-							<a href="typography.html" target="main">
+							<a href="<{:U('Admin/User/index')}>" target="main">
                                 <i class="icon-group"></i>
 								<span class="menu-text"> 用户管理 </span>
 							</a>
