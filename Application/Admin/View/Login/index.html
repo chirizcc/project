@@ -1,5 +1,6 @@
 	<extend name="Public/layout" />
 	<block name="content">
+		<style>#tip{color: red;display: block;font-size: 15px;}</style>
 	<body class="login-layout">
 		<div class="main-container">
 			<div class="main-content">
@@ -32,18 +33,18 @@
 												<fieldset>
 													<label class="block clearfix">
 														<span class="block input-icon input-icon-right">
-															<input type="text" class="form-control" placeholder="请输入用户名" name="username"/>
+															<input type="text" class="form-control" placeholder="请输入用户名" name="username" id="username"/>
 															<i class="icon-user"></i>
 														</span>
 													</label>
 
 													<label class="block clearfix">
 														<span class="block input-icon input-icon-right">
-															<input type="password" class="form-control" placeholder="请输入密码" name="password" />
+															<input type="password" class="form-control" placeholder="请输入密码" name="password" id="password"/>
 															<i class="icon-lock"></i>
 														</span>
 													</label>
-
+													<span id="tip"><{:I('get.tip')}></span>
 													<label class="block clearfix">
 														<!-- <span class="block input-icon input-icon-right"> -->
 															<input type="text" class="form-control" placeholder="验证码" name="code" style="width:140px; float:left;" id="code"/>
@@ -51,7 +52,7 @@
 														<!-- </span> -->
 													</label>
 													<div class="space"></div>
-														
+													
 													<div class="clearfix">
 														<label class="inline">
 															<input type="checkbox" class="ace" />
@@ -140,5 +141,14 @@ $('#code').focusout(function(){
         }
     })
 })
+
+$('#btn').click(function(){
+	//加载层
+	var index = layer.load(0, {shade: false}); //0代表加载的风格，支持0-2
+
+})
+
+
+
 </script>
 </block>
