@@ -49,9 +49,10 @@ class TypeController extends AdminController
 		$map['t_pid'] = $id;
 		$data = $type->where($map)->select();
 		if(!empty($data)){
-			echo "<script>alert('该类别还有子分类，无法删除');</script>";
+			/*echo "<script>alert('该类别还有子分类，无法删除');</script>";
 			$this->redirect('Type/index', array('tip' => '该类别还有子分类，无法删除'));
-			exit;
+			exit;*/
+            $this->error('删除失败....', U('index'));
 		}
 
         //执行删除
