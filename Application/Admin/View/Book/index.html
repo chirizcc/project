@@ -22,7 +22,7 @@
 					</th>
 					<th class="hidden-480">id</th>
 					<th><{$bookname}></th>
-					<th><{$img}></th>					
+					<th><{$author}></th>											
 					<th class="hidden-480"><{$click}></th>
 					<th>
 						<i class="icon-time bigger-110 hidden-480"></i>
@@ -47,8 +47,9 @@
 						<a href="#"><{$v.b_name}></a>
 					</td>
 					<td>
-						<a href="#"><img src="" alt=""></a>
+						<a href="#"><{$v.b_author}></a>
 					</td>
+				
 					<td class="hidden-480"><{$v.b_click}></td>
 
 					<td><{:date('Y-m-d H:i:s',$v[b_time])}></td>

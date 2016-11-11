@@ -4,7 +4,7 @@
  	<div class="page-content">
  		<div class="page-header">
 			<h1>
-				<{$title1}>
+				<a href="<{:U(index)}>"><{$title1}></a>
 				<small>
 					<i class="icon-double-angle-right"></i>
 					<{$title2}>
@@ -16,7 +16,8 @@
 			<div class="col-xs-12">
 		<form class="form-horizontal" role="form" action="<{:U('Book/insert')}>" method="post">
 			<input type="hidden" name="b_time" value="<{:time()}>">
-			<input type="hidden" name="b_uid" value="<{:time()}>">
+			<input type="hidden" name="b_uid" value="<{$value.name}>">
+		
 			<div class="form-group">
 				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 书名 </label>
 
@@ -27,7 +28,7 @@
 			<div class="form-group">
 			<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 类型 </label>
 			<div class="col-sm-9">
-			<select id="cg" onchange="change(this)" name="b_tid">
+			<select id="cg" onchange="change(this)" >
 					<option data-skin="default" value="" >--请选择--
 					<foreach name="list" item="v">
 					
@@ -35,7 +36,7 @@
 					</foreach>
 			</select>
 		
-			<select id="seconds" name="">
+			<select id="seconds" name="b_tid" >
 			
 				<option data-skin="default" value="" >--请选择--
 				
@@ -78,20 +79,22 @@
 	<script>
 	function change(obj)
 	{		
-		console.log(obj.value);
+		// console.log(obj.value);
        
 		$.ajax({
                 type:'get',
                 url:"<{:U('getadd',"","")}>/b_id/" + obj.value,
                 dataType:'json',
                 success:function(data){
-                    // console.log(eval(data)[0]['t_name']);
                     var d = eval(data);
-                    // console.log(d);
+                    console.log(d);
                     seconds.options.length = 0;
                     for (var i = 0; i < d.length; i++) {
 
-                    	seconds.add(new Option(d[i]['t_name']));
+                    	console.log(d[i]['t_id']);
+                    	seconds.add(new Option(d[i]['t_name'],d[i]['t_id']));
+
+
                     }
 
                 }
