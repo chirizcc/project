@@ -26,8 +26,8 @@ class LoginController extends HomeController
         	if($user['u_istype'] == '4'){
         		$this->error('您的账号被禁用 请联系管理员');
         	}
-            session('name',$username);
-            session('id',$user['u_id']);
+            session('home_name',$username);
+            session('home_id',$user['u_id']);
             $this->success('恭喜您,登录成功!', U('Index/index'));
     		// $this->redirect('Index/index');
         } else {
