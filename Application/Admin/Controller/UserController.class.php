@@ -107,4 +107,37 @@ class UserController extends AdminController
         $this->ajaxReturn($data);
     }
 
+    public function info($u_id)
+    {
+        if(empty($u_id)) {
+            $this->redirect('Admin/User/myInfo');
+            die;
+        }
+
+        if($u_id == session('id')) {
+            $this->redirect('Admin/User/myInfo');
+            die;
+        }
+
+        $model = M('user');
+        $data = $model->table('zd_user as u,zd_detail as d')->where('u.u_id = d.det_uid	and u.u_id = %d',$u_id)->field('u.u_id as u_id,d.det_id as id,u_username as username,u_istype as istype,det_name as name,det_sex as sex,det_tel as tel,det_email as email,det_introduce as introduce,det_img as img')->find();
+        $this->assign('data',$data);
+        $this->display();
+    }
+    
+    public function changeType()
+    {
+        $user = M('user');
+        $data = I('post.');
+        if($data['u_istype'] <= session('type')){
+            $this->ajaxReturn(false);
+        }
+
+        if(false === $user->save($data)) {
+            $this->ajaxReturn(false);
+        } else {
+            $this->ajaxReturn(true);
+        }
+    }
+
 }

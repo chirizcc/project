@@ -51,6 +51,7 @@ class LoginController extends Controller
 	        if (!empty($user)) {
 	            session('name',$username);
 	            session('id',$user['u_id']);
+				session('type',$user['u_istype']);
 	            // $this->success('恭喜您,登录成功!', U('Index/index'));
         		$this->redirect('Index/index');
 	        } else {

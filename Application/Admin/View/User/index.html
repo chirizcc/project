@@ -85,6 +85,9 @@
 
                                                             <td>
                                                                 <a href="#"><{$vo['username']}></a>
+                                                                <if condition="$vo['id'] eq session('id')">
+                                                                    <span class="label label-sm label-info arrowed-in-right arrowed">我</span>
+                                                                </if>
                                                             </td>
                                                             <td><{$vo['name']}></td>
                                                             <td class="hidden-480">
@@ -102,10 +105,6 @@
                                                                     <elseif condition="$vo['type'] eq 3"/><span class="label label-sm label-warning">普通用户</span>
                                                                     <else /><span class="label label-sm label-inverse arrowed-in">禁用</span>
                                                                 </if>
-
-                                                                <if condition="$vo['id'] eq session('id')">
-                                                                    <span class="label label-sm label-info arrowed-in-right arrowed">我</span>
-                                                                </if>
                                                             </td>
 
                                                             <td>
@@ -114,9 +113,9 @@
                                                                         <i class="icon-tasks bigger-120"></i>
                                                                     </a>
 
-                                                                    <a href="<{:U('Admin/User/del',['u_id' => $vo['id']])}>" class="btn btn-xs btn-danger"  title="删除">
-                                                                        <i class="icon-trash bigger-120" ></i>
-                                                                    </a>
+                                                                    <if condition="$vo['id'] neq session('id')">
+                                                                        <a href="<{:U('Admin/User/del',['u_id' => $vo['id']])}>" class="btn btn-xs btn-danger"  title="删除"><i class="icon-trash bigger-120" ></i></a>
+                                                                    </if>
                                                                 </div>
 
                                                                 <div class="visible-xs visible-sm hidden-md hidden-lg">
@@ -199,6 +198,9 @@
     </script>
     <![endif]-->
 
+    <!--引入layui-->
+    <script src="__PUBLIC__/layui/layui.js"></script>
+
     <script>
         $(document).ready(function(){
             $('#search-input').blur(function() {
@@ -207,6 +209,7 @@
                     location.href = '<{:U("Admin/User/index","","")}>/search/' + val;
                 }
             });
+
         });
     </script>
 

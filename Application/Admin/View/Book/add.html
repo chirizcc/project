@@ -1,0 +1,104 @@
+<extend  name="Public/layout"/>
+<body>
+<block name="content">
+ 	<div class="page-content">
+ 		<div class="page-header">
+			<h1>
+				<{$title1}>
+				<small>
+					<i class="icon-double-angle-right"></i>
+					<{$title2}>
+				</small>
+			</h1>
+		</div>
+		
+		<div class="row" >
+			<div class="col-xs-12">
+		<form class="form-horizontal" role="form" action="<{:U('Book/insert')}>" method="post">
+			<input type="hidden" name="b_time" value="<{:time()}>">
+			<input type="hidden" name="b_uid" value="<{:time()}>">
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 书名 </label>
+
+				<div class="col-sm-9">
+					<input type="text" id="form-field-1" placeholder="Bookname" class="col-xs-10 col-sm-5" name="b_name" />
+				</div>
+			</div>
+			<div class="form-group">
+			<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 类型 </label>
+			<div class="col-sm-9">
+			<select id="cg" onchange="change(this)" name="b_tid">
+					<option data-skin="default" value="" >--请选择--
+					<foreach name="list" item="v">
+					
+					<option data-skin="default" value="<{$v.t_id}>" id="options" ><{$v.t_name}></option>
+					</foreach>
+			</select>
+		
+			<select id="seconds" name="">
+			
+				<option data-skin="default" value="" >--请选择--
+				
+			
+			</select>
+			</div>
+			</div>
+			<div class="form-group">
+			<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 作者</label>
+								
+				<div class="col-sm-9">
+					<input type="text" id="form-field-1" placeholder="Username" class="col-xs-10 col-sm-5" name="b_author" />
+				</div>
+			</div>
+
+			<div class="form-group">
+			<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 图片上传</label>
+				<div class="col-sm-9">
+					<input type="file" name="b_img">
+				</div>
+			</div>
+			<div class="form-group">
+			<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> </label>
+				<div class="col-sm-9">
+					<input type="reset" value="重置" class="btn btn-success">
+					<input type="submit" value="提交" class="btn btn-success">
+				</div>
+			</div>
+			<div class="form-group"
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> </label>
+				<div class="col-sm-9">
+				</div>
+			</div>
+
+			<!-- <{:var_dump($data)}> -->
+		</form>
+	</div>
+	<!-- 引入 -->
+	<script src="__PUBLIC__/js/jquery.min.js"></script>
+	<script>
+	function change(obj)
+	{		
+		console.log(obj.value);
+       
+		$.ajax({
+                type:'get',
+                url:"<{:U('getadd',"","")}>/b_id/" + obj.value,
+                dataType:'json',
+                success:function(data){
+                    // console.log(eval(data)[0]['t_name']);
+                    var d = eval(data);
+                    // console.log(d);
+                    seconds.options.length = 0;
+                    for (var i = 0; i < d.length; i++) {
+
+                    	seconds.add(new Option(d[i]['t_name']));
+                    }
+
+                }
+            })
+		
+	}
+	
+	</script>
+</block>	
+</body>
