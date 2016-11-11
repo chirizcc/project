@@ -129,6 +129,10 @@ class UserController extends AdminController
     {
         $user = M('user');
         $data = I('post.');
+        if($data['u_istype'] <= session('type')){
+            $this->ajaxReturn(false);
+        }
+
         if(false === $user->save($data)) {
             $this->ajaxReturn(false);
         } else {

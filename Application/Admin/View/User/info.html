@@ -301,11 +301,12 @@
                             var layer = layui.layer;
                             layer.msg('你没有该权限');
                         });
-                        setTimeout('location.reload()',2000);
+                        setTimeout('location.reload()',1000);
                     }else{
 
                         $.post("<{:U('Admin/User/changeType')}>",{'u_id':"<{$data['u_id']}>",'u_istype':data.value},function(data){
-                            if(data) {
+                           console.dir(data);
+                            if(data === true) {
                                 layui.use('layer', function(){
                                     var layer = layui.layer;
                                     layer.msg('修改成功');
@@ -315,7 +316,7 @@
                                     var layer = layui.layer;
                                     layer.msg('修改失败');
                                 });
-                                setTimeout('location.reload()',2000);
+                                setTimeout('location.reload()',1000);
                             }
                         });
                     }
