@@ -22,7 +22,9 @@
 								<i class="icon-home home-icon"></i>
 								<a href="<{:U('Admin/Conventional/index')}>">主页</a>
 							</li>
-
+                            <li>
+                                <a href="<{:U('Admin/User/index')}>">用户管理</a>
+                            </li>
 							<li class="active">个人信息</li>
 						</ul><!-- .breadcrumb -->
 
@@ -31,14 +33,13 @@
 					<div class="page-content">
 						<div class="page-header">
 							<h1>
-								我的个人信息
+								用户信息
 							</h1>
 						</div><!-- /.page-header -->
 
 						<div class="row">
 							<div class="col-xs-12">
 								<!-- PAGE CONTENT BEGINS -->
-
 								<div>
 									<div id="user-profile-1" class="user-profile row">
 										<div class="col-xs-12 col-sm-3 center">
@@ -46,11 +47,6 @@
 												<span class="profile-picture">
 													<img id="avatar" class="editable img-responsive" alt="头像" src="/Uploads/<if condition="$data['img'] == null">Portrait/profile-pic.jpg<else /><{$data['img']}></if>" />
                                                     <div class="space-4"></div>
-                                                    <div class="site-demo-upload">
-                                                        <div class="site-demo-upbar">
-                                                            <input type="file" name="file" class="layui-upload-file" lay-title="修改头像">
-                                                        </div>
-                                                    </div>
 												</span>
 
 												<div class="space-4"></div>
@@ -69,7 +65,17 @@
 										</div>
 
 										<div class="col-xs-12 col-sm-9">
-
+                                            <div class="layui-input-inline" style="margin-left: 15px">
+                                                <form action="" class="layui-form">
+                                                    <select name="is_type" lay-filter="sel" id="sel">
+                                                        <option value="0" <if condition="$data['istype'] eq 0">selected</if>>超级管理员</option>
+                                                        <option value="1" <if condition="$data['istype'] eq 1">selected</if>>管理员</option>
+                                                        <option value="2" <if condition="$data['istype'] eq 2">selected</if>>作者</option>
+                                                        <option value="3" <if condition="$data['istype'] eq 3">selected</if>>普通用户</option>
+                                                        <option value="4" <if condition="$data['istype'] eq 4">selected</if>>禁用</option>
+                                                    </select>
+                                                </form>
+                                            </div>
 											<div class="space-12"></div>
                                             <form action="<{:U('Admin/user/update')}>" name="form">
                                                 <input type="hidden" name="id" value="<{$data['id']}>">
@@ -254,7 +260,7 @@
                         var sex = '保密';
                         if(form.sex_value.value == 0) {
                             sex = '女';
-                        }else if(form.sex_value.value == 1) {
+                        }else if(form.sex_value.value == 1){
                             sex  = '男';
                         }
 
@@ -283,23 +289,35 @@
                 });
             });
 
-            // 上传文件
-            layui.use('upload', function(){
-                layui.upload({
-                    url: "<{:U('Admin/User/updatePortrait',array('det_id' => $data['id']))}>" //上传接口
-                    ,method: 'post',
-                    data:1
-                    ,before: function(input){
-                        //返回的参数item，即为当前的input DOM对象
-                        layer.msg('文件上传中.....', {
-                            icon: 16
-                            ,shade: 0.01,
-                            time:0,
+            layui.use('form', function(){
+                var form = layui.form();
+
+                form.on('select(sel)', function(data){
+                    //console.log(data.elem); //得到select原始DOM对象
+                    console.log(data.value); //得到被选中的值
+                    if(data.value <= <{:session('type')}>){
+
+                        layui.use('layer', function(){
+                            var layer = layui.layer;
+                            layer.msg('你没有该权限');
                         });
-                    }
-                    ,success: function(res){ //上传成功后的回调
-                        layer.closeAll();
-                        $('#avatar').attr('src','/Uploads/' + res.url);
+                        setTimeout('location.reload()',2000);
+                    }else{
+
+                        $.post("<{:U('Admin/User/changeType')}>",{'u_id':"<{$data['u_id']}>",'u_istype':data.value},function(data){
+                            if(data) {
+                                layui.use('layer', function(){
+                                    var layer = layui.layer;
+                                    layer.msg('修改成功');
+                                });
+                            }else{
+                                layui.use('layer', function(){
+                                    var layer = layui.layer;
+                                    layer.msg('修改失败');
+                                });
+                                setTimeout('location.reload()',2000);
+                            }
+                        });
                     }
                 });
             });
