@@ -109,10 +109,6 @@ class UserController extends AdminController
 
     public function info($u_id)
     {
-        if(empty($u_id)) {
-            $this->redirect('Admin/User/myInfo');
-            die;
-        }
 
         if($u_id == session('id')) {
             $this->redirect('Admin/User/myInfo');
@@ -121,6 +117,12 @@ class UserController extends AdminController
 
         $model = M('user');
         $data = $model->table('zd_user as u,zd_detail as d')->where('u.u_id = d.det_uid	and u.u_id = %d',$u_id)->field('u.u_id as u_id,d.det_id as id,u_username as username,u_istype as istype,det_name as name,det_sex as sex,det_tel as tel,det_email as email,det_introduce as introduce,det_img as img')->find();
+        // 判断是否有查询到数据
+        if($data === null){
+            $this->redirect('Admin/User/index');
+            die;
+        }
+
         $this->assign('data',$data);
         $this->display();
     }
@@ -137,6 +139,41 @@ class UserController extends AdminController
             $this->ajaxReturn(false);
         } else {
             $this->ajaxReturn(true);
+        }
+    }
+
+    public function del($u_id)
+    {
+        if($u_id == session('id')) {
+            $this->ajaxReturn(false);
+        }
+
+        $uIstypeData = M('user')->where(['u_id' => $u_id])->field('u_istype')->find();
+
+        if($uIstypeData === null){
+            $this->ajaxReturn(false);
+        }
+        $uIstype = $uIstypeData['u_istype'];
+
+        if($uIstype <= session('type')) {
+            $this->ajaxReturn(false);
+        }
+
+        // 删除前获取用户头像
+        $imgData = M('detail')->where(['det_uid' => $u_id])->field('det_img')->find();
+        $img = $imgData['det_img'];
+
+        // 从user表删除
+        if(M('user')->delete($u_id)) {
+            // 从detail表删除
+            M('detail')->where(['det_uid' => $u_id])->delete();
+            
+            if(!empty($img)) {
+                unlink('./Uploads/'.$img);
+            }
+            $this->ajaxReturn(true);
+        }else {
+            $this->ajaxReturn(false);
         }
     }
 

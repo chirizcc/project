@@ -114,7 +114,7 @@
                                                                     </a>
 
                                                                     <if condition="$vo['id'] neq session('id')">
-                                                                        <a href="<{:U('Admin/User/del',['u_id' => $vo['id']])}>" class="btn btn-xs btn-danger"  title="删除"><i class="icon-trash bigger-120" ></i></a>
+                                                                        <a href="javascript:void(0)" onclick="del(this,'<{$vo['id']}>')" class="btn btn-xs btn-danger"  title="删除"><i class="icon-trash bigger-120" ></i></a>
                                                                     </if>
                                                                 </div>
 
@@ -209,8 +209,29 @@
                     location.href = '<{:U("Admin/User/index","","")}>/search/' + val;
                 }
             });
-
         });
+
+        function del(obj,id) {
+            $.post('<{:U("Admin/User/del")}>',{'u_id':id},function(data) {
+                if(data == true) {
+                    $(obj).parentsUntil('tbody').hide();
+                    layui.use('layer', function(){
+                        var layer = layui.layer;
+
+                        //信息框-例4
+                        layer.msg('修改成功', {icon: 6});
+                    });
+                }else {
+                    layui.use('layer', function(){
+                        var layer = layui.layer;
+
+                        //信息框-例4
+                        layer.msg('删除失败', {icon: 6});
+                    });
+                }
+            });
+        }
+
     </script>
 
 </block>
