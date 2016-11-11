@@ -3,34 +3,40 @@
 	<div class="header">	
       <div class="container"> 
   	     <div class="logo">
-			<h1><a href="index.html">Photo Hub</a></h1>
+			<h1><a href="index.html">终点中文网</a></h1>
 		 </div>
+
 		 <div class="top_right">
+		 <if condition="session('name') eq null">
 		   <ul>
-			<li><a href="register.html">Register</a></li>|
+			<li><a href="register.html">注册</a></li>|
 			<li class="login" >
-				 <div id="loginContainer"><a href="#" id="loginButton"><span>Login</span></a>
+				 <div id="loginContainer"><a href="#" id="loginButton"><span>登录</span></a>
 					  <div id="loginBox">                
-						  <form id="loginForm">
+						  <form id="loginForm" action="<{:U('Login/index')}>" method="post">
 			                <fieldset id="body">
 			                	<fieldset>
-			                          <label for="email">Email Address</label>
-			                          <input type="text" name="email" id="email">
+			                          <label for="email">用户名</label>
+			                          <input type="text" name="username" id="email">
 			                    </fieldset>
 			                    <fieldset>
-			                            <label for="password">Password</label>
+			                            <label for="password">密码</label>
 			                            <input type="password" name="password" id="password">
 			                     </fieldset>
-			                    <input type="submit" id="login" value="Sign in">
-			                	<label for="checkbox"><input type="checkbox" id="checkbox"> <i>Remember me</i></label>
+			                    <input type="submit" id="login" value="登录">
+			                	<label for="checkbox"><input type="checkbox" id="checkbox"> <i>记住我</i></label>
 			            	</fieldset>
-			                 <span><a href="#">Forgot your password?</a></span>
+			                 <span><a href="#">忘记密码?</a></span>
 						   </form>
 				        </div>
 			      </div>
-			  </li>
-		   </ul>
-	     </div>
+			</li>
+		 	</ul>
+		     <else /><li style="list-style:none;color:white;">欢迎您：<a href="<{:U('Index/index')}>"><{:I('session.name')}></a></li>
+
+		 	 </if>
+	     </div><!--top_right-->
+
 		 <div class="clearfix"></div>
 		</div>
 	</div>
@@ -38,31 +44,32 @@
 		<div class="container">
 			<div class="span_1_of_1">
 			    <h2>Photos, illustrations by<br> Creatives all over the world.</h2>
-			    <div class="search">
+			    <div class="search" style="width:368px;">
 			      <ul class="nav1">
 		            <li id="search">
 						<form action="" method="get">
 							<input type="text" name="search_text" id="search_text" placeholder="Search"/>
 							<input type="button" name="search_button" id="search_button">
+							<!-- <select name="searchtype" id="" class="form-control">
+								<li id="options">
+									<option value=""><a href="#">作品</a></option>
+									<ul class="subnav">
+										<option value=""><li><a href="#">作者</a></li></option>
+									</ul>
+								</li>
+							</select> -->
 						</form>
-					</li>
-					<li id="options">
-						<a href="#">All Images</a>
-						<ul class="subnav">
-							<li><a href="#">Photography</a></li>
-							<li><a href="#">Illustrations</a></li>
-							<li><a href="#">Vector</a></li>
-						</ul>
 					</li>
 	              </ul>
 	            </div>
 			</div>
 		</div>
 	</div>
+
 	<div class="grid_1">
-		<h3>Over 42 Million Stock Images, Vectors, Footage and Audio Clips</h3>
+		<h3>作品分类</h3>
 		<div class="col-md-2 col_1">
-			<h4>Gym</h4>
+			<h4>玄幻</h4>
 		</div>
 		<div class="col-md-2 col_1">
 			<img src="__PUBLIC__/homemodel/images/g1.jpg" class="img-responsive" alt=""/>
@@ -80,7 +87,7 @@
 			<img src="__PUBLIC__/homemodel/images/g5.jpg" class="img-responsive" alt=""/>
 		</div>
 		<div class="col-md-2 col_1">
-			<h4>Food</h4>
+			<h4>都市</h4>
 		</div>
 		<div class="col-md-2 col_1">
 			<img src="__PUBLIC__/homemodel/images/f1.jpg" class="img-responsive" alt=""/>
@@ -98,7 +105,7 @@
 			<img src="__PUBLIC__/homemodel/images/f4.jpg" class="img-responsive" alt=""/>
 		</div>
 		<div class="col-md-2 col_1">
-			<h4>Wedding</h4>
+			<h4>仙侠</h4>
 		</div>
 		<div class="col-md-2 col_1">
 			<img src="__PUBLIC__/homemodel/images/w1.jpg" class="img-responsive" alt=""/>
@@ -116,7 +123,7 @@
 			<img src="__PUBLIC__/homemodel/images/w4.jpg" class="img-responsive" alt=""/>
 		</div>
 		<div class="col-md-2 col_1">
-			<h4>People</h4>
+			<h4>科幻</h4>
 		</div>
 		<div class="col-md-2 col_1">
 			<img src="__PUBLIC__/homemodel/images/pic20.jpg" class="img-responsive" alt=""/>
@@ -135,7 +142,7 @@
 		</div>
 		<div class="clearfix"> </div>
 	</div>
-    <div class="copyrights">Collect from <a href="http://www.cssmoban.com/" >企业网站模板</a></div>
+    <div class="copyrights">Collect from <a href="zhongdian.com" >终点中文网</a></div>
 	<div class="grid_2">
 		<div class="container"> 
 			<div class="col-md-3 col_2">
@@ -199,7 +206,7 @@
 			<li><a href="faq.html">FAQ</a></li>
 			<li><a href="#">Categories</a></li>
          </ul>
-         <p>Copyright &copy; 2015.Company name All rights reserved.More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="网页模板" target="_blank">网页模板</a></p>
+         <p>Copyright &copy; 2015.Company name All rights reserved.More Templates <a href="http://www.cssmoban.com/" target="_blank" title="">模板之家</a> - Collect from <a href="http://www.cssmoban.com/" title="" target="_blank">网页模板</a></p>
 	  </div>
 	</div>
 </block>
