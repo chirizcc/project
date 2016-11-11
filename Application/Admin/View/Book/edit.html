@@ -26,11 +26,12 @@
 			<div class="form-group">
 			<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 类型 </label>
 			<div class="col-sm-9">
+			<{:var_dump($type)}>
 			<select id="cg" onchange="change(this)" name="b_tid">
 					<option data-skin="default" value="" >--请选择--
 					<foreach name="list" item="v">
 					
-					<option data-skin="default" value="<{$v.b_id}>" id="options" ><{$v.t_name}></option>
+					<option data-skin="default" value="<{$v.t_id}>" id="options" <if condition="$type.t_pid eq $v.t_id ">selected</if> ><{$v.t_name}></option>
 					</foreach>
 			</select>
 		
@@ -46,16 +47,10 @@
 			<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 作者</label>
 								
 				<div class="col-sm-9">
-					<input type="text" id="form-field-1" value="<{$data.b_uid}>" class="col-xs-10 col-sm-5" name="b_uid" />
+					<input type="text" id="form-field-1" value="<{$data.b_uid}>" class="col-xs-10 col-sm-5" name="b_author" />
 				</div>
 			</div>
 
-			<div class="form-group">
-			<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 图片上传</label>
-				<div class="col-sm-9">
-					<input type="file" name="b_img" value="<{$data.b_img}>">
-				</div>
-			</div>
 			<div class="form-group">
 			<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> </label>
 				<div class="col-sm-9">
@@ -78,9 +73,9 @@
                 url:"<{:U('getadd',"","")}>/b_id/" + obj.value,
                 dataType:'json',
                 success:function(data){
-                    // console.log(eval(data)[0]['t_name']);
+                    console.log(eval(data)[0]['t_name']);
                     var d = eval(data);
-                    // console.log(d);
+                    console.log(d);
                     seconds.options.length = 0;
                     for (var i = 0; i < d.length; i++) {
 

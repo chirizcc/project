@@ -9,10 +9,10 @@
 			$this->assign('list',$data);
 			$this->assign('title','书籍管理');
 			$this->assign('bookname','书籍名称');
-			$this->assign('img','图片');
+			$this->assign('author','作者');		
 			$this->assign('click','访问数量');
 			$this->assign('status','状态');
-			$this->assign('time','上传时间');
+			$this->assign('time','修改时间');
 			$this->display();
 		}
 
@@ -36,11 +36,12 @@
 	    public function add()
 	    {	
 	    
-	    	$this->assign('title1','书籍添加');
+	    	$this->assign('title1','书籍管理');
 	    	$this->assign('title2','填写书籍内容');
 	    	$data = M('type')->where('t_pid=0')->order('t_id desc')->select();
 	        $this->assign('list',$data);
-	         	       
+	        $value = session();	
+	        $this->assign('value',$value);       
 	        $this->assign('title','添加用户');
 	        $this->display('Book/add');
 	        // echo M('type')->getLastSql().'<br>';
@@ -75,12 +76,16 @@
 		}
 
 		public function edit()
-		{
+		{	
+			$type = M('type')->where('t_pid=0')->order('t_id desc')->select();
+	        $this->assign('list',$type);
 			// 接收id
 			$id = I('get.id/d');
 			//查找
        		$data = M('book')->find($id);
-       		$this->assign('data',$data);      
+       		$this->assign('data',$data);
+       		$type2 = M('type')->where('t_pid='.$data['b_tid'])->select();       		
+       		$this->assign('type',$type2);    
 			$this->assign('title1','书籍修改');
 	    	$this->assign('title2','修改书籍内容');
 	    	$this->display('Book/edit');
