@@ -60,6 +60,15 @@
                                             </div>
                                         </div>
 
+										<div class="layui-form-item">
+											<label class="layui-form-label">书籍</label>
+											<div class="layui-input-block">
+                                                <foreach name="bookList" item="v">
+                                                    <input type="checkbox" name="node['<{$v['n_id']}>']" value="<{$v['n_id']}>" title="<{$v['n_name']}>" <if condition="isset($v['checked'])">checked</if> >
+                                                </foreach>
+											</div>
+										</div>
+
                                         <div class="layui-form-item">
                                             <div class="layui-input-block">
                                                 <button class="layui-btn" lay-submit lay-filter="formDemo">确认</button>

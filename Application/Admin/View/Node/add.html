@@ -1,0 +1,84 @@
+<extend name="Public/layout"/>
+<block name="content">
+<div>
+	<div class="breadcrumbs" id="breadcrumbs">
+
+		<ul class="breadcrumb">
+			<li>
+				<i class="icon-home home-icon"></i>
+				<a href="#">主页</a>
+			</li>
+
+			<li>
+				<a href="<{:U('Admin/Node/index')}>">权限管理</a>
+			</li>
+			<li class="active">添加权限</li>
+		</ul><!-- .breadcrumb -->
+
+	</div>
+
+	<div class="page-content">
+		<div class="row">
+			<div class="col-xs-12">
+				<!-- PAGE CONTENT BEGINS -->
+
+				<div class="space-6"></div>
+
+				<div class="row">
+					<div class="col-sm-10 col-sm-offset-1">
+						<div class="widget-box transparent invoice-box">
+							<div class="page-header">
+								<h1>
+									<a href="<{:U('Admin/Node/index')}>">权限管理</a>
+									<small>
+										<i class="icon-double-angle-right"></i>
+										添加权限
+									</small>
+								</h1>
+							</div><!-- /.page-header -->
+
+							<div class="row">
+								<div class="col-md-12">
+									<form action="<{:U('Admin/Node/insert')}>" method="post" class="form-horizontal" style="margin-top:40px;">
+										<div class="form-group">
+											<label class="col-sm-3 control-label no-padding-right"> 权限名称 </label>
+
+											<div class="col-sm-9">
+												<input type="text"placeholder="" class="col-xs-10 col-sm-5" name="n_name"/>
+											</div>
+										</div>
+
+										<div class="form-group">
+											<label class="col-sm-3 control-label no-padding-right"> 控制器权限 </label>
+
+											<div class="col-sm-9">
+												<input type="text"placeholder="" class="col-xs-10 col-sm-5" name="n_controller"/>
+											</div>
+										</div>
+
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label no-padding-right"> 操作权限 </label>
+
+                                            <div class="col-sm-9">
+                                                <input type="text" placeholder="" class="col-xs-10 col-sm-5" name="n_action"/>
+                                            </div>
+                                        </div>
+
+										<div class="space-4"></div>
+
+										<div class="form-group" style="margin-left:153px;">
+											<button class="btn btn-success btn-md">添加</button>
+										</div>
+									</form>
+									<div style="height:200px;"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- PAGE CONTENT ENDS -->
+			</div><!-- /.col -->
+		</div><!-- /.row -->
+	</div><!-- /.page-content -->
+</div><!-- /.main-content -->
+</block>

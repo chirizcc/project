@@ -48,12 +48,15 @@ class RoleController extends AdminController
                 $userList[] = $v;
             } elseif ($v['n_controller'] == 'Type') {
                 $typeList[] = $v;
+            } elseif ($v['n_controller'] == 'Book') {
+                $bookList[] = $v;
             }
         }
 
         $data = M('role')->find($r_id);
         $this->assign('userList',$userList);
         $this->assign('typeList',$typeList);
+        $this->assign('bookList',$bookList);
         $this->assign('data',$data);
         $this->display();
     }

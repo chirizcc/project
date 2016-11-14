@@ -4,6 +4,9 @@ namespace Admin\Controller;
 
 class UserController extends AdminController
 {
+    // 一页显示多少个
+    private $size = 8;
+
     public function index($search = null)
     {
         $map = [];
@@ -12,7 +15,7 @@ class UserController extends AdminController
         }
 
         // 获取所有用户信息
-        $data = M('user')->table('zd_user as u,zd_detail as d')->where($map)->where('u.u_id = d.det_uid')->field('u.u_id id,u.u_username username,u.u_regtime time,u.u_istype type,d.det_name name,d.det_sex sex')->order('u.u_id desc')->page($_GET['p'],6)->select();
+        $data = M('user')->table('zd_user as u,zd_detail as d')->where($map)->where('u.u_id = d.det_uid')->field('u.u_id id,u.u_username username,u.u_regtime time,u.u_istype type,d.det_name name,d.det_sex sex')->order('u.u_id desc')->page($_GET['p'], $this->size)->select();
 
         // 获取所有用户角色信息
         $roles = M('user_role')->table('zd_user_role as ur,zd_role as r')->where('ur.ur_rid = r.r_id')->field('ur.ur_uid as u_id,r.r_name as r_name')->select();
@@ -31,7 +34,7 @@ class UserController extends AdminController
         $count = M('user')->table('zd_user as u,zd_detail as d')->where($map)->where('u.u_id = d.det_uid')->count();// 查询满足要求的总记录数
         // 使用自定义分页类
         //$Page = new \Think\Page($count,1);
-        $Page = new \Org\Util\MyPage($count,6);// 实例化分页类 传入总记录数和每页显示的记录数
+        $Page = new \Org\Util\MyPage($count, $this->size);// 实例化分页类 传入总记录数和每页显示的记录数
 
         if(!empty($search)) {
             //分页跳转的时候保证查询条件
@@ -144,9 +147,6 @@ class UserController extends AdminController
     {
         $user = M('user');
         $data = I('post.');
-        if($data['u_istype'] <= session('type')){
-            $this->ajaxReturn(false);
-        }
 
         if(false === $user->save($data)) {
             $this->ajaxReturn(false);
@@ -158,17 +158,6 @@ class UserController extends AdminController
     public function del($u_id)
     {
         if($u_id == session('id')) {
-            $this->ajaxReturn(false);
-        }
-
-        $uIstypeData = M('user')->where(['u_id' => $u_id])->field('u_istype')->find();
-
-        if($uIstypeData === null){
-            $this->ajaxReturn(false);
-        }
-        $uIstype = $uIstypeData['u_istype'];
-
-        if($uIstype <= session('type')) {
             $this->ajaxReturn(false);
         }
 

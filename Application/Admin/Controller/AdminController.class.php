@@ -13,14 +13,10 @@ class AdminController extends Controller
             $this->redirect('Login/index');
     	}
 
-        /*echo CONTROLLER_NAME;
-        echo ACTION_NAME;*/
-
+        // admin用户不受权限制限
         if(session('name') != 'admin') {
             $nodeList = session('nodeList');
-            /*echo CONTROLLER_NAME;
-            dump($nodeList[CONTROLLER_NAME]);
-            die;*/
+            // 判断权限
             if (!isset($nodeList[CONTROLLER_NAME]) && CONTROLLER_NAME != 'Index') {
                 $this->error('你没有权限进行该操作');
             } else {
@@ -36,10 +32,6 @@ class AdminController extends Controller
                 }
             }
         }
-
-
-
-//        dump(session('nodeList'));die;
 	}
 	
     public function _empty()

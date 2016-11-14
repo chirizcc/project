@@ -51,8 +51,7 @@ class LoginController extends Controller
 			session('name',$username);
 			session('id',$user['u_id']);
 			session('type',$user['u_istype']);
-			session('user',$user);
-
+            
             //获取该用户的权限
             $list = M('user_role')->table('zd_user_role ur,zd_role r,zd_role_node rn,zd_node n')->where('ur.ur_rid = r.r_id and r.r_id = rn.rn_rid and rn.rn_nid = n.n_id and ur.ur_uid = '.session('id'))->field('n.n_controller controller,n.n_action action')->select();
 
@@ -67,6 +66,7 @@ class LoginController extends Controller
                 $newList[$v['controller']][] = $v['action'];
             }
 
+            // 权限信息存入到session中
             session('nodeList',$newList);
 
 			// $this->success('恭喜您,登录成功!', U('Index/index'));
@@ -82,8 +82,5 @@ class LoginController extends Controller
     	session(null);
         $this->redirect('Login/index');
     }
-
-
-
 
 }
