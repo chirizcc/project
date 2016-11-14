@@ -27,7 +27,7 @@
     <?php
             $str = "<script>layui.use('layer', function(){
                       var layer = layui.layer;
-                      layer.msg('".$message."');
+                      layer.msg('".$message."', {icon: 6});
                     });
             </script>";
             echo $str;
@@ -36,7 +36,7 @@
     <?php
         $str = "<script>layui.use('layer', function(){
                           var layer = layui.layer;
-                          layer.msg('".$error."');
+                          layer.msg('".$error."', {icon: 5});
                         });
                 </script>";
         echo $str;
