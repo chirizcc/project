@@ -22,7 +22,7 @@
 		<hr>
 		
 		<foreach name="dir" item="v">
-			<a href="<{:U('content',array('id'=>$v['cata_id']))}>"><button class="btn btn-white">第<{$v.cata_order}>章</button></a>
+			<a href="<{:U('content',array('id'=>session('dir')))}>"><button class="btn btn-white">第<{$v.cata_order}>章</button></a>
 		</foreach>
 
 	<!-- 引入 -->

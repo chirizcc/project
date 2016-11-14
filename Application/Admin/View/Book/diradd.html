@@ -4,10 +4,10 @@
  	<div class="page-content">
  		<div class="page-header">
 			<h1>
-				<a href="<{:U(index)}>"><{$title1}></a>
+				<a href="<{:U('dir',array('id'=>session('bid')))}>">返回</a>
 				<small>
 					<i class="icon-double-angle-right"></i>
-					<{$title2}>
+					添加
 				</small>
 			</h1>
 		</div>
@@ -21,7 +21,7 @@
 				<label class="col-sm-3 control-label no-padding-right" for="form-field-1">章节 </label>
 
 				<div class="col-sm-4" >
-					<input type="number" id="form-field-1" placeholder="" class="col-xs-3 col-sm-3" name="cata_order" onblur="test(this)"  value="1" /><span class="col-sm-3 control-label no-padding-right" id="sp"></span>
+					<input type="number" id="form-field-1" placeholder="" class="col-xs-3 col-sm-3" name="cata_order" onblur="test(this)"  value="" /><span class="col-sm-3 control-label no-padding-right" id="sp"></span>
 				</div>
 				
 			</div>

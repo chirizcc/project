@@ -1,7 +1,7 @@
 <?php 
 	namespace Admin\Controller;
 	use Think\Controller;
-
+	
 	class BookController extends AdminController
 	{
 		public function index() {
@@ -44,7 +44,7 @@
 	        $this->assign('value',$value);       
 	        $this->assign('title','添加用户');
 	        $this->display('Book/add');
-	        // echo M('type')->getLastSql().'<br>';
+	      
 
 	    }
 		public function getadd()
@@ -54,7 +54,7 @@
 			$data = M('type')->where('t_pid='.$b_id)->select();
 			$json_d = json_encode($data);
 			$this->ajaxReturn($json_d);
-			// var_dump($data);
+		
 			$this->assign('data',$data);
 
 		}
@@ -126,10 +126,12 @@
 			//查找
        		$book = M('book')->find($id);
        		$dir = M('catalog')->where('cata_bid='.$id)->order('cata_order desc')->select();
+
+       		session('dir',$dir[0]['cata_id']);
 	    	$this->assign('dir',$dir);
        		$this->assign('title1',$book['b_name']);
       		$this->assign('id',$id);
-	    	$this->display();
+	    	$this->display('Book/dir');
 	    }
 
 
@@ -137,7 +139,7 @@
 	    {	$id = I('get.id/d');
 	    	$this->assign('id',$id);
 	    	
-	    	$this->display();
+	    	$this->display('Book/diradd');
 	        // echo M('catalog')->getLastSql().'<br>';
 
 	    }
@@ -148,15 +150,14 @@
 	           $this->redirect('Admin/Book/diradd');
 	           exit;
 	        }
-	 		// var_dump($_POST);
 	    	M('catalog')->create($_POST);
 	    	
 	    	if (M('catalog')->add()> 0) {
-	           $this->success('恭喜您,编辑成功!', U('Admin/Book/dir',array('id'=>session('bid'))));
+	          $this->success('恭喜您,编辑成功!', U('dir',array('id'=>session('bid'))));
 	        } else {
-	           $this->error('编辑失败....',U('Admin/Book/dir',array('id'=>session('bid'))));
+	            $this->error('编辑失败....', U('dir',array('id'=>session('bid'))));
 	        }
-	        // echo M('catalog')->getLastSql().'<br>';
+	  
 	        
 	    }
 	    public function dirdel()
@@ -196,7 +197,7 @@
 	    	$id = I('get.id/d');
 
 	    	$value = M('catalog')->where('cata_id='.$id)->select();
-	    	var_dump($value);
+
 	    	if($value[0]['cata_cid']===null){
 		    	$data['con_time']=time();
 		    	if(M('content')->add($data) > 0){
@@ -213,24 +214,25 @@
 	    	$this->assign('id',$value[0]['cata_cid']);
 	    	$this->assign('name',$value[0]['cata_name']);
 	    	$this->assign('con',$con);
-	    	$this->display();
+	    	$this->display('Book/content');
 
 	    }
 
 	    public function contentadd()
 	    {	$id = I('get.id/d');
 	    	$this->assign('id',$id);
-	    	$this->display();
+	    	$this->display('Book/contentadd');
 	    }
 
 	    public function conupdate()
 	    {	$id = I('get.id/d');
-	    	var_dump($_GET);
+
 	    	$content['con_content'] = $_POST['con_content'];
+	    	$content['con_time'] = $_POST['con_time'];
 	   	 	if(M('content')->where('con_id='.$id)->save($content)>0){
-	   	 		$this->success('恭喜您,添加成功!',U('content',array('id'=>session('bid'))));
+	   	 		$this->success('恭喜您,添加成功!',U('content',array('id'=>session('dir'))));
 	   	 	}else{
-	   	 		$this->error('添加失败');
+	   	 		$this->error('添加失败',U('content',array('id'=>session('dir'))));
 	   	 	}	
 	    	
 

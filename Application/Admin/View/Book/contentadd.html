@@ -4,7 +4,7 @@
  	<div class="page-content">
  		<div class="page-header">
 			<h1>
-				<a href="">返回</a>
+				<a href="<{:U('dir',array('id'=>session('bid')))}>">返回</a>
 				<small>
 					<i class="icon-double-angle-right"></i>
 					内容
@@ -13,6 +13,7 @@
 		</div>
 		
 		<form action="<{:U(conupdate,array('id'=>$id))}>" method="post">
+			<input type="hidden" name="con_time" value="<{:time()}>">
 			<textarea name="con_content" id="" cols="100" rows="30"></textarea><br>	
 			<input type="submit" value="提交" class="btn btn-danger"><span id="sp"></span>
 		</form>
