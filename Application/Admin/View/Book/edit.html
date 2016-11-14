@@ -16,6 +16,7 @@
 			<div class="col-xs-12">
 		<form class="form-horizontal" role="form" action="<{:U('update')}>" method="post">
 			<input type="hidden" name="b_time" value="<{:time()}>">
+			<input type="hidden" name="b_id" value="<{$data.b_id}>">
 			<div class="form-group">
 				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 书名 </label>
 
@@ -26,20 +27,21 @@
 			<div class="form-group">
 			<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 类型 </label>
 			<div class="col-sm-9">
-			<{:var_dump($type)}>
-			<select id="cg" onchange="change(this)" name="b_tid">
-					<option data-skin="default" value="" >--请选择--
-					<foreach name="list" item="v">
-					
-					<option data-skin="default" value="<{$v.t_id}>" id="options" <if condition="$type.t_pid eq $v.t_id ">selected</if> ><{$v.t_name}></option>
+			<select id="cg" onchange="change(this)" >
+					<foreach name="type3" item="v2">						
+						<option data-skin="default" value="" id="op1"><{$v2.t_name}>
+					</foreach>
+					<foreach name="list" item="v">					
+						<option data-skin="default" value="<{$v.t_id}>" id="options" ><{$v.t_name}>
+						</option>
 					</foreach>
 			</select>
 		
-			<select id="seconds" name="">
-			
-				<option data-skin="default" value="" >--请选择--
-				
-			
+			<select id="seconds"  name="b_tid">	
+				<foreach name="type2" item="v1">						
+					<option data-skin="default" value="<{$v1.t_id}>" id="op2"><{$v1.t_name}>
+				</foreach>
+							
 			</select>
 			</div>
 			</div>
@@ -47,7 +49,7 @@
 			<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 作者</label>
 								
 				<div class="col-sm-9">
-					<input type="text" id="form-field-1" value="<{$data.b_uid}>" class="col-xs-10 col-sm-5" name="b_author" />
+					<input type="text" id="form-field-1" value="<{$data.b_author}>" class="col-xs-10 col-sm-5" name="b_author" />
 				</div>
 			</div>
 
@@ -66,7 +68,7 @@
 	<script>
 	function change(obj)
 	{		
-		console.log(obj.value);
+		// console.log(obj.value);
        
 		$.ajax({
                 type:'get',
@@ -75,17 +77,20 @@
                 success:function(data){
                     console.log(eval(data)[0]['t_name']);
                     var d = eval(data);
-                    console.log(d);
+                    // console.log(d);
                     seconds.options.length = 0;
                     for (var i = 0; i < d.length; i++) {
 
-                    	seconds.add(new Option(d[i]['t_name']));
+                    	seconds.add(new Option(d[i]['t_name'],d[i]['t_id']));
+                    	op1.style.display = 'none';
+						op2.style.display = 'none';
                     }
 
                 }
             })
 		
 	}
+	
 	
 	</script>
 </block>	
