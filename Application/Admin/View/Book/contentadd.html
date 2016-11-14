@@ -1,0 +1,22 @@
+<extend  name="Public/layout"/>
+<body>
+<block name="content">
+ 	<div class="page-content">
+ 		<div class="page-header">
+			<h1>
+				<a href="">返回</a>
+				<small>
+					<i class="icon-double-angle-right"></i>
+					内容
+				</small>
+			</h1>
+		</div>
+		
+		<form action="<{:U(conupdate,array('id'=>$id))}>" method="post">
+			<textarea name="con_content" id="" cols="100" rows="30"></textarea><br>	
+			<input type="submit" value="提交" class="btn btn-danger"><span id="sp"></span>
+		</form>
+		<hr>
+	</div>
+</block>	
+</body>

@@ -11,6 +11,40 @@
 				</small>
 			</h1>
 		</div>
+		
+	
 		<a href="<{:U('diradd',array('id'=>$id))}>"><h3>添加目录</h3></a>
+		<hr>
+		<form action="<{:U(dirdel)}>" method="post">
+			删除第几个章节：<input type="number" name="cata_order" onblur="test(this)">
+							<input type="submit" value="删除" class="btn btn-danger"><span id="sp"></span>
+		</form>
+		<hr>
+		
+		<foreach name="dir" item="v">
+			<a href="<{:U('content',array('id'=>$v['cata_id']))}>"><button class="btn btn-white">第<{$v.cata_order}>章</button></a>
+		</foreach>
+
+	<!-- 引入 -->
+	<script src="__PUBLIC__/js/jquery.min.js"></script>
+		<script>
+		
+		function test(obj){
+			if(obj.value <= 0 ){
+				obj.value="";
+				sp.innerHTML = "没有该章节";
+			}else{
+				$.ajax({
+                type:'get',
+                url:"<{:U('delajax',"","")}>/cata_order/"+ obj.value,
+                dataType:'json',
+                success:function(data){
+                	var d = eval(data);
+                    sp.innerHTML = d;
+                }
+            })
+			}
+		}
+		</script>
 </block>	
 </body>

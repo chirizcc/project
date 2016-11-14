@@ -87,11 +87,11 @@
                 dataType:'json',
                 success:function(data){
                     var d = eval(data);
-                    console.log(d);
+                    // console.log(d);
                     seconds.options.length = 0;
                     for (var i = 0; i < d.length; i++) {
 
-                    	console.log(d[i]['t_id']);
+                    	// console.log(d[i]['t_id']);
                     	seconds.add(new Option(d[i]['t_name'],d[i]['t_id']));
 
 

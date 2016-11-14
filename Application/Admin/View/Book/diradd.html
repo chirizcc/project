@@ -16,15 +16,24 @@
 			<div class="col-xs-12">
 		<form class="form-horizontal" role="form" action="<{:U('Book/addinsert')}>" method="post">
 		
-			<input type="hidden" name="cata_bid" value="<{$id}>">
+			<input type="hidden" name="cata_bid" value="<{:session('bid')}>">
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1">章节 </label>
+
+				<div class="col-sm-4" >
+					<input type="number" id="form-field-1" placeholder="" class="col-xs-3 col-sm-3" name="cata_order" onblur="test(this)"  value="1" /><span class="col-sm-3 control-label no-padding-right" id="sp"></span>
+				</div>
+				
+			</div>
 		
 			<div class="form-group">
-				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 书名 </label>
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 目录名 </label>
 
 				<div class="col-sm-9">
-					<input type="text" id="form-field-1" placeholder="Bookname" class="col-xs-10 col-sm-5" name="cata_name" />
+					<input type="text" id="form-field-1" placeholder="dirname" class="col-xs-10 col-sm-5" name="cata_name" />
 				</div>
 			</div>
+
 			
 			<div class="form-group">
 			<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> </label>
@@ -39,11 +48,19 @@
 				</div>
 			</div>
 
-			<!-- <{:var_dump($data)}> -->
+			
 		</form>
 	</div>
-	<!-- 引入 -->
+	<script>
 
+	function test(obj){
+		if(obj.value <= 0  ){
+			obj.value=1;
+			sp.innerHTML = '不能小于1';
+		}
+	}
+	</script>
+		
 
 
 
