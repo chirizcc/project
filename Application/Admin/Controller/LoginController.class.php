@@ -46,26 +46,41 @@ class LoginController extends Controller
 	    $map['u_username'] = $username;
 	    $map['u_password'] = md5($password);
 		$user = M('user')->where($map)->find();
-	   		//执行添加
 
-	        if (!empty($user)) {
-	            session('name',$username);
-	            session('id',$user['u_id']);
-				session('type',$user['u_istype']);
-	            // $this->success('恭喜您,登录成功!', U('Index/index'));
-        		$this->redirect('Index/index');
-	        } else {
-	           // $this->error('登录失败....');
-        		$this->redirect('Login/index', array('tip' => '账号或密码错误'));
+		if (!empty($user)) {
+			session('name',$username);
+			session('id',$user['u_id']);
+			session('type',$user['u_istype']);
+			session('user',$user);
 
-	        }
+            //获取该用户的权限
+            $list = M('user_role')->table('zd_user_role ur,zd_role r,zd_role_node rn,zd_node n')->where('ur.ur_rid = r.r_id and r.r_id = rn.rn_rid and rn.rn_nid = n.n_id and ur.ur_uid = '.session('id'))->field('n.n_controller controller,n.n_action action')->select();
+
+            // 将控制器的首字母转换成大写
+            foreach ($list as $k => $v) {
+                $list[$k]['controller'] = ucfirst($v['controller']);
+            }
+
+            // 重组数组
+            $newList = [];
+            foreach ($list as $k => $v) {
+                $newList[$v['controller']][] = $v['action'];
+            }
+
+            session('nodeList',$newList);
+
+			// $this->success('恭喜您,登录成功!', U('Index/index'));
+			$this->redirect('Index/index');
+		} else {
+		   // $this->error('登录失败....');
+			$this->redirect('Login/index', array('tip' => '账号或密码错误'));
+		}
 
     }
 
     public function logout(){
     	session(null);
         $this->redirect('Login/index');
-    	
     }
 
 
