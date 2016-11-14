@@ -31,6 +31,7 @@ class LoginController extends HomeController
         	}
             session('home_name',$username);
             session('home_id',$user['u_id']);
+            session('home_type',$user['u_istype']);
             $this->success('恭喜您,登录成功!', U('Index/index'));
     		// $this->redirect('Index/index');
         } else {
