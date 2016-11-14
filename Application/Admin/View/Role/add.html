@@ -1,0 +1,69 @@
+<extend name="Public/layout"/>
+<block name="content">
+<div>
+	<div class="breadcrumbs" id="breadcrumbs">
+
+		<ul class="breadcrumb">
+			<li>
+				<i class="icon-home home-icon"></i>
+				<a href="#">主页</a>
+			</li>
+
+			<li>
+				<a href="<{:U('Admin/Role/index')}>">角色管理</a>
+			</li>
+			<li class="active">添加角色</li>
+		</ul><!-- .breadcrumb -->
+
+	</div>
+
+	<div class="page-content">
+		<div class="row">
+			<div class="col-xs-12">
+				<!-- PAGE CONTENT BEGINS -->
+
+				<div class="space-6"></div>
+
+				<div class="row">
+					<div class="col-sm-10 col-sm-offset-1">
+						<div class="widget-box transparent invoice-box">
+							<div class="page-header">
+								<h1>
+									<a href="<{:U('Admin/Role/index')}>">角色管理</a>
+									<small>
+										<i class="icon-double-angle-right"></i>
+										添加角色
+									</small>
+								</h1>
+							</div><!-- /.page-header -->
+
+							<div class="row">
+								<div class="col-md-12">
+									<form action="<{:U('Admin/Role/insert')}>" method="post" class="form-horizontal" style="margin-top:40px;">
+										<div class="form-group">
+											<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 角色名称 </label>
+
+											<div class="col-sm-9">
+												<input type="text" id="form-field-1" placeholder="" class="col-xs-10 col-sm-5" name="r_name"/>
+											</div>
+										</div>
+
+										<div class="space-4"></div>
+
+										<div class="form-group" style="margin-left:153px;">
+											<button class="btn btn-success btn-md">提交</button>
+										</div>
+									</form>
+
+									<div style="height:200px;"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- PAGE CONTENT ENDS -->
+			</div><!-- /.col -->
+		</div><!-- /.row -->
+	</div><!-- /.page-content -->
+</div><!-- /.main-content -->
+</block>
