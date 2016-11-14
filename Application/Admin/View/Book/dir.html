@@ -1,0 +1,16 @@
+<extend  name="Public/layout"/>
+<body>
+<block name="content">
+ 	<div class="page-content">
+ 		<div class="page-header">
+			<h1>
+				<a href="<{:U(index)}>"><{$title1}></a>
+				<small>
+					<i class="icon-double-angle-right"></i>
+					目录
+				</small>
+			</h1>
+		</div>
+		<a href="<{:U('diradd',array('id'=>$id))}>"><h3>添加目录</h3></a>
+</block>	
+</body>
