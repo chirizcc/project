@@ -177,4 +177,47 @@ class UserController extends AdminController
         }
     }
 
+    public function add()
+    {
+        $this->display();
+    }
+
+    public function insert()
+    {
+        if(I('post.u_password') !== I('post.u_password2')){
+            $this->error('密码与确认密码不相同！',U('Admin/User/add'));
+        }
+
+        $userData['u_username'] = I('post.u_username');
+        $userData['u_password'] = I('post.u_password');
+        $user = D('User');
+        if($user->create($userData,1)) {
+            $u_id = $user->add();
+            if($u_id) {
+                $detailData['det_uid'] = $u_id;
+                $detailData['det_name'] = I('post.u_username');
+                $detailData['det_sex'] = I('post.det_sex');
+                $detailData['det_tel'] = I('post.det_tel');
+                $detailData['det_email'] = I('post.det_email');
+                $detailData['det_introduce'] = I('post.det_introduce');
+
+                $detail = D('detail');
+                if(!$detail->create($detailData)) {
+                    $user->delete($u_id);
+                    $this->error($user->getError(),U('Admin/User/add'));
+                }
+
+                if(!$detail->add()) {
+                    $this->error('添加失败！请稍后再试！',U('Admin/User/add'));
+                }
+
+                $this->success('添加成功',U('Admin/User/index'));
+            } else {
+                $this->error('添加失败！请稍后再试！',U('Admin/User/add'));
+            }
+        } else {
+            $this->error($user->getError(),U('Admin/User/add'));
+        }
+    }
+
 }

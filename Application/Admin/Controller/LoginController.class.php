@@ -44,7 +44,7 @@ class LoginController extends Controller
 
 	    $map = [];
 	    $map['u_username'] = $username;
-	    $map['u_password'] = $password;
+	    $map['u_password'] = md5($password);
 		$user = M('user')->where($map)->find();
 	   		//执行添加
 
@@ -57,7 +57,6 @@ class LoginController extends Controller
 	        } else {
 	           // $this->error('登录失败....');
         		$this->redirect('Login/index', array('tip' => '账号或密码错误'));
-
 
 	        }
 
