@@ -11,7 +11,20 @@ class UserController extends AdminController
             $map['u.u_username'] =  ['like','%'.$search.'%'];
         }
 
+        // 获取所有用户信息
         $data = M('user')->table('zd_user as u,zd_detail as d')->where($map)->where('u.u_id = d.det_uid')->field('u.u_id id,u.u_username username,u.u_regtime time,u.u_istype type,d.det_name name,d.det_sex sex')->order('u.u_id desc')->page($_GET['p'],6)->select();
+
+        // 获取所有用户角色信息
+        $roles = M('user_role')->table('zd_user_role as ur,zd_role as r')->where('ur.ur_rid = r.r_id')->field('ur.ur_uid as u_id,r.r_name as r_name')->select();
+
+        // 将用户角色信息加入到用户信息中，用于页面显示
+        foreach ($roles as $v) {
+            foreach ($data as $key => $value) {
+                if($v['u_id'] == $value['id']) {
+                    $data[$key]['role'][] = $v['r_name'];
+                }
+            }
+        }
 
         $this->assign('data',$data);
 
@@ -219,5 +232,4 @@ class UserController extends AdminController
             $this->error($user->getError(),U('Admin/User/add'));
         }
     }
-
 }

@@ -68,7 +68,7 @@
 															<i class="icon-time bigger-110 hidden-480"></i>
 															加入时间
 														</th>
-														<th class="hidden-480">权限</th>
+														<th class="hidden-480">角色</th>
 
 														<th>操作</th>
 													</tr>
@@ -99,16 +99,17 @@
                                                             <td><{:date('Y-m-d H:i',$vo['time'])}></td>
 
                                                             <td class="hidden-480">
-                                                                <if condition="$vo['type'] eq 0"><span class="label label-sm label-info arrowed-in-right arrowed">超级管理员</span>
-                                                                    <elseif condition="$vo['type'] eq 1"/><span class="label label-sm label-info arrowed-in-right arrowed">管理员</span>
-                                                                    <elseif condition="$vo['type'] eq 2"/><span class="label label-sm label-success arrowed-in-right">作者</span>
-                                                                    <elseif condition="$vo['type'] eq 3"/><span class="label label-sm label-warning">普通用户</span>
-                                                                    <else /><span class="label label-sm label-inverse arrowed-in">禁用</span>
+                                                                <if condition="isset($vo['role'])">
+                                                                    <foreach name="vo['role']" item="v">
+                                                                        <{$v}>&nbsp;&nbsp;
+                                                                    </foreach>
+                                                                    <else />无
                                                                 </if>
                                                             </td>
 
                                                             <td>
                                                                 <div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
+                                                                    <a href="<{:U('Admin/Node/role',['u_id' => $vo['id']])}>" class="btn btn-xs btn-success">分配角色</a>
                                                                     <a href="<{:U('Admin/User/info',['u_id' => $vo['id']])}>" class="btn btn-xs btn-info" title="详情">
                                                                         <i class="icon-tasks bigger-120"></i>
                                                                     </a>
