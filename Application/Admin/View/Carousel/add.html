@@ -1,0 +1,96 @@
+<extend name="Public/layout" />
+<block name="content">
+	<style>#head{display: none;}</style>
+	<link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css">
+	<div>
+	<div class="breadcrumbs" id="breadcrumbs">
+		<script type="text/javascript">
+			try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+		</script>
+
+		<ul class="breadcrumb">
+			<li>
+				<i class="icon-home home-icon"></i>
+				<a href="#">Home</a>
+			</li>
+
+			<li>
+				<a href="#">轮播图添加页</a>
+				
+			</li>
+			<!-- <li class="active">Invoice</li> -->
+		</ul><!-- .breadcrumb -->
+	</div>
+
+	<div class="page-content">
+		<div class="row" style="margin-top:50px;">
+			<div class="col-md-4">
+				<!-- PAGE CONTENT BEGINS -->
+					<div style="margin-left:110px;margin-bottom:20px">
+						<input type="file" name="file" class="layui-upload-file" >
+					</div>	
+					<form class="layui-form" action="">
+					  <div class="layui-form-item">
+					    <label class="layui-form-label">pic路径</label>
+					    <div class="layui-input-inline">
+					      <input type="text" name="password" required lay-verify="required" placeholder="" autocomplete="off" class="layui-input" style="margin-left:30px;" id="box" disabled>
+					    </div>
+					    <div class="layui-form-mid layui-word-aux"></div>
+					  </div>
+					  <div class="layui-form-item">
+					    <label class="layui-form-label">图片名</label>
+					    <div class="layui-input-inline">
+					      <input type="text" name="password" required lay-verify="required" placeholder="请输入图片名" autocomplete="off" class="layui-input" style="margin-left:30px;">
+					    </div>
+					    <div class="layui-form-mid layui-word-aux"></div>
+					  </div>
+					  <div class="layui-form-item">
+					    <label class="layui-form-label">状态</label>
+					    <div class="layui-input-block">
+					      <input type="checkbox" name="switch" lay-skin="switch" checked>
+					      <div class="layui-form-mid layui-word-aux">选中时为启用</div>
+					    </div>
+					  </div>
+					  <div class="layui-form-item">
+					    <div class="layui-input-block">
+					      <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+					      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+					    </div>
+					  </div>
+					</form>
+					
+					<script src="__PUBLIC__/js/jquery.min.js"></script>
+					<script src="__PUBLIC__/layui/layui.js"></script>
+					<script>
+					//Demo
+					layui.use('form', function(){
+					  var form = layui.form();
+					  
+					  //监听提交
+					  form.on('submit(formDemo)', function(data){
+					    layer.msg(JSON.stringify(data.field));
+					    return false;
+					  });
+					});
+
+					//图片上传
+					layui.use('upload', function(){
+					  layui.upload({
+					  	method:'post',
+						url: "<{:U('Carousel/picupload')}>",
+						success: function(res){
+						    $('#box').attr('value',res);
+						    $('img').attr('src',res);    
+						  }
+						}); 
+					});
+					      
+					
+					</script>
+				<!-- PAGE CONTENT ENDS -->
+			</div><!-- /.col -->
+		</div><!-- /.row -->
+		<div class="row"><div class="col-md-offset-2"><div class="h3" id="head">图片预览</div><img src="" alt=""></div></div>
+	</div><!-- /.page-content -->
+</div><!-- /.main-content -->
+</block>
