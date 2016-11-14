@@ -4,6 +4,10 @@ use Think\Controller;
 class LoginController extends HomeController
 {
 	public function index(){
+		$this->display();
+	}
+
+	public function yanzheng(){
 		if (empty($_POST)) {
 	        $this->redirect('Home/Index/index');
 	        exit;
@@ -20,7 +24,6 @@ class LoginController extends HomeController
 	    $map['u_username'] = $username;
 	    $map['u_password'] = $password;
 		$user = M('user')->where($map)->find();
-   		//执行添加
 
         if (!empty($user)) {
         	if($user['u_istype'] == '4'){
