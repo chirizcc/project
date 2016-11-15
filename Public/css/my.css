@@ -1,0 +1,14 @@
+.center .my-nav {
+    background: #393D49;
+    padding: 0;
+    color:#fbfbfb;
+}
+
+.center .my-nav ul{
+    width: 100%;
+    margin: 0;
+}
+
+.sp-10 {
+    height: 10px;
+}
