@@ -1,0 +1,105 @@
+<extend name="Public/layout"/>
+<block name="content">
+
+<div class="container">
+    <div class="center">
+        <div class="row">
+            <div class="col-md-2 my-nav" style="border: 1px solid #CCC">
+                <div class="sp-10"></div>
+                <div class="row">
+                    <!--用户头像-->
+                    <img class="col-md-8 col-md-offset-2 img-circle" src="__ROOT__/Uploads/<if condition="$img == null">Portrait/profile-pic.jpg<else /><{$img}></if>" alt="头像">
+                </div>
+                <div class="sp-10"></div>
+                <div class="row">
+                    <div class="col-md-10 col-md-offset-1">
+                        <p style="text-align: center"><{:session('home_name')}></p><!--用户名-->
+                    </div>
+                </div>
+                <div class="sp-10"></div>
+                <div class="sp-10"></div>
+                <div width="100%">
+                    <ul class="layui-nav layui-nav-tree">
+                        <!-- 侧边导航: <ul class="layui-nav layui-nav-tree layui-nav-side"> -->
+                        <!--<li class="layui-nav-item layui-nav-itemed">-->
+                        <li class="layui-nav-item">
+                            <a href="javascript:;">我的图书</a>
+                            <dl class="layui-nav-child">
+                                <dd><a href="">我的收藏</a></dd>
+                                <dd><a href="">我的书架</a></dd>
+                            </dl>
+                        </li>
+                        <li class="layui-nav-item">
+                            <a href="javascript:;">我的账号</a>
+                            <dl class="layui-nav-child">
+                                <dd><a href="">个人信息</a></dd>
+                                <dd><a href="">修改密码</a></dd>
+                                <dd><a href="">成为作者</a></dd>
+                            </dl>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <div class="col-md-10">
+                <iframe src="<{:U('Home/Center/show')}>" frameborder="0" id="ifrm" name="main" width="100%" onLoad="setIframeHeight(this.id)">
+                </iframe>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!--[if !IE]> -->
+    <script src="__PUBLIC__/js/jquery-2.0.3.min.js"></script>
+    <!-- <![endif]-->
+
+    <!--[if IE]>
+    <script src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
+    <![endif]-->
+
+    <!--[if !IE]> -->
+    <script type="text/javascript">
+        window.jQuery || document.write("<script src='__PUBLIC__/ace/assets/js/jquery-2.0.3.min.js'>"+"</"+"script>");
+    </script>
+    <!-- <![endif]-->
+
+    <!--[if IE]>
+    <script type="text/javascript">
+        window.jQuery || document.write("<script src='__PUBLIC__/ace/assets/js/jquery-1.10.2.min.js'>"+"</"+"script>");
+    </script>
+    <![endif]-->
+
+    <script type="text/javascript">
+        if("ontouchend" in document) document.write("<script src='__PUBLIC__/ace/assets/js/jquery.mobile.custom.min.js'>"+"</"+"script>");
+    </script>
+
+    <!--引入layui-->
+    <script src="__PUBLIC__/layui/layui.js"></script>
+
+    <script>
+        layui.use('element', function() {
+            var element = layui.element();
+        });
+
+        function setIframeHeight(id) {
+            var ifrm = document.getElementById(id);
+            var doc = ifrm.contentDocument? ifrm.contentDocument:
+                    ifrm.contentWindow.document;
+            ifrm.style.visibility = 'hidden';
+            ifrm.style.height = "10px"; // reset to minimal height ...
+            ifrm.style.height = getDocHeight( doc ) + 4 + "px";
+            ifrm.style.visibility = 'visible';
+        }
+
+        function getDocHeight(doc) {
+            doc = doc || document;
+            var body = doc.body, html = doc.documentElement;
+            var height = Math.max( body.scrollHeight, body.offsetHeight,
+                    html.clientHeight, html.scrollHeight, html.offsetHeight );
+            return height;
+        }
+    </script>
+
+<div style="height: 20px"></div>
+</block>

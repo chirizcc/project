@@ -9,6 +9,9 @@
     <!-- Bootstrap -->
     <link href="__PUBLIC__/dist/css/bootstrap.min.css" rel="stylesheet">
 
+	<link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css">
+    <link rel="stylesheet" href="__PUBLIC__/css/my.css">
+
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -59,7 +62,7 @@
 	        <li class="dropdown">
 	          <a href="#" class="dropdown-toggle" data-toggle="dropdown">欢迎您：<{:I('session.home_name')}> <span class="caret"></span></a>
 	          <ul class="dropdown-menu" role="menu">
-	            <li><a href="#">个人中心</a></li>
+	            <li><a href="<{:U('Home/Center/index')}>">个人中心</a></li>
 	            <li class="divider"></li>
 	            <li><a href="<{:U('Login/logout')}>">退出</a></li>
 	          </ul>
@@ -73,7 +76,7 @@
 	<block name="content">
 	</block>
 <!-- <div class="navbar navbar-fixed-bottom"> -->
-	<div class="footer ">
+	<div class="footer">
 	    <div class="container">
 	        <div class="row footer-top">
 	            <div class="col-sm-6 col-lg-6">
