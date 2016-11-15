@@ -127,7 +127,7 @@
        		$book = M('book')->find($id);
        		$dir = M('catalog')->where('cata_bid='.$id)->order('cata_order desc')->select();
 
-       		session('dir',$dir[0]['cata_id']);
+       		// session('dir',$dir[0]['cata_id']);
 	    	$this->assign('dir',$dir);
        		$this->assign('title1',$book['b_name']);
       		$this->assign('id',$id);
@@ -153,6 +153,14 @@
 	    	M('catalog')->create($_POST);
 	    	
 	    	if (M('catalog')->add()> 0) {
+	    		$value=M('catalog')->order('cata_id desc')->select();
+	    		$data['con_time']=time();
+	    		M('content')->add($data);
+	    		$content=M('content')->order('con_id desc')->select();
+		    	$cata['cata_cid'] = $content[0]['con_id'];
+		    	M('catalog')->where('cata_id='.$value[0]['cata_id'])->save($cata);
+	    		
+
 	          $this->success('恭喜您,编辑成功!', U('dir',array('id'=>session('bid'))));
 	        } else {
 	            $this->error('编辑失败....', U('dir',array('id'=>session('bid'))));
@@ -195,20 +203,10 @@
 	    public function content()
 	    {	
 	    	$id = I('get.id/d');
-
+	    	session('dir',$id);
 	    	$value = M('catalog')->where('cata_id='.$id)->select();
 
-	    	if($value[0]['cata_cid']===null){
-		    	$data['con_time']=time();
-		    	if(M('content')->add($data) > 0){
-		    		$content=M('content')->order('con_id desc')->select();
-		    		$cata['cata_cid'] = $content[0]['con_id'];
-
-		    		 M('catalog')->where('cata_id='.$id)->save($cata);
-	    		    	
-	    		
-	    		}
-	    	}
+	 
 	    	$con = M('content')->where('con_id='.$value[0]['cata_cid'])->select();
 	    	
 	    	$this->assign('id',$value[0]['cata_cid']);
@@ -220,13 +218,15 @@
 
 	    public function contentadd()
 	    {	$id = I('get.id/d');
+	    
 	    	$this->assign('id',$id);
+	    
 	    	$this->display('Book/contentadd');
 	    }
 
 	    public function conupdate()
 	    {	$id = I('get.id/d');
-
+	    	
 	    	$content['con_content'] = $_POST['con_content'];
 	    	$content['con_time'] = $_POST['con_time'];
 	   	 	if(M('content')->where('con_id='.$id)->save($content)>0){

@@ -4,7 +4,7 @@
  	<div class="page-content">
  		<div class="page-header">
 			<h1>
-				<a href="<{:U(index)}>"><{$title1}></a>
+				<a href="<{:U('index')}>"><{$title1}></a>
 				<small>
 					<i class="icon-double-angle-right"></i>
 					目录
@@ -15,14 +15,14 @@
 	
 		<a href="<{:U('diradd',array('id'=>$id))}>"><h3>添加目录</h3></a>
 		<hr>
-		<form action="<{:U(dirdel)}>" method="post">
+		<form action="<{:U('dirdel')}>" method="post">
 			删除第几个章节：<input type="number" name="cata_order" onblur="test(this)">
 							<input type="submit" value="删除" class="btn btn-danger"><span id="sp"></span>
 		</form>
 		<hr>
-		
+
 		<foreach name="dir" item="v">
-			<a href="<{:U('content',array('id'=>session('dir')))}>"><button class="btn btn-white">第<{$v.cata_order}>章</button></a>
+			<a href="<{:U('content',array('id'=>$v['cata_id']))}>"><button class="btn btn-white">第<{$v.cata_order}>章</button></a>
 		</foreach>
 
 	<!-- 引入 -->
