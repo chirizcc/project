@@ -7,7 +7,7 @@ class CarouselController extends AdminController
 {
 	public function index()
 	{
-		 $data = M('play')->table('zd_play as p,zd_book as b')->where('p.p_link = b.b_id')->field('p.p_id id,b.b_name name,p.p_type type,p.p_link link')->order('p.p_id desc')->select();
+		 $data = M('play')->table('zd_play as p,zd_book as b')->where('p.p_link = b.b_id')->field('p.p_id id,b.b_name name,p.p_type type,p.p_link link,p.p_pic pic')->order('p.p_id desc')->select();
 		$this->assign('type',$data);
 
 		$this->display();
@@ -146,10 +146,97 @@ class CarouselController extends AdminController
         }
 	}
 
-	//编辑
+	//编辑页面
 	public function edit()
 	{
-		
+		//判断有无传递ID
+        if (empty($_GET['id'])) {
+            $this->redirect('Admin/Carousel/index');
+            exit;
+        }
+
+        //接收参数
+        $id = I('get.id/d');
+        $map = [];
+        $map['p_id'] = $id;
+        $data = M('play')->where($map)->find();
+        $this->assign('data',$data);
+
+        //查出第一级分类的数据
+		$map = [];
+		$map['t_pid'] = 0;
+		$ftype = M('type')->field('t_name,t_id')->where($map)->select();
+		$this->assign('ftype',$ftype);
+
+		//查出三级联动中 第三级菜单
+		$bookid = $data['p_link'];
+		$where = [];
+		$where['b_id'] = $bookid;
+		$list = M('book')->field('b_name,b_id,b_tid')->where($where)->select();
+		$typeid = $list[0]['b_tid'];//用作查第二级菜单用
+		$list = json_encode($list);
+		// var_dump($list);
+		$this->assign('list',$list);
+
+		//查出三级联动中 第二级
+		$whe = [];
+		$whe['t_id'] = $typeid;
+		$lis = M('type')->field('t_name,t_pid,t_id')->where($whe)->select();
+		// var_dump($lis);
+		$lis = json_encode($lis);
+		$this->assign('lis',$lis);
+
+		//三级联动的第一级使用
+		$wh = [];
+		$wh['t_id'] = $typeid;
+		$li = M('type')->field('t_name,t_pid,t_id')->where($wh)->select();
+		$this->assign('li',$li);
+
+		$this->display();
+	}
+
+	//编辑操作
+	public function update()
+	{
+		if (empty($_POST)) {
+            $this->redirect('Admin/Type/add');
+            exit;
+        }
+
+        $id = $_POST['id'];
+        M('play')->create();
+
+        $map = [];
+        $map['p_id'] = $id;
+        //执行添加
+        if (M('play')->where($map)->save($_POST) !== false) {
+           $this->success('恭喜您,编辑成功!', U('index'));
+        } else {
+           $this->error('编辑失败....');
+        }
+	}
+
+	//查看详情
+	public function detail()
+	{
+		//判断有无传递ID
+        if (empty($_GET['id'])) {
+            $this->redirect('Admin/Carousel/index');
+            exit;
+        }
+
+        //接收参数
+        $id = I('get.id/d');
+
+        $map = [];
+        $map['p_id'] = $id;
+		$data = M('play')->table('zd_play as p,zd_book as b')->where($map)->where('p.p_link = b.b_id')->field('p.p_id id,b.b_name name,p.p_type type,p.p_link link,p.p_pic pic')->order('p.p_id desc')->select();
+		// var_dump($data);exit;
+		$this->assign('data',$data);
+
+		$this->display();
+		// $this->display();
+
 	}
 
 }

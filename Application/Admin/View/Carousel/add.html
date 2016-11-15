@@ -105,9 +105,9 @@
 										var option = document.createElement('option');
 										option.innerHTML = res[i]['t_name'];
 										option.value = res[i]['t_id'];
-										console.log(option);
+										// console.log(option);
 										var secondselect = document.getElementById('secondselect');
-										console.log(secondselect);
+										// console.log(secondselect);
 										secondselect.appendChild(option);
 										form.render('select'); //刷新select选择框渲染
 									}
@@ -131,9 +131,9 @@
 										option.innerHTML = res[i]['b_name'];
 										option.value = res[i]['b_id'];
 										// option.name= "p_link";
-										console.log(option);
+										// console.log(option);
 										var thirdselect = document.getElementById('thirdselect');
-										console.log(thirdselect);
+										// console.log(thirdselect);
 										thirdselect.appendChild(option);
 										form.render('select'); 
 										//刷新select选择框渲染

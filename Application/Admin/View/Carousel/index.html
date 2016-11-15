@@ -1,5 +1,8 @@
 <extend name="Public/layout" />
 <block name="content">
+	<style>
+		#box{width: 370px;height: 170px;position: fixed;top: 10px;right: 0px;display: none;z-index: 5;}
+	</style>
 	<div>
 	<div class="breadcrumbs" id="breadcrumbs">
 		<script type="text/javascript">
@@ -35,6 +38,7 @@
 									<i class="icon-leaf green"></i>
 									轮播图管理列表
 								</h3>
+								<div id="box"><img src="" alt="" id="ig" width="370"></div>
 							</div>
 
 							<div class="widget-body">
@@ -48,6 +52,7 @@
 											<thead>
 												<tr>
 													<th class="center">#</th>
+													<th>图片</th>
 													<th>链接小说</th>
 													<!-- <th class="hidden-xs">是否启动</th> -->
 													<th class="hidden-480">操作</th>
@@ -57,11 +62,11 @@
 												<volist name="type" id="v">
 													<tr id="trr">
 														<td class="center"><{$v.id}></td>
-
+														<td><img src="<{$v.pic}>" width="70" ></td>
 														<td id="link"><{$v.name}></td>
 														<td>
 															<if condition="$v.type eq '1'">	
-															<a href="<{:U('Carousel/del',array('id'=>$v['id']))}>" class="btn btn-danger btn-xs">启用</a>
+															<a href="<{:U('Carousel/del',array('id'=>$v['id']))}>" class="btn btn-success btn-xs">启用</a>
 															<else />
 															<a href="<{:U('Carousel/del',array('id'=>$v['id']))}>" class="btn btn-danger btn-xs">禁用</a>
 															</if>
@@ -75,7 +80,6 @@
 										<else /><center><h1>暂时还没有轮播图，添加一个吧</h1></center> 	
 										</if>
 									</div>
-									<!-- <div class="hr hr8 hr-double hr-dotted"></div> -->
 									<div class="space-6"></div>
 								</div>
 							</div>
@@ -98,6 +102,19 @@
 //     	console.log(res);
 //     }
 // });	
+var imgs = document.getElementsByTagName('img');
+var box = document.getElementById('box');
+var ig = document.getElementById('ig');
+for(var i=0;i<imgs.length;i++){
+	imgs[i].onmouseover = function(){
+		box.style.display =  "block";
+		ig.src = this.src;
+	}
+	imgs[i].onmouseout = function(){
+		box.style.display =  "block";
+		ig.src = '';
+	}
+}
 
 </script>
 </block>
