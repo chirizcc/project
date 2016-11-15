@@ -1,6 +1,6 @@
 <extend name="Public/layout" />
 <block name="content">
-<div>
+	<div>
 	<div class="breadcrumbs" id="breadcrumbs">
 		<script type="text/javascript">
 			try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
@@ -13,20 +13,11 @@
 			</li>
 
 			<li>
-				<a href="<{:U('Type/index')}>">顶级分类页</a>
+				<a href="<{:U('Carousel/index')}>">轮播图管理页</a>
 				
 			</li>
 			<!-- <li class="active">Invoice</li> -->
 		</ul><!-- .breadcrumb -->
-
-<!-- 		<div class="nav-search" id="nav-search">
-			<form class="form-search">
-				<span class="input-icon">
-					<input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
-					<i class="icon-search nav-search-icon"></i>
-				</span>
-			</form>
-		</div>-->
 	</div>
 
 	<div class="page-content">
@@ -42,29 +33,14 @@
 							<div class="widget-header widget-header-large">
 								<h3 class="grey lighter pull-left position-relative">
 									<i class="icon-leaf green"></i>
-									书籍分类列表
+									轮播图管理列表
 								</h3>
-
-								<div class="widget-toolbar no-border invoice-info">
-									<span class="invoice-info-label">终点</span>
-									<span class="red">中文网</span>
-
-									<br />
-									<span class="invoice-info-label">当前日期:</span>
-									<span class="blue"><{$time}></span>
-								</div>
-
-								<div class="widget-toolbar hidden-480">
-									<a href="#">
-										<i class="icon-print"></i>
-									</a>
-								</div>
 							</div>
 
 							<div class="widget-body">
 								<div class="widget-main padding-24">
-									<a href="<{:U('Type/index')}>" class="btn btn-info">返回顶级分类</a>
-									<a href="<{:U('Type/add')}>" class="btn btn-success">添加新分类</a>
+									<a href="<{:U('Carousel/index')}>" class="btn btn-info">返回首页</a>
+									<a href="<{:U('Carousel/add')}>" class="btn btn-success">添加</a>
 									<div class="space"></div>
 									<div>
 										<if condition="$type neq null">
@@ -72,8 +48,8 @@
 											<thead>
 												<tr>
 													<th class="center">#</th>
-													<th>分类名称</th>
-													<th class="hidden-xs">所属父级分类</th>
+													<th>图片名称</th>
+													<th class="hidden-xs">图片播放顺序</th>
 													<th class="hidden-480">操作</th>
 												</tr>
 											</thead>
@@ -84,18 +60,7 @@
 														<td class="center"><{$v.t_id}></td>
 
 														<td><{$v.t_name}></td>
-														<td class="hidden-xs">
-															<if condition="$v.t_pid eq '0'">顶级分类
-										                    <elseif condition="$v.t_pid eq '1'" />玄幻
-										                    <elseif condition="$v.t_pid eq '2'" />都市
-										                    <elseif condition="$v.t_pid eq '3'" />仙侠
-										                    <elseif condition="$v.t_pid eq '4'" />科幻
-										                    <elseif condition="$v.t_pid eq '5'" />游戏
-										                    <elseif condition="$v.t_pid eq '6'" />历史
-										                    <elseif condition="$v.t_pid eq '7'" />军事
-										                    <else />女生
-										                    </if>
-														</td>
+														<td class="hidden-xs"><{$v.t_id}></td>
 														<td>
 															<a href="<{:U('Type/del',array('id'=>$v['t_id']))}>" class="btn btn-danger btn-xs">删除</a>
 															<a href="<{:U('Type/edit',array('id'=>$v['t_id']))}>" class="btn btn-warning btn-xs">编辑</a>
@@ -107,7 +72,7 @@
 												</volist>										
 											</tbody>
 										</table>
-										<else /><center><h2>没有子分类<small><a href="<{:U('Type/index')}>">返回首页</a></small></h2></center> 	
+										<else /><center><h1>暂时还没有轮播图，添加一个吧</h1></center> 	
 										</if>
 									</div>
 									<div class="hr hr8 hr-double hr-dotted"></div>
@@ -122,6 +87,4 @@
 		</div><!-- /.row -->
 	</div><!-- /.page-content -->
 </div><!-- /.main-content -->
-
-</blocK>
-
+</block>
