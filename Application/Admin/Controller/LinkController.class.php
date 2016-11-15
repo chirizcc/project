@@ -5,10 +5,17 @@ namespace Admin\Controller;
 // 友情链接控制器
 class LinkController extends AdminController
 {
+    private $size = 6;
+
     public function index()
     {
         $link = D('link');
-        $data = $link->order('l_id desc')->select();
+        $data = $link->order('l_id desc')->page($_GET['p'], $this->size)->select();
+        $count = $link->count();
+        // 分页类
+        $Page = new \Org\Util\MyPage($count, $this->size);// 实例化分页类 传入总记录数和每页显示的记录数
+        $show = $Page->show();// 分页显示输出
+        $this->assign('page',$show);// 赋值分页输出
         $this->assign('data',$data);
         $this->display();
     }
@@ -82,6 +89,19 @@ class LinkController extends AdminController
             }
         } else {
             $this->error($link->getError());
+        }
+    }
+
+    public function del($l_id = null)
+    {
+        if(empty($l_id)) {
+            $this->ajaxReturn(false);
+        }
+
+        if(false === D('link')->delete($l_id)) {
+            $this->ajaxReturn(false);
+        } else {
+            $this->ajaxReturn(true);
         }
     }
 }
