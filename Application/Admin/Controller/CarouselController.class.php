@@ -7,7 +7,7 @@ class CarouselController extends AdminController
 {
 	public function index()
 	{
-		 $data = M('play')->table('zd_play as p,zd_book as b')->where($map)->where('p.p_link = b.b_id')->field('p.p_id id,b.b_name name,p.p_type type,p.p_link link')->order('p.p_id desc')->select();
+		 $data = M('play')->table('zd_play as p,zd_book as b')->where('p.p_link = b.b_id')->field('p.p_id id,b.b_name name,p.p_type type,p.p_link link')->order('p.p_id desc')->select();
 		$this->assign('type',$data);
 
 		$this->display();
