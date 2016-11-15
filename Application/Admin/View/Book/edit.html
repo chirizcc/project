@@ -14,19 +14,28 @@
 		
 		<div class="row">
 			<div class="col-xs-12">
+			<div class="form-group">
+			<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> </label>
+		<div><img src="/Uploads/<{$data.b_img}>" alt="" width="300" height="100" id="imgs"></div>
+		</div>
+		<div class="form-group">
+			<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> </label>
+			<input type="file" name="b_img" class="layui-upload-file">
+		</div>
 		<form class="form-horizontal" role="form" action="<{:U('update')}>" method="post">
 			<input type="hidden" name="b_time" value="<{:time()}>">
-			<input type="hidden" name="b_id" value="<{$data.b_id}>">
+			<input type="hidden" name="b_id" value="<{$data.b_id}>" id="b_id">
 			<div class="form-group">
 				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 书名 </label>
 
-				<div class="col-sm-9">
+				<div class="col-sm-6">
 					<input type="text" id="form-field-1" value="<{$data.b_name}>" class="col-xs-10 col-sm-5" name="b_name" />
 				</div>
+
 			</div>
 			<div class="form-group">
 			<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 类型 </label>
-			<div class="col-sm-9">
+			<div class="col-sm-6">
 			<select id="cg" onchange="change(this)" >
 					<foreach name="type3" item="v2">						
 						<option data-skin="default" value="" id="op1" ><{$v2.t_name}>
@@ -48,23 +57,25 @@
 			<div class="form-group">
 			<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 作者</label>
 								
-				<div class="col-sm-9">
+				<div class="col-sm-6">
 					<input type="text" id="form-field-1" value="<{$data.b_author}>" class="col-xs-10 col-sm-5" name="b_author" />
 				</div>
 			</div>
 
 			<div class="form-group">
 			<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> </label>
-				<div class="col-sm-9">
+				<div class="col-sm-6">
 					<input type="reset" value="重置" class="btn btn-success">
 					<input type="submit" value="提交" class="btn btn-success">
 				</div>
 			</div>
 			<!-- <{:var_dump($data)}> -->
 		</form>
+		
 	</div>
 	<!-- 引入 -->
 	<script src="__PUBLIC__/js/jquery.min.js"></script>
+	<script src="__PUBLIC__/layui/layui.js"></script>	
 	<script>
 	function change(obj)
 	{		
@@ -92,6 +103,19 @@
 	}
 	
 	
+	layui.use('upload', function(){
+	  layui.upload({
+	    url: '<{:U("upload","","")}>/b_id/'+b_id.value//上传接口
+	  	,elem: '' //指定原始元素，默认直接查找class="layui-upload-file"
+	    ,method: 'post' 
+	    ,success: function(res){ //上传成功后的回调
+	      var u = eval(res);
+	      imgs.src="/Uploads/"+u;
+	    }
+	  });
+	  
+
+	});
 	</script>
 </block>	
 </body>
