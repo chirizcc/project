@@ -4,15 +4,20 @@
 	
 	class BookController extends AdminController
 	{
-		public function index() {
-			$data = M('book')->order('b_id desc')->select();
+		public function index() 
+		{
+			$p = $_GET['p'];
+			if($p==null){
+				$p =0;
+			}
+			$data = M('book')->order('b_id desc')->page($p,6)->select();
 			$this->assign('list',$data);
-			$this->assign('title','书籍管理');
-			$this->assign('bookname','书籍名称');
-			$this->assign('author','作者');		
-			$this->assign('click','访问数量');
-			$this->assign('status','状态');
-			$this->assign('time','修改时间');
+			$count = M('book')->count();
+			
+			$Page =new \Org\Util\MyPage($count,6);
+			$show = $Page->show();
+
+			$this->assign('page',$show);
 			$this->display();
 		}
 
@@ -60,19 +65,34 @@
 		}
 
 		public function insert() {
+			$upload = new \Think\Upload();// 实例化上传类
+			$upload->maxSize = 3145728 ;// 设置附件上传大小
+			$upload->exts = array('jpg', 'gif', 'png', 'jpeg');// 设置附件上传类型
+			$upload->rootPath = './Uploads/'; // 设置附件上传根目录
+			$upload->savePath = 'bookimg'; // 设置附件上传（子）目录
+			// 上传文件
+			$info = $upload->upload();
+			
+			if(!$info) {// 上传错误提示错误信息
+			$this->error($upload->getError());
+			}else{// 上传成功
+			$this->success('上传成功！',U('index'));
+			}
+			$path = $info['b_img']['savepath'];
+			$name = $info['b_img']['savename'];
+			$img['b_img'] = $path.$name;
 
 	        if (empty($_POST)) {
 	            $this->redirect('Admin/Book/add');
 	            exit;
 	        }
-	        // var_dump($_POST);
+	     
 	     	 M('book')->create();
 			
 			if (M('book')->add() > 0) {
-				// $book = M('book')->order('b_id desc')->select();
-				// $data['cata_bid'] =$book[0]['b_id'];
-				
-    //    			M('catalog')->add($data);
+				$book=M('book')->order('b_id desc')->select();
+				$b_id=$book[0]['b_id'];
+				M('book')->where('b_id='.$b_id)->save($img);
 	           $this->success('恭喜您,添加成功!', U('index'));
 	        } else {
 	           $this->error('添加失败....');

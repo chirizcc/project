@@ -29,7 +29,7 @@
 			<div class="col-sm-9">
 			<select id="cg" onchange="change(this)" >
 					<foreach name="type3" item="v2">						
-						<option data-skin="default" value="" id="op1"><{$v2.t_name}>
+						<option data-skin="default" value="" id="op1" ><{$v2.t_name}>
 					</foreach>
 					<foreach name="list" item="v">					
 						<option data-skin="default" value="<{$v.t_id}>" id="options" ><{$v.t_name}>
@@ -39,7 +39,7 @@
 		
 			<select id="seconds"  name="b_tid">	
 				<foreach name="type2" item="v1">						
-					<option data-skin="default" value="<{$v1.t_id}>" id="op2"><{$v1.t_name}>
+					<option data-skin="default" value="<{$v1.t_id}>" id="op2" ><{$v1.t_name}>
 				</foreach>
 							
 			</select>
@@ -82,12 +82,12 @@
                     for (var i = 0; i < d.length; i++) {
 
                     	seconds.add(new Option(d[i]['t_name'],d[i]['t_id']));
-                    	op1.style.display = 'none';
-						op2.style.display = 'none';
                     }
 
                 }
             })
+                    	op1.style.display = 'none';
+						op2.style.display = 'none';
 		
 	}
 	
