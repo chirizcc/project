@@ -1,7 +1,7 @@
 <extend  name="Public/layout"/>
 <body>
 <block name="content">
-
+	
  	<div class="page-content">
  		<div class="page-header">
 			<h1>
@@ -55,8 +55,9 @@
 
 			<div class="form-group">
 			<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 图片上传</label>
-				<div class="col-sm-9">
-					<input type="file" name="b_img" />
+				<div class="col-sm-9" >
+					<input type="file" name="b_img" class="layui-upload-file" lay-title="添加一个碉堡了的图片" />
+
 				</div>
 			</div>
 			<div class="form-group">
@@ -77,6 +78,9 @@
 	</div>
 	<!-- 引入 -->
 	<script src="__PUBLIC__/js/jquery.min.js"></script>
+	<script src="__PUBLIC__/layui/layui.js"></script>	
+
+
 	<script>
 	function change(obj)
 	{		

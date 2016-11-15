@@ -29,11 +29,12 @@
 	            exit;
 	        }
 	     
-	        $id = I('get.id/d');	       
-	        if (M('book')->delete($id) > 0) {
-	           $this->success('恭喜您,删除成功!', U('index'));
+	        $id = I('get.id/d');
+	        $status['b_status'] =2;
+	        if (M('book')->where('b_id='.$id)->save($status) > 0) {
+	           $this->success('恭喜您,下架成功!', U('index'));
 	        } else {
-	           $this->error('删除失败....', U('index'));
+	           $this->error('下架失败....', U('index'));
 	        }
 	    }
 
@@ -118,6 +119,23 @@
 	    	$this->assign('title2','修改书籍内容');
 	    	$this->display('Book/edit');
 	        // echo M('type')->getLastSql().'<br>';
+		}
+
+		public function upload()
+		{	$upload = new \Think\Upload();// 实例化上传类
+			$upload->maxSize = 3145728 ;// 设置附件上传大小
+			$upload->exts = array('jpg', 'gif', 'png', 'jpeg');// 设置附件上传类型
+			$upload->rootPath = './Uploads/'; // 设置附件上传根目录
+			$upload->savePath = 'bookimg'; // 设置附件上传（子）目录
+			// 上传文件
+			$info = $upload->upload();
+			$path = $info['b_img']['savepath'];
+			$name = $info['b_img']['savename'];
+			$img['b_img'] = $path.$name;
+			$id=I('get.b_id/d');
+			M('book')->where('b_id='.$id)->save($img);
+			$json_d = json_encode($img['b_img']);
+			$this->ajaxReturn($json_d );
 		}
 
 
