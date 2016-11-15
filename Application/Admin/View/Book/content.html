@@ -12,7 +12,7 @@
 			</h1>
 		</div>
 
-		<a href="<{:U('contentadd',array('id'=>$id))}>"><h3>添加内容</h3></a>
+		<a href="<{:U('contentadd',array('id'=>$id))}>"><button class="layui-btn layui-btn-radius layui-btn-warm">添加内容</button></a>
 		<hr>
 		<div class="row">
 			<div class="col-sm-6" class="widget-box">
@@ -30,7 +30,7 @@
 		<div class="widget-body" >
 			<div class="widget-main" >
 				<div class="row">
-					<div class="col-sm-6" >
+					<div class="col-sm-12" >
 					<{$con[0].con_content}>							
 					</div>
 				</div>
@@ -38,7 +38,7 @@
 		</div>
 	</div>
 </div>
-
+<script src="__PUBLIC__/layui/layui.js"></script>
 
 </block>	
 </body>

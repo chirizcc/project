@@ -237,5 +237,12 @@
 	    	
 
 	    }
+
+	    public function img()
+	    {	$id = I('get.id/d');
+	    	$book = M('book')->where('b_id='.$id)->select();
+	    	$this->assign('img',$book[0]['b_img']);
+	    	$this->display();
+	    }
 		
 	}

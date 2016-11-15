@@ -14,10 +14,17 @@
 		
 		<form action="<{:U(conupdate,array('id'=>$id))}>" method="post">
 			<input type="hidden" name="con_time" value="<{:time()}>">
-			<textarea name="con_content" id="" cols="100" rows="30"></textarea><br>	
+			<textarea name="con_content" id="demo" cols="100" rows="30"></textarea><br>	
 			<input type="submit" value="提交" class="btn btn-danger"><span id="sp"></span>
 		</form>
 		<hr>
 	</div>
+	<script src="__PUBLIC__/layui/layui.js"></script>
+	<script>
+		layui.use('layedit', function(){
+		  var layedit = layui.layedit;
+		  layedit.build('demo'); //建立编辑器
+		});
+</script>
 </block>	
 </body>
