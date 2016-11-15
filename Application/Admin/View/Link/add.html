@@ -1,0 +1,114 @@
+<extend name="Public/layout" />
+<block name="content">
+<div>
+	<div class="breadcrumbs" id="breadcrumbs">
+
+		<ul class="breadcrumb">
+			<li>
+				<i class="icon-home home-icon"></i>
+				<a href="<{:U('Admin/Conventional/index')}>">主页</a>
+			</li>
+
+			<li>
+				<a href="<{:U('Admin/Link/index')}>">友情链接管理</a>
+			</li>
+			 <li class="active">添加链接</li>
+		</ul><!-- .breadcrumb -->
+
+	</div>
+
+	<div class="page-content">
+		<div class="row">
+			<div class="col-xs-12">
+				<!-- PAGE CONTENT BEGINS -->
+
+				<div class="space-6"></div>
+
+				<div class="row">
+					<div class="col-sm-10 col-sm-offset-1">
+						<div class="widget-box transparent invoice-box">
+                            <div class="page-header">
+                                <h1>
+                                    <a href="<{:U('Admin/Link/index')}>">友情链接管理</a>
+                                    <small>
+                                        <i class="icon-double-angle-right"></i>
+                                        添加链接
+                                    </small>
+                                </h1>
+                            </div><!-- /.page-header -->
+
+							<div class="widget-body">
+								<div class="widget-main padding-24">
+									<div class="space"></div>
+
+									<div class="col-xs-8 col-sm-5">
+                                        <form class="layui-form" action="<{:U('Admin/Link/insert')}>" method="post">
+                                            <div class="layui-form-item">
+                                                <label class="layui-form-label">链接名</label>
+                                                <div class="layui-input-inline" style="margin-left: 30px">
+                                                    <input type="text" name="l_name" required  lay-verify="required" placeholder="请输入链接名" autocomplete="off" class="layui-input">
+                                                </div>
+                                            </div>
+
+                                            <div class="layui-form-item">
+                                                <label class="layui-form-label">URL</label>
+                                                <div class="layui-input-inline" style="margin-left: 30px">
+                                                    <input type="text" name="l_url" required  lay-verify="url" placeholder="请输入链接地址" autocomplete="off" class="layui-input">
+                                                </div>
+                                            </div>
+
+                                            <div class="layui-form-item">
+                                                <div class="layui-input-block">
+                                                    <button class="layui-btn" lay-submit lay-filter="formDemo">添加</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+								</div>
+                                <div class="space"></div>
+                                <div class="space-6"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- PAGE CONTENT ENDS -->
+			</div><!-- /.col -->
+		</div><!-- /.row -->
+	</div><!-- /.page-content -->
+</div><!-- /.main-content -->
+
+<!--[if !IE]> -->
+<script src="__PUBLIC__/js/jquery-2.0.3.min.js"></script>
+<!-- <![endif]-->
+
+<!--[if IE]>
+<script src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
+<![endif]-->
+
+<!--[if !IE]> -->
+<script type="text/javascript">
+    window.jQuery || document.write("<script src='__PUBLIC__/ace/assets/js/jquery-2.0.3.min.js'>"+"</"+"script>");
+</script>
+<!-- <![endif]-->
+
+<!--[if IE]>
+<script type="text/javascript">
+    window.jQuery || document.write("<script src='__PUBLIC__/ace/assets/js/jquery-1.10.2.min.js'>"+"</"+"script>");
+</script>
+<![endif]-->
+
+<script type="text/javascript">
+    if("ontouchend" in document) document.write("<script src='__PUBLIC__/ace/assets/js/jquery.mobile.custom.min.js'>"+"</"+"script>");
+</script>
+
+<!--引入layui-->
+<script src="__PUBLIC__/layui/layui.js"></script>
+
+<script>
+    layui.use('form', function(){
+        var form = layui.form();
+    });
+</script>
+
+</blocK>
+
