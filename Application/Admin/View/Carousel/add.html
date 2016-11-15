@@ -24,37 +24,53 @@
 
 	<div class="page-content">
 		<div class="row" style="margin-top:50px;">
-			<div class="col-md-4">
+			<div class="col-md-8">
 				<!-- PAGE CONTENT BEGINS -->
-					<div style="margin-left:110px;margin-bottom:20px">
+					<div style="margin-left:80px;margin-bottom:20px">
 						<input type="file" name="file" class="layui-upload-file" >
 					</div>	
-					<form class="layui-form" action="">
+					<form class="layui-form" action="<{:U('Carousel/insert')}>" method="post">
 					  <div class="layui-form-item">
 					    <label class="layui-form-label">pic路径</label>
 					    <div class="layui-input-inline">
-					      <input type="text" name="password" required lay-verify="required" placeholder="" autocomplete="off" class="layui-input" style="margin-left:30px;" id="box" disabled>
+					      <input type="text" name="p_pic" required lay-verify="required" placeholder="" autocomplete="off" class="layui-input" id="box" >
 					    </div>
 					    <div class="layui-form-mid layui-word-aux"></div>
 					  </div>
 					  <div class="layui-form-item">
-					    <label class="layui-form-label">图片名</label>
+					    <label class="layui-form-label">链接书</label>
 					    <div class="layui-input-inline">
-					      <input type="text" name="password" required lay-verify="required" placeholder="请输入图片名" autocomplete="off" class="layui-input" style="margin-left:30px;">
+					      <select id="firstselect" lay-filter="fir">
+					        <option value="">请选择主分类</option>
+					        <volist name="ftype" id="v">
+					        	<option value="<{$v.t_id}>" ><{$v.t_name}></option>
+					        </volist>
+					      </select>
 					    </div>
-					    <div class="layui-form-mid layui-word-aux"></div>
+					    
+					    <div class="layui-input-inline">
+					      <select id="secondselect" lay-filter="sec">
+					        <option value="">请选择分类</option>
+					      </select>
+					    </div>
+					    <div class="layui-input-inline">
+					      <select name="p_link" id="thirdselect">
+					        <option value="">请选择书本</option>
+					      </select>
+					    </div>
 					  </div>
+
 					  <div class="layui-form-item">
 					    <label class="layui-form-label">状态</label>
 					    <div class="layui-input-block">
-					      <input type="checkbox" name="switch" lay-skin="switch" checked>
+					      <input type="checkbox" name="p_type" value="0" lay-skin="switch" checked>
 					      <div class="layui-form-mid layui-word-aux">选中时为启用</div>
 					    </div>
 					  </div>
 					  <div class="layui-form-item">
 					    <div class="layui-input-block">
 					      <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
-					      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+					      <!-- <button type="reset" class="layui-btn layui-btn-primary">重置</button> -->
 					    </div>
 					  </div>
 					</form>
@@ -62,15 +78,72 @@
 					<script src="__PUBLIC__/js/jquery.min.js"></script>
 					<script src="__PUBLIC__/layui/layui.js"></script>
 					<script>
+					
 					//Demo
 					layui.use('form', function(){
 					  var form = layui.form();
 					  
 					  //监听提交
-					  form.on('submit(formDemo)', function(data){
-					    layer.msg(JSON.stringify(data.field));
-					    return false;
-					  });
+					  // form.on('submit(formDemo)', function(data){
+					  //   layer.msg(JSON.stringify(data.field));
+					  //   return false;
+					  // });
+
+					  //多表联查第二级
+						form.on('select(fir)', function(data){
+							//将二级菜单重置
+							// var stype = Array();
+							secondselect.length = 1;
+							thirdselect.length = 1;
+							//ajax查出对应的数组
+						    $.ajax({
+						        url:"<{:U('Carousel/selectf')}>",
+						        data: "val="+data.value,
+						        type:'POST',
+						        success:function(res){
+									for(var i=0;i<res.length;i++){
+										var option = document.createElement('option');
+										option.innerHTML = res[i]['t_name'];
+										option.value = res[i]['t_id'];
+										console.log(option);
+										var secondselect = document.getElementById('secondselect');
+										console.log(secondselect);
+										secondselect.appendChild(option);
+										form.render('select'); //刷新select选择框渲染
+									}
+						        }
+							});			
+						}); 
+
+
+						//多表联查第三级
+						form.on('select(sec)', function(data){
+							//将三级菜单重置
+							thirdselect.length = 1;
+							//ajax查出对应的数组
+						    $.ajax({
+						        url:"<{:U('Carousel/selects')}>",
+						        data: "val="+data.value,
+						        type:'POST',
+						        success:function(res){
+									for(var i=0;i<res.length;i++){
+										var option = document.createElement('option');
+										option.innerHTML = res[i]['b_name'];
+										option.value = res[i]['b_id'];
+										// option.name= "p_link";
+										console.log(option);
+										var thirdselect = document.getElementById('thirdselect');
+										console.log(thirdselect);
+										thirdselect.appendChild(option);
+										form.render('select'); 
+										//刷新select选择框渲染
+									}
+						        }
+							});			
+						  //console.log(data.elem); //得到select原始DOM对象
+						  //console.log(data.value); //得到被选中的值
+						  //console.log(arr);
+						}); 
 					});
 
 					//图片上传
@@ -79,18 +152,19 @@
 					  	method:'post',
 						url: "<{:U('Carousel/picupload')}>",
 						success: function(res){
-						    $('#box').attr('value',res);
-						    $('img').attr('src',res);    
+							// console.log(res);
+						    $('#box').attr('value',res['big']);
+						    $('img').attr('src',res['small']);    
 						  }
 						}); 
 					});
 					      
-					
 					</script>
 				<!-- PAGE CONTENT ENDS -->
 			</div><!-- /.col -->
+			<div class="col-md-4"><div class="col-md-offset-2"><img src="" alt=""></div></div>
 		</div><!-- /.row -->
-		<div class="row"><div class="col-md-offset-2"><div class="h3" id="head">图片预览</div><img src="" alt=""></div></div>
+		
 	</div><!-- /.page-content -->
 </div><!-- /.main-content -->
 </block>
