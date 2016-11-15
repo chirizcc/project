@@ -15,7 +15,7 @@
 			</li>
 
 			<li>
-				<a href="#">轮播图添加页</a>
+				<a href="#">轮播图编辑页</a>
 				
 			</li>
 			<!-- <li class="active">Invoice</li> -->
@@ -23,19 +23,23 @@
 	</div>
 
 	<div class="page-content">
+		<div class="row">
+			<div class="col-md-8"><div class="col-md-offset-4"><img src="<{$data.p_pic}>" alt="" width="400"></div></div>
+		</div>
 		<div class="row" style="margin-top:50px;">
-			<div class="col-md-8">
+			<div class="col-md-offset-2">
 				<!-- PAGE CONTENT BEGINS -->
 					<div style="margin-left:80px;margin-bottom:20px">
 						<input type="file" name="file" class="layui-upload-file" >
-					</div>	
-					<form class="layui-form" action="<{:U('Carousel/insert')}>" method="post">
+					</div>
+
+					<form class="layui-form" action="<{:U('Carousel/update')}>" method="post">
 					  <div class="layui-form-item">
-					    <label class="layui-form-label">pic路径</label>
-					    <div class="layui-input-inline">
-					      <input type="text" name="p_pic" required lay-verify="required" placeholder="" autocomplete="off" class="layui-input" id="box" >
-					    </div>
-					    <div class="layui-form-mid layui-word-aux"></div>
+					    <!-- <label class="layui-form-label">pic路径</label> -->
+					    <!-- <div class="layui-input-inline"> -->
+					      <input type="hidden" name="p_pic" value="<{$data.p_pic}>" autocomplete="off" class="layui-input" id="box" >
+					      <input type="hidden" value="<{$data.p_id}>" name="id">
+					    <!-- </div> --> 
 					  </div>
 					  <div class="layui-form-item">
 					    <label class="layui-form-label">链接书</label>
@@ -43,7 +47,11 @@
 					      <select id="firstselect" lay-filter="fir">
 					        <option value="">请选择主分类</option>
 					        <volist name="ftype" id="v">
+					        	<if condition="$li[0]['t_pid'] eq $v['t_id']">
+					        	<option value="<{$v.t_id}>" selected><{$v.t_name}></option>
+					        	<else />
 					        	<option value="<{$v.t_id}>" ><{$v.t_name}></option>
+					        	</if>
 					        </volist>
 					      </select>
 					    </div>
@@ -54,21 +62,14 @@
 					      </select>
 					    </div>
 					    <div class="layui-input-inline">
-					      <select name="p_link" id="thirdselect">
+					      <select name="p_link" id="thirdselect" lay-filter="thr">
 					        <option value="">请选择书本</option>
 					      </select>
 					    </div>
 					  </div>
 					  <div class="layui-form-item">
-					    <label class="layui-form-label">状态</label>
 					    <div class="layui-input-block">
-					      <input type="checkbox" name="p_type" value="0" lay-skin="switch" checked>
-					      <div class="layui-form-mid layui-word-aux">选中时为启用</div>
-					    </div>
-					  </div>
-					  <div class="layui-form-item">
-					    <div class="layui-input-block">
-					      <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+					      <button class="layui-btn" lay-submit lay-filter="formDemo">修改</button>
 					    </div>
 					  </div>
 					</form>
@@ -103,9 +104,9 @@
 										var option = document.createElement('option');
 										option.innerHTML = res[i]['t_name'];
 										option.value = res[i]['t_id'];
-										console.log(option);
+										// console.log(option);
 										var secondselect = document.getElementById('secondselect');
-										console.log(secondselect);
+										// console.log(secondselect);
 										secondselect.appendChild(option);
 										form.render('select'); //刷新select选择框渲染
 									}
@@ -129,9 +130,8 @@
 										option.innerHTML = res[i]['b_name'];
 										option.value = res[i]['b_id'];
 										// option.name= "p_link";
-										console.log(option);
 										var thirdselect = document.getElementById('thirdselect');
-										console.log(thirdselect);
+										// console.log(thirdselect);
 										thirdselect.appendChild(option);
 										form.render('select'); 
 										//刷新select选择框渲染
@@ -139,11 +139,14 @@
 						        }
 							});			
 						}); 
+
+
 					});
 
 					//图片上传
 					layui.use('upload', function(){
 					  layui.upload({
+					  	title: '修改图片',
 					  	method:'post',
 						url: "<{:U('Carousel/picupload')}>",
 						success: function(res){
@@ -153,13 +156,34 @@
 						  }
 						}); 
 					});
-					      
+					   
+					//地址联动的第三级菜单插入
+					var list = <{$list}>; 
+					console.log(list[0]['b_name']);
+					var option = document.createElement('option');
+					option.innerHTML = list[0]['b_name'];
+					option.value = list[0]['b_id'];
+					option.selected = true;
+					var thirdselect = document.getElementById('thirdselect');
+					thirdselect.appendChild(option);
+					//form.render('select'); //刷新select选择框渲染  
+
+					//地址联动的第二级菜单插入
+					var lis = <{$lis}>; 
+					console.log(lis[0]['b_name']);
+					var option = document.createElement('option');
+					option.innerHTML = lis[0]['t_name'];
+					option.value = lis[0]['t_id'];
+					option.selected = true;
+					var secondselect = document.getElementById('secondselect');
+					secondselect.appendChild(option);
+					//form.render('select'); //刷新select选择框渲染  
 					</script>
 				<!-- PAGE CONTENT ENDS -->
 			</div><!-- /.col -->
-			<div class="col-md-4"><div class="col-md-offset-2"><img src="" alt=""></div></div>
+			
 		</div><!-- /.row -->
-		
+		<div style="height:150px;"></div>
 	</div><!-- /.page-content -->
 </div><!-- /.main-content -->
 </block>

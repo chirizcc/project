@@ -1,0 +1,55 @@
+<extend name="Public/layout" />
+<block name="content">
+	<style>#head{display: none;}</style>
+	<link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css">
+	<div>
+	<div class="breadcrumbs" id="breadcrumbs">
+		<script type="text/javascript">
+			try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+		</script>
+
+		<ul class="breadcrumb">
+			<li>
+				<i class="icon-home home-icon"></i>
+				<a href="#">Home</a>
+			</li>
+
+			<li>
+				<a href="#">轮播图详情页</a>
+				
+			</li>
+			<!-- <li class="active">Invoice</li> -->
+		</ul><!-- .breadcrumb -->
+	</div>
+
+	<div class="page-content">
+		<div class="row">
+			<{$data['pic']}>
+			<div class="col-md-8"><div class="col-md-offset-4"><img src="<{$data['pic']}>" alt="" width="400"></div></div>
+		</div>
+		<div class="row" style="margin-top:50px;">
+			<div class="col-md-offset-2">
+				<!-- PAGE CONTENT BEGINS -->
+					<form class="layui-form" action="<{:U('Carousel/update')}>" method="post">
+					  <div class="layui-form-item">
+					    <!-- <label class="layui-form-label">pic路径</label> -->
+					    <!-- <div class="layui-input-inline"> -->
+					      <input type="hidden" name="p_pic" value="<{$data.p_pic}>" autocomplete="off" class="layui-input" id="box" >
+					      <input type="hidden" value="<{$data.p_id}>" name="id">
+					    <!-- </div> --> 
+					  </div>
+					  <div class="layui-form-item">
+					  	<tr>
+					  		<td>链接书籍名称</td>
+					  		<td></td>
+					  	</tr>
+					  </div>
+					</form>
+				<!-- PAGE CONTENT ENDS -->
+			</div><!-- /.col -->
+			
+		</div><!-- /.row -->
+		<div style="height:150px;"></div>
+	</div><!-- /.page-content -->
+</div><!-- /.main-content -->
+</block>
