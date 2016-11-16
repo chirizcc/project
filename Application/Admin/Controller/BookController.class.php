@@ -5,26 +5,41 @@ use Think\Controller;
 
 class BookController extends AdminController
 {
-    public function index()
+    private $size = 6;
+
+    public function index($search = null)
     {
         $p = $_GET['p'];
         if ($p == null) {
             $p = 0;
         }
-        $data = M('book')->order('b_id desc')->page($p, 6)->select();
-        $this->assign('list', $data);
-        $count = M('book')->count();
 
-        $Page = new \Org\Util\MyPage($count, 6);
+        $map = [];
+        if(!empty($search)) {
+            $map['b_name'] =  ['like','%'.$search.'%'];
+        }
+
+        $data = M('book')->where($map)->order('b_id desc')->page($p, $this->size)->select();
+        $count = M('book')->where($map)->count();// 查询满足要求的总记录数
+
+
+        $Page = new \Org\Util\MyPage($count, $this->size);
+
+        if(!empty($search)) {
+            //分页跳转的时候保证查询条件
+            foreach($map as $key=>$val) {
+                $Page->parameter[$key] = urlencode($val);
+            }
+        }
+
         $show = $Page->show();
-
+        $this->assign('list', $data);
         $this->assign('page', $show);
         $this->display();
     }
 
     public function del()
     {
-
         if (empty($_GET['id'])) {
             $this->redirect('Admin/Book/index');
             exit;
@@ -64,22 +79,6 @@ class BookController extends AdminController
 
     public function insert()
     {
-        /*$upload = new \Think\Upload();// 实例化上传类
-        $upload->maxSize = 3145728;// 设置附件上传大小
-        $upload->exts = array('jpg', 'gif', 'png', 'jpeg');// 设置附件上传类型
-        $upload->rootPath = './Uploads/'; // 设置附件上传根目录
-        $upload->savePath = 'bookimg'; // 设置附件上传（子）目录
-        // 上传文件
-        $info = $upload->upload();
-
-        if (!$info) {// 上传错误提示错误信息
-            $this->error($upload->getError());
-        } else {// 上传成功
-            $this->success('上传成功！', U('index'));
-        }
-        $path = $info['b_img']['savepath'];
-        $name = $info['b_img']['savename'];
-        $img['b_img'] = $path . $name;*/
 
         if (empty($_POST)) {
             $this->redirect('Admin/Book/add');
@@ -90,14 +89,9 @@ class BookController extends AdminController
             $this->error('请选择分类');
         }
 
-        /*dump(D('book')->create());
-        die;*/
         $bookModel = D('book');
         if($bookModel->create()) {
             if ($bookModel->add() > 0) {
-                /*$book = M('book')->order('b_id desc')->select();
-                $b_id = $book[0]['b_id'];
-                M('book')->where('b_id=' . $b_id)->save($img);*/
                 $this->success('恭喜您,添加成功!', U('index'));
             } else {
                 $this->error('添加失败....');
@@ -128,10 +122,7 @@ class BookController extends AdminController
         // 顶级分类
         $type3 = M('type')->where('t_id=' . $type2[0]['t_pid'])->select();
         $this->assign('type3', $type3);
-        /*$this->assign('title1', '书籍修改');
-        $this->assign('title2', '修改书籍内容');*/
         $this->display('Book/edit');
-        // echo M('type')->getLastSql().'<br>';
     }
 
     public function upload() 
@@ -221,7 +212,7 @@ class BookController extends AdminController
 
     }
 
-    public function dir()
+/*    public function dir()
     {
         // 接收id
         $id = I('get.id/d');
@@ -351,6 +342,6 @@ class BookController extends AdminController
         $book = M('book')->where('b_id=' . $id)->select();
         $this->assign('img', $book[0]['b_img']);
         $this->display();
-    }
+    }*/
 
 }

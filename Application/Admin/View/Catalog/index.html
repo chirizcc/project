@@ -46,7 +46,7 @@
                                     </div><!-- #nav-search -->
                                 </div><!-- /.page-header -->
 
-                                <p class="h4">书名：<{:session('b_name')}></p>
+                                <p class="h4"><a href="<{:U('Admin/Catalog/index',['b_id' => session('b_id')])}>">书名：<{:session('b_name')}></a></p>
                                 <div class="space-6"></div>
                                 <div class="widget-body">
                                     <a href="<{:U('Admin/Catalog/add')}>">
@@ -64,6 +64,7 @@
                                                     <tr>
                                                         <th class="center">排序</th>
                                                         <th>章节名</th>
+                                                        <th>状态</th>
                                                         <th class="hidden-480">操作</th>
                                                     </tr>
                                                     </thead>
@@ -80,6 +81,14 @@
                                                                 </label>
                                                             </td>
                                                             <td><{$v.cata_name}></td>
+                                                            <td>
+                                                                <if condition="$v.cata_status eq 1"><span class="label label-sm label-warning">已通过</span>
+                                                                    <elseif condition="$v.cata_status eq 2"/>
+                                                                    <span class="label label-sm label-error arrowed-in">未通过</span>
+                                                                    <else/>
+                                                                    <span class="label label-sm label-inverse arrowed-in">待审核</span>
+                                                                </if>
+                                                            </td>
                                                             <td>
                                                                 <a href="<{:U('Admin/Content/index',array('cata_id'=>$v['cata_id']))}>"
                                                                    class="btn btn-success btn-xs">查看内容</a>

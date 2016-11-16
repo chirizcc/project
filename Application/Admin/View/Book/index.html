@@ -14,13 +14,21 @@
 
     <div class="row" style="margin: 0;">
         <div class="col-xs-12">
-            <!--<div class="col-xs-6"><a href="<{:U('add')}>" class="btn btn-info ">
-                <i class="icon-cloud-upload bigger-200"></i>
-                添加</a></div>-->
             <h3 class="header smaller lighter blue">书籍管理</h3>
             <div class="table-header">
                 书籍管理列表
             </div>
+
+            <!--搜索-->
+            <div class="nav-search" id="nav-search">
+                <form class="form-search">
+                    <span class="input-icon">
+                        <input type="text" placeholder="搜索." class="nav-search-input" id="search-input" autocomplete="off"/>
+                        <i class="icon-search nav-search-icon"></i>
+                    </span>
+                </form>
+            </div><!-- #nav-search -->
+
             <div class="table-responsive">
                 <table id="sample-table-2" class="table table-striped table-bordered table-hover">
                     <thead>
@@ -45,10 +53,10 @@
 
                             <td><{$v.b_id}></td>
                             <td>
-                                <a href="<{:U('dir',array('id'=>$v['b_id']))}>"><{$v.b_name}></a>
+                                <{$v.b_name}>
                             </td>
                             <td>
-                                <a href="#"><{$v.b_author}></a>
+                                <{$v.b_author}>
                             </td>
 
                             <td class="hidden-480"><{$v.b_click}></td>
@@ -131,4 +139,18 @@
             <{$page}>
         </ul>
     </div>
+
+    <script src="__PUBLIC__/js/jquery.min.js"></script>
+
+    <script>
+
+        $(document).ready(function(){
+            $('#search-input').blur(function() {
+                var val = $(this).val();
+                if(val != '') {
+                    location.href = '<{:U("Admin/Book/index","","")}>/search/' + val;
+                }
+            });
+        });
+    </script>
 </block>

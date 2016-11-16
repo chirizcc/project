@@ -43,6 +43,10 @@ class ContentController extends AdminController
         $con = D('content');
         if($con->create($_POST)) {
             if($con->save()) {
+                // 编辑过内容，这将该目录状态更改为未审核
+                $data['cata_status'] = 0;
+                $data['cata_id'] = $cata_id;
+                M('catalog')->save($data);
                 $this->success('修改成功',U('Admin/Content/index',['cata_id' => $cata_id]));
             } else {
                 $this->error('修改失败');
