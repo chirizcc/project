@@ -43,13 +43,9 @@ class BookController extends AdminController
     public function add()
     {
 
-        /*$this->assign('title1', '书籍管理');
-        $this->assign('title2', '填写书籍内容');*/
         $data = M('type')->where('t_pid=0')->order('t_id desc')->select();
         $this->assign('list', $data);
-        /*$value = session();
-        $this->assign('value', $value);*/
-//        $this->assign('title', '添加用户');
+       
         $this->display('Book/add');
 
 
@@ -209,7 +205,7 @@ class BookController extends AdminController
                 if(I('post.b_img') != $oldImg) {
                     $this->delImg($oldImg);
                 }
-                $this->success('恭喜您,编辑成功!');
+                $this->success('恭喜您,编辑成功!',U('index'));
             } else {
                 if(I('post.b_img') != $oldImg) {
                     $this->delImg(I('post.b_img'));
