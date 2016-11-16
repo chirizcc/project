@@ -14,8 +14,15 @@ class TypeController extends AdminController
 		if($pid == 0){
 			$map = [];
 		    $map['t_pid'] = $pid;
+            //分页
+            $count = $type->where($map)->count();// 查询满足要求的总记录数
+            // var_dump($count);exit;
+            $Page =  new \Org\Util\MyPage($count,6);// 实例化分页类 传入总记录数和每页显示的记录数
+            // $Page->setConfig('header','个会员');
+            $show = $Page->show();// 分页显示输出
 
-			$data = $type->where($map)->select();
+			$data = $type->where($map)->page($_GET['p'],'6')->select();
+            $this->assign('page',$show);// 赋值分页输出
 			$this->assign('type',$data);
 		}else{
 			$map = [];

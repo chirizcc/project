@@ -14,6 +14,6 @@ class BookModel extends Model
     );
 
     protected $_auto = array (
-        array('b_time','time',2,'function'), // 对update_time字段在更新的时候写入当前时间戳
+        array('b_time','time',3,'function'), // 对update_time字段在更新的时候写入当前时间戳
     );
 }
