@@ -1,72 +1,68 @@
-<extend name="Public/layout"/>
+<extend  name="Public/layout"/>
 <body>
 <block name="content">
-    <div class="page-content">
-        <div class="page-header">
-            <h1>
-                <a href="<{:U('dir',array('id'=>session('bid')))}>">返回</a>
-                <small>
-                    <i class="icon-double-angle-right"></i>
-                    添加
-                </small>
-            </h1>
-        </div>
+ 	<div class="page-content">
+ 		<div class="page-header">
+			<h1>
+				<a href="<{:U('dir',array('id'=>session('bid')))}>">返回</a>
+				<small>
+					<i class="icon-double-angle-right"></i>
+					添加
+				</small>
+			</h1>
+		</div>
+		
+		<div class="row" >
+			<div class="col-xs-12">
+		<form class="form-horizontal" role="form" action="<{:U('Book/addinsert',array('dir'=>$dir))}>" method="post">
+		
+			<input type="hidden" name="cata_bid" value="<{:session('bid')}>">
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1">章节 </label>
 
-        <div class="row">
-            <div class="col-xs-12">
-                <form class="form-horizontal" role="form" action="<{:U('Book/addinsert',array('dir'=>$dir))}>"
-                      method="post">
+				<div class="col-sm-4" >
+					<input type="number" id="form-field-1" placeholder="" class="col-xs-3 col-sm-3" name="cata_order" onblur="test(this)"  value="" /><span class="col-sm-3 control-label no-padding-right" id="sp"></span>
+				</div>
+				
+			</div>
+		
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 目录名 </label>
 
-                    <input type="hidden" name="cata_bid" value="<{:session('bid')}>">
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1">章节 </label>
+				<div class="col-sm-9">
+					<input type="text" id="form-field-1" placeholder="dirname" class="col-xs-10 col-sm-5" name="cata_name" />
+				</div>
+			</div>
 
-                        <div class="col-sm-4">
-                            <input type="number" id="form-field-1" placeholder="" class="col-xs-3 col-sm-3"
-                                   name="cata_order" onblur="test(this)" value=""/><span
-                                class="col-sm-3 control-label no-padding-right" id="sp"></span>
-                        </div>
+			
+			<div class="form-group">
+			<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> </label>
+				<div class="col-sm-9">
+					<input type="reset" value="重置" class="btn btn-success">
+					<input type="submit" value="提交" class="btn btn-success">
+				</div>
+			</div>
+			<div class="form-group"
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> </label>
+				<div class="col-sm-9">
+				</div>
+			</div>
 
-                    </div>
+			
+		</form>
+	</div>
+	<script>
 
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 目录名 </label>
-
-                        <div class="col-sm-9">
-                            <input type="text" id="form-field-1" placeholder="dirname" class="col-xs-10 col-sm-5"
-                                   name="cata_name"/>
-                        </div>
-                    </div>
-
-
-                    <div class="form-group">
-                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> </label>
-                        <div class="col-sm-9">
-                            <input type="reset" value="重置" class="btn btn-success">
-                            <input type="submit" value="提交" class="btn btn-success">
-                        </div>
-                    </div>
-                    <div class="form-group"
-                    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> </label>
-                    <div class="col-sm-9">
-                    </div>
-                </form>
-            </div>
-
-
-
-        </div>
-    </div>
-    <script>
-
-        function test(obj) {
-            if (obj.value <= 0) {
-                obj.value = 1;
-                sp.innerHTML = '不能小于1';
-            }
-        }
-    </script>
+	function test(obj){
+		if(obj.value <= 0  ){
+			obj.value=1;
+			sp.innerHTML = '不能小于1';
+		}
+	}
+	</script>
+		
 
 
-</block>
+
+</block>	
 </body>
