@@ -84,8 +84,11 @@ class ExamineController extends AdminController
 		$Page =  new \Org\Util\MyPage($count,6);// 实例化分页类 传入总记录数和每页显示的记录数
 		$show = $Page->show();// 分页显示输出
 		$data = $user->order('u_id desc')->where($map)->page($_GET['p'],'6')->select();
-		// var_dump($data);exit;
+		// 获取当前时间
+		$time = time();
+		// var_dump($data[0]['u_regtime']);exit();
 		$this->assign('page',$show);// 赋值分页输出
+		$this->assign('time',$time);// 时间输出
 		$this->assign('data',$data);
 		$this->display();
 	}
