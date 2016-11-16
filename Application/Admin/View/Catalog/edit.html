@@ -16,7 +16,7 @@
                 <li>
                     <a href="<{:U('Admin/Catalog/index',['b_id' => session('b_id')])}>">目录管理</a>
                 </li>
-                <li class="active">添加章节</li>
+                <li class="active">编辑章节</li>
             </ul><!-- .breadcrumb -->
 
         </div>
@@ -37,7 +37,7 @@
                                         <a href="<{:U('Admin/Catalog/index',['b_id' => session('b_id')])}>">目录管理</a>
                                         <small>
                                             <i class="icon-double-angle-right"></i>
-                                            添加章节
+                                            编辑章节
                                         </small>
                                     </h1>
                                 </div><!-- /.page-header -->
@@ -47,17 +47,17 @@
                                 <div class="space-6"></div>
                                 <div class="col-xs-12">
 
-                                    <form class="layui-form" action="<{:U('Admin/Catalog/insert')}>" method="post">
-                                        <input type="hidden" name="cata_bid" value="<{:session('b_id')}>">
+                                    <form class="layui-form" action="<{:U('Admin/Catalog/update')}>" method="post">
+                                        <input type="hidden" name="cata_id" value="<{$data['cata_id']}>">
                                         <div class="layui-form-item">
                                             <label class="layui-form-label">章节名</label>
                                             <div class="layui-input-inline">
-                                                <input type="text" name="cata_name" lay-verify="required" autocomplete="off" class="layui-input">
+                                                <input type="text" name="cata_name" lay-verify="required" autocomplete="off" class="layui-input" value="<{$data['cata_name']}>">
                                             </div>
                                             <div class="space-6"></div>
                                             <div class="layui-form-item">
                                                 <div class="layui-input-block">
-                                                    <button class="layui-btn" lay-submit="" lay-filter="demo1">添加</button>
+                                                    <button class="layui-btn" lay-submit="" lay-filter="demo1">修改</button>
                                                 </div>
                                             </div>
                                         </div>
