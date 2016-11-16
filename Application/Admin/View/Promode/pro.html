@@ -1,0 +1,90 @@
+<extend name="Public/layout"/>
+<block name="content">
+    <div class="breadcrumbs" id="breadcrumbs">
+        <ul class="breadcrumb">
+            <li>
+                <i class="icon-home home-icon"></i>
+                <a href="<{:U('Admin/Conventional/index')}>">主页</a>
+            </li>
+
+            <li class="active">推广管理</li>
+
+        </ul><!-- .breadcrumb -->
+
+    </div>
+
+    <div class="row" style="margin: 0;">
+        <div class="col-xs-2"></div>
+        <div class="col-xs-8">
+           
+            <h3 class="header smaller lighter blue">推广管理</h3>
+            
+            <div class="table-header">
+                书籍列表
+            </div>
+            <div class="table-responsive">
+                <table id="sample-table-2" class="table table-striped table-bordered table-hover">
+                    <thead>
+                    <tr>
+
+                        <th class="hidden-480">id</th>
+                        <th>书籍名称</th>
+                        <th>作者</th>
+                                    
+                        <th class="hidden-480">状态</th>
+
+                        <th>推广</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+             		<foreach name="list" item="v">
+                        <tr>
+                            <td><{$v.b_id}></td>
+                            <td>
+                               <{$v.b_name}>
+                            </td>
+                            <td>
+                               <{$v.b_author}>
+                            </td>                                               
+                            <td class="hidden-480">
+                             <span class="label label-sm label-warning">发布</span>
+                                   
+                                  
+                                </if>
+                            </td>
+
+                            <td>
+                                <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
+	                               <a href="<{:U('proadd',array('id'=>$v['b_id']))}>" class="tooltip-error" data-rel="tooltip" title="推广">
+										<span class="red">
+											<i class=" icon-heart"></i>
+										</span>
+		                            </a>
+		                            
+                                </div>
+
+                            </td>
+                         
+                        </tr>
+             
+                    </tbody>
+				</foreach>
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer no-margin-top col-xs-12">
+
+		<div class="col-xs-3"><a href="<{:U('index')}>" class="layui-btn layui-btn layui-btn-big">推广表</a></div>
+		<div class="col-xs-7">
+
+        <ul class="pagination pull-right no-margin ">
+            <{$page}>
+        </ul>
+        </div>
+        <div class="col-xs-2"></div>
+    </div>
+<script src="__PUBLIC__/layui/layui.js"></script>
+</block>
