@@ -32,7 +32,7 @@
                                         <a href="#">目录管理</a>
                                         <small>
                                             <i class="icon-double-angle-right"></i>
-                                            目录列表
+                                            章节列表
                                         </small>
                                     </h1>
                                 </div><!-- /.page-header -->
@@ -41,7 +41,7 @@
                                 <div class="space-6"></div>
                                 <div class="widget-body">
                                     <a href="<{:U('Admin/Catalog/add')}>">
-                                        <button class="layui-btn layui-btn-radius layui-btn-warm">添加目录</button>
+                                        <button class="layui-btn layui-btn-radius layui-btn-warm">添加章节</button>
                                     </a>
                                     <a href="javascript:void(0)" onclick="location.reload()">
                                         <button class="layui-btn layui-btn-radius layui-btn-info">更新排序</button>
@@ -54,7 +54,7 @@
                                                     <thead>
                                                     <tr>
                                                         <th class="center">排序</th>
-                                                        <th>目录名</th>
+                                                        <th>章节名</th>
                                                         <th class="hidden-480">操作</th>
                                                     </tr>
                                                     </thead>
@@ -107,6 +107,13 @@
     <script>
         function changeOrder(obj,cata_id) {
             var cata_order = $(obj).val();
+            if(cata_order < 0) {
+                layui.use('layer', function(){
+                    var layer = layui.layer;
+                    layer.msg('排序不能小于0', {icon: 5});
+                });
+                return;
+            }
             $.post('<{:U("Admin/Catalog/changeOrder")}>',{'cata_id':cata_id,'cata_order':cata_order}, function(data) {
                 if(data == true) {
                     layui.use('layer', function(){

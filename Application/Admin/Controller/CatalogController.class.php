@@ -25,7 +25,7 @@ class CatalogController extends AdminController
             die;
         }
         
-        $result = M('book')->where(['b_id' => $this->b_id])->field('b_name')->find();
+        $result = M('book')->where(['b_id' => $b_id])->field('b_name')->find();
         $name = $result['b_name'];
         
         session('b_id',$b_id);
@@ -45,6 +45,11 @@ class CatalogController extends AdminController
     {
         $catalog = M('catalog');
         $data = I('post.');
+
+        if (empty(I('post.cata_name'))) {
+            $this->error('章节名不能为空！');
+            die;
+        }
 
         $res = $catalog->where(['cata_bid' => session('b_id')])->max('cata_order');
         $order = $res + 1;
