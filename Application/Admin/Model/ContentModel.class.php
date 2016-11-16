@@ -7,7 +7,7 @@ use Think\Model;
 class ContentModel extends Model
 {
     protected $_validate = array(
-        array('con_catid','require','书籍名不能为空！',0,'regex',3), // 验证书籍名不能为空
+        array('con_catid','require','章节不能为空！',0,'regex',3), // 验证书籍名不能为空
     );
 
     protected $_auto = array (

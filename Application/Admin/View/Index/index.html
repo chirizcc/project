@@ -347,8 +347,7 @@
             </div>
 
             <div class="main-content">
-                <iframe src="<{:U('Admin/Conventional/index')}>" frameborder="0" width="100%" height="640px"
-                        name="main"></iframe>
+                <iframe src="<{:U('Admin/Conventional/index')}>" frameborder="0" scrolling="no" width="100%" onLoad="setIframeHeight(this.id)" name="main" id="ifr"></iframe>
             </div>
 
             <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
@@ -602,6 +601,27 @@
 
             })
         </script>-->
+
+        <script>
+            function setIframeHeight(id) {
+                var ifrm = document.getElementById(id);
+                var doc = ifrm.contentDocument? ifrm.contentDocument:
+                        ifrm.contentWindow.document;
+                ifrm.style.visibility = 'hidden';
+                ifrm.style.height = "10px"; // reset to minimal height ...
+                ifrm.style.height = getDocHeight( doc ) + 4 + "px";
+                ifrm.style.visibility = 'visible';
+            }
+
+            function getDocHeight(doc) {
+                doc = doc || document;
+                var body = doc.body, html = doc.documentElement;
+                var height = Math.max( body.scrollHeight, body.offsetHeight,
+                        html.clientHeight, html.scrollHeight, html.offsetHeight );
+                return height;
+            }
+        </script>
+
         <!--<div style="display:none"><script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540' language='JavaScript' charset='gb2312'></script></div>-->
 </block>
 

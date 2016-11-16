@@ -14,9 +14,9 @@
 
     <div class="row" style="margin: 0;">
         <div class="col-xs-12">
-            <div class="col-xs-6"><a href="<{:U('add')}>" class="btn btn-info ">
+            <!--<div class="col-xs-6"><a href="<{:U('add')}>" class="btn btn-info ">
                 <i class="icon-cloud-upload bigger-200"></i>
-                添加</a></div>
+                添加</a></div>-->
             <h3 class="header smaller lighter blue">书籍管理</h3>
             <div class="table-header">
                 书籍管理列表
@@ -60,6 +60,8 @@
                                 <if condition="$v.b_status eq 1"><span class="label label-sm label-warning">发布</span>
                                     <elseif condition="$v.b_status eq 2"/>
                                     <span class="label label-sm label-inverse arrowed-in">下架</span>
+                                    <elseif condition="$v.b_status eq 3" />
+                                    <span class="label label-sm label-inverse arrowed-in">未通过</span>
                                     <else/>
                                     <span class="label label-sm label-inverse arrowed-in">待审核</span>
                                 </if>
