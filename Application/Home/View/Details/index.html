@@ -12,67 +12,84 @@
 	    </div>
 	    
 	    	<div class="col-sm-8">
-	    	<div class="col-sm-6">
-	       <a href=""><img src="/Uploads/Carousel2016-11-14/5829cf74730a7.jpg" alt=""  class="img-circle" width="300" height="100" /></a>
+	    	<div class="col-sm-4">
+	       <a href=""><img src="/Uploads/bookimg2016-11-15/150.jpg" alt=""  class="img-rounded" width="150" height="200" /></a>
 	       </div>
+	       <div>
 					<ol>
-						<li>作者：</li>
+						<li >作者： &nbsp;著</li>
+						<li >&nbsp;</li>
+						<li class="text-success">类别：<button class="layui-btn layui-btn-primary layui-btn-radius">玄幻</button><button class="layui-btn layui-btn-primary layui-btn-radius">王朝争霸</button></li>
+						<li >&nbsp;</li>
 						<li class="text-primary">最后更新时间：</li>
+						<li >&nbsp;</li>
 						<li class="text-danger">阅读人数：</li>
-
-						<li class="text-success">
-							<b>共：xxx章</b>
-							
+						<li >&nbsp;</li>
+						<li class="text-muted">
+							共：xxx章							
 						</li>
-						<li class="text-warning">装帧: 精装</li>
-						
+						<li >&nbsp;</li>
 					</ol>
+						<button class="layui-btn layui-btn-danger layui-btn-big">开始阅读</button>
+						<button class="layui-btn layui-btn-primary layui-btn-big">收藏</button>
 				</div>
 			</div>
 	  
 	    <div class="hr hr-double hr-dotted hr18"></div>
-			<!-- 评论区 -->
+			<!-- 目录区 -->
 			<div class="row">
-				<div class="col-sm-6">
+				<div class="col-sm-12">
 					<h3 class="row header smaller lighter blue">
-						<span class="col-xs-6"> 评论：</span><!-- /span -->
+						<span class="col-xs-12"> 目录</span><!-- /span -->
 						
 					</h3>
 					<div id="accordion" class="accordion-style1 panel-group">
-					<!-- 评论区模块 -->
+					<!-- 目录模块 -->
 						
 							<div class="panel panel-default">
 								<div class="panel-heading">
 									<h4 class="panel-title">
 										<a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
 											<i class="icon-angle-right bigger-110" data-icon-hide="icon-angle-down" data-icon-show="icon-angle-right"></i>
-											用户：
+											展开/收起
 										</a>
 									</h4>
 								</div>
 
 								<div class="panel-collapse collapse" id="collapseTwo">
 									<div class="panel-body">
-										Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+										<button class="btn btn-default">第一章</button>
 									</div>
 								</div>
-							</div><!-- 评论区模块结束 -->
+							</div><!-- 目录模块结束 -->
 							
 
 						</div>
 
 					</div>
-				</div><!-- 评论区结束 -->
+				</div><!-- 目录结束 -->
+			<fieldset class="layui-elem-field">
+			  <legend>评论区</legend>
+			  <div class="layui-field-box">
+			    内容区域
+			  </div>
+			</fieldset>
 
+			<div>
+			<form action="" method="post">
+			<input type="hidden" name="" value="">
+			<textarea name="con_content" id="demo" ></textarea><br>	
+			<input type="submit" value="提交" class="btn btn-danger"><span id="sp"></span>
+			</form>
 			</div>
-	
-
-			
-
-			
-			
-			
-
+			 
+				
+		</div>
 	<script src="__PUBLIC__/layui/layui.js"></script>
-
+	<script>
+		layui.use('layedit', function(){
+		  var layedit = layui.layedit;
+		  layedit.build('demo'); //建立编辑器
+		});
+</script>
 </block>
