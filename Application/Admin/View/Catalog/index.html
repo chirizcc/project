@@ -29,12 +29,21 @@
                             <div class="widget-box transparent invoice-box">
                                 <div class="page-header">
                                     <h1>
-                                        <a href="#">目录管理</a>
+                                        <a href="<{:U('Admin/Catalog/index')}>">目录管理</a>
                                         <small>
                                             <i class="icon-double-angle-right"></i>
                                             章节列表
                                         </small>
                                     </h1>
+                                    <!--搜索-->
+                                    <div class="nav-search" id="nav-search">
+                                        <form class="form-search">
+                                            <span class="input-icon">
+                                                <input type="text" placeholder="搜索." class="nav-search-input" id="search-input" autocomplete="off"/>
+                                                <i class="icon-search nav-search-icon"></i>
+                                            </span>
+                                        </form>
+                                    </div><!-- #nav-search -->
                                 </div><!-- /.page-header -->
 
                                 <p class="h4">书名：<{:session('b_name')}></p>
@@ -74,15 +83,19 @@
                                                             <td>
                                                                 <a href="<{:U('Admin/Content/index',array('cata_id'=>$v['cata_id']))}>"
                                                                    class="btn btn-success btn-xs">查看内容</a>
-                                                                <a href="<{:U('Admin/role/edit',array('r_id'=>$v['cata_id']))}>"
+                                                                <a href="<{:U('Admin/Catalog/edit',array('cata_id'=>$v['cata_id']))}>"
                                                                    class="btn btn-warning btn-xs">编辑目录名</a>
-                                                                <a href="<{:U('Admin/role/del',array('r_id'=>$v['cata_id']))}>"
-                                                                   class="btn btn-danger btn-xs">删除</a>
+                                                                <a href="javascript:void(0)" onclick="del(this,'<{$v["
+                                                                   cata_id"]}>')"
+                                                                class="btn btn-danger btn-xs">删除</a>
                                                             </td>
                                                         </tr>
                                                     </volist>
                                                     </tbody>
                                                 </table>
+                                                <div><!--分页-->
+                                                    <{$page}>
+                                                </div><!--分页结束-->
                                                 <else/>
                                                 <center><h2><a href="<{:U('Admin/Catalog/add')}>">目前没有任何目录，请前往添加</a>
                                                 </h2></center>
@@ -105,23 +118,26 @@
     <script src="__PUBLIC__/layui/layui.js"></script>
 
     <script>
-        function changeOrder(obj,cata_id) {
+        function changeOrder(obj, cata_id) {
             var cata_order = $(obj).val();
-            if(cata_order < 0) {
-                layui.use('layer', function(){
+            if (cata_order < 0) {
+                layui.use('layer', function () {
                     var layer = layui.layer;
                     layer.msg('排序不能小于0', {icon: 5});
                 });
                 return;
             }
-            $.post('<{:U("Admin/Catalog/changeOrder")}>',{'cata_id':cata_id,'cata_order':cata_order}, function(data) {
-                if(data == true) {
-                    layui.use('layer', function(){
+            $.post('<{:U("Admin/Catalog/changeOrder")}>', {
+                'cata_id': cata_id,
+                'cata_order': cata_order
+            }, function (data) {
+                if (data == true) {
+                    layui.use('layer', function () {
                         var layer = layui.layer;
                         layer.msg('更新排序成功！', {icon: 6});
                     });
-                }else {
-                    layui.use('layer', function(){
+                } else {
+                    layui.use('layer', function () {
                         var layer = layui.layer;
 
                         layer.msg('更新排序失败！请稍后再试!', {icon: 5});
@@ -129,6 +145,36 @@
                 }
             })
         }
+
+        function del(obj, id) {
+            $.post('<{:U("Admin/Catalog/del")}>', {'cata_id': id}, function (data) {
+                if (data == true) {
+                    $(obj).parentsUntil('tbody').hide();
+                    layui.use('layer', function () {
+                        var layer = layui.layer;
+
+                        //信息框-例4
+                        layer.msg('删除成功', {icon: 6});
+                    });
+                } else {
+                    layui.use('layer', function () {
+                        var layer = layui.layer;
+
+                        //信息框-例4
+                        layer.msg('删除失败', {icon: 5});
+                    });
+                }
+            });
+        }
+
+        $(document).ready(function(){
+            $('#search-input').blur(function() {
+                var val = $(this).val();
+                if(val != '') {
+                    location.href = '<{:U("Admin/Catalog/index","","")}>/search/' + val;
+                }
+            });
+        });
     </script>
 
 </blocK>
