@@ -13,7 +13,7 @@
 			</li>
 
 			<li>
-				<a href="<{:U('Examine/index')}>">书籍审核页</a>
+				<a href="<{:U('Examine/content')}>">内容审核页</a>
 				
 			</li>
 			<!-- <li class="active">Invoice</li> -->
@@ -33,7 +33,7 @@
 							<div class="widget-header widget-header-large">
 								<h3 class="grey lighter pull-left position-relative">
 									<i class="icon-leaf green"></i>
-									书籍审核列表
+									内容审核列表
 								</h3>
 							</div>
 
@@ -46,7 +46,7 @@
 												<tr>
 													<th class="center">#</th>
 													<th>书籍名称</th>
-													<th>图片</th>
+													<th>章节名称</th>
 													<th>申请人</th>
 													<!-- <th class="hidden-xs">状态</th> -->
 													<th class="hidden-480">操作</th>
@@ -55,15 +55,17 @@
 											<tbody>		
 												<volist name="data" id="v">
 													<tr id="trr">
-														<td class="center"><{$v.b_id}></td>
-														<td id="link"><{$v.b_name}></td>
-														<td><img src="/Uploads/<{$v.b_img}>" width="70"></td>
-														<td><{$v.b_author}></td>
+														<td class="center"><{$v.id}></td>
+														<td><{$v.bookname}></td>
+														<td><{$v.name}></td>
+														<td><{$v.author}></td>
 														<td>
 															
-															<a href="<{:U('Examine/allow',array('id'=>$v['b_id']))}>" style="text-decoration: none;"><i class="layui-icon" style="font-size: 30px;">&#xe616;</i></a>
+															<a href="<{:U('Examine/contAllow',array('id'=>$v['id']))}>" style="text-decoration: none;"><i class="layui-icon" style="font-size: 30px;">&#xe616;</i></a>
 															&nbsp;&nbsp;&nbsp;
-															<a href="<{:U('Examine/forbid',array('id'=>$v['b_id']))}>" style="text-decoration: none;"><i class="layui-icon" style="font-size: 32px;">&#x1007;</i></a>
+															<a href="<{:U('Examine/contForbid',array('id'=>$v['id']))}>" style="text-decoration: none;"><i class="layui-icon" style="font-size: 32px;">&#x1007;</i></a>
+															&nbsp;&nbsp;&nbsp;
+															<a href="<{:U('Content/index',array('cata_id'=>$v['id']))}>" style="text-decoration: none;"><i class="layui-icon" style="font-size: 32px;">&#xe60a;</i></a>
 														</td> 
 													</tr>
 												</volist>
@@ -72,7 +74,7 @@
 										<div><!--分页-->
                                             <ul class="pagination"><{$page}></ul>
 										</div><!--分页结束-->
-										<else /><center><h1>没有需要审核的书籍</h1></center> 	
+										<else /><center><h1>没有需要审核的内容</h1></center> 	
 										</if>
 									</div>
 									<div class="space-6"></div>
