@@ -2,10 +2,6 @@
 <block name="content">
 	<div>
 	<div class="breadcrumbs" id="breadcrumbs">
-		<script type="text/javascript">
-			try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
-		</script>
-
 		<ul class="breadcrumb">
 			<li>
 				<i class="icon-home home-icon"></i>
@@ -13,7 +9,7 @@
 			</li>
 
 			<li>
-				<a href="<{:U('Examine/author')}>">作者审核页</a>
+				<a href="<{:U('Examine/index')}>">评论管理页</a>
 				
 			</li>
 			<!-- <li class="active">Invoice</li> -->
@@ -33,7 +29,7 @@
 							<div class="widget-header widget-header-large">
 								<h3 class="grey lighter pull-left position-relative">
 									<i class="icon-leaf green"></i>
-									作者审核列表
+									评论管理列表
 								</h3>
 							</div>
 
@@ -45,8 +41,9 @@
 											<thead>
 												<tr>
 													<th class="center">#</th>
+													<th>书籍名称</th>
+													<th>图片</th>
 													<th>申请人</th>
-													<th>申请人注册时间</th>
 													<!-- <th class="hidden-xs">状态</th> -->
 													<th class="hidden-480">操作</th>
 												</tr>
@@ -54,17 +51,15 @@
 											<tbody>		
 												<volist name="data" id="v">
 													<tr id="trr">
-														<td class="center"><{$v.u_id}></td>
-														<td id="link"><{$v.u_username}></td>
-														<td id="time" style="display:none;"><{$v.u_regtime}></td>
-														<td>
-															<{:date('Y-m-d H:i:s',$v['u_regtime'])}>
-														</td>
+														<td class="center"><{$v.b_id}></td>
+														<td id="link"><{$v.b_name}></td>
+														<td><img src="/Uploads/<if condition='$v["b_img"] == null'>img/book.jpg<else /><{$v.b_img}></if>" width="70"></td>
+														<td><{$v.b_author}></td>
 														<td>
 															
-															<a href="<{:U('Examine/autallow',array('id'=>$v['u_id']))}>" style="text-decoration: none;"><i class="layui-icon" style="font-size: 30px;">&#xe616;</i></a>
+															<a href="<{:U('Examine/allow',array('id'=>$v['b_id']))}>" style="text-decoration: none;"><i class="layui-icon" style="font-size: 30px;">&#xe616;</i></a>
 															&nbsp;&nbsp;&nbsp;
-															<a href="<{:U('Examine/autforbid',array('id'=>$v['u_id']))}>" style="text-decoration: none;"><i class="layui-icon" style="font-size: 32px;">&#x1007;</i></a>
+															<a href="<{:U('Examine/forbid',array('id'=>$v['b_id']))}>" style="text-decoration: none;"><i class="layui-icon" style="font-size: 32px;">&#x1007;</i></a>
 														</td> 
 													</tr>
 												</volist>
@@ -73,7 +68,7 @@
 										<div><!--分页-->
                                             <ul class="pagination"><{$page}></ul>
 										</div><!--分页结束-->
-										<else /><center><h1>没有需要审核的作者</h1></center> 	
+										<else /><center><h1>没有需要审核的书籍</h1></center> 	
 										</if>
 									</div>
 									<div class="space-6"></div>
@@ -89,8 +84,4 @@
 </div><!-- /.main-content -->
 <script src="__PUBLIC__/js/jquery.min.js"></script>
 <script src="__PUBLIC__/layui/layui.js"></script>
-<script>
-	var regtime = document.getElementById('time')	
-	if()
-</script>
 </block>
