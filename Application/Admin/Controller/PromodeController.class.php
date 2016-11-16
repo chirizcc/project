@@ -27,7 +27,7 @@ class PromodeController extends AdminController
             $p = 0;
         }
         $data = M('book')->where('b_status=1')->order('b_id desc')->page($p, 6)->select();
-        $count = M('book')->count();
+        $count = M('book')->where('b_status=1')->count();
         $Page = new \Org\Util\MyPage($count, 6);
         $show = $Page->show();
         $this->assign('page', $show);
