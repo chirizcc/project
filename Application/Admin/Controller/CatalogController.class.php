@@ -50,7 +50,7 @@ class CatalogController extends AdminController
                 $Page->parameter[$key] = urlencode($val);
             }
         }
-
+    
         $show = $Page->show();// 分页显示输出
         $this->assign('page',$show);// 赋值分页输出
         $this->assign('data',$data);
