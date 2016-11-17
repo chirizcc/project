@@ -1,8 +1,7 @@
 <?php
 namespace Home\Controller;
-use Think\Controller;
 
-class DetailsController extends Controller
+class DetailsController extends HomeController
 {
     public function index($b_id = null){
         if(empty($b_id)) {

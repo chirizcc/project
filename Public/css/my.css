@@ -12,3 +12,9 @@
 .sp-10 {
     height: 10px;
 }
+
+.myReturn {
+    position: fixed;
+    bottom: 40px;
+    right: 40px;
+}
