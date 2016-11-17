@@ -26,12 +26,17 @@ class PromodeController extends AdminController
         if ($p == null) {
             $p = 0;
         }
-        $data = M('book')->where('b_status=1')->order('b_id desc')->page($p, 6)->select();
-        $count = M('book')->where('b_status=1')->count();
+        $pro = M('promode')->field('pro_bookid')->select();
+        foreach ($pro as $k => $v) {
+        	$row[$k] = $v['pro_bookid'];
+        }
+      	$bid['b_id'] = array('not in',$row);
+        $data =M('book')->where('b_status=1')->where($bid)->page($p, 6)->select();
+   		
+        $count =M('book')->where('b_status=1') ->count()-M('promode')->count();	      
         $Page = new \Org\Util\MyPage($count, 6);
         $show = $Page->show();
         $this->assign('page', $show);
-       
         $this->assign('list', $data);
 		$this->display();
 	}
