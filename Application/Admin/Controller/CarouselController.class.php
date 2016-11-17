@@ -7,9 +7,14 @@ class CarouselController extends AdminController
 {
 	public function index()
 	{
-		 $data = M('play')->table('zd_play as p,zd_book as b')->where('p.p_link = b.b_id')->field('p.p_id id,b.b_name name,p.p_type type,p.p_link link,p.p_pic pic')->order('p.p_id desc')->select();
+		$count = M('play')->count();// 查询满足要求的总记录数
+		// var_dump($count);exit;
+        $Page =  new \Org\Util\MyPage($count,5);// 实例化分页类 传入总记录数和每页显示的记录数
+        // $Page->setConfig('header','个会员');
+        $show = $Page->show();// 分页显示输出
+		$data = M('play')->table('zd_play as p,zd_book as b')->where('p.p_link = b.b_id')->field('p.p_id id,b.b_name name,p.p_type type,p.p_link link,p.p_pic pic')->order('p.p_id desc')->page($_GET['p'],'5')->select();
 		$this->assign('type',$data);
-
+		$this->assign('page',$show);// 赋值分页输出
 		$this->display();
 	}
 
