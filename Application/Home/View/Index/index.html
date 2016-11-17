@@ -1,13 +1,18 @@
 <extend name="Public/layout"/>
 <block name="content">
-
+    <link rel="stylesheet" href="__PUBLIC__/css/index.css">
     <!-- 轮播图 -->
     <div class="container">
         <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-8">
+            <div class="col-md-2">
+                <a href="#" class="ad">全网第一家正版免费阅读平台</a>
+                <a href="" class="ad1">申请加入我们 成为常驻作者</a>
+                <a href="" class="ad2">看好的书籍，成为思想的主人</a>
+                <!-- <a href="" class="ad">作者</a> -->
+            </div>
+            <div class="col-md-10">
                 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-                    <!-- Indicators -->
+                    <!-- Indicators --> <!--遍历小点-->
                     <ol class="carousel-indicators">
                         <for start="0" end="$count">
                             <li data-target="#carousel-example-generic" data-slide-to="<{$i}>" class="active"></li>
@@ -16,29 +21,23 @@
                     </ol>
 
                     <!-- Wrapper for slides -->
-
+                    <!--遍历图片-->
                     <div class="carousel-inner" role="listbox">
                         <for start="0" end="$count">
                             <!-- <{$i}> -->
                             <if condition="$i eq '0'">
-                                <div class="item active">
+                            <div class="item active">
                                     <else/>
-                                    <div class="item ">
+                            <div class="item ">        
                             </if>
-                            <img src="<{$play[$i]['p_pic']}>" alt="..." style="margin:0 auto;">
-                            <div class="carousel-caption">
+                            <img src="<{$play[$i]['p_pic']}>" alt="..." style="margin:0 auto;" width="945" >
+                                <div class="carousel-caption">
 
+                                </div>
                             </div>
-                    </div>
 
-                    </for>
-                    <!--  <div class="item">
-                       <img src="/Uploads/Carousel/2.jpg" alt="..." style="margin:0 auto;">
-                       <div class="carousel-caption">
-
-                       </div>
-                     </div>   -->
-                </div>
+                        </for>
+                    </div><!--carousel slide-->
 
                 <!-- Controls -->
                 <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
@@ -51,7 +50,6 @@
                 </a>
             </div>
         </div> <!--col-md-8  -->
-        <div class="col-md-2"></div>
     </div><!--row  -->
 
     <if condition="$proList != null">
@@ -65,15 +63,15 @@
 
         <div class="row">
             <foreach name="proList" item="vo">
-                <div class="col-md-3">
+                <div class="col-md-2">
                     <div class="thumbnail">
-                        <a href="<{:U('Home/Details/index',['b_id' => $vo['b_id']])}>"><img width="200" data-src="holder.js/300x300" alt="..." src="__ROOT__/Uploads/<{$vo['b_img']}>"></a>
+                        <a href="<{:U('Home/Details/index',['b_id' => $vo['b_id']])}>"><img width="156" height="206" data-src="holder.js/300x300" alt="..." src="__ROOT__/Uploads/<{$vo['b_img']}>"></a>
                         <div class="caption">
                             <a href="<{:U('Home/Details/index',['b_id' => $vo['b_id']])}>"><h3 class="h3"><{$vo['b_name']}></h3></a>
                             <p><{$vo['b_author']}></p>
                             <p>
-                                <a href="#" class="btn btn-primary" role="button">Button</a>
-                                <a href="#" class="btn btn-default" role="button">Button</a></p>
+                                <a href="#" class="btn btn-primary btn-sm" role="button">Button</a>
+                                <a href="#" class="btn btn-default btn-sm" role="button">Button</a></p>
                         </div>
                     </div>
                 </div>

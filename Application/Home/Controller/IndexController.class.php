@@ -22,7 +22,7 @@ class IndexController extends HomeController
 	private function getPromode()
 	{
 		$pro = M('promode');
-		$data = $pro->table('zd_book b,zd_promode p')->where('b.b_id = p.pro_bookid')->field('b.b_id,b_name,b_img,b_author')->order('p.pro_id desc')->limit(4)->select();
+		$data = $pro->table('zd_book b,zd_promode p')->where('b.b_id = p.pro_bookid')->field('b.b_id,b_name,b_img,b_author')->order('p.pro_id desc')->limit(6)->select();
 
         return $data;
 	}
