@@ -20,7 +20,7 @@ class ReadController extends HomeController
         $data = $cataData;
 
         // 获取书籍信息
-        $bookData = M('book')->where(['b_status' => 1,'b_id' => $cataData['cata_bid']])->field('b_name,b_author,b_tid')->find();
+        $bookData = M('book')->where(['b_status' => 1,'b_id' => $cataData['cata_bid']])->field('b_name,b_author,b_tid,b_id')->find();
         if(empty($bookData)) {
             $this->error('该书已下架');
         }
@@ -81,11 +81,37 @@ class ReadController extends HomeController
             $next = '<a href="'.U('Home/Read/index',['cata_id' => $catalog[$num + 1]['cata_id']]).'" class="btn btn-default">下一章</a>';
         }
 
+        //增加浏览历史
+        //判断是否有登录
+        if(!empty(session('home_id'))){
+            $bookid = $bookData['b_id'];
+            //判断是否已经添加过,添加过的话，更新最后浏览时间
+            $map = [];
+            $map['h_bid'] = $bookid;
+            $map['h_uid'] = session('home_id');
+            $history = M('history')->where($map)->select();
+            if(empty($history)){
+                $map['h_time'] = time();
+                M('history')->add($map);
+            }else{
+                 $maps['h_time'] = time();
+                 $hid = $history[0]['h_id'];
+                 // var_dump($hid);exit;
+                 $where = [];
+                 $where['h_id'] = $hid;
+                 M('history')->where($where)->save($maps);
+            }
+        }
+        // exit;
+
+
         $this->assign('last',$last);
         $this->assign('next',$next);
         $this->assign('catalog',$str);
         $this->assign('content',$content);
         $this->assign('data',$data);
 		$this->display();
+
+
 	}
 }
