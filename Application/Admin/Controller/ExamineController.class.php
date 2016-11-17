@@ -145,18 +145,30 @@ class ExamineController extends AdminController
 	}
 
 	//内容审核
-	public function content()
+	public function content($search = null)
 	{
 		$cat = M('catalog');
 		$map = [];
-		$map['cata_status'] = '0';
+        if(!empty($search)){
+
+            $map['b.b_name'] =  ['like','%'.$search.'%'];
+            // var_dump($map);exit;
+        }
+		$map['c.cata_status'] = '0';
 		// $map['c.cata_bid'] = 0;
 		//分页
-		$count = $cat->where($map)->count();// 查询满足要求的总记录数
+        $count = $cat->table('zd_catalog c,zd_book b')->where($map)->where('c.cata_bid = b.b_id')->count();
+		// var_dump($count);exit;
 		$Page =  new \Org\Util\MyPage($count,5);// 实例化分页类 传入总记录数和每页显示的记录数
+
 		$show = $Page->show();// 分页显示输出
-		$data = $cat->table('zd_catalog as c,zd_book as b')->where('c.cata_bid = b.b_id')->where($map)->field('c.cata_id id,b.b_name bookname,c.cata_name name,b.b_author author')->page($_GET['p'],'5')->select();
-		// var_dump($data);exit;
+		$data = $cat->table('zd_catalog c,zd_book b')->where($map)->where('c.cata_bid = b.b_id')->field('c.cata_id id,b.b_name bookname,c.cata_name name,b.b_author author')->page($_GET['p'],'5')->select();
+        if(!empty($search)) {
+            //分页跳转的时候保证查询条件
+            foreach($map as $key=>$val) {
+                $Page->parameter[$key] = urlencode($val);
+            }
+        }        
 		$this->assign('page',$show);// 赋值分页输出
 		$this->assign('data',$data);
 		$this->display();
