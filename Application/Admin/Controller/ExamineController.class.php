@@ -150,12 +150,11 @@ class ExamineController extends AdminController
 		$cat = M('catalog');
 		$map = [];
         if(!empty($search)){
-
             $map['b.b_name'] =  ['like','%'.$search.'%'];
             // var_dump($map);exit;
         }
 		$map['c.cata_status'] = '0';
-		// $map['c.cata_bid'] = 0;
+
 		//分页
         $count = $cat->table('zd_catalog c,zd_book b')->where($map)->where('c.cata_bid = b.b_id')->count();
 		// var_dump($count);exit;

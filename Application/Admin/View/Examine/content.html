@@ -100,13 +100,13 @@
 <script src="__PUBLIC__/js/jquery.min.js"></script>
 <script src="__PUBLIC__/layui/layui.js"></script>
 <script>
-	        $(document).ready(function(){
-	            $('#search-input').blur(function() {
-	                var val = $(this).val();
-	                if(val != '') {
-	                    location.href = '<{:U("Admin/Examine/content","","")}>/search/' + val;
-	                }
-	            });
-	        });
+    $(document).ready(function(){
+        $('#search-input').blur(function() {
+            var val = $(this).val();
+            if(val != '') {
+                location.href = '<{:U("Admin/Examine/content","","")}>/search/' + val;
+            }
+        });
+    });
 </script>
 </block>
