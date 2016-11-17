@@ -48,7 +48,7 @@ class BookController extends AdminController
         $id = I('get.id/d');
         $status['b_status'] = 2;
         if (M('book')->where('b_id=' . $id)->save($status) > 0) {
-            M('promode')->where(['pro_bookid'])->delete();
+            M('promode')->where(['pro_bookid' => $id])->delete();
             $this->success('恭喜您,下架成功!', U('index'));
         } else {
             $this->error('下架失败....', U('index'));
