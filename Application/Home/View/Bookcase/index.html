@@ -1,0 +1,36 @@
+<extend name="Public/layout"/>
+<block name="content">
+	<div class="container">
+        <div class="page-header">
+            <h3 class="h3">收藏书架
+                <small>&nbsp;</small>
+            </h3>
+        </div>
+        <div class="row ">
+        <div class="col-sm-2"></div>
+		  <div class="col-sm-2 col-md-2">
+		    <div class="thumbnail">
+		   <div><i class="glyphicon glyphicon-remove "  onclick="test()"></i> </div>
+		      <a href=""><img data-src="holder.js/125x165" alt="..."></a>
+		      <div class="caption">
+		      <p><a href="">书名</a></p><small><p>作者:</p></small>		     
+		      	<p>收藏时间:</p>      
+		      </div>
+		    </div>
+		  </div>		  
+		<div class="col-sm-2"></div>
+		</div>
+    </div>
+    <script src="__PUBLIC__/layui/layui.js"></script> 
+    <script>
+    	function test()
+    	{
+    		var a = confirm('确定删除码');
+			if(a){
+				
+			}else{
+				
+			}
+    	} 	
+    </script>  
+</block>

@@ -5,9 +5,10 @@ use Think\Controller;
 class ConventionalController extends Controller
 {
 	public function index() {
+		// 获取系统数据
 		$server=$_SERVER;
-		$this->assign('server',$server);
-
+		// 发送系统数据
+		$this->assign('server',$server);		
 		$this->display('Conventional/index');
 	}
 
