@@ -26,15 +26,21 @@
                             <a href="javascript:;">我的图书</a>
                             <dl class="layui-nav-child">
                                 <dd><a href="">我的收藏</a></dd>
-                                <dd><a href="">我的书架</a></dd>
+                                <dd><a href="">浏览历史</a></dd>
                             </dl>
                         </li>
                         <li class="layui-nav-item">
                             <a href="javascript:;">我的账号</a>
                             <dl class="layui-nav-child">
-                                <dd><a href="">个人信息</a></dd>
+                                <dd><a href="<{:U('Home/Center/info')}>" target="main">个人信息</a></dd>
                                 <dd><a href="">修改密码</a></dd>
                                 <dd><a href="">成为作者</a></dd>
+                            </dl>
+                        </li>
+                        <li class="layui-nav-item">
+                            <a href="javascript:;">作者中心</a>
+                            <dl class="layui-nav-child">
+                                <dd><a href="">我的作品</a></dd>
                             </dl>
                         </li>
                     </ul>
@@ -43,8 +49,9 @@
             </div>
 
             <div class="col-md-10">
-                <iframe src="<{:U('Home/Center/show')}>" frameborder="0" id="ifrm" name="main" width="100%" onLoad="setIframeHeight(this.id)">
+                <iframe src="<{:U('Home/Center/show')}>" frameborder="0" scrolling="no" id="ifrm" name="main" width="100%" onLoad="setIframeHeight(this.id)">
                 </iframe>
+                <!--<img src="__ROOT__/Uploads/img/look.jpg" alt="">-->
             </div>
         </div>
     </div>
