@@ -32,7 +32,7 @@
                         <li>&nbsp;</li>
                     </ol>
                     <button class="layui-btn layui-btn-danger layui-btn-big">开始阅读</button>
-                    <button class="layui-btn layui-btn-primary layui-btn-big">收藏</button>
+                    <button class="layui-btn layui-btn-primary layui-btn-big" onclick="test()" id="col">收藏</button>
                 </div>
                 <div class="col-sm-4">简介：<p><{$data['b_introduce']}></p></div>
             </div>
@@ -99,6 +99,7 @@
 
         </div>
         <script src="__PUBLIC__/layui/layui.js"></script>
+        <script src="__PUBLIC__/js/jquery.min.js"></script>
         <script>
             layui.use('layedit', function () {
                 var layedit = layui.layedit;
@@ -121,5 +122,23 @@
                     }
                 ); //建立编辑器
             });
+            function test(){
+                
+                
+                $.ajax({
+                    type:"get",
+                    url:"<{:U('Bookcase/coladd',['b_id' => $data['b_id']])}>",
+                    dataType:'json',
+                    success:function(data){
+                        if(data == 1){
+                            col.innerHTML = "已收藏";
+
+                        }else{
+                            alert('请先登录');
+                        }
+                    }
+                })
+            }
+
         </script>
 </block>
