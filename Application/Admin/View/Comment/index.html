@@ -59,7 +59,7 @@
 								      </select>
 								    </div>
 								    <div class="layui-input-inline">
-								      <select name="p_link" id="thirdselect">
+								      <select name="p_link" id="thirdselect" lay-filter="thr">
 								        <option value="">请选择书本</option>
 								      </select>
 								    </div>
@@ -105,7 +105,7 @@
 										</div><!--分页结束-->
 										<else /><center><h1>没有任何评论</h1></center> 	
 										</if>
-									</div>
+									</div><!--col-md-10-->
 									<div class="space-6"></div>
 								</div>
 							</div>
@@ -128,10 +128,70 @@
             }
         });
     });
+
 	layui.use('form', function(){
   		var form = layui.form();
+	    //多表联查第二级
+		form.on('select(fir)', function(data){
+			//将二级菜单重置
+			// var stype = Array();
+			secondselect.length = 1;
+			thirdselect.length = 1;
+			//ajax查出对应的数组
+		    $.ajax({
+		        url:"<{:U('Comment/selectf')}>",
+		        data: "val="+data.value,
+		        type:'POST',
+		        success:function(res){
+					for(var i=0;i<res.length;i++){
+						var option = document.createElement('option');
+						option.innerHTML = res[i]['t_name'];
+						option.value = res[i]['t_id'];
+						// console.log(option);
+						var secondselect = document.getElementById('secondselect');
+						// console.log(secondselect);
+						secondselect.appendChild(option);
+						form.render('select'); //刷新select选择框渲染
+					}
+		        }
+			});			
+		}); 
 
-  	});
+
+		//多表联查第三级
+		form.on('select(sec)', function(data){
+			//将三级菜单重置
+			thirdselect.length = 1;
+			//ajax查出对应的数组
+		    $.ajax({
+		        url:"<{:U('Comment/selects')}>",
+		        data: "val="+data.value,
+		        type:'POST',
+		        success:function(res){
+					for(var i=0;i<res.length;i++){
+						var option = document.createElement('option');
+						option.innerHTML = res[i]['b_name'];
+						option.value = res[i]['b_id'];
+						// option.name= "p_link";
+						// console.log(option);
+						var thirdselect = document.getElementById('thirdselect');
+						// console.log(thirdselect);
+						thirdselect.appendChild(option);
+						form.render('select'); 
+						//刷新select选择框渲染
+
+						//值发生改变时，重新加载首页
+						//location.href = '<{:U("Admin/Comment/index","","")}>/pid/' + data.value;
+					}
+		        }
+			});			
+		}); 
+		//第三级菜单选中时 页面进行筛选
+		form.on('select(thr)', function(data){
+			//值发生改变时，重新加载首页
+			location.href = '<{:U("Admin/Comment/index","","")}>/bkid/' + data.value;
+		});
+  	});//form
    
 </script>
 </block>
