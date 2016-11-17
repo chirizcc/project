@@ -12,5 +12,6 @@ class ContentModel extends Model
 
     protected $_auto = array (
         array('con_time','time',3,'function'), // 对con_time字段在任何时候都进行更新
+        array('con_content','',1,'string'), // 对con_content字段在添加新章节是为空
     );
 }
