@@ -7,18 +7,19 @@
             </h3>
         </div>
         <div class="row ">
-        <div class="col-sm-2"></div>
+
+        <foreach name="data" item="v">
 		  <div class="col-sm-2 col-md-2">
 		    <div class="thumbnail">
-		   <div><i class="glyphicon glyphicon-remove "  onclick="test()"></i> </div>
-		      <a href=""><img data-src="holder.js/125x165" alt="..."></a>
+		   <div onclick="test()"><i class="glyphicon glyphicon-remove data-type="confirmTrans""></i> </div>
+		      <a href=""><img data-src="holder.js/125x165" src="__ROOT__/Uploads/<{$v['b_img']}>" alt="..."></a>
 		      <div class="caption">
-		      <p><a href="">书名</a></p><small><p>作者:</p></small>		     
-		      	<p>收藏时间:</p>      
+		      <p><a href=""><{$v.b_name}></a></p><small><p>作者:<{$v.b_author}></p></small>		     
+		      	<p>收藏时间:<{:date('Y-m-d H:i:s',$v['col_time'])}></p>      
 		      </div>
 		    </div>
-		  </div>		  
-		<div class="col-sm-2"></div>
+		  </div>		  		  
+		</foreach>
 		</div>
     </div>
     <script src="__PUBLIC__/layui/layui.js"></script> 
