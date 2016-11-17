@@ -4,32 +4,30 @@
 
     <div class="container">
         <div class="page-header">
-            <h3 class="h3">小说详情
-                <small>&nbsp;<{$data['b_name']}></small>
-            </h3>
+            <h3 class="h3"><{$data['b_name']}></h3>
         </div>
         <div class="row-fluid">
 
             <div class="col-sm-12">
                 <div class="col-sm-3">
-                    <a href=""><img src="__ROOT__/Uploads/<{$data['b_img']}>" alt="" class="img-rounded" width="150"
-                                    height="200"/></a>
+                    <img src="__ROOT__/Uploads/<{$data['b_img']}>" alt="" class="img-rounded" width="150"
+                                    height="200"/>
                 </div>
                 <div class="col-sm-4">
                     <ol>
                         <li>作者： &nbsp;<{$data['b_author']}> &nbsp;著</li>
                         <li>&nbsp;</li>
                         <li class="text-success">类别：
-                            <button class="layui-btn layui-btn-primary layui-btn-radius">玄幻</button>
-                            <button class="layui-btn layui-btn-primary layui-btn-radius">王朝争霸</button>
+                            <span class="layui-btn layui-btn-primary layui-btn-radius"><{$data['t_pname']}></span>
+                            <button class="layui-btn layui-btn-primary layui-btn-radius"><{$data['t_name']}></button>
                         </li>
                         <li>&nbsp;</li>
-                        <li class="text-primary">最后更新时间：</li>
+                        <li class="text-primary">最后更新时间：<{$data['lastTime']}></li>
                         <li>&nbsp;</li>
-                        <li class="text-danger">阅读人数：<{$data['b_click']}></li>
+                        <li class="text-danger">阅读次数：<{$data['b_click']}></li>
                         <li>&nbsp;</li>
                         <li class="text-muted">
-                            共：xxx章
+                            共：<{$data['cataCount']}>章
                         </li>
                         <li>&nbsp;</li>
                     </ol>
@@ -64,7 +62,13 @@
 
                             <div class="panel-collapse collapse" id="collapseTwo">
                                 <div class="panel-body">
-                                    <button class="btn btn-default">第一章</button>
+                                    <if condition="$catalog != null">
+                                        <foreach name="catalog" item="vo">
+                                            <a href="<{:U('Home/Read/index',['cata_id' => $vo['cata_id']])}>" class="btn btn-default" style="margin-top: 3px;margin-left: 1px;"><{$vo['cata_name']}></a>
+                                        </foreach>
+                                    <else />
+                                        <button class="btn btn-default" style="margin-top: 3px">暂无任何章节</button>
+                                    </if>
                                 </div>
                             </div>
                         </div><!-- 目录模块结束 -->
@@ -81,7 +85,9 @@
                 </div>
             </fieldset>
 
+            <div class="sp-10"></div>
             <div>
+                <legend>评论该书</legend
                 <form action="" method="post">
                     <input type="hidden" name="" value="">
                     <textarea name="con_content" id="demo"></textarea><br>
@@ -89,13 +95,31 @@
                 </form>
             </div>
 
+            <div class="sp-10"></div>
 
         </div>
         <script src="__PUBLIC__/layui/layui.js"></script>
         <script>
             layui.use('layedit', function () {
                 var layedit = layui.layedit;
-                layedit.build('demo'); //建立编辑器
+                layedit.build('demo',
+                    {
+                        tool: [
+                            'strong' //加粗
+                            ,'italic' //斜体
+                            ,'underline' //下划线
+                            ,'del' //删除线
+                            ,'|' //分割线
+                            ,'left' //左对齐
+                            ,'center' //居中对齐
+                            ,'right' //右对齐
+                            ,'|' //分割线
+                            ,'link' //超链接
+                            ,'unlink' //清除链接
+                            ,'face' //表情
+                        ]
+                    }
+                ); //建立编辑器
             });
         </script>
 </block>
