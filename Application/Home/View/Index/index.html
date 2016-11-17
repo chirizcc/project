@@ -67,9 +67,9 @@
             <foreach name="proList" item="vo">
                 <div class="col-md-3">
                     <div class="thumbnail">
-                        <a href=""><img width="200" data-src="holder.js/300x300" alt="..." src="__ROOT__/Uploads/<{$vo['b_img']}>"></a>
+                        <a href="<{:U('Home/Details/index',['b_id' => $vo['b_id']])}>"><img width="200" data-src="holder.js/300x300" alt="..." src="__ROOT__/Uploads/<{$vo['b_img']}>"></a>
                         <div class="caption">
-                            <a href=""><h3 class="h3"><{$vo['b_name']}></h3></a>
+                            <a href="<{:U('Home/Details/index',['b_id' => $vo['b_id']])}>"><h3 class="h3"><{$vo['b_name']}></h3></a>
                             <p><{$vo['b_author']}></p>
                             <p>
                                 <a href="#" class="btn btn-primary" role="button">Button</a>
