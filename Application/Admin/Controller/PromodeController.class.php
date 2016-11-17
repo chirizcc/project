@@ -42,7 +42,7 @@ class PromodeController extends AdminController
             $this->redirect('index');
             exit;
         }
-	
+		$id['pro_bookid'] =I('get.id/d') ;
 
 		if(M('promode')->add($id) > 0){
 			$this->success('推广成功!', U('index'));
