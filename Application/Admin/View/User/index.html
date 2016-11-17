@@ -69,7 +69,7 @@
 															加入时间
 														</th>
 														<th class="hidden-480">角色</th>
-
+                                                        <th>状态</th>
 														<th>操作</th>
 													</tr>
 												</thead>
@@ -106,16 +106,34 @@
                                                                     <else />无
                                                                 </if>
                                                             </td>
-
+                                                            <td>
+                                                                <if condition="$vo['type'] eq 3"><span class="label label-sm label-warning">正常用户</span>
+                                                                    <elseif condition="$vo['type'] eq 0"/>
+                                                                    <span class="label label-sm label-inverse arrowed-in">禁用</span>
+                                                                    <elseif condition="$vo['type'] eq 1" />
+                                                                    <span class="label label-sm label-success arrowed-in">作者</span>
+                                                                    <else/>
+                                                                    <span class="label label-sm label-info arrowed-in">待审核作者</span>
+                                                                </if>
+                                                            </td>
                                                             <td>
                                                                 <div class="visible-md visible-lg hidden-sm hidden-xs btn-group">
                                                                     <a href="<{:U('Admin/Node/role',['u_id' => $vo['id']])}>" class="btn btn-xs btn-success">分配角色</a>
+
+                                                                    <if condition="$vo['id'] neq session('id')">
+                                                                        <a href="<{:U('Admin/User/resetPwd',['u_id' => $vo['id']])}>" class="btn btn-xs btn-grey">重置密码</a>
+                                                                    </if>
+
                                                                     <a href="<{:U('Admin/User/info',['u_id' => $vo['id']])}>" class="btn btn-xs btn-info" title="详情">
                                                                         <i class="icon-tasks bigger-120"></i>
                                                                     </a>
 
-                                                                    <if condition="$vo['id'] neq session('id')">
-                                                                        <a href="javascript:void(0)" onclick="del(this,'<{$vo['id']}>')" class="btn btn-xs btn-danger"  title="删除"><i class="icon-trash bigger-120" ></i></a>
+                                                                    <if condition="$vo['id'] neq session('id') && $vo['type'] != 0">
+                                                                        <a href="<{:U('Admin/User/del',['u_id' => $vo['id']])}>" class="btn btn-xs btn-danger"  title="禁用该用户"><i class=" icon-ban-circle bigger-120" ></i></a>
+                                                                    </if>
+
+                                                                    <if condition=" $vo['type'] == 0">
+                                                                        <a href="<{:U('Admin/User/enable',['u_id' => $vo['id']])}>" class="btn btn-xs btn-purple"  title="启用该用户"><i class=" icon-check bigger-120" ></i></a>
                                                                     </if>
                                                                 </div>
 
@@ -211,28 +229,6 @@
                 }
             });
         });
-
-        function del(obj,id) {
-            $.post('<{:U("Admin/User/del")}>',{'u_id':id},function(data) {
-                if(data == true) {
-                    $(obj).parentsUntil('tbody').hide();
-                    layui.use('layer', function(){
-                        var layer = layui.layer;
-
-                        //信息框-例4
-                        layer.msg('删除成功', {icon: 6});
-                    });
-                }else {
-                    layui.use('layer', function(){
-                        var layer = layui.layer;
-
-                        //信息框-例4
-                        layer.msg('删除失败', {icon: 5});
-                    });
-                }
-            });
-        }
-
     </script>
 
 </block>

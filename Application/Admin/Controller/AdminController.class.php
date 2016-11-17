@@ -18,7 +18,7 @@ class AdminController extends Controller
             $nodeList = session('nodeList');
             // 判断权限
             if (!isset($nodeList[CONTROLLER_NAME]) && CONTROLLER_NAME != 'Index') {
-                $this->error('你没有权限进行该操作');
+                $this->error('你没有权限进行该操作',U('Admin/Conventional/index'));
             } else {
                 $state = 0;
                 foreach ($nodeList[CONTROLLER_NAME] as $value) {
@@ -28,7 +28,7 @@ class AdminController extends Controller
                     }
                 }
                 if($state == 0) {
-                    $this->error('你没有权限进行该操作');
+                    $this->error('你没有权限进行该操作',U('Admin/Conventional/index'));
                 }
             }
         }

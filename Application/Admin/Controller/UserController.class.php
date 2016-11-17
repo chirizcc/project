@@ -138,7 +138,6 @@ class UserController extends AdminController
             $this->redirect('Admin/User/index');
             die;
         }
-
         $this->assign('data',$data);
         $this->display();
     }
@@ -161,7 +160,7 @@ class UserController extends AdminController
             $this->ajaxReturn(false);
         }
 
-        // 删除前获取用户头像
+        /*// 删除前获取用户头像
         $imgData = M('detail')->where(['det_uid' => $u_id])->field('det_img')->find();
         $img = $imgData['det_img'];
 
@@ -176,6 +175,58 @@ class UserController extends AdminController
             $this->ajaxReturn(true);
         }else {
             $this->ajaxReturn(false);
+        }*/
+        $data['u_id'] = $u_id;
+        $data['u_istype'] = 0;
+
+        if(M('user')->create($data)){
+            if(false === M('user')->save()) {
+                $this->error('禁用失败，请稍后再试！');
+            } else {
+                $this->success('禁用成功');
+            }
+        } else {
+            $this->error('禁用失败，请稍后再试！');
+        }
+    }
+
+    public function enable($u_id = null)
+    {
+        if(empty($u_id)) {
+            $this->redirect('Admin/User/index');
+        }
+
+        $data['u_id'] = $u_id;
+        $data['u_istype'] = 3;
+
+        if(M('user')->create($data)){
+            if(false === M('user')->save()) {
+                $this->error('启用失败，请稍后再试！');
+            } else {
+                $this->success('启用成功');
+            }
+        } else {
+            $this->error('启用失败，请稍后再试！');
+        }
+    }
+
+    public function resetPwd($u_id = null)
+    {
+        if(empty($u_id)) {
+            $this->redirect('Admin/User/index');
+        }
+
+        $data['u_id'] = $u_id;
+        $data['u_password'] = 'a12345678';
+
+        if(D('user')->create($data)){
+            if(false === D('user')->save()) {
+                $this->error('重置失败，请稍后再试！');
+            } else {
+                $this->success('已成功将该用户的密码重置为"a12345678"');
+            }
+        } else {
+            $this->error('重置失败，请稍后再试！');
         }
     }
 
@@ -221,4 +272,5 @@ class UserController extends AdminController
             $this->error($user->getError(),U('Admin/User/add'));
         }
     }
+
 }

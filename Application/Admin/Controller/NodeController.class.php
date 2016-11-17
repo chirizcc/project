@@ -100,4 +100,49 @@ class NodeController extends AdminController
             $this->error('删除角色失败！请稍后再试！');
         }
     }
+
+    // 获取所有控制器
+    private function getController($module = 'Admin'){
+        if(empty($module)) return null;
+        $module_path = APP_PATH . $module . '/Controller/';  //控制器路径
+        //echo $module_path;die;
+        if(!is_dir($module_path)) return null;
+        $module_path .= '/*.class.php';
+        $ary_files = glob($module_path);
+        foreach ($ary_files as $file) {
+            if (is_dir($file)) {
+                continue;
+            }else {
+                $files[] = basename($file, C('DEFAULT_C_LAYER').'.class.php');
+            }
+        }
+        return $files;
+    }
+
+    /**
+     * @note 获取方法
+     *
+     * @param $module
+     * @param $controller
+     *
+     * @return array|null
+     */
+    protected function getAction($controller, $module = 'Admin'){
+        if(empty($controller)) return null;
+        $content = file_get_contents(APP_PATH.$module.'/Controller/'.$controller.'Controller.class.php');
+
+        preg_match_all("/.*?public.*?function(.*?)\(.*?\)/i", $content, $matches);
+        $functions = $matches[1];
+
+        //排除部分方法
+        //$inherents_functions = array('login','logout','uppassword','_initialize');//如有排除方法添加此数组
+        $inherents_functions = array();
+        foreach ($functions as $func){
+            $func = trim($func);
+            if(!in_array($func, $inherents_functions)){
+                if (strlen($func)>0)   $customer_functions[] = $func;
+            }
+        }
+        return $customer_functions;
+    }
 }
