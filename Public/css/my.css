@@ -18,3 +18,26 @@
     bottom: 40px;
     right: 40px;
 }
+
+.my-info-content .myInfo{
+
+}
+
+/*.my-info-content .myInfo table{
+    border: 1px solid #DCEBF7;
+}*/
+
+.my-info-content .myInfo tr td:first-child {
+    background: #EDF3F4;
+    width: 100px;
+    text-align: right;
+    border: 1px dotted #FFFFFF;
+    min-height: 30px;
+    padding: 5px;
+}
+
+.my-info-content .myInfo tr td:last-child {
+    width: 300px;
+    border: 1px dotted #DCEBF7;
+    padding: 10px;
+}

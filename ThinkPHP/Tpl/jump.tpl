@@ -22,7 +22,7 @@
     <script src="__PUBLIC__/layui/layui.js"></script>
 </head>
 <body>
-<div class="system-message">
+<div class="system-message" style="width: 300px;height: 300px;">
     <?php if(isset($message)) {?>
     <?php
             $str = "<script>layui.use('layer', function(){
