@@ -12,7 +12,7 @@
 		  <div class="col-sm-3 col-md-3">
 		    <div class="thumbnail">
 		   <div onclick="test('<{$v.b_id}>')" ><i class="glyphicon glyphicon-remove data-type="confirmTrans""></i> </div>
-		      <a href=""><img data-src="holder.js/125x165" src="__ROOT__/Uploads/<{$v['b_img']}>" alt="..."></a>
+		      <a href="<{:U('Home/Details/index',['b_id'=>$v['b_id']])}>" target="_top"><img data-src="holder.js/125x165" src="__ROOT__/Uploads/<{$v['b_img']}>" alt="..."></a>
 		      <div class="caption">
 		      <p><a href=""><{$v.b_name}></a></p><small><p>作者:<{$v.b_author}></p></small>		     
 		      	<p>收藏时间:<{:date('Y-m-d H:i:s',$v['col_time'])}></p>      
