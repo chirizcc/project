@@ -19,6 +19,8 @@ class MyPage
     public $rollPage = 11;// 分页栏每页显示的页数
     public $lastSuffix = true; // 最后一页是否显示总页数
 
+    public $anchor = ''; // 锚点
+
     private $p = 'p'; //分页参数名
     private $url = ''; //当前链接URL
     private $nowPage = 1;
@@ -97,22 +99,22 @@ class MyPage
 
         //上一页
         $up_row = $this->nowPage - 1;
-        $up_page = $up_row > 0 ? '<li><a class="prev" href="' . $this->url($up_row) . '">' . $this->config['prev'] . '</a></li>' : '';
+        $up_page = $up_row > 0 ? '<li><a class="prev" href="' . $this->url($up_row) . $this->anchor . '">' . $this->config['prev'] . '</a></li>' : '';
 
         //下一页
         $down_row = $this->nowPage + 1;
-        $down_page = ($down_row <= $this->totalPages) ? '<li><a class="next" href="' . $this->url($down_row) . '">' . $this->config['next'] . '</a></li>' : '';
+        $down_page = ($down_row <= $this->totalPages) ? '<li><a class="next" href="' . $this->url($down_row) . $this->anchor . '">' . $this->config['next'] . '</a></li>' : '';
 
         //第一页
         $the_first = '';
         if ($this->totalPages > $this->rollPage && ($this->nowPage - $now_cool_page) >= 1) {
-            $the_first = '<li><a class="first" href="' . $this->url(1) . '">' . $this->config['first'] . '</a></li>';
+            $the_first = '<li><a class="first" href="' . $this->url(1) . $this->anchor . '">' . $this->config['first'] . '</a></li>';
         }
 
         //最后一页
         $the_end = '';
         if ($this->totalPages > $this->rollPage && ($this->nowPage + $now_cool_page) < $this->totalPages) {
-            $the_end = '<li><a class="end" href="' . $this->url($this->totalPages) . '">' . $this->config['last'] . '</a></li>';
+            $the_end = '<li><a class="end" href="' . $this->url($this->totalPages) . $this->anchor . '">' . $this->config['last'] . '</a></li>';
         }
 
         //数字连接
@@ -128,7 +130,7 @@ class MyPage
             if ($page > 0 && $page != $this->nowPage) {
 
                 if ($page <= $this->totalPages) {
-                    $link_page .= '<li><a class="num" href="' . $this->url($page) . '">' . $page . '</a></li>';
+                    $link_page .= '<li><a class="num" href="' . $this->url($page) . $this->anchor . '">' . $page . '</a></li>';
                 } else {
                     break;
                 }

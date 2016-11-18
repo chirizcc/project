@@ -82,18 +82,26 @@
                 </div>
             </div><!-- 目录结束 -->
             <fieldset class="layui-elem-field">
+                <a name="comment"></a>
                 <legend>评论区</legend>
                 <div class="layui-field-box">
-                    <div class="panel panel-default">
-                        <div class="panel-heading">
-                            <img width="40px" src="__ROOT__/Uploads/Portrait/profile-pic.jpg" class="img-circle"
-                                 alt="头像">
-                            12345667
-                        </div>
-                        <div class="panel-body">
-                            Panel content
-                        </div>
-                    </div>
+                    <if condition="$comment != null">
+                        <foreach name="comment" item="vo">
+                            <div class="panel panel-default">
+                                <div class="panel-heading">
+                                    <img width="40px" src="__ROOT__/Uploads/<if condition="$vo['det_img'] == null">Portrait/profile-pic.jpg<else /><{$vo['det_img']}></if>" class="img-circle" alt="头像">
+                                    <b><{$vo['det_name']}></b>
+                                    <{$vo['com_time']|date="Y-m-d H:i",###}>
+                                </div>
+                                <div class="panel-body">
+                                    <{$vo['com_content']}>
+                                </div>
+                            </div>
+                        </foreach>
+                        <{$page}>
+                    <else /><div class="h4">该书目前还没有任何评论</div>
+                    </if>
+
                 </div>
             </fieldset>
 
