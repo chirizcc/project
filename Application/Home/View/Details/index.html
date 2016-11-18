@@ -34,8 +34,11 @@
 
                     <a href="<{:U('Home/History/read',['b_id'=>$data['b_id']])}>"
                        class="layui-btn layui-btn-danger layui-btn-big">开始阅读</a>
+                      <if condition="($status eq 1)">
+                    <button class="layui-btn layui-btn-primary layui-btn-big" onclick="test()" id="col">已收藏</button>
+                    <else />
                     <button class="layui-btn layui-btn-primary layui-btn-big" onclick="test()" id="col">收藏</button>
-
+                    </if>
                 </div>
                 <div class="col-sm-4">简介：<p><{$data['b_introduce']}></p></div>
             </div>

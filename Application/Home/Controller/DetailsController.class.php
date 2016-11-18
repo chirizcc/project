@@ -7,7 +7,13 @@ class DetailsController extends HomeController
         if(empty($b_id)) {
             $this->redirect('Home/Index/index');
         }
+        // 判断是否收藏过了
         
+        if(M('collect')->where('col_uid = '.session('home_id') .' and col_bookid ='.I('get.b_id/d'))->select()){
+            $this->assign('status',1);
+        }else{
+            $this->assign('status',2);
+        }
         $data = M('book')->where(['b_status' => 1,'b_id' => $b_id])->field('b_id,b_name,b_tid,b_img,b_click,b_introduce,b_author')->find();
         if(empty($data)) {
             $this->error('该书已下架');
