@@ -1,7 +1,6 @@
 <extend name="Public/layout"/>
 <block name="content">
 
-
     <div class="container">
         <div class="page-header">
             <h3 class="h3"><{$data['b_name']}></h3>
@@ -10,8 +9,9 @@
 
             <div class="col-sm-12">
                 <div class="col-sm-3">
-                    <img src="__ROOT__/Uploads/<if condition="$data['b_img'] == null">img/book.jpg<else /><{$data['b_img']}></if>" alt="" class="img-rounded" width="150"
-                                    height="200"/>
+                    <img src="__ROOT__/Uploads/<if condition=" $data['b_img'] == null">img/book.jpg
+                    <else/><{$data['b_img']}></if>" alt="" class="img-rounded" width="150"
+                    height="200"/>
                 </div>
                 <div class="col-sm-4">
                     <ol>
@@ -32,7 +32,8 @@
                         <li>&nbsp;</li>
                     </ol>
 
-                    <a href="<{:U('Home/History/read',['b_id'=>$data['b_id']])}>" class="layui-btn layui-btn-danger layui-btn-big">开始阅读</a>
+                    <a href="<{:U('Home/History/read',['b_id'=>$data['b_id']])}>"
+                       class="layui-btn layui-btn-danger layui-btn-big">开始阅读</a>
                     <button class="layui-btn layui-btn-primary layui-btn-big" onclick="test()" id="col">收藏</button>
 
                 </div>
@@ -45,7 +46,6 @@
                 <div class="col-sm-12">
                     <h3 class="row header smaller lighter blue">
                         <span class="col-xs-12 h3"> 目录</span><!-- /span -->
-
                     </h3>
                     <div id="accordion" class="accordion-style1 panel-group">
                         <!-- 目录模块 -->
@@ -66,81 +66,83 @@
                                 <div class="panel-body">
                                     <if condition="$catalog != null">
                                         <foreach name="catalog" item="vo">
-                                            <a href="<{:U('Home/Read/index',['cata_id' => $vo['cata_id']])}>" class="btn btn-default" style="margin-top: 3px;margin-left: 1px;"><{$vo['cata_name']}></a>
+                                            <a href="<{:U('Home/Read/index',['cata_id' => $vo['cata_id']])}>"
+                                               class="btn btn-default" style="margin-top: 3px;margin-left: 1px;"><{$vo['cata_name']}></a>
                                         </foreach>
-                                    <else />
+                                        <else/>
                                         <button class="btn btn-default" style="margin-top: 3px">暂无任何章节</button>
                                     </if>
                                 </div>
                             </div>
                         </div><!-- 目录模块结束 -->
-
-
                     </div>
-
                 </div>
             </div><!-- 目录结束 -->
             <fieldset class="layui-elem-field">
                 <legend>评论区</legend>
                 <div class="layui-field-box">
-                    内容区域
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <img width="40px" src="__ROOT__/Uploads/Portrait/profile-pic.jpg" class="img-circle"
+                                 alt="头像">
+                            12345667
+                        </div>
+                        <div class="panel-body">
+                            Panel content
+                        </div>
+                    </div>
                 </div>
             </fieldset>
 
             <div class="sp-10"></div>
             <div>
-                <legend>评论该书</legend
-                <form action="" method="post">
-                    <input type="hidden" name="" value="">
-                    <textarea name="con_content" id="demo"></textarea><br>
+                <legend>评论该书</legend>
+                <form action="<{:U('Home/Comment/insert')}>" class="layui-form" method="post">
+                    <input type="hidden" name="com_bid" value="<{$data['b_id']}>">
+                    <textarea name="com_content" id="demo" lay-verify="required"></textarea>
+                    <div class="sp-10"></div>
                     <input type="submit" value="提交" class="btn btn-danger"><span id="sp"></span>
                 </form>
             </div>
-
             <div class="sp-10"></div>
-
         </div>
-        <script src="__PUBLIC__/layui/layui.js"></script>
-        <script src="__PUBLIC__/js/jquery.min.js"></script>
-        <script>
-            layui.use('layedit', function () {
-                var layedit = layui.layedit;
-                layedit.build('demo',
+    </div>
+    <script src="__PUBLIC__/layui/layui.js"></script>
+    <script src="__PUBLIC__/js/jquery.min.js"></script>
+    <script>
+        layui.use('layedit', function () {
+            var layedit = layui.layedit;
+            input = layedit.build('demo',
                     {
+                        height: 180,
                         tool: [
                             'strong' //加粗
-                            ,'italic' //斜体
-                            ,'underline' //下划线
-                            ,'del' //删除线
-                            ,'|' //分割线
-                            ,'left' //左对齐
-                            ,'center' //居中对齐
-                            ,'right' //右对齐
-                            ,'|' //分割线
-                            ,'link' //超链接
-                            ,'unlink' //清除链接
-                            ,'face' //表情
+                            , 'italic' //斜体
+                            , 'underline' //下划线
+                            , 'del' //删除线
+                            , '|' //分割线
+                            , 'link' //超链接
+                            , 'unlink' //清除链接
+                            , 'face' //表情
                         ]
                     }
-                ); //建立编辑器
-            });
-            function test(){
-                
-                
-                $.ajax({
-                    type:"get",
-                    url:"<{:U('Bookcase/coladd',['b_id' => $data['b_id']])}>",
-                    dataType:'json',
-                    success:function(data){
-                        if(data == 1){
-                            col.innerHTML = "已收藏";
+            ); //建立编辑器
+        });
 
-                        }else{
-                            alert('请先登录');
-                        }
+        function test() {
+            $.ajax({
+                type: "get",
+                url: "<{:U('Bookcase/coladd',['b_id' => $data['b_id']])}>",
+                dataType: 'json',
+                success: function (data) {
+                    if (data == 1) {
+                        col.innerHTML = "已收藏";
+                    } else {
+                        alert('请先登录');
                     }
-                })
-            }
+                }
+            })
+        }
 
-        </script>
+    </script>
 </block>
