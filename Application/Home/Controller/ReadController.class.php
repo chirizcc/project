@@ -91,10 +91,15 @@ class ReadController extends HomeController
             $map['h_uid'] = session('home_id');
             $history = M('history')->where($map)->select();
             if(empty($history)){
+                $wheres = [];
+                $wheres['cata_bid'] = $bookid;
+                $firstcata = M('catalog')->where($wheres)->order('cata_order')->select();
                 $map['h_time'] = time();
+                $map['h_cata'] = $firstcata[0]['cata_id'];
                 M('history')->add($map);
             }else{
                  $maps['h_time'] = time();
+                 $maps['h_cata'] = $cata_id;
                  $hid = $history[0]['h_id'];
                  // var_dump($hid);exit;
                  $where = [];

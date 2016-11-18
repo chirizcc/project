@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>终点中文网</title>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Bootstrap -->
+    <link href="__PUBLIC__/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css">
+    <link rel="stylesheet" href="__PUBLIC__/css/history.css">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="http://cdn.bootcss.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<div class="container">
+	<div class="row">
+		<!-- <div class="col-md-1"></div> -->
+		<div class="col-md-10 h3">
+			浏览历史
+			<span class="glyphicon glyphicon-repeat"></span>
+		</div>
+		<div class="col-md-2"></div>
+	</div>
+	<hr>
+	<div class="row">
+		<volist name="data" id="v">
+			<div class="bookbox col-md-2">
+				<a href="<{:U('Home/Details/index',['b_id'=>$v['id']])}>" target="_top"><img src="/Uploads/<{$v.img}>" alt="" ></a>
+				<div class="info">书名：<{$v.bookname}></div>
+				<div class="info2"><{:date('Y-m-d H:i:s',$v['time'])}></div>
+			</div>
+		</volist>
+		<div class="bookbox col-md-2"></div>
+		<div class="bookbox col-md-2"></div>
+	</div>
+</div>
+</body>
+</html>
