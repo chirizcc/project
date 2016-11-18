@@ -1,0 +1,62 @@
+<extend name="Public/layout"/>
+<block name="content">
+    <link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css">
+    <link rel="stylesheet" href="__PUBLIC__/css/history.css">
+    <div class="container">
+        <div class="page-header">
+            <h3 class="h3"><{$data['name']}>&nbsp;&nbsp;&nbsp;的首页</h3>
+        </div>
+        <div class="row-fluid">
+            <div class="col-sm-12">
+                <div class="col-sm-3">
+                    <img src="/Uploads/<if condition='$data["img"] == null'>Portrait/profile-pic.jpg<else /><{$data.img}></if>" alt="" class="img-rounded" width="150"
+                                    height="200"/>
+                </div>
+                <div class="col-sm-4">
+                    <ol>
+                        <li>作者： &nbsp;<{$data['name']}></li>
+                        <li>&nbsp;</li>
+                        <li class="text-primary">性别：
+                            <if condition="$data['sex'] eq '1'">男
+                            <elseif condition="$data['sex'] eq 2"/>女
+                            <else />保密~
+                            </if>        
+                        </li>
+                        <li>&nbsp;</li>
+                        <li class="text-danger">发布书籍数量：<{$count}></li>
+                        <li>&nbsp;</li>
+                        <li class="text-muted">
+                            入驻网站时间: <{:date('Y-m-d H:i:s',$data['time'])}>
+                        </li>
+                        <li>&nbsp;</li>
+                    </ol>
+                </div>
+                <div class="col-sm-4">简介：<p><{$data['introduce']}></p></div>
+            </div><!--col-sm-12-->
+
+            <div class="hr hr-double hr-dotted hr18"></div>
+            <div class="container">
+                <div class="row">
+                    <div class="h2 col-md-3">作者作品</div>
+                </div>
+                <hr>
+                    <div class="row">
+                            <volist name="list" id="v">
+                                <div class="bookbox col-md-2">
+                                    <a href="<{:U('Home/Details/index',['b_id'=>$v['b_id']])}>" target="_top"><img src="/Uploads/<if condition='$v["b_img"] == null'>img/book.jpg<else /><{$v.b_img}></if>" alt="" width="150"></a>
+                                    <div class="info">书名：<{$v[b_name]}></div>
+                                    <div class="info2"><{:date('Y-m-d H:i:s',$v['b_time'])}></div>
+                                </div>
+                            </volist>
+                        <!-- <div class="bookbox col-md-2"></div> -->
+                        <!-- <div class="bookbox col-md-2"></div> -->
+                    </div>
+            </div>
+        </div><!--row-fluid-->
+        <div style="height:80px;"></div>
+    </div>
+        <script src="__PUBLIC__/layui/layui.js"></script>
+        <script src="__PUBLIC__/js/jquery.min.js"></script>
+        <script>
+        </script>
+</block>

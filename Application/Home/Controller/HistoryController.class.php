@@ -6,7 +6,7 @@ class HistoryController extends JudgeController
 {
 	public function index()
 	{
-		$data = M('History')->table('zd_history as h,zd_book as b')->field('b.b_img img,h.h_time time,b.b_name bookname,b.b_author author,b.b_id id')->order(array('h_time'=>'desc'))->where('h.h_bid = b.b_id')->select();
+		$data = M('history')->table('zd_history as h,zd_book as b')->field('b.b_img img,h.h_time time,b.b_name bookname,b.b_author author,b.b_id id')->order(array('h_time'=>'desc'))->where('h.h_bid = b.b_id')->select();
 		// var_dump($data);exit;
 		$this->assign('data',$data);
 		$this->display();
