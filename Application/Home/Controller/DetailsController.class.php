@@ -33,5 +33,4 @@ class DetailsController extends HomeController
         $this->assign('data',$data);
         $this->display();
     }
-
 }
