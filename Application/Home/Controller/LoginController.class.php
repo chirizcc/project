@@ -41,7 +41,9 @@ class LoginController extends HomeController
 	}
 
 	public function logout(){
-		session(null);
+		session('home_name',null);
+        session('home_id',null);
+        session('home_type',null);
         $this->redirect('Index/index');
 	}
 
