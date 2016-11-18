@@ -10,7 +10,7 @@
 
             <div class="col-sm-12">
                 <div class="col-sm-3">
-                    <img src="__ROOT__/Uploads/<{$data['b_img']}>" alt="" class="img-rounded" width="150"
+                    <img src="__ROOT__/Uploads/<if condition="$data['b_img'] == null">img/book.jpg<else /><{$data['b_img']}></if>" alt="" class="img-rounded" width="150"
                                     height="200"/>
                 </div>
                 <div class="col-sm-4">

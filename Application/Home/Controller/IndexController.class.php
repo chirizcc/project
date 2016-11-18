@@ -14,6 +14,7 @@ class IndexController extends HomeController
     	// var_dump($play);exit;
     	$this->assign('play',$play);
     	$this->assign('count',$count);
+        $this->assign('newBooks',$this->getNewBooks());
     	$this->assign('proList',$this->getPromode());
         $this->display();
     }
@@ -26,5 +27,12 @@ class IndexController extends HomeController
 
         return $data;
 	}
+
+    // 获取新上架书籍
+	private function getNewBooks()
+    {
+        $data = M('book')->where(['b_status' => 1])->field('b_id,b_name,b_img')->order('b_id')->limit(15)->select();
+        return $data;
+    }
 
 }
