@@ -1,0 +1,55 @@
+<extend name="Public/layout"/>
+<block name="content">
+<div class="container">
+	<div class="page-header">
+        <h3 class="h3">申请作者
+            <small>&nbsp;</small>
+        </h3>
+    </div>
+    <div class="col-sm-12">
+	<div class="col-sm-4"></div>
+	<div class="col-sm-6">
+	<form class="layui-form layui-form-pane" action="<{:U('Author/add')}>" method="post">
+		
+		<input type="hidden" name="u_istype" value="2">
+		<div class="layui-form-item">
+		    <label class="layui-form-label">姓名</label>
+		    <div class="layui-input-inline">
+		      <input type="text" name="det_name" lay-verify="required" placeholder="请输入真实姓名" autocomplete="off" class="layui-input" value="<{$data.det_name}>" onblur="(name(this))">
+			</div><span></span>
+		</div>
+		<div class="layui-form-item">
+		    <label class="layui-form-label">手机</label>
+		    <div class="layui-input-inline">
+		 	<input type="tel" name="det_tel" lay-verify="phone" autocomplete="off" class="layui-input" value="<{$data.det_tel}>" placeholder="请输入手机">
+
+			</div>
+		</div>
+		<div class="layui-form-item">
+		    <label class="layui-form-label">邮箱</label>
+		    <div class="layui-input-inline">
+		      <input type="text" name="det_email" lay-verify="required" placeholder="请输入邮箱" autocomplete="off" class="layui-input" value="<{$data.det_email}>" onblur="(email(this))">
+			</div>
+		</div>
+		<div class="layui-form-item">
+		    <label class="layui-form-label">笔名</label>
+		    <div class="layui-input-inline">
+		      <input type="text" name="b_author" lay-verify="required" placeholder="请输入笔名" autocomplete="off" class="layui-input" onblur="" value="<{$book.b_author}>">
+			</div>
+		</div>
+		<div class="layui-form-item">
+			<input type="reset" value="重置" class="layui-btn layui-btn-normal">
+			<input type="submit" value="申请" class="layui-btn layui-btn-normal" >
+		    
+		</div>
+  		</div>
+	</form>
+	</div>
+	</div>	
+	</div>
+	<script>
+
+	</script>
+
+	<script src="__PUBLIC__/layui/layui.js"></script>
+</block>
