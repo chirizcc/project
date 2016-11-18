@@ -8,7 +8,7 @@
                 <div class="sp-10"></div>
                 <div class="row">
                     <!--用户头像-->
-                    <img class="col-md-8 col-md-offset-2 img-circle" src="__ROOT__/Uploads/<if condition="$img == null">Portrait/profile-pic.jpg<else /><{$img}></if>" alt="头像">
+                    <img id="nowImg" class="col-md-8 col-md-offset-2 img-circle" onclick="changeImg()" src="__ROOT__/Uploads/<if condition="$img == null">Portrait/profile-pic.jpg<else /><{$img}></if>" alt="头像" title="点击修改头像">
                 </div>
                 <div class="sp-10"></div>
                 <div class="row">
@@ -105,6 +105,78 @@
             var height = Math.max( body.scrollHeight, body.offsetHeight,
                     html.clientHeight, html.scrollHeight, html.offsetHeight );
             return height;
+        }
+
+        // 点击头像弹出上传头像的窗口
+        function changeImg(){
+            layui.use('layer', function(){
+                var layer = layui.layer;
+
+                // 弹出窗口
+                layer.open({
+                    closeBtn:0,
+                    btn: ['确认', '取消'], //可以无限个按钮
+                    yes: function(){
+
+                        var url = $('#img').attr('val');
+                        if(url == undefined) {
+                            layer.closeAll();
+                        } else {
+                            // 点击确认按钮 传地址到服务器
+                            $.post('<{:U("Home/Center/insertPortrait")}>',{'url':url},function (data){
+                                console.log(data);
+                                console.log(typeof(data));
+                                if(data.code == 0) {
+                                    layer.closeAll();
+                                    layer.msg(data.msg, {icon: 6});
+                                    //setTimeout('location.reload()',2000);
+                                    $('#nowImg').attr('src','__ROOT__/Uploads/' + url);
+                                } else {
+                                    layer.closeAll();
+                                    layer.msg(data.msg, {icon: 5});
+                                }
+                            });
+                        }
+                    },
+                    btn2: function(){
+                        //按钮【按钮二】的回调
+                        //console.log(1);
+                        var url = $('#img').attr('val');
+                        if(url != undefined) {
+                            // 若点击取消按钮，则删除刚刚上传的图片
+                            $.post('<{:U("Home/Center/delImg")}>',{'url':url});
+                            console.log(1);
+                        }
+                    },
+                    type: 1,
+                    title:'修改头像',
+                    content: '<img id="img" width="200" class="col-md-8 col-md-offset-2 img-circle" src="__ROOT__/Uploads/<if condition="$img == null">Portrait/profile-pic.jpg<else /><{$img}></if>" alt="头像"><div align="center" style="padding-top: 5px"><input style="margin: 0 auto" type="file" name="file" class="layui-upload-file" lay-title="修改头像"></div>',
+                });
+            });
+
+            $('#img').attr('src',$('#nowImg').attr('src'));
+
+            // 上传文件
+            layui.use('upload', function(){
+                layui.upload({
+                    url: "<{:U('Home/Center/uploadPortrait')}>" //上传接口
+                    ,method: 'post',
+                    data:1
+                    ,before: function(input){
+                        load = layer.msg('文件上传中.....', {
+                            icon: 16
+                            ,shade: 0.01,
+                            time:0,
+                        });
+                    }
+                    ,success: function(res){ //上传成功后的回调
+                        layer.close(load);
+                        $('#img').attr('src','/Uploads/' + res.url);
+                        $('#img').attr('val',res.url);
+                        $('#img').val(res.url);
+                    }
+                });
+            });
         }
     </script>
 
