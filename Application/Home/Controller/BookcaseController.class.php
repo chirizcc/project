@@ -51,4 +51,21 @@
 			}
 
 		}
+
+		// 书架删除
+		public function coldel()
+		{
+			if (empty($_GET['b_id'])) {
+				$this->redirect('index');
+            	exit;
+			}
+			$id = I('get.b_id/d');
+			
+			if(M('collect')->where('col_uid = '. session('home_id') .'  and col_bookid = '.$id)->delete() > 0){
+				$this->ajaxReturn(1);
+			}else{
+				$this->ajaxReturn(2);
+			}
+			 
+		}
 	}

@@ -11,7 +11,7 @@
         <foreach name="data" item="v">
 		  <div class="col-sm-2 col-md-2">
 		    <div class="thumbnail">
-		   <div onclick="test()"><i class="glyphicon glyphicon-remove data-type="confirmTrans""></i> </div>
+		   <div onclick="test('<{$v.b_id}>')" ><i class="glyphicon glyphicon-remove data-type="confirmTrans""></i> </div>
 		      <a href=""><img data-src="holder.js/125x165" src="__ROOT__/Uploads/<{$v['b_img']}>" alt="..."></a>
 		      <div class="caption">
 		      <p><a href=""><{$v.b_name}></a></p><small><p>作者:<{$v.b_author}></p></small>		     
@@ -22,13 +22,27 @@
 		</foreach>
 		</div>
     </div>
-    <script src="__PUBLIC__/layui/layui.js"></script> 
+    <script src="__PUBLIC__/layui/layui.js"></script>
+   <script src="__PUBLIC__/js/jquery.min.js"></script> 
     <script>
-    	function test()
-    	{
-    		var a = confirm('确定删除码');
+    	function test(obj)
+    	{	
+    		var a = confirm('确定删除吗');
 			if(a){
-				
+				$.ajax({
+					type:'get',
+					url:'<{:U("coldel",'','')}>/b_id/'+obj,
+					dataType:'json',
+					success:function(data){
+						console.log(data);
+						if(data == 1){
+							alert('删除成功');
+							location.reload();
+						}else{
+							alert('删除失败');
+						}
+					}
+				}) 
 			}else{
 				
 			}
