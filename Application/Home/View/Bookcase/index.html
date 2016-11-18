@@ -1,4 +1,4 @@
-<extend name="Public/layout"/>
+<extend name="Center/public"/>
 <block name="content">
 	<div class="container">
         <div class="page-header">
@@ -9,7 +9,7 @@
         <div class="row ">
 
         <foreach name="data" item="v">
-		  <div class="col-sm-2 col-md-2">
+		  <div class="col-sm-3 col-md-3">
 		    <div class="thumbnail">
 		   <div onclick="test('<{$v.b_id}>')" ><i class="glyphicon glyphicon-remove data-type="confirmTrans""></i> </div>
 		      <a href=""><img data-src="holder.js/125x165" src="__ROOT__/Uploads/<{$v['b_img']}>" alt="..."></a>
