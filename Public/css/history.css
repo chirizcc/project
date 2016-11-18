@@ -1,0 +1,26 @@
+.bookbox{
+	width: 160px;
+	height: 250px;
+	float: left;
+	text-align: center;
+	/*background: #feeeed;*/
+	margin-right: 20px;
+	margin-bottom: 30px;
+}
+
+.info{
+	width: 150px;
+	height: 25px;
+	line-height: 25px;
+	/*background: red;*/
+	text-align: center;
+	/*border: 1px solid red;*/
+}
+.info{
+	width: 150px;
+	height: 25px;
+	line-height: 25px;
+	/*background: red;*/
+	text-align: center;
+	/*border: 1px solid red;*/
+}

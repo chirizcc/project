@@ -95,6 +95,7 @@ class ReadController extends HomeController
                 M('history')->add($map);
             }else{
                  $maps['h_time'] = time();
+                 $maps['h_cata'] = $cata_id;
                  $hid = $history[0]['h_id'];
                  // var_dump($hid);exit;
                  $where = [];
