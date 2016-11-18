@@ -8,7 +8,7 @@ class DetailsController extends HomeController
             $this->redirect('Home/Index/index');
         }
         
-        $data = M('book')->where(['b_status' => 1,'b_id' => $b_id])->field('b_id,b_name,b_tid,b_img,b_click,b_introduce,b_author')->find();
+        $data = M('book')->where(['b_status' => 1,'b_id' => $b_id])->field('b_id,b_name,b_tid,b_img,b_click,b_introduce,b_author,b_uid')->find();
         if(empty($data)) {
             $this->error('该书已下架');
         }

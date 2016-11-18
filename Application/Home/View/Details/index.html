@@ -15,7 +15,7 @@
                 </div>
                 <div class="col-sm-4">
                     <ol>
-                        <li>作者： &nbsp;<{$data['b_author']}> &nbsp;著</li>
+                        <li>作者： &nbsp;<a href="<{:U('Authorinfo/index',array('u_id'=>$data['b_uid']))}>" ><{$data['b_author']}></a> &nbsp;著</li>
                         <li>&nbsp;</li>
                         <li class="text-success">类别：
                             <span class="layui-btn layui-btn-primary layui-btn-radius"><{$data['t_pname']}></span>
