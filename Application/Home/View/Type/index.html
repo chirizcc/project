@@ -1,130 +1,112 @@
 <extend name="Public/layout"/>
 <block name="content">
-	<div class="container">
-	<div class="row">
-		<div class="row">
-			<div class="page-header">
-			  <h1 class="h2">分类名1&nbsp;&nbsp;<small><a href="#">更多>></a></small></h1>
-			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-3">
-		    <div class="thumbnail">
-		      <img data-src="holder.js/300x300" alt="...">
-		      <div class="caption">
-		        <h3>Thumbnail label</h3>
-		        <p>...</p>
-		        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-		      </div>
-		    </div>
-		</div>
-		<div class="col-md-3">
-		    <div class="thumbnail">
-		      <img data-src="holder.js/300x300" alt="...">
-		      <div class="caption">
-		        <h3>Thumbnail label</h3>
-		        <p>...</p>
-		        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-		      </div>
-		    </div>
-		</div>
-		<div class="col-md-3">
-		    <div class="thumbnail">
-		      <img data-src="holder.js/300x300" alt="...">
-		      <div class="caption">
-		        <h3>Thumbnail label</h3>
-		        <p>...</p>
-		        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-		      </div>
-		    </div>
-		</div>
-		<div class="col-md-3">
-		    <div class="thumbnail">
-		      <img data-src="holder.js/300x300" alt="...">
-		      <div class="caption">
-		        <h3>Thumbnail label</h3>
-		        <p>...</p>
-		        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-		      </div>
-		    </div>
-		</div>
-		<div class="col-md-3">
-		    <div class="thumbnail">
-		      <img data-src="holder.js/300x300" alt="...">
-		      <div class="caption">
-		        <h3>Thumbnail label</h3>
-		        <p>...</p>
-		        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-		      </div>
-		    </div>
-		</div>
-  </div>
-	</div>
-	</div>
 
-<div class="container">
-	<div class="row">
-		<div class="row">
-			<div class="page-header">
-			  <h1 class="h2">分类名2&nbsp;&nbsp;<small><a href="#">更多>></a></small></h1>
-			</div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-3">
-		    <div class="thumbnail">
-		      <img data-src="holder.js/300x300" alt="...">
-		      <div class="caption">
-		        <h3>Thumbnail label</h3>
-		        <p>...</p>
-		        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-		      </div>
-		    </div>
-		</div>
-		<div class="col-md-3">
-		    <div class="thumbnail">
-		      <img data-src="holder.js/300x300" alt="...">
-		      <div class="caption">
-		        <h3>Thumbnail label</h3>
-		        <p>...</p>
-		        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-		      </div>
-		    </div>
-		</div>
-		<div class="col-md-3">
-		    <div class="thumbnail">
-		      <img data-src="holder.js/300x300" alt="...">
-		      <div class="caption">
-		        <h3>Thumbnail label</h3>
-		        <p>...</p>
-		        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-		      </div>
-		    </div>
-		</div>
-		<div class="col-md-3">
-		    <div class="thumbnail">
-		      <img data-src="holder.js/300x300" alt="...">
-		      <div class="caption">
-		        <h3>Thumbnail label</h3>
-		        <p>...</p>
-		        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-		      </div>
-		    </div>
-		</div>
-		<div class="col-md-3">
-		    <div class="thumbnail">
-		      <img data-src="holder.js/300x300" alt="...">
-		      <div class="caption">
-		        <h3>Thumbnail label</h3>
-		        <p>...</p>
-		        <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
-		      </div>
-		    </div>
-		</div>
-  </div>
-	</div>
-	</div>
+    <div class="container">
 
-	<script src="__PUBLIC__/layui/layui.js"></script>
+        <div class="row">
+            <div class="col-md-offset-8 col-md-4">
+                <form class="navbar-form" role="search">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search" id="sbox">
+                    </div>
+                    <button type="submit" class="btn btn-default">搜索</button>
+                </form>
+                <div class="sinfo" id="sinfo">
+                    <ul id="sul">
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-2">
+                <ul class="layui-nav layui-nav-tree" style="width: 100%">
+                    <foreach name="types" item="vo">
+                        {$vo.id}:{$vo.name}
+                        <li class="layui-nav-item">
+                            <a href="javascript:;"><{$vo['t_name']}></a>
+                            <dl class="layui-nav-child">
+                                <foreach name="vo['child']" item="v">
+                                    <dd><a href="<{:U('Home/Type/index', ['t_id' => $v['t_id']])}>"><{$v['t_name']}></a></dd>
+                                </foreach>
+                            </dl>
+                        </li>
+                    </foreach>
+                </ul>
+            </div>
+            <div class="col-md-10">
+                <div class="row">
+                    <span class="layui-breadcrumb">
+                        <a href="<{:U('Home/Index/index')}>">首页</a>
+                        <foreach name="crumb" item="vo">
+                            <a><cite><{$vo['t_name']}></cite></a>
+                        </foreach>
+
+                        <!--<a href="">国际新闻</a>
+                        <a href="">亚太地区</a>
+                        <a><cite>正文</cite></a>-->
+                    </span>
+                </div>
+                <div class="sp-10"></div>
+
+                <for start="0" end="count($data)">
+                    <if condition="$i % 4 == 0">
+                        <div class="row">
+                    </if>
+
+                    <div class="col-md-3">
+                        <div class="thumbnail">
+                            <a href="<{:U('Home/Details/index',['b_id' => $data[$i]['b_id']])}>">
+                                <img alt="..." src="__ROOT__/Uploads/<if condition=" $data[$i]['b_img'] == null">img/book.jpg<else/><{$data[$i]['b_img']}></if>">
+                            </a>
+                            <div class="caption">
+                                <a href="<{:U('Home/Details/index',['b_id' => $data[$i]['b_id']])}>"><h3 class="h3"><{$data[$i]['b_name']}></h3></a>
+                                <p><{$data[$i]['b_author']}></p>
+                                <p>
+                                    <a href="#" class="btn btn-primary" role="button">立即阅读</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <if condition="($i + 1) % 4 == 0 || ($i + 1) == count($newBooks)">
+                        </div>
+                    </if>
+                </for>
+            </div>
+        </div>
+    </div>
+
+    <!--[if !IE]> -->
+    <script src="__PUBLIC__/js/jquery-2.0.3.min.js"></script>
+    <!-- <![endif]-->
+
+    <!--[if IE]>
+    <script src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
+    <![endif]-->
+
+    <!--[if !IE]> -->
+    <script type="text/javascript">
+        window.jQuery || document.write("<script src='__PUBLIC__/ace/assets/js/jquery-2.0.3.min.js'>" + "</" + "script>");
+    </script>
+    <!-- <![endif]-->
+
+    <!--[if IE]>
+    <script type="text/javascript">
+        window.jQuery || document.write("<script src='__PUBLIC__/ace/assets/js/jquery-1.10.2.min.js'>" + "</" + "script>");
+    </script>
+    <![endif]-->
+
+    <script type="text/javascript">
+        if ("ontouchend" in document) document.write("<script src='__PUBLIC__/ace/assets/js/jquery.mobile.custom.min.js'>" + "</" + "script>");
+    </script>
+
+    <!--引入layui-->
+    <script src="__PUBLIC__/layui/layui.js"></script>
+
+    <script>
+        layui.use('element', function () {
+            var element = layui.element();
+        });
+    </script>
 </block>

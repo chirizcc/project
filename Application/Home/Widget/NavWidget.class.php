@@ -16,13 +16,13 @@ class NavWidget extends Controller
         echo '<ul class="nav navbar-nav">';
 
         foreach ($headerType as $v) {
-            echo '<li><a href="#">'.$v['t_name'].'</a></li>';
+            echo '<li><a href="'.U('Home/Type/index', ['t_pid' => $v['t_id']]).'">'.$v['t_name'].'</a></li>';
         }
         echo '<li class="dropdown">';
         echo '<a href="#" class="dropdown-toggle" data-toggle="dropdown">更多 <span class="caret"></span></a>';
         echo '<ul class="dropdown-menu" role="menu">';
         for ($i = 0; $i < count($otherType); $i++) {
-            echo '<li><a href="#">'.$otherType[$i]['t_name'].'</a></li>';
+            echo '<li><a href="'.U('Home/Type/index', ['t_pid' => $otherType[$i]['t_id']]).'">'.$otherType[$i]['t_name'].'</a></li>';
             if($i != count($otherType) - 1) {
                 echo '<li class="divider"></li>';
             }
