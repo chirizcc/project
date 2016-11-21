@@ -6,16 +6,15 @@
             <h3 class="h3"><{$data['b_name']}></h3>
         </div>
         <div class="row-fluid">
-
             <div class="col-sm-12">
                 <div class="col-sm-3">
-                    <img src="__ROOT__/Uploads/<if condition=" $data['b_img'] == null">img/book.jpg
-                    <else/><{$data['b_img']}></if>" alt="" class="img-rounded" width="150"
-                    height="200"/>
+                    <img src="__ROOT__/Uploads/<if condition=" $data['b_img'] == null">img/book.jpg<else/><{$data['b_img']}></if>" alt="" class="img-rounded" width="150"height="200"/>
                 </div>
                 <div class="col-sm-4">
                     <ol>
-                        <li>作者： &nbsp;<a href="<{:U('Authorinfo/index',array('u_id'=>$data['b_uid']))}>" ><{$data['b_author']}></a> &nbsp;著</li>
+                        <li>作者： &nbsp;<a href="<{:U('Authorinfo/index',array('u_id'=>$data['b_uid']))}>"><{$data['b_author']}></a>
+                            &nbsp;著
+                        </li>
                         <li>&nbsp;</li>
                         <li class="text-success">类别：
                             <span class="layui-btn layui-btn-primary layui-btn-radius"><{$data['t_pname']}></span>
@@ -34,10 +33,10 @@
 
                     <a href="<{:U('Home/History/read',['b_id'=>$data['b_id']])}>"
                        class="layui-btn layui-btn-danger layui-btn-big">开始阅读</a>
-                      <if condition="($status eq 1)">
-                    <button class="layui-btn layui-btn-primary layui-btn-big" onclick="test()" id="col">已收藏</button>
-                    <else />
-                    <button class="layui-btn layui-btn-primary layui-btn-big" onclick="test()" id="col">收藏</button>
+                    <if condition="($status eq 1)">
+                        <button class="layui-btn layui-btn-primary layui-btn-big" onclick="test()" id="col">已收藏</button>
+                        <else/>
+                        <button class="layui-btn layui-btn-primary layui-btn-big" onclick="test()" id="col">收藏</button>
                     </if>
                 </div>
                 <div class="col-sm-4">简介：<p><{$data['b_introduce']}></p></div>
@@ -89,7 +88,7 @@
                         <foreach name="comment" item="vo">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <img width="40px" src="__ROOT__/Uploads/<if condition="$vo['det_img'] == null">Portrait/profile-pic.jpg<else /><{$vo['det_img']}></if>" class="img-circle" alt="头像">
+                                    <img width="40px" src="__ROOT__/Uploads/<if condition=" $vo['det_img'] == null">Portrait/profile-pic.jpg<else/><{$vo['det_img']}> </if>" class="img-circle" alt="头像">
                                     <b><{$vo['det_name']}></b>
                                     <{$vo['com_time']|date="Y-m-d H:i",###}>
                                 </div>
@@ -99,9 +98,9 @@
                             </div>
                         </foreach>
                         <{$page}>
-                    <else /><div class="h4">该书目前还没有任何评论</div>
+                    <else/>
+                        <div class="h4">该书目前还没有任何评论</div>
                     </if>
-
                 </div>
             </fieldset>
 
@@ -118,6 +117,7 @@
             <div class="sp-10"></div>
         </div>
     </div>
+
     <script src="__PUBLIC__/layui/layui.js"></script>
     <script src="__PUBLIC__/js/jquery.min.js"></script>
     <script>
@@ -149,13 +149,12 @@
                     if (data == 1) {
                         col.innerHTML = "已收藏";
                     } else {
-                        layui.use('layer', function(){
+                        layui.use('layer', function () {
                             layer.msg('请先登录');
                         })
                     }
                 }
             })
         }
-
     </script>
 </block>

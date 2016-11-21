@@ -16,6 +16,7 @@ class IndexController extends HomeController
     	$this->assign('count',$count);
         $this->assign('newBooks',$this->getNewBooks());
     	$this->assign('proList',$this->getPromode());
+    	$this->assign('hotBooks',$this->getHot());
         $this->display();
     }
 
@@ -34,5 +35,11 @@ class IndexController extends HomeController
         $data = M('book')->where(['b_status' => 1])->field('b_id,b_name,b_img')->order('b_id desc')->limit(15)->select();
         return $data;
     }
+
+	private function getHot()
+	{
+		$data = M('book')->where(['b_status' => 1])->field('b_id,b_name,b_img')->order('b_click desc')->limit(15)->select();
+		return $data;
+	}
 
 }

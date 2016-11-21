@@ -215,15 +215,45 @@
 
     </div>&lt;!&ndash;row  &ndash;&gt;
 -->
-    <div class="row">
-        <div class="page-header">
-            <h1 class="h2">热门&nbsp;&nbsp;
-                <small><a href="#">更多>></a></small>
-            </h1>
+    <if condition="$hotBooks != null">
+        <div class="row">
+            <div class="page-header">
+                <h1 class="h2">热门&nbsp;&nbsp;
+                    <small><a href="#">更多>></a></small>
+                </h1>
+            </div>
         </div>
-    </div>
 
-    <div class="row">
+        <for start="0" end="count($hotBooks)">
+            <if condition="$i % 5 == 0">
+                <div class="row">
+                    <div class="col-md-1"></div>
+            </if>
+
+                <div class="col-md-2">
+                    <!--<a href="#" class="thumbnail" style="border: none">
+                        <img data-src="holder.js/171x180" alt="...">
+                    </a>-->
+                    <div class="thumbnail" style="border: none">
+                        <a href="<{:U('Home/Details/index',['b_id' => $hotBooks[$i]['b_id']])}>">
+                        <img width="150" alt="..." lay-src="__ROOT__/Uploads/<if condition="$hotBooks[$i]['b_img'] == null">img/book.jpg<else/><{$hotBooks[$i]['b_img']}></if>">
+                    </a>
+                        <p style="text-align: center" class="h4">
+                            <a href="<{:U('Home/Details/index',['b_id' => $hotBooks[$i]['b_id']])}>"><{$hotBooks[$i]['b_name']}></a>
+                        </p>
+                    </div>
+                </div>
+
+            <if condition="($i + 1) % 5 == 0 || ($i + 1) == count($hotBooks)">
+                    <div class="col-md-1"></div>
+                </div>
+            </if>
+        </for>
+    </if>
+
+
+    <!--<div class="row">
+
         <div class="col-md-3">
             <a href="#" class="thumbnail">
                 <img data-src="holder.js/171x180" alt="...">
@@ -242,13 +272,7 @@
             </a>
         </div>
 
-        <div class="col-md-3">
-            <a href="#" class="thumbnail">
-                <img data-src="holder.js/171x180" alt="...">
-            </a>
-        </div>
-
-    </div><!--row  -->
+    </div>&lt;!&ndash;row  &ndash;&gt;-->
 
     </div> <!--container  -->
 

@@ -25,6 +25,9 @@ class ReadController extends HomeController
             $this->error('该书已下架');
         }
 
+        // 更新书籍点击次数
+        M('book')->where(['b_id' => $bookData['b_id']])->setInc('b_click');
+
         foreach ($bookData as $key => $value) {
             $data[$key] = $value;
         }
