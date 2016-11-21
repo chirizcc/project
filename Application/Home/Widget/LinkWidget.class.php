@@ -13,8 +13,8 @@ class LinkWidget extends Controller
         $count = M('link')->where('l_state = 0')->count();
         $num = ceil($count / 3);
 
-        if($num > 4) {
-            $num = 4;
+        if($num > 2) {
+            $num = 2;
         }
 
         $j = 0;
