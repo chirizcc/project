@@ -6,10 +6,15 @@ namespace Admin\Controller;
 class ExamineController extends AdminController
 {
     //书籍审核
-    public function index()
+    public function index($search = null)
     {
         $book = M('book');
+
         $map = [];
+        if (!empty($search)) {
+            $map['b_name'] = ['like', '%' . $search . '%'];
+            // var_dump($map);exit;
+        }
         $map['b_status'] = 0;
         //分页
         $count = $book->where($map)->count();// 查询满足要求的总记录数
@@ -17,6 +22,14 @@ class ExamineController extends AdminController
         $show = $Page->show();// 分页显示输出
         $data = $book->order('b_id desc')->where($map)->page($_GET['p'], '3')->select();
         // var_dump($data);exit;
+
+        if (!empty($search)) {
+            //分页跳转的时候保证查询条件
+            foreach ($map as $key => $val) {
+                $Page->parameter[$key] = urlencode($val);
+            }
+        }
+
         $this->assign('page', $show);// 赋值分页输出
         $this->assign('data', $data);
         $this->display();

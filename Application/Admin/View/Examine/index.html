@@ -18,6 +18,15 @@
 			</li>
 			<!-- <li class="active">Invoice</li> -->
 		</ul><!-- .breadcrumb -->
+			<div class="nav-search" id="nav-search">
+
+				<form class="form-search">
+					<span class="input-icon">
+						<input type="text" placeholder="搜索." class="nav-search-input" id="search-input" autocomplete="off" />
+						<i class="icon-search nav-search-icon"></i>
+					</span>
+				</form>
+			</div><!-- #nav-search -->
 	</div>
 
 	<div class="page-content">
@@ -88,4 +97,14 @@
 </div><!-- /.main-content -->
 <script src="__PUBLIC__/js/jquery.min.js"></script>
 <script src="__PUBLIC__/layui/layui.js"></script>
+<script>
+    $(document).ready(function(){
+        $('#search-input').blur(function() {
+            var val = $(this).val();
+            if(val != '') {
+                location.href = '<{:U("Admin/Examine/index","","")}>/search/' + val;
+            }
+        });
+    });
+</script>
 </block>
