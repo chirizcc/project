@@ -1,93 +1,82 @@
 <extend name="Public/layout"/>
 <block name="content">
-<div>
-	<div class="breadcrumbs" id="breadcrumbs">
+    <div>
+        <div class="breadcrumbs" id="breadcrumbs">
 
-		<ul class="breadcrumb">
-			<li>
-				<i class="icon-home home-icon"></i>
-				<a href="#">主页</a>
-			</li>
+            <ul class="breadcrumb">
+                <li>
+                    <i class="icon-home home-icon"></i>
+                    <a href="#">主页</a>
+                </li>
 
-			<li>
-				<a href="<{:U('Admin/Role/index')}>">角色管理</a>
-			</li>
-			<li class="active">分配权限</li>
-		</ul><!-- .breadcrumb -->
+                <li>
+                    <a href="<{:U('Admin/Role/index')}>">角色管理</a>
+                </li>
+                <li class="active">分配权限</li>
+            </ul><!-- .breadcrumb -->
 
-	</div>
+        </div>
 
-	<div class="page-content">
-		<div class="row">
-			<div class="col-xs-12">
-				<!-- PAGE CONTENT BEGINS -->
+        <div class="page-content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <!-- PAGE CONTENT BEGINS -->
 
-				<div class="space-6"></div>
+                    <div class="space-6"></div>
 
-				<div class="row">
-					<div class="col-sm-10 col-sm-offset-1">
-						<div class="widget-box transparent invoice-box">
-							<div class="page-header">
-								<h1>
-									<a href="<{:U('Admin/Role/index')}>">角色管理</a>
-									<small>
-										<i class="icon-double-angle-right"></i>
-										分配权限
-									</small>
-								</h1>
-							</div><!-- /.page-header -->
+                    <div class="row">
+                        <div class="col-sm-10 col-sm-offset-1">
+                            <div class="widget-box transparent invoice-box">
+                                <div class="page-header">
+                                    <h1>
+                                        <a href="<{:U('Admin/Role/index')}>">角色管理</a>
+                                        <small>
+                                            <i class="icon-double-angle-right"></i>
+                                            分配权限
+                                        </small>
+                                    </h1>
+                                </div><!-- /.page-header -->
 
-							<div class="row">
-								<div class="col-md-12">
-									<h2>角色名：<{$data['r_name']}></h2>
-									<form action="<{:U('Admin/Role/changeNode')}>" method="post" class="layui-form" style="margin-top:40px;">
-                                        <input type="hidden" name="r_id" value="<{$data['r_id']}>">
-                                        <div class="layui-form-item">
-                                            <label class="layui-form-label">用户</label>
-                                            <div class="layui-input-block">
-                                                <foreach name="userList" item="v">
-                                                    <input type="checkbox" name="node['<{$v['n_id']}>']" value="<{$v['n_id']}>" title="<{$v['n_name']}>" <if condition="isset($v['checked'])">checked</if> >
-                                                </foreach>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h2>角色名：<{$data['r_name']}></h2>
+                                        <form action="<{:U('Admin/Role/changeNode')}>" method="post" class="layui-form"
+                                              style="margin-top:40px;">
+                                            <input type="hidden" name="r_id" value="<{$data['r_id']}>">
+                                            <foreach name="nodes" item="vo" key="key">
+                                                <div class="layui-form-item">
+                                                    <label class="layui-form-label"><{$key}></label>
+                                                    <div class="layui-input-block">
+                                                        <foreach name="vo" item="v">
+                                                            <input type="checkbox" name="node['<{$v['n_id']}>']"
+                                                                   value="<{$v['n_id']}>" title="<{$v['n_name']}>"
+                                                            <if condition="isset($v['checked'])">checked</if>
+                                                            >
+                                                        </foreach>
+                                                    </div>
+                                                </div>
+                                            </foreach>
+                                            
+                                            <div class="layui-form-item">
+                                                <div class="layui-input-block">
+                                                    <button class="layui-btn" lay-submit lay-filter="formDemo">确认
+                                                    </button>
+                                                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                                                </div>
                                             </div>
-                                        </div>
+                                        </form>
 
-                                        <div class="layui-form-item">
-                                            <label class="layui-form-label">分类</label>
-                                            <div class="layui-input-block">
-                                                <foreach name="typeList" item="v">
-                                                    <input type="checkbox" name="node['<{$v['n_id']}>']" value="<{$v['n_id']}>" title="<{$v['n_name']}>"  <if condition="isset($v['checked'])">checked</if> >
-                                                </foreach>
-                                            </div>
-                                        </div>
-
-										<div class="layui-form-item">
-											<label class="layui-form-label">书籍</label>
-											<div class="layui-input-block">
-                                                <foreach name="bookList" item="v">
-                                                    <input type="checkbox" name="node['<{$v['n_id']}>']" value="<{$v['n_id']}>" title="<{$v['n_name']}>" <if condition="isset($v['checked'])">checked</if> >
-                                                </foreach>
-											</div>
-										</div>
-
-                                        <div class="layui-form-item">
-                                            <div class="layui-input-block">
-                                                <button class="layui-btn" lay-submit lay-filter="formDemo">确认</button>
-                                                <button type="reset" class="layui-btn layui-btn-primary">重置</button>
-                                            </div>
-                                        </div>
-									</form>
-
-									<div style="height:200px;"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- PAGE CONTENT ENDS -->
-			</div><!-- /.col -->
-		</div><!-- /.row -->
-	</div><!-- /.page-content -->
-</div><!-- /.main-content -->
+                                        <div style="height:200px;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- PAGE CONTENT ENDS -->
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.page-content -->
+    </div><!-- /.main-content -->
 
     <!--[if !IE]> -->
     <script src="__PUBLIC__/js/jquery-2.0.3.min.js"></script>
@@ -99,13 +88,13 @@
 
     <!--[if !IE]> -->
     <script type="text/javascript">
-        window.jQuery || document.write("<script src='__PUBLIC__/ace/assets/js/jquery-2.0.3.min.js'>"+"</"+"script>");
+        window.jQuery || document.write("<script src='__PUBLIC__/ace/assets/js/jquery-2.0.3.min.js'>" + "</" + "script>");
     </script>
     <!-- <![endif]-->
 
     <!--[if IE]>
     <script type="text/javascript">
-        window.jQuery || document.write("<script src='__PUBLIC__/ace/assets/js/jquery-1.10.2.min.js'>"+"</"+"script>");
+        window.jQuery || document.write("<script src='__PUBLIC__/ace/assets/js/jquery-1.10.2.min.js'>" + "</" + "script>");
     </script>
     <![endif]-->
 
@@ -113,7 +102,7 @@
     <script src="__PUBLIC__/layui/layui.js"></script>
 
     <script>
-        layui.use('form', function() {
+        layui.use('form', function () {
             var form = layui.form();
         })
     </script>

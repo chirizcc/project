@@ -20,9 +20,17 @@ class AdminController extends Controller
             if (!isset($nodeList[CONTROLLER_NAME]) && CONTROLLER_NAME != 'Index') {
                 $this->error('你没有权限进行该操作',U('Admin/Conventional/index'));
             } else {
+                $action = ACTION_NAME;
+                if($action == 'update') {
+                    $action = 'edit';
+                }
+                
+                if($action == 'insert') {
+                    $action = 'add';
+                }
                 $state = 0;
                 foreach ($nodeList[CONTROLLER_NAME] as $value) {
-                    if($value == ACTION_NAME){
+                    if($value == $action){
                         $state = 1;
                         break;
                     }

@@ -35,9 +35,15 @@ class RoleController extends AdminController
     public function allot($r_id)
     {
         $list = M('node')->select();
+
+        // 重组权限节点数组
+        $nodes = [];
+        foreach ($list as $v) {
+            $nodes[$v['n_controller']][] = $v;
+        }
         // 查找出这个角色的现有权限
         $nodeList = M('role_node')->where(array('rn_rid' => $r_id))->field('rn_nid')->select();
-        foreach($list as $v) {
+        /*foreach($list as $v) {
             // 给已有的权限一个标记用于显示
             foreach ($nodeList as $item) {
                 if($v['n_id'] == $item['rn_nid']){
@@ -51,12 +57,25 @@ class RoleController extends AdminController
             } elseif ($v['n_controller'] == 'Book') {
                 $bookList[] = $v;
             }
-        }
+        }*/
 
+        foreach ($nodes as $k => $v) {
+            foreach ($v as $key => $value) {
+                foreach ($nodeList as $item) {
+                    if($value['n_id'] == $item['rn_nid']){
+                        $nodes[$k][$key]['checked'] = 'true';
+                    }
+                }
+            }
+        }
+        /*dump($nodes);
+
+        die;*/
         $data = M('role')->find($r_id);
-        $this->assign('userList',$userList);
+        /*$this->assign('userList',$userList);
         $this->assign('typeList',$typeList);
-        $this->assign('bookList',$bookList);
+        $this->assign('bookList',$bookList);*/
+        $this->assign('nodes',$nodes);
         $this->assign('data',$data);
         $this->display();
     }

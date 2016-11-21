@@ -7,6 +7,7 @@ class LinkController extends AdminController
 {
     private $size = 6;
 
+    // 获取友情链接列表
     public function index()
     {
         $link = D('link');
@@ -20,11 +21,13 @@ class LinkController extends AdminController
         $this->display();
     }
 
+    // 添加链接表单
     public function add()
     {
         $this->display();
     }
 
+    // 添加链接存入数据库
     public function insert()
     {
         $link = D('link');
@@ -39,6 +42,7 @@ class LinkController extends AdminController
         }
     }
 
+    // 改变链接状态
     public function changeState()
     {
         $link = D('link');
@@ -62,6 +66,7 @@ class LinkController extends AdminController
         $this->ajaxReturn($data);
     }
 
+    // 编辑链接表单
     public function edit($l_id = null)
     {
         if(empty($l_id)) {
@@ -74,6 +79,8 @@ class LinkController extends AdminController
         $this->display();
     }
 
+
+    // 更新链接信息
     public function update()
     {
         $link = D('link');
@@ -92,6 +99,7 @@ class LinkController extends AdminController
         }
     }
 
+    // 删除链接
     public function del($l_id = null)
     {
         if(empty($l_id)) {

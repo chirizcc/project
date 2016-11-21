@@ -31,7 +31,7 @@ class IndexController extends HomeController
     // 获取新上架书籍
 	private function getNewBooks()
     {
-        $data = M('book')->where(['b_status' => 1])->field('b_id,b_name,b_img')->order('b_id')->limit(15)->select();
+        $data = M('book')->where(['b_status' => 1])->field('b_id,b_name,b_img')->order('b_id desc')->limit(15)->select();
         return $data;
     }
 

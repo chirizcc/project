@@ -1,84 +1,134 @@
 <extend name="Public/layout"/>
 <block name="content">
-<div>
-	<div class="breadcrumbs" id="breadcrumbs">
+    <div>
+        <div class="breadcrumbs" id="breadcrumbs">
 
-		<ul class="breadcrumb">
-			<li>
-				<i class="icon-home home-icon"></i>
-				<a href="#">主页</a>
-			</li>
+            <ul class="breadcrumb">
+                <li>
+                    <i class="icon-home home-icon"></i>
+                    <a href="#">主页</a>
+                </li>
 
-			<li>
-				<a href="<{:U('Admin/Node/index')}>">权限管理</a>
-			</li>
-			<li class="active">添加权限</li>
-		</ul><!-- .breadcrumb -->
+                <li>
+                    <a href="<{:U('Admin/Node/index')}>">权限管理</a>
+                </li>
+                <li class="active">添加权限</li>
+            </ul><!-- .breadcrumb -->
 
-	</div>
+        </div>
 
-	<div class="page-content">
-		<div class="row">
-			<div class="col-xs-12">
-				<!-- PAGE CONTENT BEGINS -->
+        <div class="page-content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <!-- PAGE CONTENT BEGINS -->
 
-				<div class="space-6"></div>
+                    <div class="space-6"></div>
 
-				<div class="row">
-					<div class="col-sm-10 col-sm-offset-1">
-						<div class="widget-box transparent invoice-box">
-							<div class="page-header">
-								<h1>
-									<a href="<{:U('Admin/Node/index')}>">权限管理</a>
-									<small>
-										<i class="icon-double-angle-right"></i>
-										添加权限
-									</small>
-								</h1>
-							</div><!-- /.page-header -->
+                    <div class="row">
+                        <div class="col-sm-10 col-sm-offset-1">
+                            <div class="widget-box transparent invoice-box">
+                                <div class="page-header">
+                                    <h1>
+                                        <a href="<{:U('Admin/Node/index')}>">权限管理</a>
+                                        <small>
+                                            <i class="icon-double-angle-right"></i>
+                                            添加权限
+                                        </small>
+                                    </h1>
+                                </div><!-- /.page-header -->
 
-							<div class="row">
-								<div class="col-md-12">
-									<form action="<{:U('Admin/Node/insert')}>" method="post" class="form-horizontal" style="margin-top:40px;">
-										<div class="form-group">
-											<label class="col-sm-3 control-label no-padding-right"> 权限名称 </label>
-
-											<div class="col-sm-9">
-												<input type="text"placeholder="" class="col-xs-10 col-sm-5" name="n_name"/>
-											</div>
-										</div>
-
-										<div class="form-group">
-											<label class="col-sm-3 control-label no-padding-right"> 控制器权限 </label>
-
-											<div class="col-sm-9">
-												<input type="text"placeholder="" class="col-xs-10 col-sm-5" name="n_controller"/>
-											</div>
-										</div>
-
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label no-padding-right"> 操作权限 </label>
-
-                                            <div class="col-sm-9">
-                                                <input type="text" placeholder="" class="col-xs-10 col-sm-5" name="n_action"/>
+                                <div class="row">
+                                    <div class="col-md-6 col-md-offset-2">
+                                        <style>
+                                            .layui-form-pane .layui-form-label {
+                                                width: 100px;
+                                            }
+                                        </style>
+                                        <form action="<{:U('Admin/Node/insert')}>" method="post" class="layui-form layui-form-pane">
+                                            <div class="layui-form-item">
+                                                <label class="layui-form-label">权限名称</label>
+                                                <div class="layui-input-block">
+                                                    <input type="text" name="n_name" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+                                                </div>
                                             </div>
-                                        </div>
 
-										<div class="space-4"></div>
+                                            <div class="layui-form-item">
+                                                <label class="layui-form-label" style="margin-right: 12px">权限</label>
+                                                <div class="layui-input-inline">
+                                                    <select name="n_controller" lay-filter="controller" lay-verify="required">
+                                                        <option value="">请选择控制器</option>
+                                                        <foreach name="controller" item="vo">
+                                                            <option value="<{$vo}>"><{$vo}></option>
+                                                        </foreach>
+                                                    </select>
+                                                </div>
+                                                <div class="layui-input-inline" style="margin-top: 10px">
+                                                    <select name="n_action" lay-verify="required" id="action">
+                                                        <option value="">请选择操作</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="layui-form-item">
+                                                <div class="layui-input-block">
+                                                    <button class="layui-btn" lay-submit="" lay-filter="demo1">添加</button>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <div style="height:200px;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- PAGE CONTENT ENDS -->
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.page-content -->
+    </div><!-- /.main-content -->
 
-										<div class="form-group" style="margin-left:153px;">
-											<button class="btn btn-success btn-md">添加</button>
-										</div>
-									</form>
-									<div style="height:200px;"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<!-- PAGE CONTENT ENDS -->
-			</div><!-- /.col -->
-		</div><!-- /.row -->
-	</div><!-- /.page-content -->
-</div><!-- /.main-content -->
+    <!--[if !IE]> -->
+    <script src="__PUBLIC__/js/jquery-2.0.3.min.js"></script>
+    <!-- <![endif]-->
+
+    <!--[if IE]>
+    <script src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
+    <![endif]-->
+
+    <!--[if !IE]> -->
+    <script type="text/javascript">
+        window.jQuery || document.write("<script src='__PUBLIC__/ace/assets/js/jquery-2.0.3.min.js'>" + "</" + "script>");
+    </script>
+    <!-- <![endif]-->
+
+    <!--[if IE]>
+    <script type="text/javascript">
+        window.jQuery || document.write("<script src='__PUBLIC__/ace/assets/js/jquery-1.10.2.min.js'>" + "</" + "script>");
+    </script>
+    <![endif]-->
+
+    <script type="text/javascript">
+        if ("ontouchend" in document) document.write("<script src='__PUBLIC__/ace/assets/js/jquery.mobile.custom.min.js'>" + "</" + "script>");
+    </script>
+
+    <!--引入layui-->
+    <script src="__PUBLIC__/layui/layui.js"></script>
+
+    <script>
+        layui.use('form', function () {
+            var form = layui.form();
+
+            form.on('select(controller)', function(data){
+                console.log(data.elem); //得到select原始DOM对象
+                console.log(data.value); //得到被选中的值
+                $.post('<{:U("Admin/Node/getActions")}>', {'controller':data.value}, function(res) {
+                    $('#action').empty();
+                    for(var i = 0; i < res.length; i++) {
+                        $('#action').append('<option value="' + res[i] + '">' + res[i] + '</option>');
+                    }
+                    form.render('select');
+                });
+            });
+        })
+    </script>
+
 </block>
