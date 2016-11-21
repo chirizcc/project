@@ -28,9 +28,9 @@ class RegController extends HomeController
         $val = I('post.val');
 
         if((new \Think\Verify())->check($val)){
-        	$this->ajaxReturn('true');
+        	$this->ajaxReturn(true);
         }else{
-        	$this->ajaxReturn('false');  	
+        	$this->ajaxReturn(false);  	
         }
     }
 
@@ -49,18 +49,18 @@ class RegController extends HomeController
         	exit;
         }
 
-        //正则验证
+        /*//正则验证
         if(!preg_match("/^[a-zA-Z0-9]{2,9}$/", $val)){
 		    $this->ajaxReturn('err');
 		    exit;
-		}
+		}*/
 
 		//验证是否有重复
         $map['u_username'] = $val;
         if(empty(M('user')->where($map)->select())){
-        	$this->ajaxReturn('true');
+        	$this->ajaxReturn(true);
         }else{
-        	$this->ajaxReturn('false');  	
+        	$this->ajaxReturn(false);  	
         }
     }
 
@@ -116,5 +116,10 @@ class RegController extends HomeController
         } else {
            $this->error('添加失败....');
         }
+    }
+
+    public function sendEmail()
+    {
+        dump(I('post.'));
     }
 }
