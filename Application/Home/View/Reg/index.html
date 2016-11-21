@@ -1,209 +1,366 @@
 <extend name="Public/layout"/>
 <block name="content">
-	<style>
-		.reg{margin:50px 320px;}
-		.inputs{width:280px;}
-		.floatinputs{width:140px;float: left;}
-		img{width: 140px;height: 32px;float: left;}
-	</style>
-	<div class="container">
-		<h2 class="text-center h2">终点中文网<small>&nbsp;&nbsp;&nbsp;&nbsp;注册加入我们</small></h2>
-		<div class="reg">
-			<form class="form-horizontal" role="form" style="margin-top:40px;" action="<{:U('Reg/reg')}>" method="post">
-		      <div class="form-group" >
-		        <label for="Username" class="col-sm-2 control-label">用户名</label>
-		        <div class="col-sm-10">
-		          <input type="text" class="form-control inputs" id="Username" placeholder="请输入2~9位的用户名" name="u_username">
-		        </div>
-		      </div>
-		      <div class="form-group">
-		        <label for="inputPassword1" class="col-sm-2 control-label">密码</label>
-		        <div class="col-sm-10">
-		          <input type="password" class="form-control inputs" id="inputPassword1" placeholder="请输入8~16位的密码"  name="u_password">
-		        </div>
-		      </div>
-		      <div class="form-group">
-		        <label for="inputPassword2" class="col-sm-2 control-label">确认密码</label>
-		        <div class="col-sm-10">
-		          <input type="password" class="form-control inputs" id="inputPassword2" placeholder="请再输入一遍密码" name="password2">
-		        </div>
-		      </div>
-		      <div class="form-group">
-		        <label for="inputCode" class="col-sm-2 control-label">验证码</label>
-		        <div class="col-sm-10">
-		          <input type="text" class="form-control floatinputs" id="inputCode" placeholder="Code" name="code" > <img src="<{:U('Reg/code')}>" alt="" id="codepic">
-		        </div>
-		      </div>
-		      <p ><a href="#" >手机号快速注册</a></p>
-		      <div class="form-group">
-		        <div class="col-sm-offset-2 col-sm-10">
-		          <div class="checkbox">
-		            <label>
-		              <input type="checkbox"> 记住我
-		            </label>
-		          </div>
-		        </div>
-		      </div>
-		      <div class="form-group">
-		        <div class="col-sm-offset-2 col-sm-10">
-		          <button type="submit" class="btn btn-success" id="btn" disabled>注册</button>
-		        </div>
-		      </div>
-		    </form>
-		</div>
-	</div>
-<div style="height: 60px"></div>
-<!--[if !IE]> -->
-<script type="text/javascript" src="__PUBLIC__/js/jquery-2.0.3.min.js"></script>
+    <style>
+        .reg {
+            margin: 50px 320px;
+        }
 
-<!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>-->
+        .inputs {
+            width: 280px;
+        }
 
-<!-- <![endif]-->
+        .floatinputs {
+            width: 140px;
+            float: left;
+        }
 
-<!--[if IE]>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<![endif]-->
+        img {
+            width: 140px;
+            height: 32px;
+            float: left;
+        }
+    </style>
+    <div class="container">
+        <h2 class="text-center h2">终点中文网
+            <small>&nbsp;&nbsp;&nbsp;&nbsp;注册加入我们</small>
+        </h2>
+        <!--<div class="reg">
+            <form class="form-horizontal" role="form" style="margin-top:40px;" action="<{:U('Reg/reg')}>" method="post">
+                <div class="form-group">
+                    <label for="Username" class="col-sm-2 control-label">用户名</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control inputs" id="Username" placeholder="请输入2~9位的用户名"
+                               name="u_username">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword1" class="col-sm-2 control-label">密码</label>
+                    <div class="col-sm-10">
+                        <input type="password" class="form-control inputs" id="inputPassword1" placeholder="请输入8~16位的密码"
+                               name="u_password">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword2" class="col-sm-2 control-label">确认密码</label>
+                    <div class="col-sm-10">
+                        <input type="password" class="form-control inputs" id="inputPassword2" placeholder="请再输入一遍密码"
+                               name="password2">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputCode" class="col-sm-2 control-label">验证码</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control floatinputs" id="inputCode" placeholder="Code"
+                               name="code"> <img src="<{:U('Reg/code')}>" alt="" id="codepic">
+                    </div>
+                </div>
+                <p><a href="#">手机号快速注册</a></p>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <div class="checkbox">
+                            <label>
+                                <input type="checkbox"> 记住我
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
+                        <button type="submit" class="btn btn-success" id="btn" disabled>注册</button>
+                    </div>
+                </div>
+            </form>
+        </div>-->
 
-<!--[if !IE]> -->
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="layui-tab layui-tab-card">
+                    <ul class="layui-tab-title">
+                        <li class="layui-this">手机号注册</li>
+                        <li>邮箱注册</li>
+                    </ul>
+                    <div class="layui-tab-content" style="height: 100px;">
+                        <div class="layui-tab-item layui-show">1</div>
+                        <div class="layui-tab-item">
+                            <div class="row">
+                                <div class="col-md-10 col-md-offset-2">
+                                    <form action="<{:U('Home/Reg/sendEmail')}>" method="post"
+                                          class="layui-form layui-form-pane" onsubmit="return judge()">
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">邮箱</label>
+                                            <div class="layui-input-inline">
+                                                <input name="u_username" lay-verify="email" placeholder="请输入邮箱"
+                                                       autocomplete="off" class="layui-input" type="text" id="username">
+                                            </div>
+                                        </div>
 
-<script type="text/javascript">
-	window.jQuery || document.write("<script src='__PUBLIC__/ace/assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
-</script>
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">密码</label>
+                                            <div class="layui-input-inline">
+                                                <input name="u_password" lay-verify="pass" placeholder="请输入密码"
+                                                       autocomplete="off" class="layui-input" type="password" id="pwd1">
+                                            </div>
+                                        </div>
 
-<!-- <![endif]-->
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">确认密码</label>
+                                            <div class="layui-input-inline">
+                                                <input name="u_password2" lay-verify="pass" placeholder="请确认密码"
+                                                       autocomplete="off" class="layui-input" type="password" id="pwd2">
+                                            </div>
+                                        </div>
 
-<script type="text/javascript">
-	if("ontouchend" in document) document.write("<script src='__PUBLIC__/ace/assets/js/jquery.mobile.custom.min.js'>"+"<"+"/script>");
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">验证码</label>
+                                            <div class="layui-input-inline">
+                                                <input name="code" lay-verify="required" placeholder="请输入验证码"
+                                                       autocomplete="off" class="layui-input" type="text" id="code">
+                                            </div>
+                                            <div class="code"><img src="<{:U('Reg/code')}>" alt="" id="codepic"></div>
+                                        </div>
 
-	
-</script>
-<script type="text/javascript" src="__PUBLIC__/layer/layer.js"></script>
-<script type="text/javascript" src="__PUBLIC__/layui/layui.js"></script>
+                                        <div class="layui-form-item">
+                                            <div class="layui-input-block">
+                                                <button class="layui-btn layui-btn-big" lay-submit lay-filter="*">立即注册
+                                                </button>
+                                            </div>
+                                        </div>
 
-<!-- inline scripts related to this page -->
+                                        <style>
+                                            .layui-form-pane .layui-form-label {
+                                                width: 100px;
+                                            }
 
-<!-- 	<div style="display:none"><script src='http://v7.cnzz.com/stat.php?id=155540&web_id=155540' language='JavaScript' charset='gb2312'></script></div> -->
-<script>
-// 点击验证码图片刷新
-var u = null;
-var p = null;
-var c = null;
-var codepic = $('#codepic');
-var src_img = codepic.attr('src');
-codepic.click(function(){
-    $(this).attr('src', src_img+'?yzm='+Math.random());
-    console.log($(this).attr('src'));
-});
-//验证码ajax验证
-$('#inputCode').focusout(function(){
-    $.ajax({
-        url:"<{:U('Reg/codetest')}>",
-        data: "val="+inputCode.value,
-        type:'POST',
-        success:function(data){
-            if(data !== 'true'){
-            	//小tips
-				layer.tips('验证码出错啦', '#inputCode', {
-				  tips: [1, '#3595CC'],
-				  time: 4000
-				}); 
-				$('#btn').attr('disabled','disabled');
-            }else{
-            	layer.tips('验证码正确', '#inputCode', {
-				  tips: [1, 'lightgreen'],
-				  time: 4000
-				}); 
-				$('#btn').attr('disabled','disabled');
-				c = true;
-            	// $('#btn').removeAttr('disabled');
+                                            .code img {
+                                                height: 37px;
+                                                border: 1px solid #E6E6E6;
+                                            }
+                                        </style>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div style="height: 60px"></div>
+    <!--[if !IE]> -->
+    <script type="text/javascript" src="__PUBLIC__/js/jquery-2.0.3.min.js"></script>
+
+    <!-- <![endif]-->
+
+
+    <!--[if !IE]> -->
+
+    <script type="text/javascript">
+        window.jQuery || document.write("<script src='__PUBLIC__/ace/assets/js/jquery-2.0.3.min.js'>" + "<" + "/script>");
+    </script>
+
+    <!-- <![endif]-->
+
+    <script type="text/javascript">
+        if ("ontouchend" in document) document.write("<script src='__PUBLIC__/ace/assets/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
+    </script>
+    <script type="text/javascript" src="__PUBLIC__/layer/layer.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/layui/layui.js"></script>
+
+    <script>
+        /*// 点击验证码图片刷新
+         var u = null;
+         var p = null;
+         var c = null;
+         var codepic = $('#codepic');
+         var src_img = codepic.attr('src');
+         codepic.click(function () {
+         $(this).attr('src', src_img + '?yzm=' + Math.random());
+         console.log($(this).attr('src'));
+         });
+         //验证码ajax验证
+         $('#inputCode').focusout(function () {
+         $.ajax({
+         url: "<{:U('Reg/codetest')}>",
+         data: "val=" + inputCode.value,
+         type: 'POST',
+         success: function (data) {
+         if (data !== 'true') {
+         //小tips
+         layer.tips('验证码出错啦', '#inputCode', {
+         tips: [1, '#3595CC'],
+         time: 4000
+         });
+         $('#btn').attr('disabled', 'disabled');
+         } else {
+         layer.tips('验证码正确', '#inputCode', {
+         tips: [1, 'lightgreen'],
+         time: 4000
+         });
+         $('#btn').attr('disabled', 'disabled');
+         c = true;
+         // $('#btn').removeAttr('disabled');
+         }
+         }
+         })
+         })
+
+         //用户名ajax验证
+         $('#Username').focusout(function () {
+         $.ajax({
+         url: "<{:U('Reg/usernametest')}>",
+         data: "val=" + Username.value,
+         type: 'POST',
+         success: function (data) {
+         switch (data) {
+         case "null":
+         layer.tips('用户名不能为空', '#Username');
+         $('#btn').attr('disabled', 'disabled');
+         break;
+         case "err":
+         layer.tips('用户名格式不正确', '#Username');
+         $('#btn').attr('disabled', 'disabled');
+         break;
+         case "false":
+         layer.tips('用户名已存在', '#Username');
+         $('#btn').attr('disabled', 'disabled');
+         break;
+         case "true":
+         layer.tips('恭喜您，用户名可以使用', '#Username');
+         u = true;
+         break;
+         default:
+         break;
+         }
+         }
+         })
+         })
+
+         //密码ajax验证
+         $('#inputPassword2').focusout(function () {
+         $.ajax({
+         url: "<{:U('Reg/passwordtest')}>",
+         data: "val1=" + inputPassword1.value + "&val2=" + inputPassword2.value,
+         type: 'POST',
+         success: function (data) {
+         switch (data) {
+         case "null1":
+         layer.tips('密码不能为空', '#inputPassword1');
+         $('#btn').attr('disabled', 'disabled');
+         break;
+         case "null2":
+         layer.tips('密码不能为空', '#inputPassword2');
+         $('#btn').attr('disabled', 'disabled');
+         break;
+         case "err":
+         layer.tips('密码格式不正确', '#inputPassword2');
+         $('#btn').attr('disabled', 'disabled');
+         break;
+         case "false":
+         layer.tips('两次密码不一致', '#inputPassword2');
+         $('#btn').attr('disabled', 'disabled');
+         break;
+         case "true":
+         layer.tips('密码可以使用', '#inputPassword2');
+         p = true;
+         break;
+         default:
+         break;
+
+         }
+         }
+         })
+         })
+
+         //判断是否全部正确
+         setInterval(demo, 100);
+         function demo() {
+         if (u == true && p == true && c == true) {
+         $('#btn').removeAttr('disabled');
+         } else {
+         $('#btn').attr('disabled', 'disabled');
+         }
+         }
+
+
+         $('#btn').click(function () {
+         //加载层
+         var index = layer.load(0, {shade: false}); //0代表加载的风格，支持0-2
+
+         })*/
+
+        var vName = 0;
+        var vCode = 0;
+
+        layui.use('element', function () {
+            var element = layui.element();
+
+        });
+
+        $('#codepic').click(function () {
+            $(this).attr('src', $('#codepic').attr('src') + '?yzm=' + Math.random());
+        });
+
+        layui.use('form', function () {
+            var form = layui.form();
+
+            form.verify({
+                pass: [
+                    /((?=.*\d)(?=.*\D)|(?=.*[a-zA-Z])(?=.*[^a-zA-Z]))^.{8,16}$/
+                    , '密码必须8到16位，数字、字母、字符至少包含两种'
+                ]
+            });
+
+        });
+
+        function judge() {
+            var pwd1 = $('#pwd1').val();
+            var pwd2 = $('#pwd2').val();
+            if (pwd1 != pwd2) {
+                layui.use('layer', function () {
+                    var layer = layui.layer;
+                    layer.tips('密码与确认密码不相同', '#pwd2');
+                });
+                return false
             }
+
+            if (vCode == 1 && vName == 1) {
+                return true
+            }
+
+            return false;
         }
-    })
-})
 
-//用户名ajax验证
-$('#Username').focusout(function(){
-    $.ajax({
-        url:"<{:U('Reg/usernametest')}>",
-        data: "val="+Username.value,
-        type:'POST',
-        success:function(data){
-        	switch(data){
-        		case "null":
-        			layer.tips('用户名不能为空', '#Username');
-        			$('#btn').attr('disabled','disabled');
-        		break;
-        		case "err":
-        			layer.tips('用户名格式不正确', '#Username');
-        			$('#btn').attr('disabled','disabled');
-        		break;
-        		case "false":
-        			layer.tips('用户名已存在', '#Username');
-        			$('#btn').attr('disabled','disabled');
-        		break;
-        		case "true":
-        			layer.tips('恭喜您，用户名可以使用', '#Username');
-        			u = true;
-        		break;
-        		default:
-        		break;
-        	}
-        }
-    })
-})
+        $('#username').blur(function () {
+            var username = $('#username').val();
+            if (username != '') {
+                $.post('<{:U("Home/Reg/usernametest")}>', {'val': username}, function (data) {
+                    if (data != true) {
+                        layui.use('layer', function () {
+                            var layer = layui.layer;
+                            layer.tips('该账号已被注册', '#username');
+                        });
+                        vName = 0;
+                    } else {
+                        vName = 1;
+                    }
+                });
+            }
+        });
 
-//密码ajax验证
-$('#inputPassword2').focusout(function(){
-    $.ajax({
-        url:"<{:U('Reg/passwordtest')}>",
-        data: "val1="+inputPassword1.value+"&val2="+inputPassword2.value,
-        type:'POST',
-        success:function(data){
-            switch(data){
-        		case "null1":
-        			layer.tips('密码不能为空', '#inputPassword1');
-        			$('#btn').attr('disabled','disabled');
-        		break;
-        		case "null2":
-        			layer.tips('密码不能为空', '#inputPassword2');
-        			$('#btn').attr('disabled','disabled');
-        		break;
-        		case "err":
-        			layer.tips('密码格式不正确', '#inputPassword2');
-        			$('#btn').attr('disabled','disabled');
-        		break;
-        		case "false":
-        			layer.tips('两次密码不一致', '#inputPassword2');
-        			$('#btn').attr('disabled','disabled');
-        		break;
-        		case "true":
-        			layer.tips('密码可以使用', '#inputPassword2');
-        			p = true;
-        		break;
-        		default:
-        		break;
-
-        	}
-        }
-    })
-})
-
-//判断是否全部正确
-setInterval(demo,100);
-function demo(){
-	if(u == true && p == true && c == true){
-		$('#btn').removeAttr('disabled');
-	}else{
-		$('#btn').attr('disabled','disabled');
-	}
-}
-
-
-
-$('#btn').click(function(){
-	//加载层
-	var index = layer.load(0, {shade: false}); //0代表加载的风格，支持0-2
-
-})
-</script>
+        $('#code').blur(function () {
+            var code = $('#code').val();
+            $.post('<{:U("Home/Reg/codetest")}>', {'val': code}, function (data) {
+                if (data != true) {
+                    layui.use('layer', function () {
+                        var layer = layui.layer;
+                        layer.tips('验证码不正确!', '#code', {tips: [1, '#0FA6D8']});
+                    });
+                    vCode = 0;
+                } else {
+                    vCode = 1;
+                }
+            });
+        });
+    </script>
 </block>
