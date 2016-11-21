@@ -17,10 +17,10 @@
                     <div class="row">
                         <div class="col-sm-10 col-sm-offset-1">
                             <div class="widget-box transparent invoice-box">   
-                                <p class="h4"><a href="<{:U('Admin/Catalog/index',['b_id' => session('b_id')])}>">书名：</a></p>
+                                <p class="h4"><a href="<{:U('Home/Catalog/index',['b_id' => session('b_id')])}>">书名：</a></p>
                                 <div class="space-6"></div>
                                 <div class="widget-body">
-                                    <a href="<{:U('Admin/Catalog/add')}>">
+                                    <a href="<{:U('Home/Catalog/add')}>">
                                         <button class="layui-btn layui-btn-radius layui-btn-warm">添加章节</button>
                                     </a>
                                     <a href="javascript:void(0)" onclick="location.reload()">
@@ -53,17 +53,17 @@
                                                             </td>
                                                             <td><{$v.cata_name}></td>
                                                             <td>
-                                                                <if condition="$v.cata_status eq 1"><span class="label label-sm label-warning">已通过</span>
+                                                                <if condition="$v.cata_status eq 1">已通过
                                                                     <elseif condition="$v.cata_status eq 2"/>
-                                                                    <span class="label label-sm label-error arrowed-in">未通过</span>
+                                                                    未通过
                                                                     <else/>
-                                                                    <span class="label label-sm label-inverse arrowed-in">待审核</span>
+                                                                    待审核
                                                                 </if>
                                                             </td>
                                                             <td>
-                                                                <a href="<{:U('Admin/Content/index',array('cata_id'=>$v['cata_id']))}>"
+                                                                <a href="<{:U('Home/Content/index',array('cata_id'=>$v['cata_id']))}>"
                                                                    class="btn btn-success btn-xs">查看内容</a>
-                                                                <a href="<{:U('Admin/Catalog/edit',array('cata_id'=>$v['cata_id']))}>"
+                                                                <a href="<{:U('Home/Catalog/edit',array('cata_id'=>$v['cata_id']))}>"
                                                                    class="btn btn-warning btn-xs">编辑目录名</a>
                                                                 <a href="javascript:void(0)" onclick="del(this,<{$v['cata_id']}>)"
                                                                 class="btn btn-danger btn-xs">删除</a>
@@ -76,7 +76,7 @@
                                                     <{$page}>
                                                 </div><!--分页结束-->
                                                 <else/>
-                                                <center><h2><a href="<{:U('Admin/Catalog/add')}>">目前没有任何目录，请前往添加</a>
+                                                <center><h2><a href="<{:U('Home/Catalog/add')}>">目前没有任何目录，请前往添加</a>
                                                 </h2></center>
                                             </if>
                                         </div>
@@ -150,7 +150,7 @@
             $('#search-input').blur(function() {
                 var val = $(this).val();
                 if(val != '') {
-                    location.href = '<{:U("Admin/Catalog/index","","")}>/search/' + val;
+                    location.href = '<{:U("Home/Catalog/index","","")}>/search/' + val;
                 }
             });
         });

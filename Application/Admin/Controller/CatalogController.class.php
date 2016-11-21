@@ -28,12 +28,12 @@ class CatalogController extends AdminController
                 $b_id = session('b_id');
             }
         }
-
+        // 搜索条件
         $map = [];
         if(!empty($search)) {
             $map['cata_name'] =  ['like','%'.$search.'%'];
         }
-
+        // 查询数据
         $result = M('book')->where(['b_id' => $b_id])->field('b_name')->find();
         $name = $result['b_name'];
         
