@@ -1,13 +1,13 @@
 <extend name="Public/layout"/>
 <block name="content">
-
+    <link rel="stylesheet" href="__PUBLIC__/css/index.css">
     <div class="container">
 
         <div class="row">
-            <div class="col-md-offset-8 col-md-4">
-                <form class="navbar-form" role="search">
+            <div class="col-md-offset-8 col-md-4" id="sear-box">
+                <form class="navbar-form" role="search" action="<{:U('Home/Type/index')}>" method="post">
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Search" id="sbox">
+                        <input type="text" class="form-control" placeholder="Search" id="sbox" name="search">
                     </div>
                     <button type="submit" class="btn btn-default">搜索</button>
                 </form>
@@ -22,8 +22,7 @@
             <div class="col-md-2">
                 <ul class="layui-nav layui-nav-tree" style="width: 100%">
                     <foreach name="types" item="vo">
-                        {$vo.id}:{$vo.name}
-                        <li class="layui-nav-item">
+                        <li class="layui-nav-item <if condition='$vo["t_id"] == $parent'>layui-nav-itemed</if>">
                             <a href="javascript:;"><{$vo['t_name']}></a>
                             <dl class="layui-nav-child">
                                 <foreach name="vo['child']" item="v">
@@ -63,19 +62,21 @@
                                 <a href="<{:U('Home/Details/index',['b_id' => $data[$i]['b_id']])}>"><h3 class="h3"><{$data[$i]['b_name']}></h3></a>
                                 <p><{$data[$i]['b_author']}></p>
                                 <p>
-                                    <a href="#" class="btn btn-primary" role="button">立即阅读</a>
+                                    <a href="<{:U('Home/Details/index',['b_id' => $data[$i]['b_id']])}>" class="btn btn-primary" role="button">查看详情</a>
                                 </p>
                             </div>
                         </div>
                     </div>
 
-                    <if condition="($i + 1) % 4 == 0 || ($i + 1) == count($newBooks)">
+                    <if condition="($i + 1) % 4 == 0 || ($i + 1) == count($data)">
                         </div>
                     </if>
                 </for>
             </div>
         </div>
     </div>
+
+    <div class="sp-10"></div>
 
     <!--[if !IE]> -->
     <script src="__PUBLIC__/js/jquery-2.0.3.min.js"></script>
@@ -107,6 +108,45 @@
     <script>
         layui.use('element', function () {
             var element = layui.element();
+        });
+
+        $('#sbox').keyup(function(){
+            $('#sul').html('');
+            $.ajax({
+                url:"<{:U('Search/index')}>",
+                data: "val="+$('#sbox').val(),
+                type:'POST',
+                success:function(data){
+                    if(data == 'a'){
+                        $('#sinfo').css('display','none');
+                    }else{
+                        $('#sinfo').css('display','block');
+                        // console.log(data);
+                        for(var i=0;i<data.length;i++){
+                            var li = document.createElement('li');
+                            li.innerHTML = data[i]['b_name'];
+                            li.id = 'sli';
+                            li.class = 'sli';
+                            sul.appendChild(li);
+                        }
+
+                        var lis = $('#sul').children();
+                        // $('#sul').children().attr('onclick','show(this)');
+                        $('#sul').children().click(function() {
+                            $('#sbox').val($(this).html());
+                            // location.href = '<{:U("Home/Search/search","","")}>/search/' + $(this).html();
+                            console.log($(this).html());
+                            //失去焦点时  隐藏ajax
+                            $('#sinfo').css('display','none');
+                        });
+
+                        $('#sbox').blur(function() {
+                            //失去焦点时  隐藏ajax
+                            setTimeout("$('#sinfo').css('display','none')", 500);
+                        });
+                    }
+                }
+            })
         });
     </script>
 </block>
