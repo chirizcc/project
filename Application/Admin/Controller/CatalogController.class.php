@@ -107,7 +107,7 @@ class CatalogController extends AdminController
     public function edit($cata_id = null)
     {
         if(empty($cata_id)) {
-            $this->redirect('Admin/Book/index');
+            $this->redirect('Admin/Authoredit/index');
             die;
         }
 

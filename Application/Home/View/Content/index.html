@@ -1,0 +1,62 @@
+<extend name="Center/public"/>
+<block name="content">
+<div>
+<div class="page-content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <!-- PAGE CONTENT BEGINS -->
+
+                    <div class="space-6"></div>
+
+                    <div class="row">
+                        <div class="col-sm-10 col-sm-offset-1">
+                            <div class="widget-box transparent invoice-box">
+                                <div class="page-header">
+                                    <h1 class="h1">                                  
+                                        <small>
+                                          
+                                            章节内容
+                                        </small>
+                                    </h1>
+                                </div><!-- /.page-header -->
+
+                               <h3 class="h3"><a href="<{:U('Home/Catalog/index',['b_id' => session('b_id')])}>">书名：<{:session('b_name')}></a></h3>
+                                <div class="space-6"></div>
+                                <div class="widget-body">
+                                    <a href="<{:U('Home/Content/edit',['cata_id' => $cata_id])}>">
+                                        <button class="layui-btn layui-btn-radius layui-btn-warm" style="margin-left: 20px;">编辑内容</button>
+                                    </a>
+                                    <div class="widget-main padding-24">
+                                        <div class="widget-header widget-header-flat">
+                                        <fieldset class="layui-elem-field">
+                                          <legend>章节：</legend>
+                                          <div class="layui-field-box">
+                                            <h4 class="h4"><{$cata_name}></h4>
+                                          </div>
+                                        </fieldset>
+                                            
+                                        </div>
+                                        <div class="widget-body" >
+                                            <div class="widget-main" >
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        <if condition="$data['con_content'] == null"><p class="h2">无内容</p>
+                                                            <else /> <pre style="font-size: 16px;"><{$data['con_content']}></pre>
+                                                        </if>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="space-6"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- PAGE CONTENT ENDS -->
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.page-content -->
+    </div><!-- /.main-content -->
+    <script src="__PUBLIC__/layui/layui.js"></script>
+</block>
