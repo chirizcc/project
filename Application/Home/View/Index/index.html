@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-offset-4">
-                <form class="navbar-form" role="search" action="<{:U('Search/search')}>" method="post">
+                <form class="navbar-form" role="search" action="<{:U('Home/Type/index')}>" method="post">
                     <div class="form-group">
                       <input type="text" class="form-control" placeholder="Search" id="sbox" name="search">
                     </div>
@@ -161,60 +161,6 @@
         </div>&lt;!&ndash;row  &ndash;&gt;-->
     </if>
 
-    <!--<div class="row">
-        <div class="col-md-3">
-            <a href="#" class="thumbnail">
-                <img data-src="holder.js/171x180" alt="...">
-            </a>
-        </div>
-
-        <div class="col-md-3">
-            <a href="#" class="thumbnail">
-                <img data-src="holder.js/171x180" alt="...">
-            </a>
-        </div>
-
-        <div class="col-md-3">
-            <a href="#" class="thumbnail">
-                <img data-src="holder.js/171x180" alt="...">
-            </a>
-        </div>
-
-        <div class="col-md-3">
-            <a href="#" class="thumbnail">
-                <img data-src="holder.js/171x180" alt="...">
-            </a>
-        </div>
-
-    </div>&lt;!&ndash;row  &ndash;&gt;
-
-    <div class="row">
-        <div class="col-md-3">
-            <a href="#" class="thumbnail">
-                <img data-src="holder.js/171x180" alt="...">
-            </a>
-        </div>
-
-        <div class="col-md-3">
-            <a href="#" class="thumbnail">
-                <img data-src="holder.js/171x180" alt="...">
-            </a>
-        </div>
-
-        <div class="col-md-3">
-            <a href="#" class="thumbnail">
-                <img data-src="holder.js/171x180" alt="...">
-            </a>
-        </div>
-
-        <div class="col-md-3">
-            <a href="#" class="thumbnail">
-                <img data-src="holder.js/171x180" alt="...">
-            </a>
-        </div>
-
-    </div>&lt;!&ndash;row  &ndash;&gt;
--->
     <if condition="$hotBooks != null">
         <div class="row">
             <div class="page-header">
@@ -231,9 +177,6 @@
             </if>
 
                 <div class="col-md-2">
-                    <!--<a href="#" class="thumbnail" style="border: none">
-                        <img data-src="holder.js/171x180" alt="...">
-                    </a>-->
                     <div class="thumbnail" style="border: none">
                         <a href="<{:U('Home/Details/index',['b_id' => $hotBooks[$i]['b_id']])}>">
                         <img width="150" alt="..." lay-src="__ROOT__/Uploads/<if condition="$hotBooks[$i]['b_img'] == null">img/book.jpg<else/><{$hotBooks[$i]['b_img']}></if>">
@@ -250,29 +193,6 @@
             </if>
         </for>
     </if>
-
-
-    <!--<div class="row">
-
-        <div class="col-md-3">
-            <a href="#" class="thumbnail">
-                <img data-src="holder.js/171x180" alt="...">
-            </a>
-        </div>
-
-        <div class="col-md-3">
-            <a href="#" class="thumbnail">
-                <img data-src="holder.js/171x180" alt="...">
-            </a>
-        </div>
-
-        <div class="col-md-3">
-            <a href="#" class="thumbnail">
-                <img data-src="holder.js/171x180" alt="...">
-            </a>
-        </div>
-
-    </div>&lt;!&ndash;row  &ndash;&gt;-->
 
     </div> <!--container  -->
 
@@ -308,14 +228,18 @@
                         }
 
                         var lis = $('#sul').children();
-                            // $('#sul').children().attr('onclick','show(this)');
-                            $('#sul').children().click(function() {
-                                $('#sbox').val($(this).html());
-                                 // location.href = '<{:U("Home/Search/search","","")}>/search/' + $(this).html();
-                                console.log($(this).html());
-                                //失去焦点时  隐藏ajax
-                                $('#sinfo').css('display','none');
-                            });
+                        $('#sul').children().click(function() {
+                            $('#sbox').val($(this).html());
+                             // location.href = '<{:U("Home/Search/search","","")}>/search/' + $(this).html();
+                            console.log($(this).html());
+                            //失去焦点时  隐藏ajax
+                            $('#sinfo').css('display','none');
+                        });
+
+                        $('#sbox').blur(function() {
+                            //失去焦点时  隐藏ajax
+                            setTimeout("$('#sinfo').css('display','none')", 500);
+                        });
                     }
                 }
             })
