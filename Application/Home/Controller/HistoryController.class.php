@@ -2,10 +2,15 @@
 
 namespace Home\Controller;
 
-class HistoryController extends JudgeController
+class HistoryController extends HomeController
 {
 	public function index()
-	{
+	{	
+		//判断是否登录  没有登录阻止进入个人中心
+		if(empty(session('home_id'))){
+			$this->redirect('Index/index');
+		}
+
 		$data = M('history')->table('zd_history as h,zd_book as b')->field('b.b_img img,h.h_time time,b.b_name bookname,b.b_author author,b.b_id id')->order(array('h_time'=>'desc'))->where('h.h_bid = b.b_id')->select();
 		// var_dump($data);exit;
 		$this->assign('data',$data);
@@ -21,9 +26,17 @@ class HistoryController extends JudgeController
 
 		$map = [];
 		$map['h_bid'] = $_GET['b_id'];
+		$map['h_uid'] = session('home_id');
 		$where = [];
 		$where['cata_bid'] = $_GET['b_id'];
 		
+		//判断是否登录，没有登录直接从第一章开始阅读
+		if(empty(session('home_id'))){
+			//没有登录 查出书本的第一章
+			$firstcata = M('catalog')->where($where)->order('cata_order')->select();
+			$this->redirect('Read/index',array('cata_id'=>$firstcata[0]['cata_id']));
+			exit;
+		}
 		//判断历史记录中是否有这本书 有的话从历史记录的章节开始读 没有的话从第一章开始读
 		$history = M('history')->where($map)->select();
 		if(empty($history)){
