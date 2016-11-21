@@ -9,7 +9,9 @@ class CenterController extends JudgeController
     {
         $u_id = session('home_id');
         $img = M('detail')->where(['det_uid' => $u_id])->field('det_img')->find();
+        $data = M('user')->where('u_id = '.session('home_id'))->field('u_istype')->select();
         $this->assign('img',$img['det_img']);
+        $this->assign('data',$data);
         $this->display();
     }
 
