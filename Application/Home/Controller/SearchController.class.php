@@ -36,13 +36,13 @@ class SearchController extends HomeController
 		}
 	}
 
-	public function search($search = null)
+	public function search()
 	{
-		if($search == null){
+		if(empty($_POST['search'])){
 			$this->redirect('Index/index');
 			exit;
 		}
-
+		$search = $_POST['search'];
 		var_dump($search);exit;
 	}
 
