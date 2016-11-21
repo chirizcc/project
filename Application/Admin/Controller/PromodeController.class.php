@@ -5,18 +5,29 @@ use Think\Controller;
 
 class PromodeController extends AdminController
 {	
-	public function index()
+	public function index($search = null)
 	{	//如果 分页传过来参数为空，默认第一页
 		$p = $_GET['p'];
         if ($p == null) {
             $p = 0;
         }
-        // 
+      	
+      	$map = [];
+        if (!empty($search)) {
+            $map['b_name'] = ['like', '%' . $search . '%'];
+        }
+
 		$book = D('book');
 		// 多表联查 查询推广的书籍
-		$data = $book->table('zd_book b,zd_promode p')->where('b.b_id=p.pro_bookid')->page($p, 6)->select();
+		$data = $book->where($map)->table('zd_book b,zd_promode p')->where('b.b_id=p.pro_bookid')->page($p, 6)->select();
 		// 获取总条数
-		$count = M('promode')->count();
+		$count = M('promode')->where($map)->count();
+		if (!empty($search)) {
+            //分页跳转的时候保证查询条件
+            foreach ($map as $key => $val) {
+                $Page->parameter[$key] = urlencode($val);
+            }
+        }
 		$Page = new \Org\Util\MyPage($count, 6);
         $show = $Page->show();
         // 发送分页数据
@@ -27,12 +38,18 @@ class PromodeController extends AdminController
 	}
 
 
-	public function pro() 
+	public function pro($search = null) 
 	{	//如果 分页传过来参数为空，默认第一页
 		$p = $_GET['p'];
         if ($p == null) {
             $p = 0;
         }
+
+        $map = [];
+        if (!empty($search)) {
+            $map['b_name'] = ['like', '%' . $search . '%'];
+        }
+
         // 获取pro_bookid数据
         $pro = M('promode')->field('pro_bookid')->select();
         // 遍历promode表的pro_bookid
@@ -41,9 +58,15 @@ class PromodeController extends AdminController
         }
       	$bid['b_id'] = array('not in',$row);
       	// 获取已上架又没有被推广的书籍
-        $data = M('book')->where('b_status=1')->where($bid)->page($p, 6)->select();
+        $data = M('book')->where('b_status=1')->where($bid)->where($map)->page($p, 6)->select();
    		// 获取总条数
-        $count = M('book')->where('b_status=1') ->count()-M('promode')->count();	      
+        $count = M('book')->where($map)->where('b_status=1') ->count()-M('promode')->where($map)->count();	
+        if (!empty($search)) {
+            //分页跳转的时候保证查询条件
+            foreach ($map as $key => $val) {
+                $Page->parameter[$key] = urlencode($val);
+            }
+        }      
         $Page = new \Org\Util\MyPage($count, 6);
         $show = $Page->show();
         // 发送分页数据
