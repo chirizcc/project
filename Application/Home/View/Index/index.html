@@ -4,6 +4,20 @@
     <!-- 轮播图 -->
     <div class="container">
         <div class="row">
+            <div class="col-md-offset-4">
+                <form class="navbar-form" role="search">
+                    <div class="form-group">
+                      <input type="text" class="form-control" placeholder="Search" id="sbox">
+                    </div>
+                    <button type="submit" class="btn btn-default">搜索</button>
+                </form>
+                <div class="sinfo" id="sinfo">
+                    <ul id="sul">
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="row">
             <div class="col-md-2">
                 <a href="#" class="ad">全网第一家正版免费阅读平台</a>
                 <a href="" class="ad1">申请加入我们 成为常驻作者</a>
@@ -246,6 +260,42 @@
             var flow = layui.flow;
             //当你执行这样一个方法时，即对页面中的全部带有lay-src的img元素开启了懒加载（当然你也可以指定相关img）
             flow.lazyimg();
+        });
+
+        $('#sbox').keyup(function(){
+            $('#sul').html('');
+            $.ajax({
+                url:"<{:U('Search/index')}>",
+                data: "val="+$('#sbox').val(),
+                type:'POST',
+                success:function(data){
+                    if(data == 'a'){
+                        $('#sinfo').css('display','none');
+                    }else{
+                        $('#sinfo').css('display','block');
+                        // console.log(data);
+                        for(var i=0;i<data.length;i++){
+                            var li = document.createElement('li');
+                            li.innerHTML = data[i]['b_name'];
+                            li.id = 'sli';
+                            li.class = 'sli';
+                            sul.appendChild(li);
+                        }
+                    }
+                }
+            })
+        });
+
+        //失去焦点时  隐藏ajax
+        $('#sbox').blur(function(){
+            $('#sinfo').css('display','none');
+        });
+
+        //
+        $('#sli').click(function(){
+            var val = $('#sli').html();
+            console.log(val);
+            location.href = '<{:U("Home/Search/search","","")}>/search/' + val;
         });
     </script>
 </block>
