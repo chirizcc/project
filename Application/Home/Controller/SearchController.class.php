@@ -25,6 +25,7 @@ class SearchController extends HomeController
 
 		//进行搜索
 		$map = [];
+		$map['b_status'] = "1";
 		$map['b_name'] = ['like','%'.$str.'%'];
 
 		$book = M('book');

@@ -65,12 +65,27 @@ class CommentController extends AdminController
         $id = I('get.id/d');
 
         $com = M('comment');
-		//执行删除
-        if ($com->delete($id) > 0) {
-           $this->success('恭喜您,删除成功!', U('index'));
-        } else {
-           $this->error('删除失败....');
-        }
+
+        $map = [];
+        $map['com_id'] = $id;
+        $data = $com->where($map)->find();
+        // var_dump($data);exit();
+        $message = "您的评论:".$data['com_content']."被管理员删除，请遵守网络公约，不要发表不适当的言论！";
+        $info = [];
+        $info['i_uid'] = $data['com_uid'];
+        $info['i_info'] = $message;
+        $info['i_time'] = time();
+        //将消息发给作者
+        if(M('info')->add($info)){
+            // $this->success('恭喜您,删除成功!', U('index'));
+            if ($com->delete($id) > 0) {
+                $this->success('恭喜您,删除成功!', U('index'));
+            }else{
+                $this->error('删除失败....');
+            }
+        }else{
+            $this->error('删除成功，但是信息发送失败。。。');
+        }                     
 	}
 
 	//查出第二级分类的数据

@@ -53,8 +53,22 @@ class ExamineController extends AdminController
         //拼接修改字段
         $where = [];
         $where['b_status'] = '1';
+        // var_dump($book->where($map)->find());exit;
         if ($book->where($map)->save($where) !== false) {
-            $this->success('恭喜您,审核通过成功!', U('index'));
+            //给作者发消息，通知书籍状态
+            $bookinfo = $book->where($map)->find();//查出此本书的信息
+            //拼接信息
+            $message = "您申请的书籍".$bookinfo['b_name']."审核已通过";
+            $info = [];
+            $info['i_uid'] = $bookinfo['b_uid'];
+            $info['i_info'] = $message;
+            $info['i_time'] = time();
+            //将消息发给作者
+            if(M('info')->add($info)){
+                $this->success('恭喜您,审核通过成功!', U('index'));
+            }else{
+                $this->error('通过审核失败');
+            }           
         } else {
             $this->error('通过审核失败');
         }
@@ -80,7 +94,21 @@ class ExamineController extends AdminController
         $where = [];
         $where['b_status'] = '3';
         if ($book->where($map)->save($where) !== false) {
-            $this->success('下架书本成功', U('index'));
+            // $this->success('下架书本成功', U('index'));
+            //给作者发消息，通知书籍状态
+            $bookinfo = $book->where($map)->find();//查出此本书的信息
+            //拼接信息
+            $message = "您申请的书籍".$bookinfo['b_name']."审核不通过，具体原因请联系管理员";
+            $info = [];
+            $info['i_uid'] = $bookinfo['b_uid'];
+            $info['i_info'] = $message;
+            $info['i_time'] = time();
+            //将消息发给作者
+            if(M('info')->add($info)){
+                $this->success('恭喜您,审核通过成功!', U('index'));
+            }else{
+                $this->error('通过审核失败');
+            } 
         } else {
             $this->error('下架书本失败');
         }
@@ -125,7 +153,19 @@ class ExamineController extends AdminController
         $where = [];
         $where['u_istype'] = '1';
         if ($user->where($map)->save($where) !== false) {
-            $this->success('恭喜您,审核通过!', U('Examine/author'));
+            //给作者发消息，通知审核状态
+            //拼接信息
+            $message = "您申请成为作者，审核已通过";
+            $info = [];
+            $info['i_uid'] = $id;
+            $info['i_info'] = $message;
+            $info['i_time'] = time();
+            //将消息发给作者
+            if(M('info')->add($info)){
+                $this->success('恭喜您,审核通过成功!', U('Examine/author'));
+            }else{
+                $this->error('通过审核失败');
+            } 
         } else {
             $this->error('通过审核失败');
         }
@@ -151,7 +191,19 @@ class ExamineController extends AdminController
         $where = [];
         $where['u_istype'] = '3';
         if ($user->where($map)->save($where) !== false) {
-            $this->success('拒绝通过成功', U('Examine/author'));
+            //给作者发消息，通知审核状态
+            //拼接信息
+            $message = "您申请成为作者失败";
+            $info = [];
+            $info['i_uid'] = $id;
+            $info['i_info'] = $message;
+            $info['i_time'] = time();
+            //将消息发给作者
+            if(M('info')->add($info)){
+                $this->success('恭喜您,审核通过成功!', U('Examine/author'));
+            }else{
+                $this->error('拒绝通过失败，请重新拒绝');
+            } 
         } else {
             $this->error('拒绝通过失败，请重新拒绝');
         }
@@ -205,7 +257,25 @@ class ExamineController extends AdminController
         $where = [];
         $where['cata_status'] = '1';
         if ($catalog->where($map)->save($where) !== false) {
-            $this->success('恭喜您,审核通过!', U('Examine/content'));
+            // $this->success('恭喜您,审核通过!', U('Examine/content'));
+            //给作者发消息，通知审核状态
+            //拼接信息
+            $cat = M('catalog');
+            $maps = [];
+            $maps['c.cata_id'] = $id;
+            $data = $cat->table('zd_catalog c,zd_book b')->where($maps)->where('c.cata_bid = b.b_id')->find();
+            // var_dump($data);exit;
+            $message = "您的书籍".$data['b_name']."的".$data['cata_name']."审核通过";
+            $info = [];
+            $info['i_uid'] = $data['b_uid'];
+            $info['i_info'] = $message;
+            $info['i_time'] = time();
+            //将消息发给作者
+            if(M('info')->add($info)){
+                $this->success('恭喜您,审核通过成功!', U('Examine/content'));
+            }else{
+                $this->error('拒绝通过失败，请重新拒绝');
+            } 
         } else {
             $this->error('通过审核失败');
         }
@@ -231,7 +301,25 @@ class ExamineController extends AdminController
         $where = [];
         $where['cata_status'] = '2';
         if ($catalog->where($map)->save($where) !== false) {
-            $this->success('拒绝通过成功', U('Examine/content'));
+            // $this->success('拒绝通过成功', U('Examine/content'));
+            //给作者发消息，通知审核状态
+            //拼接信息
+            $cat = M('catalog');
+            $maps = [];
+            $maps['c.cata_id'] = $id;
+            $data = $cat->table('zd_catalog c,zd_book b')->where($maps)->where('c.cata_bid = b.b_id')->find();
+            // var_dump($data);exit;
+            $message = "您的书籍".$data['b_name']."的".$data['cata_name']."审核不通过，具体原因请联系管理员";
+            $info = [];
+            $info['i_uid'] = $data['b_uid'];
+            $info['i_info'] = $message;
+            $info['i_time'] = time();
+            //将消息发给作者
+            if(M('info')->add($info)){
+                $this->success('恭喜您,拒绝通过成功!', U('Examine/content'));
+            }else{
+                $this->error('拒绝通过失败，请重新拒绝');
+            } 
         } else {
             $this->error('拒绝通过失败，请重新拒绝');
         }
