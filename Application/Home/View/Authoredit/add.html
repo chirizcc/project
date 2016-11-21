@@ -1,0 +1,148 @@
+<extend  name="Public/layout"/>
+<block name="content">
+
+ 	<div class="page-content" style="margin:0;padding: 0">
+
+ 		<div class="page-header">
+			<h1>
+				<a href="<{:U('index')}>">书籍管理</a>
+				<small>
+					<i class="icon-double-angle-right"></i>
+					添加书籍
+				</small>
+			</h1>
+		</div>
+
+		<div class="row" style="margin: 0">
+			<div class="col-xs-12">
+		<form class="form-horizontal " role="form" action="<{:U('Authoredit/insert')}>" method="post" enctype="multipart/form-data">
+			<input type="hidden" name="b_time" value="<{:time()}>">
+			<input type="hidden" name="b_uid" value="<{:session('home_id')}>">
+
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right " for="form-field-1"> 书名 </label>
+
+				<div class="col-sm-9">
+					<input type="text" id="form-field-1" placeholder="Bookname" class="col-xs-10 col-sm-5" name="b_name" />
+				</div>
+			</div>
+			<div class="form-group">
+			<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 类型 </label>
+			<div class="col-sm-9">
+			<select id="cg" onchange="change(this)" >
+					<option data-skin="default" value="" >--请选择--
+					<foreach name="list" item="v">
+
+					<option data-skin="default" value="<{$v.t_id}>" id="options" ><{$v.t_name}></option>
+					</foreach>
+			</select>
+
+			<select id="seconds" name="b_tid" >
+
+				<option data-skin="default" value="" >--请选择--
+
+
+			</select>
+			</div>
+			</div>
+			<div class="form-group">
+			<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 作者</label>
+
+				<div class="col-sm-9">
+					<input type="text" placeholder="Username" class="col-xs-10 col-sm-5" name="b_author" />
+				</div>
+			</div>
+
+			<div class="form-group">
+			    <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 图片上传</label>
+				<div class="col-sm-9" >
+					<input type="file" name="file" class="layui-upload-file" lay-title="上传图片" />
+				</div>
+			</div>
+            <div class="form-group" id="imgShow" style="display: none">
+                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 图片预览</label>
+                <div class="col-sm-9" >
+                    <input type="hidden" name="b_img" id="b_img">
+                    <img id="show" src="" alt="图片" width="300">
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 书籍简介</label>
+                <div class="col-sm-9" >
+                    <textarea name="b_introduce" cols="50" rows="10"></textarea>
+                </div>
+            </div>
+			<div class="form-group">
+			<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> </label>
+				<div class="col-sm-9">
+					<input type="reset" value="重置" onclick="resetImg()" class="btn btn-success">
+					<input type="submit" value="提交" class="btn btn-success">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> </label>
+				<div class="col-sm-9">
+				</div>
+			</div>
+
+		</form>
+	</div>
+	<!-- 引入 -->
+	<script src="__PUBLIC__/js/jquery.min.js"></script>
+	<script src="__PUBLIC__/layui/layui.js"></script>
+
+	<script>
+	function change(obj)
+	{
+		$.ajax({
+            type:'get',
+            url:"<{:U('getadd','','')}>/b_id/" + obj.value,
+            dataType:'json',
+            success:function(data){
+                var d = eval(data);
+                // console.log(d);
+                seconds.options.length = 0;
+                for (var i = 0; i < d.length; i++) {
+                    seconds.add(new Option(d[i]['t_name'],d[i]['t_id']));
+                }
+            }
+        })
+	}
+
+    // 上传文件
+    layui.use('upload', function(){
+        layui.upload({
+            url: "<{:U('Admin/Book/upload')}>" //上传接口
+            ,method: 'post',
+            data:1
+            ,before: function(input){
+                //返回的参数item，即为当前的input DOM对象
+                layer.msg('文件上传中.....', {
+                    icon: 16
+                    ,shade: 0.01,
+                    time:0,
+                });
+            }
+            ,success: function(res){ //上传成功后的回调
+                layer.closeAll();
+                if(res.code == 0) {
+                    $('#show').attr('src','__ROOT__/Uploads/' + res.url);
+                    $('#b_img').val(res.url);
+                    $('#imgShow').show();
+                } else {
+                    layer.msg('文件上传失败', {icon: 6});
+                    $('#imgShow').hide();
+                }
+            }
+        });
+    });
+
+    function resetImg() {
+        $('#imgShow').hide();
+        if($('#b_img').val() != '') {
+            $.post('<{:U("Admin/Book/delImg")}>',{'img':$('#b_img').val()});
+            $('#b_img').val('');
+        }
+    }
+	</script>
+</block>
