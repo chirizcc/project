@@ -50,15 +50,12 @@ class AuthorController extends JudgeController
         }
 
         // 判断笔名是否为空
-        if ($_POST['b_author'] == null) {
-            $this->error('笔名不能为空', U('index'));
-            exit;
-        }
+       
 
         $data = $det->where('det_id =' . session('home_id'))->save($_POST);
-        $book = M('book')->where('b_uid = ' . session('home_id'))->save($_POST);
+       
         $user = M('user')->where('u_id = ' . session('home_id'))->save($_POST);
-        if ($data || $book || $user) {
+        if ($data || $user) {
             $this->success('已成功提交申请', U('index'));
         } else {
             $this->error('提交失败', U('index'));

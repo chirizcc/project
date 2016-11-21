@@ -5,6 +5,8 @@
 	class CatalogController extends JudgeController
 	{	
 		private $size = 5;
+		
+
 		public function __construct()
 	    {
 	        parent::__construct();
@@ -16,6 +18,11 @@
 	    }
 		public function index($b_id = null,$search = null)
 		{	
+
+			$p = I('get.id/d');
+	        if ($p == null) {
+	            $p = 0;
+	        }
 			if(empty($b_id)) {
 	            if(empty(session('b_id'))) {
 	                $this->redirect('Home/Authoredit/index');
@@ -24,6 +31,7 @@
 	                $b_id = session('b_id');
 	            }
 	        }
+
 	        // 搜索条件
 	        $map = [];
 	        if(!empty($search)) {
@@ -36,7 +44,7 @@
         	session('b_id',$b_id);
         	session('b_name',$name);
         	// 查询数据库
-        	$data = M('catalog')->where(['cata_bid' => $b_id])->where($map)->order('cata_order')->page($_GET['p'], $this->size)->select();
+        	$data = M('catalog')->where(['cata_bid' => $b_id])->where($map)->order('cata_order')->page($p, $this->size)->select();
         	// 查询满足要求的总记录数
         	$count = M('catalog')->where(['cata_bid' => $b_id])->where($map)->count();
 			 $Page = new \Org\Util\MyPage($count, $this->size);// 实例化分页类 传入总记录数和每页显示的记录数
