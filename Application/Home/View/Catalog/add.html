@@ -1,0 +1,64 @@
+<extend name="Public/layout"/>
+<block name="content">
+	<div class="page-content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <!-- PAGE CONTENT BEGINS -->
+
+                    <div class="space-6"></div>
+
+                    <div class="row">
+
+                        <div class="col-sm-10 col-sm-offset-1">
+                            <div class="widget-box transparent invoice-box">
+                                <div class="page-header">
+                                    <h1>
+                                        <a href="<{:U('Home/Catalog/index',['b_id' => session('b_id')])}>">目录管理</a>
+                                        <small>
+                                            <i class="icon-double-angle-right"></i>
+                                            添加章节
+                                        </small>
+                                    </h1>
+                                </div><!-- /.page-header -->
+
+                                <p class="h4"><a href="<{:U('Home/Catalog/index',['b_id' => session('b_id')])}>">书名：<{:session('b_name')}></a></p>
+                                <div class="space-6"></div>
+                                <div class="space-6"></div>
+                                <div class="col-xs-12">
+
+                                    <form class="layui-form" action="<{:U('Home/Catalog/insert')}>" method="post">
+                                        <input type="hidden" name="cata_bid" value="<{:session('b_id')}>">
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">章节名</label>
+                                            <div class="layui-input-inline">
+                                                <input type="text" name="cata_name" lay-verify="required" autocomplete="off" class="layui-input">
+                                            </div>
+                                            <div class="space-6"></div>
+                                            <div class="layui-form-item">
+                                                <div class="layui-input-block">
+                                                    <button class="layui-btn" lay-submit="" lay-filter="demo1">添加</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- PAGE CONTENT ENDS -->
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.page-content -->
+    </div><!-- /.main-content -->
+
+    <!-- 引入 -->
+    <script src="__PUBLIC__/js/jquery.min.js"></script>
+    <script src="__PUBLIC__/layui/layui.js"></script>
+
+    <script>
+        layui.use('form', function() {
+            var form = layui.form()
+        });
+
+    </script>
+</block>
