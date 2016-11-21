@@ -89,4 +89,30 @@
 
 	        $this->error('添加失败，请稍后再试！');
 	    }
+
+	    public function edit($cata_id = null)
+	    {
+	        if(empty($cata_id)) {
+	            $this->redirect('Home/Authoredit/index');
+	            die;
+	        }
+
+	        $data = M('catalog')->find($cata_id);
+	        $this->assign('data',$data);
+	        $this->display();
+	    }
+
+	    public function update()
+	    {
+	        $cata = M('catalog');
+	        if($cata->create()) {
+	            if($cata->save()) {
+	                $this->success('修改成功',U('Home/Catalog/index',['b_id' => session('b_id')]));
+	            } else {
+	                $this->error('修改失败，请稍后再试！');
+	            }
+	        } else {
+	            $this->error($cata->getError());
+	        }
+	    }
 	}

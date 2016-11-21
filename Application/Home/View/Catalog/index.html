@@ -1,9 +1,9 @@
-<extend name="Public/layout"/>
+<extend name="Center/public"/>
 <block name="content">
     <div class="container">
         <div class="page-header">
             <h3 class="h3">目录
-                <small>&nbsp;</small>
+                <small>&nbsp;<a href="<{:U('Home/Authoredit/index')}>">返回</a></small>
             </h3>
         </div>
     
@@ -17,7 +17,7 @@
                     <div class="row">
                         <div class="col-sm-10 col-sm-offset-1">
                             <div class="widget-box transparent invoice-box">   
-                                <p class="h4"><a href="<{:U('Home/Catalog/index',['b_id' => session('b_id')])}>">书名：</a></p>
+                                <p class="h4"><a href="<{:U('Home/Catalog/index',['b_id' => session('b_id')])}>">书名：<{:session('b_name')}></a></p>
                                 <div class="space-6"></div>
                                 <div class="widget-body">
                                     <a href="<{:U('Home/Catalog/add')}>">
