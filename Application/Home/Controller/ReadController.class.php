@@ -122,4 +122,32 @@ class ReadController extends HomeController
 
 
 	}
+
+    public function dictionary()
+    {
+        $info = I('post.val');
+        //初始化
+        $curl = curl_init();
+        $apikey = "564fd402fa4f6e6606ca32a4e372c452";
+        $word = urlencode($info);
+        //URL 设置
+        curl_setopt($curl, CURLOPT_URL, 'http://v.juhe.cn/xhzd/query?key='.$apikey.'&word='.$word);
+        //将 curl_exec() 获取的信息以 文件流的形式返回,而不是直接输出
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        //curl执行
+        $data = curl_exec($curl);
+        //关闭curl
+        curl_close($curl);
+
+        //处理JSON数据
+        $jsonObj = json_decode($data);
+        //提取文章列表
+        $xiangjie = $jsonObj->result->jijie;
+        if(!empty($xiangjie)){
+             $this->ajaxReturn($xiangjie);
+         }else{
+             $this->ajaxReturn('err');
+         }
+       
+    }
 }
