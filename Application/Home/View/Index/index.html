@@ -22,7 +22,6 @@
                 <a href="#" class="ad">全网第一家正版免费阅读平台</a>
                 <a href="" class="ad1">申请加入我们 成为常驻作者</a>
                 <a href="" class="ad2">看好的书籍，成为思想的主人</a>
-                <!-- <a href="" class="ad">作者</a> -->
             </div>
             <div class="col-md-10">
                 <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
@@ -30,11 +29,9 @@
                     <ol class="carousel-indicators">
                         <for start="0" end="$count">
                             <li data-target="#carousel-example-generic" data-slide-to="<{$i}>" class="active"></li>
-                            <!-- <li data-target="#carousel-example-generic" data-slide-to="1"></li> -->
                         </for>
                     </ol>
 
-                    <!-- Wrapper for slides -->
                     <!--遍历图片-->
                     <div class="carousel-inner" role="listbox">
                         <for start="0" end="$count">
@@ -69,9 +66,7 @@
     <if condition="$proList != null">
         <div class="row">
             <div class="page-header">
-                <h1 class="h2">推荐&nbsp;&nbsp;
-                    <small><a href="#">更多>></a></small>
-                </h1>
+                <h1 class="h2">推荐</h1>
             </div>
         </div>
 
@@ -101,9 +96,7 @@
         <div class="row">
             <div class="page-header">
                 <div class="col-md-1"></div>
-                <h1 class="h2">新上架&nbsp;&nbsp;
-                    <small><a href="#">更多>></a></small>
-                </h1>
+                <h1 class="h2">新上架</h1>
             </div>
         </div>
 
@@ -129,44 +122,13 @@
                 </div>
             </if>
         </for>
-        <!--<div class="row">
-
-            <div class="col-md-3">
-                <div class="thumbnail" style="border: none">
-                    <a href="#" >
-                        <img width="150" data-src="holder.js/171x180" alt="..." src="__ROOT__/Uploads/img/book.jpg">
-                    </a>
-                    <p style="text-align: center" class="h4">111</p>
-                </div>
-            </div>
-
-            <div class="col-md-3">
-                <a href="#" class="thumbnail">
-                    <img data-src="holder.js/171x180" alt="...">
-                </a>
-            </div>
-
-            <div class="col-md-3">
-                <a href="#" class="thumbnail">
-                    <img data-src="holder.js/171x180" alt="...">
-                </a>
-            </div>
-
-            <div class="col-md-3">
-                <a href="#" class="thumbnail">
-                    <img data-src="holder.js/171x180" alt="...">
-                </a>
-            </div>
-
-        </div>&lt;!&ndash;row  &ndash;&gt;-->
     </if>
 
     <if condition="$hotBooks != null">
         <div class="row">
             <div class="page-header">
-                <h1 class="h2">热门&nbsp;&nbsp;
-                    <small><a href="#">更多>></a></small>
-                </h1>
+                <div class="col-md-1"></div>
+                <h1 class="h2">热门</h1>
             </div>
         </div>
 
@@ -195,9 +157,8 @@
     </if>
 
     </div> <!--container  -->
-
-    <script src="__PUBLIC__/layui/layui.js"></script>
     <script src="__PUBLIC__/js/jquery.min.js"></script>
+    <script src="__PUBLIC__/layui/layui.js"></script>
     <script src="__PUBLIC__/js/jquery-2.0.3.min.js"></script>
     <script>
         // 图片流加载

@@ -1,160 +1,158 @@
 <extend name="Center/public"/>
 <block name="content">
 
- 	<div class="page-content" style="margin:0;padding: 0">
+    <div class="page-content" style="margin:0;padding: 0;height: 900px">
 
- 		<div class="page-header">
-			<h1 class="h1">
-				<a href="<{:U('index')}>">作者编辑</a>
-				<small>
-					<i class="icon-double-angle-right"></i>
-					添加书籍
-				</small>
-			</h1>
-		</div>
-		<div class="col-xs-4"></div>
-		<div class="row col-xs-8" style="margin: 0" >
-			<div class="col-xs-8">
-		<form class="form-horizontal layui-form layui-form-pane" role="form" action="<{:U('Authoredit/insert')}>" method="post" enctype="multipart/form-data">
-			<input type="hidden" name="b_time" value="<{:time()}>">
-			<input type="hidden" name="b_uid" value="<{:session('home_id')}>">
-	
-			<div class="layui-form-item">
-			    <label class="layui-form-label">书名</label>
-			    <div class="layui-input-inline">
-			      <input type="text" name="b_name" lay-verify="required" placeholder="请输入书名" autocomplete="off" class="layui-input">
-			    </div>
-		  	</div>
-					
-			<div class="layui-form-item">
-			    <label class="layui-form-label">类型</label>
-			    <div class="layui-input-inline">
-			      <select id="cg" lay-filter="aihao"  class="col-xs-3">
-			        <option data-skin="default" value="" >--请选择--</option>
-					<foreach name="list" item="v">
-					<option data-skin="default" value="<{$v.t_id}>" id="options" ><{$v.t_name}></option>
-					</foreach>
-			      </select>			     
-			    </div>
-			    <div class="layui-input-inline">
-			      	<select id="seconds" name="b_tid" >
-						<option data-skin="default" value="" >--请选择--</option>	
-				  	</select>		     
-			    </div>
-			</div>					
-			
-			<div class="layui-form-item">
-			    <label class="layui-form-label">书名</label>
-			    <div class="layui-input-inline">
-			      <input type="text" name="b_author" lay-verify="required" placeholder="请输入作者" autocomplete="off" class="layui-input">
-			    </div>
-		  	</div>
-			
+        <div class="page-header">
+            <h1 class="h1">
+                <a href="<{:U('index')}>">作者编辑</a>
+                <small>
+                    <i class="icon-double-angle-right"></i>
+                    添加书籍
+                </small>
+            </h1>
+        </div>
+        <div class="col-xs-4"></div>
+        <div class="row col-xs-8" style="margin: 0">
+            <div class="col-xs-8">
+                <form class="form-horizontal layui-form layui-form-pane" role="form"
+                      action="<{:U('Authoredit/insert')}>" method="post" enctype="multipart/form-data">
+                    <input type="hidden" name="b_time" value="<{:time()}>">
+                    <input type="hidden" name="b_uid" value="<{:session('home_id')}>">
 
-			<div class="layui-form-item">
-			    <label class="layui-form-label">图片上传</label>
-				<div class="col-sm-9" >
-					<input type="file" name="file" class="layui-upload-file" lay-title="上传图片" />
-				</div>
-			</div>
-            <div class="layui-form-item" id="imgShow" style="display: none">
-                <label class="layui-form-label">预览</label>
-                <div class="col-sm-9" >
-                    <input type="hidden" name="b_img" id="b_img">
-                    <img id="show" src="" alt="图片" width="300">
-                </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">书名</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="b_name" lay-verify="required" placeholder="请输入书名"
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">类型</label>
+                        <div class="layui-input-inline">
+                            <select id="cg" lay-filter="aihao" class="col-xs-3">
+                                <option data-skin="default" value="">--请选择--</option>
+                                <foreach name="list" item="v">
+                                    <option data-skin="default" value="<{$v.t_id}>" id="options"><{$v.t_name}></option>
+                                </foreach>
+                            </select>
+                        </div>
+                        <div class="layui-input-inline">
+                            <select id="seconds" name="b_tid">
+                                <option data-skin="default" value="">--请选择--</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">作者</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="b_author" lay-verify="required" placeholder="请输入作者"
+                                   autocomplete="off" class="layui-input">
+                        </div>
+                    </div>
+
+
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">图片上传</label>
+                        <div class="col-sm-9">
+                            <input type="file" name="file" class="layui-upload-file" lay-title="上传图片"/>
+                        </div>
+                    </div>
+                    <div class="layui-form-item" id="imgShow" style="display: none">
+                        <label class="layui-form-label">预览</label>
+                        <div class="col-sm-9">
+                            <input type="hidden" name="b_img" id="b_img">
+                            <img id="show" src="" alt="图片" width="150">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">简介</label>
+                        <div class="col-sm-9">
+                            <textarea name="b_introduce" cols="50" rows="10"></textarea>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label> </label>
+                        <div class="col-sm-9">
+                            <input type="reset" value="重置" onclick="resetImg()" class="btn btn-success">
+                            <input type="submit" value="提交" class="btn btn-success">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> </label>
+                        <div class="col-sm-9">
+                        </div>
+                    </div>
+
+                </form>
             </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">简介</label>
-                <div class="col-sm-9" >
-                    <textarea name="b_introduce" cols="50" rows="10"></textarea>
-                </div>
-            </div>
-			<div class="form-group">
-			<label > </label>
-				<div class="col-sm-9">
-					<input type="reset" value="重置" onclick="resetImg()" class="btn btn-success">
-					<input type="submit" value="提交" class="btn btn-success">
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> </label>
-				<div class="col-sm-9">
-				</div>
-			</div>
+        </div>
+    </div>
 
-		</form>
-	</div>
-  </div>
-</div>
+    <!-- 引入 -->
+    <script src="__PUBLIC__/js/jquery.min.js"></script>
+    <script src="__PUBLIC__/layui/layui.js"></script>
 
-	<!-- 引入 -->
-	<script src="__PUBLIC__/js/jquery.min.js"></script>
-	<script src="__PUBLIC__/layui/layui.js"></script>
+    <script>
 
-	<script>
-	
-    // 上传文件
-    layui.use('upload', function(){
-        layui.upload({
-            url: "<{:U('Admin/Book/upload')}>" //上传接口
-            ,method: 'post',
-            data:1
-            ,before: function(input){
-                //返回的参数item，即为当前的input DOM对象
-                layer.msg('文件上传中.....', {
-                    icon: 16
-                    ,shade: 0.01,
-                    time:0,
-                });
-            }
-            ,success: function(res){ //上传成功后的回调
-                layer.closeAll();
-                if(res.code == 0) {
-                    $('#show').attr('src','__ROOT__/Uploads/' + res.url);
-                    $('#b_img').val(res.url);
-                    $('#imgShow').show();
-                } else {
-                    layer.msg('文件上传失败', {icon: 6});
-                    $('#imgShow').hide();
+        // 上传文件
+        layui.use('upload', function () {
+            layui.upload({
+                url: "<{:U('Home/Authoredit/upload')}>" //上传接口
+                , method: 'post',
+                data: 1
+                , before: function (input) {
+                    //返回的参数item，即为当前的input DOM对象
+                    layer.msg('文件上传中.....', {
+                        icon: 16
+                        , shade: 0.01,
+                        time: 0,
+                    });
                 }
-            }
+                , success: function (res) { //上传成功后的回调
+                    layer.closeAll();
+                    if (res.code == 0) {
+                        $('#show').attr('src', '__ROOT__/Uploads/' + res.url);
+                        $('#b_img').val(res.url);
+                        $('#imgShow').show();
+                    } else {
+                        layer.msg('文件上传失败', {icon: 6});
+                        $('#imgShow').hide();
+                    }
+                }
+            });
         });
-    });
 
-    function resetImg() {
-        $('#imgShow').hide();
-        if($('#b_img').val() != '') {
-            $.post('<{:U("Admin/Book/delImg")}>',{'img':$('#b_img').val()});
-            $('#b_img').val('');
-        }
-    }
-
-    layui.use('form', function(){  //如果只加载一个组件，可以不填数组。如：layui.use('form')
-	  var form = layui.form(); //获取form组件
-	
-	  
-	  //监听select
-	  form.on('select(aihao)', function(data){
-	    $.ajax({
-            type:'get',
-            url:"<{:U('getadd','','')}>/b_id/" + data.value,
-            dataType:'json',
-            success:function(data){
-                var d = eval(data);
-                console.log(d);
-                seconds.options.length = 0;
-                for (var i = 0; i < d.length; i++) {
-                    seconds.add(new Option(d[i]['t_name'],d[i]['t_id']));
-
-                }
-                form.render('select');//刷新select选择框渲染
+        function resetImg() {
+            $('#imgShow').hide();
+            if ($('#b_img').val() != '') {
+                $.post('<{:U("Admin/Book/delImg")}>', {'img': $('#b_img').val()});
+                $('#b_img').val('');
             }
+        }
 
-        })
-	  });
-	  
-	  
-	} );
-	</script>
+        layui.use('form', function () {  //如果只加载一个组件，可以不填数组。如：layui.use('form')
+            var form = layui.form(); //获取form组件
+
+            //监听select
+            form.on('select(aihao)', function (data) {
+                $.ajax({
+                    type: 'get',
+                    url: "<{:U('getadd','','')}>/b_id/" + data.value,
+                    dataType: 'json',
+                    success: function (data) {
+                        var d = eval(data);
+                        console.log(d);
+                        seconds.options.length = 0;
+                        for (var i = 0; i < d.length; i++) {
+                            seconds.add(new Option(d[i]['t_name'], d[i]['t_id']));
+                        }
+                        form.render('select');//刷新select选择框渲染
+                    }
+                })
+            });
+        });
+    </script>
 </block>

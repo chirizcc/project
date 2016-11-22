@@ -67,7 +67,7 @@
                             <li><a href="<{:U('Login/logout')}>">退出</a></li>
                         </ul>
                     </li>
-                <else/>
+                    <else/>
                     <li><a href="<{:U('Reg/index')}>">注册</a></li>
                     <li><a href="<{:U('Login/index')}>">登录</a></li>
                 </if>
@@ -96,7 +96,6 @@
                         <ul class="list-unstyled">
                             <li>
                                 <a href="javascript:void(0)">关于我们</a>
-
                             </li>
                             <li>
                                 <a href="javascript:void(0)" onclick="showMap()">具体地址</a>
@@ -124,6 +123,15 @@
                 <li>Copyright &copy;2016. n 终点图书限公司 Software All Rights Reserved.</li>
             </ul>
         </div>
+        <div class="footer-map" id="mapBox">
+            <div class="panel panel-default">
+                <div class="panel-heading">地址<span style="float: right" class="glyphicon glyphicon-remove"
+                                                   onclick="$('#mapBox').css('display', 'none')"></span></div>
+                <div class="panel-body">
+                    <img id="mapImg" src="" alt="地图加载中">
+                </div>
+            </div>
+        </div>
     </div>
 </div><!--footer-->
 <!-- </div> -->
@@ -134,21 +142,13 @@
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="__PUBLIC__/dist/js/bootstrap.min.js"></script>
 <script src="__PUBLIC__/js/jquery.min.js"></script>
-<script src="__PUBLIC__/layui/layui.js"></script>
+<!--<script src="__PUBLIC__/layui/layui.js"></script>&ndash;&gt;-->
 
 <script>
-    function showMap() {
-        layui.use('layer', function () {
-            var layer = layui.layer;
 
-            //页面层
-            layer.open({
-                type: 1,
-                title: '地址',
-                area: ['500px', '450px'], //宽高
-                content: '<img src="http://api.map.baidu.com/staticimage?width=500&height=400&center=121.449248,31.299169&zoom=16&markers=121.446553,31.299216&markerStyles=l,a">'
-            });
-        });
+    function showMap() {
+        $('#mapBox').css('display', 'block');
+        $('#mapImg').attr('src', "http://api.map.baidu.com/staticimage?width=500&height=400&center=121.449248,31.299169&zoom=16&markers=121.446553,31.299216&markerStyles=l,a");
     }
 
 </script>

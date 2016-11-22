@@ -9,9 +9,9 @@ class CenterController extends JudgeController
     {
         $u_id = session('home_id');
         $img = M('detail')->where(['det_uid' => $u_id])->field('det_img')->find();
-        $data = M('user')->where('u_id = '.session('home_id'))->field('u_istype')->select();
-        $this->assign('img',$img['det_img']);
-        $this->assign('data',$data);
+        $data = M('user')->where('u_id = ' . session('home_id'))->field('u_istype')->select();
+        $this->assign('img', $img['det_img']);
+        $this->assign('data', $data);
         $this->display();
     }
 
@@ -26,28 +26,28 @@ class CenterController extends JudgeController
         $data = M('detail')->where(['det_uid' => $u_id])->find();
 
         $res = M('user')->field('u_regtime')->find($u_id);
-        $data['regTime'] = date('Y-m-d H:i',$res['u_regtime']);
+        $data['regTime'] = date('Y-m-d H:i', $res['u_regtime']);
 
-        $this->assign('data',$data);
+        $this->assign('data', $data);
         $this->display();
     }
-    
+
     public function edit()
     {
         $u_id = session('home_id');
         $data = M('detail')->where(['det_uid' => $u_id])->find();
-        $this->assign('data',$data);
+        $this->assign('data', $data);
         $this->display();
     }
-    
+
     public function update()
     {
         $de = D('detail');
-        if($de->create()) {
-            if(false === $de->save()) {
+        if ($de->create()) {
+            if (false === $de->save()) {
                 $this->error('编辑失败，请稍后再试!');
             } else {
-                $this->success('编辑成功',U('Home/Center/info'));
+                $this->success('编辑成功', U('Home/Center/info'));
             }
         } else {
             $this->error($de->getError());
@@ -57,29 +57,29 @@ class CenterController extends JudgeController
     public function uploadPortrait()
     {
         $upload = new \Think\Upload();// 实例化上传类
-        $upload->maxSize = 3145728 ;// 设置附件上传大小
+        $upload->maxSize = 3145728;// 设置附件上传大小
         $upload->exts = array('jpg', 'gif', 'png', 'jpeg');// 设置附件上传类型
         $upload->rootPath = './Uploads/'; // 设置附件上传根目录
         $upload->savePath = 'Portrait'; // 设置附件上传（子）目录
 // 上传文件
         $info = $upload->upload();
 
-        if(!$info) {// 上传错误提示错误信息
+        if (!$info) {// 上传错误提示错误信息
             $data = [
                 'code' => 1,
                 'msg' => $upload->getError(),
             ];
-        }else{
-            $path = './Uploads/'.$info['file']['savepath'];
+        } else {
+            $path = './Uploads/' . $info['file']['savepath'];
             $name = $info['file']['savename'];
 
             $image = new \Think\Image();
-            $image->open($path.$name);
+            $image->open($path . $name);
             // 按照原图的比例生成一个最大为150*150的缩略图并保存为thumb.jpg
-            $image->thumb(200, 200)->save($path.'s_'.$name);
+            $image->thumb(200, 200)->save($path . 's_' . $name);
 
             //删除原图片
-            unlink($path.$name);
+            unlink($path . $name);
 
             $data = [
                 'code' => 0,
@@ -98,20 +98,20 @@ class CenterController extends JudgeController
             'msg' => '',
         ];
         $url = I('post.url');
-        if(is_file('./Uploads/'.$url)){
+        if (is_file('./Uploads/' . $url)) {
             $u_id = session('home_id');
             $res = M('detail')->where(['det_uid' => $u_id])->field('det_id,det_img')->find();
-            if(M('detail')->create(['det_id' => $res['det_id'],'det_img' => $url])) {
-                if(M('detail')->save()) {
+            if (M('detail')->create(['det_id' => $res['det_id'], 'det_img' => $url])) {
+                if (M('detail')->save()) {
                     $data['code'] = 0;
                     $data['msg'] = '头像保存成功';
-                    unlink('./Uploads/'.$res['det_img']);
+                    unlink('./Uploads/' . $res['det_img']);
                 } else {
-                    unlink('./Uploads/'.$url);
+                    unlink('./Uploads/' . $url);
                     $data['msg'] = '头像保存失败，请稍后再试!';
                 }
             } else {
-                unlink('./Uploads/'.$url);
+                unlink('./Uploads/' . $url);
                 $data['msg'] = M('detail')->getError();
             }
         } else {
@@ -124,11 +124,11 @@ class CenterController extends JudgeController
     public function delImg()
     {
         $url = I('post.url');
-        if(empty($url)) {
+        if (empty($url)) {
             return;
         }
 
-        $path = './Uploads/'.$url;
+        $path = './Uploads/' . $url;
         unlink($path);
     }
 }
