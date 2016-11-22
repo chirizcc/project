@@ -1,10 +1,10 @@
 .center .my-nav {
     background: #393D49;
     padding: 0;
-    color:#fbfbfb;
+    color: #fbfbfb;
 }
 
-.center .my-nav ul{
+.center .my-nav ul {
     width: 100%;
     margin: 0;
 }
@@ -19,13 +19,10 @@
     right: 40px;
 }
 
-.my-info-content .myInfo{
+.my-info-content .myInfo {
 
 }
 
-/*.my-info-content .myInfo table{
-    border: 1px solid #DCEBF7;
-}*/
 
 .my-info-content .myInfo tr td:first-child {
     background: #EDF3F4;
@@ -42,11 +39,17 @@
     padding: 10px;
 }
 
-.tuling{
+.tuling {
     width: 200px;
-    /*height: 300px;*/
-    /*border: 1px solid red;*/
     position: fixed;
-    top:100px;
+    top: 100px;
     left: 20px;
+}
+
+.footer-map {
+    width: 535px;
+    position: fixed;
+    right: 100px;
+    bottom: 100px;
+    display: none;
 }

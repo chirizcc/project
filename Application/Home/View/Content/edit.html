@@ -1,7 +1,7 @@
 <extend name="Center/public"/>
 <block name="content">
-<div>
-	<div class="page-content">
+    <div>
+        <div class="page-content">
             <div class="row">
                 <div class="col-xs-12">
                     <!-- PAGE CONTENT BEGINS -->
@@ -13,35 +13,39 @@
                             <div class="widget-box transparent invoice-box">
                                 <div class="page-header">
                                     <h class="h1">
-                                       
+
                                         <small>
                                             <i class="icon-double-angle-right"></i>
                                             编辑内容
                                         </small>
-                                    </h1>
+                                        </h1>
                                 </div><!-- /.page-header -->
 
                                 <p class="h3">书名：<{:session('b_name')}></p>
                                 <div class="space-6"></div>
                                 <div class="widget-body">
                                     <a href="<{:U('Home/Content/index',['cata_id' => $cata_id])}>">
-                                        <button class="layui-btn layui-btn-radius layui-btn-warm" style="margin-left: 20px;">放弃编辑</button>
+                                        <button class="layui-btn layui-btn-radius layui-btn-warm"
+                                                style="margin-left: 20px;">放弃编辑
+                                        </button>
                                     </a>
                                     <div class="widget-main padding-24">
-                                      <fieldset class="layui-elem-field">
-                                          <legend>章节：</legend>
-                                          <div class="layui-field-box">
-                                            <h4 class="h4"><{$cata_name}></h4>
-                                          </div>
+                                        <fieldset class="layui-elem-field">
+                                            <legend>章节：</legend>
+                                            <div class="layui-field-box">
+                                                <h4 class="h4"><{$cata_name}></h4>
+                                            </div>
                                         </fieldset>
-                                        <div class="widget-body" >
-                                            <div class="widget-main" >
+                                        <div class="widget-body">
+                                            <div class="widget-main">
                                                 <div class="row">
-                                                    <form action="<{:U('Home/Content/update',['cata_id' => $cata_id])}>" method="post">
+                                                    <form action="<{:U('Home/Content/update',['cata_id' => $cata_id])}>"
+                                                          method="post">
                                                         <input type="hidden" name="con_id" value="<{$data['con_id']}>">
                                                         <textarea name="con_content" id="demo" cols="100" rows="30"><{$data['con_content']}></textarea>
                                                         <div class="space-6"></div>
-                                                        <input type="submit" value="提交" class="btn btn-danger"><span id="sp"></span>
+                                                        <input type="submit" value="提交" class="btn btn-danger"><span
+                                                            id="sp"></span>
                                                     </form>
                                                 </div>
                                             </div>
@@ -62,25 +66,25 @@
     <script src="__PUBLIC__/layui/layui.js"></script>
 
     <script>
-        layui.use('layedit', function(){
+        layui.use('layedit', function () {
             var layedit = layui.layedit;
             layedit.build('demo',
-                {
-                    tool: [
-                        'strong' //加粗
-                        ,'italic' //斜体
-                        ,'underline' //下划线
-                        ,'del' //删除线
-                        ,'|' //分割线
-                        ,'left' //左对齐
-                        ,'center' //居中对齐
-                        ,'right' //右对齐
-                        ,'|' //分割线
-                        ,'link' //超链接
-                        ,'unlink' //清除链接
-                        ,'face' //表情
-                    ]
-                }
+                    {
+                        tool: [
+                            'strong' //加粗
+                            , 'italic' //斜体
+                            , 'underline' //下划线
+                            , 'del' //删除线
+                            , '|' //分割线
+                            , 'left' //左对齐
+                            , 'center' //居中对齐
+                            , 'right' //右对齐
+                            , '|' //分割线
+                            , 'link' //超链接
+                            , 'unlink' //清除链接
+                            , 'face' //表情
+                        ]
+                    }
             ); //建立编辑器
         });
     </script>
