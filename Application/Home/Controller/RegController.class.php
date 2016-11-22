@@ -118,8 +118,76 @@ class RegController extends HomeController
         }
     }
 
-    public function sendEmail()
+    // 邮箱注册
+    public function emailReg()
     {
-        dump(I('post.'));
+        $data = I('post.');
+        $username = I('post.u_username');
+
+        if(!empty(M('user')->where(['u_username' => $username])->find())) {
+            $this->error('该用户名已被注册！');
+        }
+
+        $data['u_username'] = 'ls'.mt_rand(0, 99999);
+        $data['u_istype'] = 0;
+
+        $user = D('user');
+        if($user->create($data)) {
+            $uid = $user->add();
+            if($uid) {
+                $wait = D('wait');
+                $wData = ['w_uid' => $uid,'w_email' => $username];
+                if($wait->create($wData)) {
+                    $wid = $wait->add();
+                    if($wid) {
+                        $title = '注册验证';
+                        // 发送到邮箱的链接采用base64加密
+                        $content = '尊敬的用户'.$username.': 感谢您注册终点中文网，您可以通过点击以下链接激活您的账号: <a href="'.U('Home/Reg/activa',['w_id' => base64_encode($wid)], 'html', true).'">'.U('Home/Reg/activa',['w_id' => base64_encode($wid)], 'html', true).'</a>';
+                        if($this->sendEmail($username, $title, $content)) {
+                            $this->success('邮件发送成功，请前往激活您的账号！', U('Home/Reg/wait'));
+                        } else {
+                            $this->error('注册失败，请稍后再试！');
+                        }
+                    } else {
+                        $this->error('注册失败，请稍后再试！');
+                    }
+                } else {
+                    $this->error($wait->getError());
+                }
+            } else {
+                $this->error('注册失败，请稍后再试！');
+            }
+        } else {
+            $this->error($user->getError());
+        }
+    }
+
+    // 邮件激活账号
+    public function activa($w_id = null)
+    {
+        if(empty($w_id)) {
+            $this->redirect('Home/Index/index');
+        }
+
+        $w_id =  base64_decode($w_id);
+        $res = D('wait')->where(['w_id' => $w_id])->find();
+        if(!$res) {
+            $this->error('验证出错，请重新注册！', U('Home/Reg/index'));
+        }
+
+        D('user')->where(['u_id' => $res['w_uid']])->save(['u_username' => $res['w_email'], 'u_istype' => 3]);
+        D('detail')->add(['det_uid' => $res['w_uid'], 'det_name' => $res['w_email'], 'det_email' => $res['w_email']]);
+        D('wait')->where(['w_id' => $w_id])->delete();
+
+        $this->success('激活成功!', U('Home/Login/index'));
+    }
+    
+    public function wait()
+    {
+        if(!empty(session('home_name')) ){
+            $this->redirect('Index/index');
+            exit;
+        }
+        $this->display();
     }
 }
