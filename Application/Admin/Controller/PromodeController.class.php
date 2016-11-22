@@ -58,7 +58,7 @@ class PromodeController extends AdminController
         }
       	$bid['b_id'] = array('not in',$row);
       	// 获取已上架又没有被推广的书籍
-        $data = M('book')->where('b_status=1')->where($bid)->where($map)->page($p, 6)->select();
+        $data = M('book')->where('b_status=1')->where($bid)->where($map)->page($p, 6)->order('b_id desc')->select();
    		// 获取总条数
         $count = M('book')->where($map)->where('b_status=1') ->count()-M('promode')->where($map)->count();	
         if (!empty($search)) {
