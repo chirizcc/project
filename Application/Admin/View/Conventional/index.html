@@ -11,8 +11,25 @@
 			</small>
 		</h1>
 	 </div>
+		<div class="nav-search " id="nav-search">
+                <form class="form-search">
+                    <span class="input-icon">
+                        <input type="text" placeholder="请输入城市" class="nav-search-input" id="weather" autocomplete="off"  />
+                        <i class="icon-search nav-search-icon"></i>
+                    </span>
+                </form>
+            </div>	 
 	</div>
-	<table class="table table-striped table-bordered table-hover">
+	<div class="col-sm-8"></div><div class="col-sm-4"><h2 class="h2">天气：<span id="title"></span></h2></div><hr>
+	<div id="body">
+	<div class="col-sm-9"></div><div class="col-sm-3" id="">城市:&nbsp;&nbsp;&nbsp;&nbsp;<span id="city"></div>
+	<div class="col-sm-9"></div><div class="col-sm-3" id="">天气:&nbsp;&nbsp;&nbsp;&nbsp;<span id="wt"></div>
+	<div class="col-sm-9"></div><div class="col-sm-3" id="">气温:&nbsp;&nbsp;&nbsp;&nbsp;<span id="tp"></div>
+	<div class="col-sm-9"></div><div class="col-sm-3" id="">污染程度:&nbsp;&nbsp;&nbsp;&nbsp;<span id="pl"></div>
+	<div class="col-sm-9"></div><div class="col-sm-3" id="">更新时间:&nbsp;&nbsp;&nbsp;&nbsp;<span id="time"></div>
+	</div>
+	<div class="col-sm-12">
+	<table class="table table-striped table-bordered table-hover ">
 	 <tr >
 	  <th>服务器</th>
 	  <th>数据</th>
@@ -56,7 +73,67 @@
 	
 	
 	</table>
+	</div>
+	<script src="__PUBLIC__/js/jquery.min.js"></script>
+	<script>
 
+        $(document).ready(function(){
+            $('#weather').blur(function() {
+                var val = $(this).val();
+               
+                    // location.href = '<{:U("Admin/Conventional/weather","","")}>/c/' + val;
+                    $.ajax({
+			            type:'get',
+			            url:"<{:U('weather','','')}>/city/" + val,
+			            dataType:'json',
+			            success:function(data){
+			                // var d = eval(data);
+			                
+			                console.log(data);
+			                if(data == 0){
+			                	title.innerHTML = '暂无数据';
+			                	body.style.display = "none";
+			                	title.style.display = "block";
+			                }else{
+			                	body.style.display = "block";
+			                	title.style.display = "none";
+			                city.innerHTML = data['Weather']['city'];
+			                wt.innerHTML = data['Weather']['status1']+"转"+data['Weather']['status2'];
+			                tp.innerHTML = data['Weather']['temperature2']+"℃ ~ "+data['Weather']['temperature1']+"℃";
+			                pl.innerHTML = data['Weather']['pollution_l'];
+			               time.innerHTML = data['Weather']['udatetime'];
+			               
+			                }
+			            }
+			        })
+               
+            });
+        });
+
+        $(document).ready(function(){
+            $('#weather').ready(function() {
+                var val = $(this).val();
+               
+                    // location.href = '<{:U("Admin/Conventional/weather","","")}>/c/' + val;
+                    $.ajax({
+			            type:'get',
+			            url:"<{:U('weather','','')}>/city/" + val,
+			            dataType:'json',
+			            success:function(data){			               			              			               
+			                city.innerHTML = data['Weather']['city'];
+			                wt.innerHTML = data['Weather']['status1']+"转"+data['Weather']['status2'];
+			                tp.innerHTML = data['Weather']['temperature2']+"℃ ~ "+data['Weather']['temperature1']+"℃";
+			                pl.innerHTML = data['Weather']['pollution_l'];
+			               time.innerHTML = data['Weather']['udatetime'];
+			               
+			            }
+			        })
+               
+            });
+        });
+
+
+    </script>
 </block>
 </body>
 </html>
