@@ -19,9 +19,26 @@ class HomeController extends Controller
         $this->display('Public/notFount');
     }
 
-    protected function shortMessage($tel,$timer,$model = 1)
+    protected function shortMessage($tel)
     {
-    	include_once("__PUBLIC__/Sms/CCPRestSmsSDK.php");
+		//生成一个4位的随机数，作为验证码
+		$Random = mt_rand(1000,9999);	
+		// var_dump($tel);die;
+		$this->sendTemplateSMS($tel,array($Random,'1'),'1');//手机号码，替换内容数组，模板ID
+
+		//返回随机数的值
+		return $Random;
+    }
+
+	/**
+	  * 发送模板短信
+	  * @param to 手机号码集合,用英文逗号分开
+	  * @param datas 内容数据 格式为数组 例如：array('Marry','Alon')，如不需替换请填 null
+	  * @param $tempId 模板Id,测试应用和未上线应用使用测试模板请填写1，正式应用上线后填写已申请审核通过的模板ID
+	*/       
+	function sendTemplateSMS($to,$datas,$tempId)
+	{
+		// var_dump($to);die;
 
 		//主帐号,对应开官网发者主账号下的 ACCOUNT SID
 		$accountSid= '8aaf0708582eefe9015847f6b3231231';
@@ -45,34 +62,9 @@ class HomeController extends Controller
 		//REST版本号，在官网文档REST介绍中获得。
 		$softVersion='2013-12-26';
 
-
-
-
-		//Demo调用
-				//**************************************举例说明***********************************************************************
-				//*假设您用测试Demo的APP ID，则需使用默认模板ID 1，发送手机号是13800000000，传入参数为6532和5，则调用方式为           *
-				//*result = sendTemplateSMS("13800000000" ,array('6532','5'),"1");																		  *
-				//*则13800000000手机号收到的短信内容是：【云通讯】您使用的是云通讯短信模板，您的验证码是6532，请于5分钟内正确输入     *
-				//*********************************************************************************************************************
-		//生成一个4位的随机数，作为验证码
-        $Random  = mt_rand(1000,9999);
-		$this->sendTemplateSMS($tel,array($Random,$timer),$model);//手机号码，替换内容数组，模板ID
-
-		//返回随机数的值
-		return $Random;
-    }
-
-    /**
-     * 发送模板短信
-     * @param to 手机号码集合,用英文逗号分开
-     * @param datas 内容数据 格式为数组 例如：array('Marry','Alon')，如不需替换请填 null
-     * @param $tempId 模板Id,测试应用和未上线应用使用测试模板请填写1，正式应用上线后填写已申请审核通过的模板ID
-     */
-    private function sendTemplateSMS($to,$datas,$tempId)
-    {
         // 初始化REST SDK
-        global $accountSid,$accountToken,$appId,$serverIP,$serverPort,$softVersion;
-        $rest = new REST($serverIP,$serverPort,$softVersion);
+        //global $accountSid,$accountToken,$appId,$serverIP,$serverPort,$softVersion;
+        $rest = new \Home\Verdor\Sms\REST($serverIP,$serverPort,$softVersion);
         $rest->setAccount($accountSid,$accountToken);
         $rest->setAppId($appId);
 
@@ -91,7 +83,7 @@ class HomeController extends Controller
             //echo "Sendind TemplateSMS success!<br/>";
             // 获取返回信息
             $smsmessage = $result->TemplateSMS;
-            $this->success('短信已发送，请在1分钟内填写');
+            //$this->success('短信已发送，请在1分钟内填写');
             //echo "dateCreated:".$smsmessage->dateCreated."<br/>";
             //echo "smsMessageSid:".$smsmessage->smsMessageSid."<br/>";
             //TODO 添加成功处理逻辑

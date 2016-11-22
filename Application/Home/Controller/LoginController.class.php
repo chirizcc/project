@@ -26,7 +26,7 @@ class LoginController extends HomeController
 		$user = M('user')->where($map)->find();
 
         if (!empty($user)) {
-        	if($user['u_istype'] == '4'){
+        	if($user['u_istype'] == '0'){
         		$this->error('您的账号被禁用 请联系管理员');
         	}
             session('home_name',$username);

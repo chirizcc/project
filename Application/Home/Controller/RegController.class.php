@@ -105,14 +105,28 @@ class RegController extends HomeController
         //1.自己手动过滤POST数据
         //2.M('user')->data()  自动生成数据
         //3.推荐!
-        // dump(I('post.'));
-        $a = D('User')->create(I('post.'),1);
+        // dump(I('post.'));exit;
+        D('user')->create();
+        // dump(D('user')->getError());exit;
+        // $a = D('User')->create(I('post.'),1);
         // var_dump(D('User')->getError());exit;
         // dump(D('User')->fetchSql(true)->add());
         // die;
         //执行添加
-        if (D('User')->add() > 0) {
-           $this->success('恭喜您,添加成功!', U('Login/index'));
+        $userid = D('user')->add();
+        if ($userid > 0) {
+
+            $maps = [];
+            $maps['det_uid'] = $userid;
+            $maps['det_tel'] = $_POST['u_username'];
+            $maps['det_name'] = $userid;
+
+            if(M('detail')->add($maps) > 0){
+                $this->success('恭喜您,注册成功!', U('Login/index'));
+            }else{
+                $this->error('用户详情添加失败....');
+            }
+           
         } else {
            $this->error('添加失败....');
         }
@@ -189,5 +203,24 @@ class RegController extends HomeController
             exit;
         }
         $this->display();
+    }
+
+    public function sendSms()
+    {
+        if (!IS_AJAX) {
+            $this->error('滚吧',U('Index/index'));
+            exit;
+        }
+
+        //正则验证 
+        $tel = I('post.val');
+        if(!preg_match('/^1[3|4|5|7|8][0-9]\d{8}$/', $tel)){
+            $this->ajaxReturn('err');
+            exit;
+        }else{
+            $sms = $this->shortMessage($tel);
+            $this->ajaxReturn($sms);
+        }
+
     }
 }
