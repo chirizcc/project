@@ -1,87 +1,89 @@
 <extend name="Public/layout"/>
 <block name="content">
-	<link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css">
-	<link rel="stylesheet" href="__PUBLIC__/css/read.css">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-2"></div>
-			<div class="col-md-8">
+    <link rel="stylesheet" href="__PUBLIC__/layui/css/layui.css">
+    <link rel="stylesheet" href="__PUBLIC__/css/read.css">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
 				<span class="layui-breadcrumb">
 				  <a href="<{:U('Home/Index/index')}>">首页</a>
 				  <a href=""><{$data['t_pname']}></a>
 				  <a href=""><{$data['t_name']}></a>
 				  <a><cite><{$data['b_name']}></cite></a>
 				</span>
-			</div>
-			<div class="col-md-2"></div>
-		</div>
-		<div style="height:10px;"></div>
-		<div class="row">			
-			<div class="col-md-2"></div>
-			<!-- <div col-md-1>主题：</div> -->
-			<div class="col-md-3">
-				<a href="javascript:void(0)" class="colorblock1" id="c1"></a>
-				<a href="javascript:void(0)" class="colorblock2" id="c2"></a>
-				<a href="javascript:void(0)" class="colorblock3" id="c3"></a>
-				<a href="javascript:void(0)" class="colorblock4" id="c4"></a>
-				<a href="javascript:void(0)" class="colorblock5" id="c5"></a>
-				<a href="javascript:void(0)" class="colorblock6" id="c6"></a>
-				<div style="clear: both;"></div>
-			</div>
-			<div col-md-1></div>
-			<div col-md-3>
-				<a href="javascript:void(0)"  class="btn btn-default" id="small">小</a>
-				<a href="javascript:void(0)"  class="btn btn-default" id="middle">中</a>
-				<a href="javascript:void(0)"  class="btn btn-default" id="big">大</a>
-			</div>
-			<div class="col-md-2"></div>
-		</div>
-		<div class="row">
-			<div class="col-md-2">
-			</div>
-			<div class="col-md-8">
-				<div class="readbox" id="readbox">
-					<div class="readboxhead">
-						<div class="h2 row"><{$data['cata_name']}></div>
-						<div class="row">
-							<div class="col-xs-5">小说：<{$data['b_name']}></div>
-							<div class="col-xs-3">作者：<{$data['b_author']}></div>
-							<div class="col-xs-2">字数：<{$content['num']}></div>
-						</div>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+        <div style="height:10px;"></div>
+        <div class="row">
+            <div class="col-md-2"></div>
+            <!-- <div col-md-1>主题：</div> -->
+            <div class="col-md-3">
+                <a href="javascript:void(0)" class="colorblock1" id="c1"></a>
+                <a href="javascript:void(0)" class="colorblock2" id="c2"></a>
+                <a href="javascript:void(0)" class="colorblock3" id="c3"></a>
+                <a href="javascript:void(0)" class="colorblock4" id="c4"></a>
+                <a href="javascript:void(0)" class="colorblock5" id="c5"></a>
+                <a href="javascript:void(0)" class="colorblock6" id="c6"></a>
+                <div style="clear: both;"></div>
+            </div>
+            <div col-md-1></div>
+            <div col-md-3>
+                <a href="javascript:void(0)" class="btn btn-default" id="small">小</a>
+                <a href="javascript:void(0)" class="btn btn-default" id="middle">中</a>
+                <a href="javascript:void(0)" class="btn btn-default" id="big">大</a>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+            </div>
+            <div class="col-md-8">
+                <div class="readbox" id="readbox">
+                    <div class="readboxhead">
+                        <div class="h2 row"><{$data['cata_name']}></div>
+                        <div class="row">
+                            <div class="col-xs-5">小说：<{$data['b_name']}></div>
+                            <div class="col-xs-3">作者：<{$data['b_author']}></div>
+                            <div class="col-xs-2">字数：<{$content['num']}></div>
+                        </div>
                         <div style="height: 5px"></div>
-						<div class="row">
+                        <div class="row">
                             <div class="col-xs-6">更新时间：2011-11-16 10:14:28</div>
                         </div>
-					</div>
-					<hr>
-					<!-- <div class="readcontent"> -->
+                    </div>
+                    <hr>
+                    <!-- <div class="readcontent"> -->
 						<pre class="readcontent" id="content">
                             <if condition="$content['con_content'] == null">无内容
-                            <else /><{$content['con_content']}>
+                            <else/><{$content['con_content']}>
                             </if>
                         </pre>
-					<!-- </div> -->
-					<hr>
-					<div class="readboxfooter">
-						<div class="row">
-							<center>	
+                    <!-- </div> -->
+                    <hr>
+                    <div class="readboxfooter">
+                        <div class="row">
+                            <center>
                                 <{$last}>
                                 <a href="javascript:void (0)" onclick="getCatalog()" class="btn btn-default">目录</a>
                                 <{$next}>
-							</center>
-						</div>
-					</div>
-				</div><!--readbox-->
-			</div><!--col-md-8-->
-			<div class="col-md-2"></div>
-		</div><!--row-->
+                            </center>
+                        </div>
+                    </div>
+                </div><!--readbox-->
+            </div><!--col-md-8-->
+            <div class="col-md-2"></div>
+        </div><!--row-->
+        <!--返回最上按钮-->
         <a href="#" class="btn btn-default btn-lg myReturn" title="返回最上">
             <i class="glyphicon glyphicon-eject"></i>
         </a>
 
+        <!--图灵聊天窗口-->
         <div class="tuling" id="tuling">
             <div class="panel panel-info">
-                <div class="panel-heading">看累了，跟图灵聊聊天</div>
+                <div class="panel-heading">看累了，跟图灵聊聊天 &nbsp; <span class="glyphicon glyphicon-remove" id="tuClose"></span></div>
                 <div class="panel-body" id="tuContent">
                     嘿，来跟我聊聊天
                 </div>
@@ -93,109 +95,132 @@
                 </span>
             </div><!-- /input-group -->
         </div>
-	</div>
-	    <!--[if !IE]> -->
-	    <script src="__PUBLIC__/js/jquery-2.0.3.min.js"></script>
-	    <!-- <![endif]-->
+    </div>
 
-	    <!--[if IE]>
-	    <script src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
-	    <![endif]-->
+    <!--分享按钮-->
+    <script>window._bd_share_config = {
+        "common": {
+            "bdSnsKey": {},
+            "bdText": "",
+            "bdMini": "1",
+            "bdMiniList": false,
+            "bdPic": "",
+            "bdStyle": "0",
+            "bdSize": "16"
+        }, "slide": {"type": "slide", "bdImg": "0", "bdPos": "right", "bdTop": "100.5"}
+    };
+    with (document)0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];</script>
 
-	    <!--[if !IE]> -->
-	    <script type="text/javascript">
-	        window.jQuery || document.write("<script src='__PUBLIC__/ace/assets/js/jquery-2.0.3.min.js'>"+"</"+"script>");
-	    </script>
-	    <!-- <![endif]-->
+    <!--[if !IE]> -->
+    <script src="__PUBLIC__/js/jquery-2.0.3.min.js"></script>
+    <!-- <![endif]-->
 
-	    <!--[if IE]>
-	    <script type="text/javascript">
-	        window.jQuery || document.write("<script src='__PUBLIC__/ace/assets/js/jquery-1.10.2.min.js'>"+"</"+"script>");
-	    </script>
-	    <![endif]-->
+    <!--[if IE]>
+    <script src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
+    <![endif]-->
 
-	    <script type="text/javascript">
-	        if("ontouchend" in document) document.write("<script src='__PUBLIC__/ace/assets/js/jquery.mobile.custom.min.js'>"+"</"+"script>");
-	    </script>
+    <!--[if !IE]> -->
+    <script type="text/javascript">
+        window.jQuery || document.write("<script src='__PUBLIC__/ace/assets/js/jquery-2.0.3.min.js'>" + "</" + "script>");
+    </script>
+    <!-- <![endif]-->
 
-	    <!--引入layui-->
-	    <script src="__PUBLIC__/layui/layui.js"></script>
-		<script>
-			layui.use('element', function(){
-			  var element = layui.element();
-			  
-			  //一些事件监听
-			  element.on('tab(demo)', function(data){
-			    console.log(data);
-			  });
-			});
+    <!--[if IE]>
+    <script type="text/javascript">
+        window.jQuery || document.write("<script src='__PUBLIC__/ace/assets/js/jquery-1.10.2.min.js'>" + "</" + "script>");
+    </script>
+    <![endif]-->
 
-			$('#c1').click(function(){
-				var col = $('#c1').css('background');
-				$('#readbox').css('background',col).css('color','black');
-				$('#content').css('background',col).css('color','black');
-			});
-			$('#c2').click(function(){
-				var col = $('#c2').css('background');
-				$('#readbox').css('background',col).css('color','white');
-				$('#content').css('background',col).css('color','white');
-			});
-			$('#c3').click(function(){
-				var col = $('#c3').css('background');
-				$('#readbox').css('background',col).css('color','black');
-				$('#content').css('background',col).css('color','black');
-			});
-			$('#c4').click(function(){
-				var col = $('#c4').css('background');
-				$('#readbox').css('background',col).css('color','black');
-				$('#content').css('background',col).css('color','black');
-			});
-			$('#c5').click(function(){
-				var col = $('#c5').css('background');
-				$('#readbox').css('background',col).css('color','black');
-				$('#content').css('background',col).css('color','black');
-			});
-			$('#c6').click(function(){
-				var col = $('#c6').css('background');
-				$('#readbox').css('background',col).css('color','black');
-				$('#content').css('background',col).css('color','black');
-			});
-			$('#small').click(function(){
-				$('#content').css('font-size','15px');
-			});
-			$('#middle').click(function(){
-				$('#content').css('font-size','18px');
-			});
-			$('#big').click(function(){
-				$('#content').css('font-size','20px');
-			});
+    <script type="text/javascript">
+        if ("ontouchend" in document) document.write("<script src='__PUBLIC__/ace/assets/js/jquery.mobile.custom.min.js'>" + "</" + "script>");
+    </script>
 
-            function getCatalog()
-            {
-                layui.use('layer', function(){
-                    var layer = layui.layer;
+    <!--引入layui-->
+    <script src="__PUBLIC__/layui/layui.js"></script>
+    <script>
+        layui.use('element', function () {
+            var element = layui.element();
 
-                    layer.open({
-                        type: 1,
-                        title:'目录',
-                        skin: 'layui-layer-rim', //加上边框
-                        //area: ['420px', '240px'], //宽高
-                        content: '<ul style="padding: 5px"><{$catalog}></ul>'
-                    });
+            //一些事件监听
+            element.on('tab(demo)', function (data) {
+                console.log(data);
+            });
+        });
+
+        $('#c1').click(function () {
+            var col = $('#c1').css('background');
+            $('#readbox').css('background', col).css('color', 'black');
+            $('#content').css('background', col).css('color', 'black');
+        });
+        $('#c2').click(function () {
+            var col = $('#c2').css('background');
+            $('#readbox').css('background', col).css('color', 'white');
+            $('#content').css('background', col).css('color', 'white');
+        });
+        $('#c3').click(function () {
+            var col = $('#c3').css('background');
+            $('#readbox').css('background', col).css('color', 'black');
+            $('#content').css('background', col).css('color', 'black');
+        });
+        $('#c4').click(function () {
+            var col = $('#c4').css('background');
+            $('#readbox').css('background', col).css('color', 'black');
+            $('#content').css('background', col).css('color', 'black');
+        });
+        $('#c5').click(function () {
+            var col = $('#c5').css('background');
+            $('#readbox').css('background', col).css('color', 'black');
+            $('#content').css('background', col).css('color', 'black');
+        });
+        $('#c6').click(function () {
+            var col = $('#c6').css('background');
+            $('#readbox').css('background', col).css('color', 'black');
+            $('#content').css('background', col).css('color', 'black');
+        });
+        $('#small').click(function () {
+            $('#content').css('font-size', '15px');
+        });
+        $('#middle').click(function () {
+            $('#content').css('font-size', '18px');
+        });
+        $('#big').click(function () {
+            $('#content').css('font-size', '20px');
+        });
+
+        function getCatalog() {
+            layui.use('layer', function () {
+                var layer = layui.layer;
+
+                layer.open({
+                    type: 1,
+                    title: '目录',
+                    skin: 'layui-layer-rim', //加上边框
+                    //area: ['420px', '240px'], //宽高
+                    content: '<ul style="padding: 5px"><{$catalog}></ul>'
+                });
+            });
+        }
+
+        $('#tlSend').click(function () {
+            var info = $('#tlInput').val();
+            if (info != '') {
+                $.post('http://www.tuling123.com/openapi/api', {
+                    'key': 'd75e2169a9394953bbfb5a41f2171f96',
+                    'info': info,
+                    'userid': '<{:session("home_id")}>'
+                }, function (data) {
+                    console.log(data);
+                    //if(data.code == 100000) {
+                    $('#tuContent').html(data.text);
+                    //}
                 });
             }
+        });
 
-            $('#tlSend').click(function() {
-                var info = $('#tlInput').val();
-                if(info != '') {
-                    $.post('http://www.tuling123.com/openapi/api',{'key':'d75e2169a9394953bbfb5a41f2171f96','info':info,'userid':'<{:session("home_id")}>'}, function(data) {
-                        console.log(data);
-                        //if(data.code == 100000) {
-                            $('#tuContent').html(data.text);
-                        //}
-                    });
-                }
-            });
-		</script>
+        $('#tuClose').click(function() {
+            $('#tuContent').html('好的，再见了');
+            setTimeout("$('#tuling').css('display', 'none')", 500);
+        });
+    </script>
 
 </block>
