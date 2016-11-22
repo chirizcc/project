@@ -150,7 +150,7 @@
                                             <label class="layui-form-label">邮箱</label>
                                             <div class="layui-input-inline">
                                                 <input name="u_username" lay-verify="email" placeholder="请输入邮箱"
-                                                       autocomplete="off" class="layui-input" type="text" id="username">
+                                                       autocomplete="off" class="layui-input" type="text" id="username1">
                                             </div>
                                         </div>
 
@@ -266,6 +266,8 @@
                 return false
             }
 
+            console.log(vCode);
+            console.log(vName);
             if (vCode == 1 && vName == 1) {
                 return true
             }
@@ -273,8 +275,8 @@
             return false;
         }
 
-        $('#username').blur(function () {
-            var username = $('#username').val();
+        $('#username1').blur(function () {
+            var username = $('#username1').val();
             if (username != '') {
                 $.post('<{:U("Home/Reg/usernametest")}>', {'val': username}, function (data) {
                     if (data != true) {
