@@ -100,9 +100,11 @@
         </div>
 
         <!-- 新华字典查询 -->
-        <div class="Dic" style="width: 210px;position: fixed;top: 100px;right: 30px;">
+        <div class="Dic" style="width: 210px;position: fixed;top: 100px;right: 30px;" id="dic">
             <div class="panel panel-info">
-                <div class="panel-heading" id="a">新华字典 </div>
+                <div class="panel-heading" id="a">新华字典 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <span class="glyphicon glyphicon-remove" id="dicClose"></span>
+                </div>
                 <div class="panel-body" id="dictionary">
                     请在输入框输入需要查询的字
                 </div>
@@ -116,6 +118,24 @@
             </div>
         </div><!--Dictionary-->
 
+        <!-- 历史上的今天 -->
+        <div class="his" style="width: 210px;position: fixed;top: 400px;left: 20px;" id="his">
+            <div class="panel panel-info">
+                <div class="panel-heading" id="a">历史上的今天 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <span class="glyphicon glyphicon-remove" id="hisClose"></span>
+                </div>
+                <div class="panel-body" id="history">
+                    <{$his[0]->date}><br>
+                    <b><{$his[0]->title}></b><br>
+                    <hr>
+                    <{$his[1]->date}><br>
+                    <b><{$his[1]->title}></b><br>
+                    <hr>
+                    <{$his[2]->date}><br>
+                    <b><{$his[2]->title}></b><br>
+                </div>
+            </div>
+        </div><!--Dictionary-->
     </div><!--container-->
 
     <!--分享按钮-->
@@ -160,6 +180,8 @@
     <script src="__PUBLIC__/layui/layui.js"></script>
 
     <script type="text/javascript">
+        var i = 0;
+
         layui.use('element', function () {
             var element = layui.element();
 
@@ -244,20 +266,28 @@
             setTimeout("$('#tuling').css('display', 'none')", 500);
         });
 
+        
         //新华字典
         $('#dicCommit').click(function(){
             $.ajax({
-            url: "<{:U('Read/dictionary')}>",
-            data: "val=" + $('#dicInput').val(),
-            type: 'POST',
-            success: function (data) {
-                if(data == 'err'){
-                     $('#dictionary').html('请输入单个汉字');
-                }else{
-                    $('#dictionary').html(data);
-                } 
-            }
-        })
+                url: "<{:U('Read/dictionary')}>",
+                data: "val=" + $('#dicInput').val(),
+                type: 'POST',
+                success: function (data) {
+                    if(data == 'err'){
+                         $('#dictionary').html('请输入单个汉字');
+                    }else{
+                        $('#dictionary').html(data);
+                    } 
+                }
+            })
+        });
+        $('#dicClose').click(function() {
+            $('#dic').css('display', 'none');
+        });
+
+        $('#hisClose').click(function() {
+            $('#his').css('display', 'none');
         });
     </script>
 

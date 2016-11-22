@@ -113,6 +113,11 @@ class ReadController extends HomeController
         // exit;
 
 
+        //历史上的今天
+        $his = $this->his();
+        // var_dump($his);exit;
+
+        $this->assign('his',$his);
         $this->assign('last',$last);
         $this->assign('next',$next);
         $this->assign('catalog',$str);
@@ -122,7 +127,7 @@ class ReadController extends HomeController
 
 
 	}
-
+    //新华字典接口
     public function dictionary()
     {
         $info = I('post.val');
@@ -147,7 +152,33 @@ class ReadController extends HomeController
              $this->ajaxReturn($xiangjie);
          }else{
              $this->ajaxReturn('err');
-         }
-       
+         } 
     }
+
+    //历史上的今天
+    protected function his()
+    {
+        //初始化
+        $curl = curl_init();
+        $apikey = "c0ec99b4b714350ba073720e122fab37";
+        $m = date('m',time());
+        $m = ltrim($m,'0');
+        $d = date('d',time());
+        $date = $m.'/'.$d;
+        //URL 设置
+        curl_setopt($curl, CURLOPT_URL, 'http://v.juhe.cn/todayOnhistory/queryEvent.php?key='.$apikey.'&date='.$date);
+        //将 curl_exec() 获取的信息以 文件流的形式返回,而不是直接输出
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        //curl执行
+        $data = curl_exec($curl);
+        //关闭curl
+        curl_close($curl);
+
+        //处理JSON数据
+        $jsonObj = json_decode($data);
+        //提取文章列表
+        $today = $jsonObj->result;
+        return $today;
+    }
+
 }
