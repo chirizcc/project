@@ -8,42 +8,42 @@
 		private $size = 6;
 		public function index()
 		{
-			$p = $_GET['p'];
-        if ($p == null) {
-            $p = 0;
-        }
+			$p = I('get.p/d');
+	        if ($p == null) {
+	            $p = 0;
+	        }
 
-        $map = [];
-        if(!empty($search)) {
-            $map['b_name'] =  ['like','%'.$search.'%'];
-        }
+	        $map = [];
+	        if(!empty($search)) {
+	            $map['b_name'] =  ['like','%'.$search.'%'];
+	        }
 
-			// 查询作者的小说
-        $data = M('book')->where($map)->where('b_uid ='.session('home_id'))->order('b_id desc')->page($p, $this->size)->select();
-        $count = M('book')->where($map)->count();// 查询满足要求的总记录数
+				// 查询作者的小说
+	        $data = M('book')->where($map)->where('b_uid ='.session('home_id'))->order('b_id desc')->page($p, $this->size)->select();
+	        $count = M('book')->where($map)->count();// 查询满足要求的总记录数
 
 
-        $Page = new \Org\Util\MyPage($count, $this->size);
+	        $Page = new \Org\Util\MyPage($count, $this->size);
 
-        if(!empty($search)) {
-            //分页跳转的时候保证查询条件
-            foreach($map as $key=>$val) {
-                $Page->parameter[$key] = urlencode($val);
-            }
-        }
+	        if(!empty($search)) {
+	            //分页跳转的时候保证查询条件
+	            foreach($map as $key=>$val) {
+	                $Page->parameter[$key] = urlencode($val);
+	            }
+	        }
 
-        $show = $Page->show();
-        $this->assign('list', $data);
-        $this->assign('page', $show);
-        $this->display();
+	        $show = $Page->show();
+	        $this->assign('list', $data);
+	        $this->assign('page', $show);
+	        $this->display();
 
-		}
+			}
 
-		public function add()
-		{	
-			$data = M('type')->where('t_pid=0')->order('t_id desc')->select();
-        	$this->assign('list', $data);
-			$this->display();
+			public function add()
+			{	
+				$data = M('type')->where('t_pid=0')->order('t_id desc')->select();
+	        	$this->assign('list', $data);
+				$this->display();
 		}
 
 		// 书籍类别联动

@@ -9,7 +9,7 @@ class BookController extends AdminController
 
     public function index($search = null)
     {
-        $p = $_GET['p'];
+        $p = I('get.p/d');
         if ($p == null) {
             $p = 0;
         }
