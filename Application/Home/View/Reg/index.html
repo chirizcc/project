@@ -85,7 +85,7 @@
                              <div class="row">
                                 <div class="col-md-10 col-md-offset-2">
                                     <form action="<{:U('Home/Reg/reg')}>" method="post"
-                                          class="layui-form layui-form-pane" onsubmit="return judge()">
+                                          class="layui-form layui-form-pane" onsubmit="return judged()">
                                         <div class="layui-form-item">
                                             <label class="layui-form-label">手机号</label>
                                             <div class="layui-input-inline">
@@ -275,8 +275,45 @@
             return false;
         }
 
+        function judged() {
+            var pwd1 = $('#passwd1').val();
+            var pwd2 = $('#passwd2').val();
+            if (pwd1 != pwd2) {
+                layui.use('layer', function () {
+                    var layer = layui.layer;
+                    layer.tips('密码与确认密码不相同', '#pwd2');
+                });
+                return false
+            }
+
+            console.log(vCode);
+            console.log(vName);
+            if (vCode == 1 && vName == 1) {
+                return true
+            }
+
+            return false;
+        }
+
         $('#username1').blur(function () {
             var username = $('#username1').val();
+            if (username != '') {
+                $.post('<{:U("Home/Reg/usernametest")}>', {'val': username}, function (data) {
+                    if (data != true) {
+                        layui.use('layer', function () {
+                            var layer = layui.layer;
+                            layer.tips('该账号已被注册', '#username1');
+                        });
+                        vName = 0;
+                    } else {
+                        vName = 1;
+                    }
+                });
+            }
+        });
+
+        $('#username').blur(function () {
+            var username = $('#username').val();
             if (username != '') {
                 $.post('<{:U("Home/Reg/usernametest")}>', {'val': username}, function (data) {
                     if (data != true) {
