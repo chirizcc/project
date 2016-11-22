@@ -1,5 +1,6 @@
-
 <?php
+
+namespace Home\Verdor\Sms;
 
 class REST {
 	private $AccountSid;
@@ -159,37 +160,37 @@ class REST {
    function accAuth()
    {
        if($this->ServerIP==""){
-            $data = new stdClass();
+            $data = new \stdClass();
             $data->statusCode = '172004';
             $data->statusMsg = 'IP为空';
           return $data;
         }
         if($this->ServerPort<=0){
-            $data = new stdClass();
+            $data = new \stdClass();
             $data->statusCode = '172005';
             $data->statusMsg = '端口错误（小于等于0）';
           return $data;
         }
         if($this->SoftVersion==""){
-            $data = new stdClass();
+            $data = new \stdClass();
             $data->statusCode = '172013';
             $data->statusMsg = '版本号为空';
           return $data;
         } 
         if($this->AccountSid==""){
-            $data = new stdClass();
+            $data = new \stdClass();
             $data->statusCode = '172006';
             $data->statusMsg = '主帐号为空';
           return $data;
         }
         if($this->AccountToken==""){
-            $data = new stdClass();
+            $data = new \stdClass();
             $data->statusCode = '172007';
             $data->statusMsg = '主帐号令牌为空';
           return $data;
         }
         if($this->AppId==""){
-            $data = new stdClass();
+            $data = new \stdClass();
             $data->statusCode = '172012';
             $data->statusMsg = '应用ID为空';
           return $data;

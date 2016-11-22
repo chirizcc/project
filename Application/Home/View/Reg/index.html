@@ -80,7 +80,67 @@
                         <li>邮箱注册</li>
                     </ul>
                     <div class="layui-tab-content" style="height: 100px;">
-                        <div class="layui-tab-item layui-show">1</div>
+                        <!-- 手机 -->
+                        <div class="layui-tab-item layui-show">
+                             <div class="row">
+                                <div class="col-md-10 col-md-offset-2">
+                                    <form action="<{:U('Home/Reg/reg')}>" method="post"
+                                          class="layui-form layui-form-pane" onsubmit="return judge()">
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">手机号</label>
+                                            <div class="layui-input-inline">
+                                                <input name="u_username" lay-verify="phone" placeholder="请输入手机号码"
+                                                       autocomplete="off" class="layui-input" type="text" id="username">
+                                            </div>
+                                        </div>
+
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">密码</label>
+                                            <div class="layui-input-inline">
+                                                <input name="u_password" lay-verify="pass" placeholder="请输入密码"
+                                                       autocomplete="off" class="layui-input" type="password" id="pwd1">
+                                            </div>
+                                        </div>
+
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">确认密码</label>
+                                            <div class="layui-input-inline">
+                                                <input name="u_password2" lay-verify="pass" placeholder="请确认密码"
+                                                       autocomplete="off" class="layui-input" type="password" id="pwd2">
+                                            </div>
+                                        </div>
+
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">验证码</label>
+                                            <div class="layui-input-inline">
+                                                <input name="phonecode" lay-verify="required" placeholder="请输入验证码"
+                                                       autocomplete="off" class="layui-input" type="text" id="phonecode">
+                                            </div>
+                                            <div class="code"><button class="btn btn-success" id="sendMessage">发送验证码</button></div>
+                                        </div>
+
+                                        <div class="layui-form-item">
+                                            <div class="layui-input-block">
+                                                <button class="layui-btn layui-btn-big" lay-submit lay-filter="*">立即注册
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        <style>
+                                            .layui-form-pane .layui-form-label {
+                                                width: 100px;
+                                            }
+
+                                            .code img {
+                                                height: 37px;
+                                                border: 1px solid #E6E6E6;
+                                            }
+                                        </style>
+                                    </form>
+                                </div>
+                            </div>                           
+                        </div>
+                        <!-- 邮箱 -->
                         <div class="layui-tab-item">
                             <div class="row">
                                 <div class="col-md-10 col-md-offset-2">
@@ -168,129 +228,11 @@
     <script type="text/javascript" src="__PUBLIC__/layui/layui.js"></script>
 
     <script>
-        /*// 点击验证码图片刷新
-         var u = null;
-         var p = null;
-         var c = null;
-         var codepic = $('#codepic');
-         var src_img = codepic.attr('src');
-         codepic.click(function () {
-         $(this).attr('src', src_img + '?yzm=' + Math.random());
-         console.log($(this).attr('src'));
-         });
-         //验证码ajax验证
-         $('#inputCode').focusout(function () {
-         $.ajax({
-         url: "<{:U('Reg/codetest')}>",
-         data: "val=" + inputCode.value,
-         type: 'POST',
-         success: function (data) {
-         if (data !== 'true') {
-         //小tips
-         layer.tips('验证码出错啦', '#inputCode', {
-         tips: [1, '#3595CC'],
-         time: 4000
-         });
-         $('#btn').attr('disabled', 'disabled');
-         } else {
-         layer.tips('验证码正确', '#inputCode', {
-         tips: [1, 'lightgreen'],
-         time: 4000
-         });
-         $('#btn').attr('disabled', 'disabled');
-         c = true;
-         // $('#btn').removeAttr('disabled');
-         }
-         }
-         })
-         })
-
-         //用户名ajax验证
-         $('#Username').focusout(function () {
-         $.ajax({
-         url: "<{:U('Reg/usernametest')}>",
-         data: "val=" + Username.value,
-         type: 'POST',
-         success: function (data) {
-         switch (data) {
-         case "null":
-         layer.tips('用户名不能为空', '#Username');
-         $('#btn').attr('disabled', 'disabled');
-         break;
-         case "err":
-         layer.tips('用户名格式不正确', '#Username');
-         $('#btn').attr('disabled', 'disabled');
-         break;
-         case "false":
-         layer.tips('用户名已存在', '#Username');
-         $('#btn').attr('disabled', 'disabled');
-         break;
-         case "true":
-         layer.tips('恭喜您，用户名可以使用', '#Username');
-         u = true;
-         break;
-         default:
-         break;
-         }
-         }
-         })
-         })
-
-         //密码ajax验证
-         $('#inputPassword2').focusout(function () {
-         $.ajax({
-         url: "<{:U('Reg/passwordtest')}>",
-         data: "val1=" + inputPassword1.value + "&val2=" + inputPassword2.value,
-         type: 'POST',
-         success: function (data) {
-         switch (data) {
-         case "null1":
-         layer.tips('密码不能为空', '#inputPassword1');
-         $('#btn').attr('disabled', 'disabled');
-         break;
-         case "null2":
-         layer.tips('密码不能为空', '#inputPassword2');
-         $('#btn').attr('disabled', 'disabled');
-         break;
-         case "err":
-         layer.tips('密码格式不正确', '#inputPassword2');
-         $('#btn').attr('disabled', 'disabled');
-         break;
-         case "false":
-         layer.tips('两次密码不一致', '#inputPassword2');
-         $('#btn').attr('disabled', 'disabled');
-         break;
-         case "true":
-         layer.tips('密码可以使用', '#inputPassword2');
-         p = true;
-         break;
-         default:
-         break;
-
-         }
-         }
-         })
-         })
-
-         //判断是否全部正确
-         setInterval(demo, 100);
-         function demo() {
-         if (u == true && p == true && c == true) {
-         $('#btn').removeAttr('disabled');
-         } else {
-         $('#btn').attr('disabled', 'disabled');
-         }
-         }
-
-
-         $('#btn').click(function () {
-         //加载层
-         var index = layer.load(0, {shade: false}); //0代表加载的风格，支持0-2
-
-         })*/
-
         var vName = 0;
         var vCode = 0;
+        var m = 60;
+        var timer = null;
+        var v = null;
 
         layui.use('element', function () {
             var element = layui.element();
@@ -362,5 +304,52 @@
                 }
             });
         });
+
+        //手机号码ajax验证
+        $('#sendMessage').click(function () {
+            // console.log($('#username').val());
+            $.ajax({
+                url: "<{:U('Reg/sendSms')}>",
+                data: "val=" + $('#username').val(),
+                type: 'POST',
+                success: function (data) {
+                    if(data == 'err'){
+                         layer.tips('手机号不正确!', '#username', {tips: [1, '#0FA6D8']});
+                    }else{
+                        v = data;
+                        console.log(data); 
+                        $('#sendMessage').attr('disabled','disabled');
+                        $('#sendMessage').html('60秒后重新发送');
+                        timer = setInterval(demo,1000);
+                    }
+                }
+            })
+        }) 
+
+        //定时函数
+        function demo(){
+            if(m<0){
+                clearInterval(timer);
+                $('#sendMessage').removeAttr('disabled');
+                $('#sendMessage').html('发送验证码');
+                return;
+            }
+
+            $('#sendMessage').html(m+'秒后重新发送');
+            m --;    
+            
+        }   
+
+        //判断验证码是否一致
+        $('#phonecode').blur(function () {
+            if(v == $('#phonecode').val()){
+                vCode = 1;
+                layer.tips('恭喜，验证码正确', '#phonecode');
+            }else{
+                vCode = 0;
+                layer.tips('验证码不正确!', '#phonecode', {tips: [1, '#0FA6D8']});
+            }
+        })
+         
     </script>
 </block>

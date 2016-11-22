@@ -10,8 +10,8 @@ class HistoryController extends HomeController
 		if(empty(session('home_id'))){
 			$this->redirect('Index/index');
 		}
-
-		$data = M('history')->table('zd_history as h,zd_book as b')->field('b.b_img img,h.h_time time,b.b_name bookname,b.b_author author,b.b_id id')->order(array('h_time'=>'desc'))->where('h.h_bid = b.b_id')->select();
+		$id = session('home_id');
+		$data = M('history')->table('zd_history as h,zd_book as b')->field('b.b_img img,h.h_time time,b.b_name bookname,b.b_author author,b.b_id id')->order(array('h_time'=>'desc'))->where('h.h_bid = b.b_id and h.h_uid ='.$id)->select();
 		// var_dump($data);exit;
 		$this->assign('data',$data);
 		$this->display();
