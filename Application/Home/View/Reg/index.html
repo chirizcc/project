@@ -98,7 +98,7 @@
                                             <label class="layui-form-label">密码</label>
                                             <div class="layui-input-inline">
                                                 <input name="u_password" lay-verify="pass" placeholder="请输入密码"
-                                                       autocomplete="off" class="layui-input" type="password" id="pwd1">
+                                                       autocomplete="off" class="layui-input" type="password" id="passwd1">
                                             </div>
                                         </div>
 
@@ -106,7 +106,7 @@
                                             <label class="layui-form-label">确认密码</label>
                                             <div class="layui-input-inline">
                                                 <input name="u_password2" lay-verify="pass" placeholder="请确认密码"
-                                                       autocomplete="off" class="layui-input" type="password" id="pwd2">
+                                                       autocomplete="off" class="layui-input" type="password" id="passwd2">
                                             </div>
                                         </div>
 
@@ -319,7 +319,7 @@
                          layer.tips('手机号不正确!', '#username', {tips: [1, '#0FA6D8']});
                     }else{
                         v = data;
-                        console.log(data); 
+                        // console.log(data); 
                         $('#sendMessage').attr('disabled','disabled');
                         $('#sendMessage').html('60秒后重新发送');
                         timer = setInterval(demo,1000);
@@ -349,7 +349,7 @@
                 layer.tips('恭喜，验证码正确', '#phonecode');
             }else{
                 vCode = 0;
-                layer.tips('验证码不正确!', '#phonecode', {tips: [1, '#0FA6D8']});
+                // layer.tips('验证码不正确!', '#phonecode', {tips: [1, '#0FA6D8']});
             }
         })
          
