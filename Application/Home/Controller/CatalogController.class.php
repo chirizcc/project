@@ -19,7 +19,7 @@
 		public function index($b_id = null,$search = null)
 		{	
 
-			$p = I('get.id/d');
+			$p = I('get.p/d');
 	        if ($p == null) {
 	            $p = 0;
 	        }
