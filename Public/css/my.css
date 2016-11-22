@@ -41,3 +41,12 @@
     border: 1px dotted #DCEBF7;
     padding: 10px;
 }
+
+.tuling{
+    width: 200px;
+    /*height: 300px;*/
+    /*border: 1px solid red;*/
+    position: fixed;
+    top:100px;
+    left: 20px;
+}

@@ -65,10 +65,8 @@
 					<div class="readboxfooter">
 						<div class="row">
 							<center>	
-                                <!--<a href="#" class="btn btn-default">上一章</a>-->
                                 <{$last}>
                                 <a href="javascript:void (0)" onclick="getCatalog()" class="btn btn-default">目录</a>
-                                <!--<a href="#" class="btn btn-default">下一章</a>-->
                                 <{$next}>
 							</center>
 						</div>
@@ -80,6 +78,21 @@
         <a href="#" class="btn btn-default btn-lg myReturn" title="返回最上">
             <i class="glyphicon glyphicon-eject"></i>
         </a>
+
+        <div class="tuling" id="tuling">
+            <div class="panel panel-info">
+                <div class="panel-heading">看累了，跟图灵聊聊天</div>
+                <div class="panel-body" id="tuContent">
+                    嘿，来跟我聊聊天
+                </div>
+            </div>
+            <div class="input-group">
+                <input type="text" class="form-control" id="tlInput">
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="button" id="tlSend">发送</button>
+                </span>
+            </div><!-- /input-group -->
+        </div>
 	</div>
 	    <!--[if !IE]> -->
 	    <script src="__PUBLIC__/js/jquery-2.0.3.min.js"></script>
@@ -171,6 +184,18 @@
                     });
                 });
             }
+
+            $('#tlSend').click(function() {
+                var info = $('#tlInput').val();
+                if(info != '') {
+                    $.post('http://www.tuling123.com/openapi/api',{'key':'d75e2169a9394953bbfb5a41f2171f96','info':info,'userid':'<{:session("home_id")}>'}, function(data) {
+                        console.log(data);
+                        //if(data.code == 100000) {
+                            $('#tuContent').html(data.text);
+                        //}
+                    });
+                }
+            });
 		</script>
 
 </block>
