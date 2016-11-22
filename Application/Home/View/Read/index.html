@@ -36,6 +36,7 @@
             </div>
             <div class="col-md-2"></div>
         </div>
+
         <div class="row">
             <div class="col-md-2">
             </div>
@@ -73,7 +74,9 @@
                     </div>
                 </div><!--readbox-->
             </div><!--col-md-8-->
-            <div class="col-md-2"></div>
+            <div class="col-md-2">
+                                    
+            </div>
         </div><!--row-->
         <!--返回最上按钮-->
         <a href="#" class="btn btn-default btn-lg myReturn" title="返回最上">
@@ -95,7 +98,25 @@
                 </span>
             </div><!-- /input-group -->
         </div>
-    </div>
+
+        <!-- 新华字典查询 -->
+        <div class="Dic" style="width: 210px;position: fixed;top: 100px;right: 30px;">
+            <div class="panel panel-info">
+                <div class="panel-heading" id="a">新华字典 </div>
+                <div class="panel-body" id="dictionary">
+                    请在输入框输入需要查询的字
+                </div>
+
+                <div class="input-group">
+                    <input type="text" class="form-control" id="dicInput">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button" id="dicCommit">查询</button>
+                    </span>
+                </div>
+            </div>
+        </div><!--Dictionary-->
+
+    </div><!--container-->
 
     <!--分享按钮-->
     <script>window._bd_share_config = {
@@ -137,7 +158,8 @@
 
     <!--引入layui-->
     <script src="__PUBLIC__/layui/layui.js"></script>
-    <script>
+
+    <script type="text/javascript">
         layui.use('element', function () {
             var element = layui.element();
 
@@ -220,6 +242,22 @@
         $('#tuClose').click(function() {
             $('#tuContent').html('好的，再见了');
             setTimeout("$('#tuling').css('display', 'none')", 500);
+        });
+
+        //新华字典
+        $('#dicCommit').click(function(){
+            $.ajax({
+            url: "<{:U('Read/dictionary')}>",
+            data: "val=" + $('#dicInput').val(),
+            type: 'POST',
+            success: function (data) {
+                if(data == 'err'){
+                     $('#dictionary').html('请输入单个汉字');
+                }else{
+                    $('#dictionary').html(data);
+                } 
+            }
+        })
         });
     </script>
 
