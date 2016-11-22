@@ -7,7 +7,7 @@ class PromodeController extends AdminController
 {	
 	public function index($search = null)
 	{	//如果 分页传过来参数为空，默认第一页
-		$p = $_GET['p'];
+		$p = I('get.p/d');
         if ($p == null) {
             $p = 0;
         }
@@ -40,7 +40,7 @@ class PromodeController extends AdminController
 
 	public function pro($search = null) 
 	{	//如果 分页传过来参数为空，默认第一页
-		$p = $_GET['p'];
+		$p = I('get.p/d');
         if ($p == null) {
             $p = 0;
         }
