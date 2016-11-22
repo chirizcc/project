@@ -6,6 +6,15 @@
 	class AuthoreditController extends JudgeController
 	{
 		private $size = 6;
+
+		public function __construct() 
+		{
+			parent::__construct();
+			$type=M('user')->where('u_id = '.session('home_id'))->field('u_istype')->find();
+	        if($type!=1) {	           
+	            $this->error('Home/Author/index','请先申请成为作者');	            
+	        }
+		}
 		public function index()
 		{
 			$p = I('get.p/d');
