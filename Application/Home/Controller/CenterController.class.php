@@ -131,4 +131,70 @@ class CenterController extends JudgeController
         $path = './Uploads/' . $url;
         unlink($path);
     }
+
+    public function changeEmail()
+    {
+        $data = [
+            'code' => 1,
+            'msg' => '',
+        ];
+        $email = I('post.email');
+        $res = M('detail')->where(['det_uid' => session('home_id')])->field('det_email')->find();
+        $oldEmail = $res['det_email'];
+
+        if ($email == $oldEmail) {
+            $data['msg'] = '新邮箱与旧邮箱相同，无需修改！';
+            $this->ajaxReturn($data);
+        }
+
+        $wait = D('wait');
+        $wData = ['w_uid' => session('home_id'), 'w_email' => $email, 'w_status' => 1];
+        if ($wait->create($wData)) {
+            $wid = $wait->add();
+            if ($wid) {
+                $title = '更改邮箱验证';
+                // 发送到邮箱的链接采用base64加密
+                $content = '尊敬的用户' . session('home_name') . ': 您正在更改你的邮箱，您可以通过点击以下链接完成操作: <a href="' . U('Home/Center/activa', ['w_id' => base64_encode($wid)], 'html', true) . '">' . U('Home/Center/activa', ['w_id' => base64_encode($wid)], 'html', true) . '</a>';
+                if ($this->sendEmail($email, $title, $content)) {
+                    $data['code'] = 0;
+                    $data['msg'] = '邮件发送成功!请前往您的邮箱完成后面的操作!';
+                } else {
+                    $data['msg'] = '邮件发送失败，请稍后再试！';
+                }
+            } else {
+                $data['msg'] = '邮件发送失败，请稍后再试！';
+            }
+        } else {
+            $data['msg'] = '邮件发送失败，请稍后再试！';
+        }
+
+        $this->ajaxReturn($data);
+    }
+
+    /**
+     * 修改邮箱时邮箱里的链接处理
+     * @param $w_id wait表的主键
+     */
+    public function activa($w_id = null)
+    {
+        if(empty($w_id)) {
+            $this->redirect('Home/Index/index');
+        }
+
+        $w_id =  base64_decode($w_id);
+        $res = D('wait')->where(['w_id' => $w_id, 'w_status' => 1])->find();
+        if(!$res) {
+            $this->error('验证出错！', U('Home/Index/index'));
+        }
+
+        $num = D('detail')->where(['det_uid' => $res['w_uid']])->save(['det_email' => $res['w_email']]);
+        D('wait')->where(['w_id' => $w_id])->delete();
+
+        if($num) {
+            $this->success('修改邮箱成功!', U('Home/Center/index'));
+        } else {
+            $this->success('修改邮箱失败!请稍后再试', U('Home/Center/index'));
+        }
+
+    }
 }
