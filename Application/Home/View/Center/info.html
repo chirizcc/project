@@ -2,7 +2,8 @@
 <block name="content">
     <div>
         <fieldset class="layui-elem-field layui-field-title">
-            <legend>个人信息&nbsp;<a href="<{:U('Home/Center/edit')}>" class="btn btn-info glyphicon glyphicon-pencil"style="margin-bottom: 4px;" title="编辑"></a></legend>
+            <legend>个人信息&nbsp;<a href="<{:U('Home/Center/edit')}>" class="btn btn-info glyphicon glyphicon-pencil"
+                                 style="margin-bottom: 4px;" title="编辑"></a></legend>
             <div class="row my-info-content">
                 <div class="col-md-6 col-sm-8" style="margin-left: 10px">
                     <table class="myInfo" cellpadding="3px" cellspacing="0">
@@ -48,11 +49,13 @@
                                         <{$data['det_tel']}>
                                         <button class="layui-btn layui-btn-mini layui-btn-disabled">
                                             <if condition="$data['det_tel'] eq null ">未验证
-                                                <else /> 已验证
-                                            </if>   
+                                                <else/>
+                                                已验证
+                                            </if>
                                         </button>
-                                        <button class="layui-btn layui-btn-mini layui-btn-normal" id="teledit">修改</button>
 
+                                        <button class="layui-btn layui-btn-mini layui-btn-normal" id="teledit">修改</button>
+                                        
                                     </td>
                                 </tr>
                                 <tr>
@@ -61,10 +64,13 @@
                                         <{$data['det_email']}>
                                         <button class="layui-btn layui-btn-mini layui-btn-disabled">
                                             <if condition="$data['det_email'] eq null ">未验证
-                                                <else /> 已验证
+                                                <else/>
+                                                已验证
                                             </if>
                                         </button>
-                                        <button class="layui-btn layui-btn-mini layui-btn-normal" onclick="changeEmail()">修改</button>
+                                        <button class="layui-btn layui-btn-mini layui-btn-normal"
+                                                onclick="changeEmail()">修改
+                                        </button>
 
                                     </td>
                                 </tr>
@@ -135,21 +141,39 @@
     var timer = null;
     var v = null;
         function changeEmail() {
-            layui.use('layer', function(){
+            layui.use('layer', function () {
                 var layer = layui.layer;
 
                 // 弹出窗口
                 layer.open({
-                    closeBtn:0,
+                    closeBtn: 0,
                     btn: ['确认', '取消'], //可以无限个按钮
+                    yes: function () {
+                        var email = $('#emailInput').val();
+                        if (!email.match(/^[a-z0-9]+([._\\-]*[a-z0-9])*@([a-z0-9]+[-a-z0-9]*[a-z0-9]+.){1,63}[a-z0-9]+$/)) {
+                            layer.msg('邮箱格式不正确');
+                            return;
+                        }
+                        var load = layer.load();
+                        $.post('<{:U("Home/Center/changeEmail")}>', {'email': email}, function (data) {
+                            if (data.code == 1) {
+                                layer.close(load);
+                                layer.msg(data.msg);
+                            } else {
+                                layer.close(load);
+                                layer.msg(data.msg);
+                                setTimeout('layer.closeAll()', 2000);
+                            }
+                        });
+                    },
                     type: 1,
-                    title:'修改邮箱',
+                    title: '修改邮箱',
                     content: '<div class="col-md-10 col-md-offset-1">' +
                     '<div class="sp-10"></div>' +
                     '<div class="form-group" >' +
                     '<div class="input-group">' +
                     '<div class="input-group-addon">邮箱</div>' +
-                    '<input class="form-control" type="email" placeholder="请输入邮箱" value="<{$data['det_email']}>"></div>' +
+                    '<input class="form-control" type="email" placeholder="请输入邮箱" value="<{$data['det_email']}>" id="emailInput"></div>' +
                     '</div>' +
                     '</div>',
                 });
