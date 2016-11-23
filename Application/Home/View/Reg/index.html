@@ -86,10 +86,18 @@
                                 <div class="col-md-10 col-md-offset-2">
                                     <form action="<{:U('Home/Reg/reg')}>" method="post"
                                           class="layui-form layui-form-pane" onsubmit="return judged()">
+
+                                        <div class="layui-form-item">
+                                            <label class="layui-form-label">账号</label>
+                                            <div class="layui-input-inline">
+                                                <input name="u_username" placeholder="请输入登录号码" autocomplete="off" class="layui-input" type="text" id="account">
+                                            </div>
+                                        </div>
+
                                         <div class="layui-form-item">
                                             <label class="layui-form-label">手机号</label>
                                             <div class="layui-input-inline">
-                                                <input name="u_username" lay-verify="phone" placeholder="请输入手机号码"
+                                                <input name="u_tel" lay-verify="phone" placeholder="请输入手机号码"
                                                        autocomplete="off" class="layui-input" type="text" id="username">
                                             </div>
                                         </div>
@@ -312,23 +320,6 @@
             }
         });
 
-        $('#username').blur(function () {
-            var username = $('#username').val();
-            if (username != '') {
-                $.post('<{:U("Home/Reg/usernametest")}>', {'val': username}, function (data) {
-                    if (data != true) {
-                        layui.use('layer', function () {
-                            var layer = layui.layer;
-                            layer.tips('该账号已被注册', '#username');
-                        });
-                        vName = 0;
-                    } else {
-                        vName = 1;
-                    }
-                });
-            }
-        });
-
         $('#code').blur(function () {
             var code = $('#code').val();
             $.post('<{:U("Home/Reg/codetest")}>', {'val': code}, function (data) {
@@ -356,7 +347,7 @@
                          layer.tips('手机号不正确!', '#username', {tips: [1, '#0FA6D8']});
                     }else{
                         v = data;
-                        // console.log(data); 
+                        console.log(data); 
                         $('#sendMessage').attr('disabled','disabled');
                         $('#sendMessage').html('60秒后重新发送');
                         timer = setInterval(demo,1000);
@@ -389,6 +380,33 @@
                 // layer.tips('验证码不正确!', '#phonecode', {tips: [1, '#0FA6D8']});
             }
         })
-         
+        //判断账号是否重复
+        $('#account').blur(function () {
+                $.ajax({
+                url: "<{:U('Reg/usernametest')}>",
+                data: "val=" + $('#account').val(),
+                type: 'POST',
+                success: function (data) {
+                    switch(data){
+                        case 'err':
+                            layer.tips('用户名格式不正确!', '#account', {tips: [1, '#ff0000']});
+                            vName = 0;
+                        break;
+                        case 'null':
+                            layer.tips('用户名不能为空!', '#account', {tips: [1, '#ff0000']});
+                            vName = 0;
+                        break;
+                        case false:
+                            layer.tips('用户名已被使用!', '#account', {tips: [1, '#ff0000']});
+                            vName = 0;
+                        break;
+                        case true:
+                            layer.tips('用户名可以使用!', '#account', {tips: [1, '#0FA6D8']});
+                            vName = 1;
+                        break;
+                    }
+                }
+            })
+        })
     </script>
 </block>
