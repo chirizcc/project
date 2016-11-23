@@ -41,7 +41,7 @@
                                     <else/>
                                     <div class="item ">
                             </if>
-                            <img src="<{$play[$i]['p_pic']}>" alt="..." style="margin:0 auto;" width="945">
+                            <a href="<{:U('Details/index',array('b_id'=>$play[$i]['p_link']))}>"><img src="<{$play[$i]['p_pic']}>" alt="..." style="margin:0 auto;" width="945"></a>
                             <div class="carousel-caption">
 
                             </div>
@@ -60,7 +60,7 @@
                     <span class="sr-only">Next</span>
                 </a>
             </div>
-        </div> <!--col-md-8  -->
+        </div> <!--col-md-10  -->
     </div><!--row  -->
 
     <if condition="$proList != null">
