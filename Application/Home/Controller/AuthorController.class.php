@@ -27,27 +27,22 @@ class AuthorController extends JudgeController
 
         // 判断姓名是否为空
         if ($_POST['det_name'] == null) {
-            $this->error('姓名不能为空', U('index'));
+            $this->error('姓名不能为空,请去修改', U('Home/Center/info'));
             exit;
         }
 
         // 判断手机是否为空
         if ($_POST['det_tel'] == null) {
-            $this->error('手机不能为空', U('index'));
+            $this->error('手机不能为空,请去修改', U('Home/Center/info'));
             exit;
-        } elseif ((preg_match('/^1[3|4|5|7|8][0-9]\d{8}$/', $_POST['det_tel'])) == 0) {
-            $this->error('手机格式不正确', U('index'));
-            exit;
-        }
+        } 
+        
 
         // 判断邮箱是否为空
         if ($_POST['det_email'] == null) {
-            $this->error('邮箱不能为空', U('index'));
+            $this->error('邮箱不能为空,请去修改', U('Home/Center/info'));
             exit;
-        } elseif (!(preg_match('/^([\w\.\_]{2,10})@(\w{1,}).([a-z]{2,4})$/', $_POST['det_email']))) {
-            $this->error('邮箱格式不正确', U('index'));
-            exit;
-        }
+        } 
 
         // 判断笔名是否为空
        

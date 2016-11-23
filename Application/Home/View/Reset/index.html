@@ -44,7 +44,7 @@
                                             <label class="layui-form-label">手机号</label>
                                             <div class="layui-input-inline">
                                                 <input name="username" lay-verify="phone" value="<{$data.det_tel}>"
-                                                       autocomplete="off" class="layui-input" type="text" id="username" disabled>
+                                                       autocomplete="off" class="layui-input" type="text" id="username" readonly>
                                             </div>
                                         </div>
                                         <div class="layui-form-item">
@@ -102,9 +102,9 @@
                                         <div class="layui-form-item">
                                             <label class="layui-form-label">邮箱</label>
                                             <div class="layui-input-inline">
-                                            <input type="hidden" value="<{$data.det_email}>" name="u_username">
-                                                <input name="" lay-verify="email" value="<{$data.det_email}>" 
-                                                       autocomplete="off" class="layui-input" type="text" id="username1" disabled>
+                                           
+                                                <input name="u_username" lay-verify="email" value="<{$data.det_email}>" 
+                                                       autocomplete="off" class="layui-input" type="text" id="username1" readonly>
                                             </div>
                                         </div>
 
@@ -276,6 +276,7 @@
                 clearInterval(timer);
                 $('#sendMessage').removeAttr('disabled');
                 $('#sendMessage').html('发送验证码');
+                m=60;
                 return;
             }
 

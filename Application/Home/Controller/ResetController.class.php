@@ -45,7 +45,8 @@ class ResetController extends JudgeController
         $maps = [];      
         $maps['u_password'] = md5($_POST['u_password']);       
         if(M('user')->where('u_id ='.session('home_id'))->save($maps)){
-            $this->success('恭喜您,修改成功!', U('Login/logout'));
+
+            $this->success('恭喜您,修改成功!');
         }else{
             $this->error('修改失败....');
         }
@@ -87,7 +88,7 @@ class ResetController extends JudgeController
 	            $content = '尊敬的用户'.$username.': 感谢您注册终点中文网，您可以通过点击以下链接激活您的账号: <a href="'.U('Home/Reset/activa',['w_id' => base64_encode($wid),'pass'=>base64_encode($pass)], 'html', true).'">'.U('Home/Reset/activa',['w_id' => base64_encode($wid),'pass'=>base64_encode($pass)], 'html', true).'</a>';
 	          
 	            if($this->sendEmail($username, $title, $content)) {
-	                $this->success('邮件发送成功，请前往激活您的账号！', U('Home/Reg/wait'));
+	                $this->success('邮件发送成功，请前往激活您的账号！');
 	            } else {
 	                $this->error('修改失败，请稍后再试！');
 	       		 }
@@ -108,8 +109,10 @@ class ResetController extends JudgeController
         $w_id =  base64_decode($w_id);
         $pass =  base64_decode($pass);
         $res = D('wait')->where(['w_id' => $w_id])->find();
+        /*var_dump($res);
+        die;*/
         if(!$res) {
-            $this->error('验证出错，请重新修改！', U('Home/Reg/index'));
+            $this->error('验证出错，请重新修改！', U('Home/Center/reset'));
         }
 
         D('user')->where(['u_id'=>$res['w_uid']])->save(['u_password'=>$pass]);
@@ -117,7 +120,8 @@ class ResetController extends JudgeController
        	
         D('wait')->where(['w_id' => $w_id])->delete();
 
-        $this->success('修改成功!', U('Login/logout'));
+        $this->success('修改成功!', U('Home/Center/index'));
+
 
     }
     
