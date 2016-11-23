@@ -8,6 +8,8 @@ class RegController extends HomeController
 			$this->redirect('Index/index');
 			exit;
 		}
+        $rands = mt_rand(100000000,999999999);
+        $this->assign('rands',$rands);
 		$this->display();
 	}
 
@@ -20,19 +22,19 @@ class RegController extends HomeController
     	$Verify->entry();
     }
 
-    public function codetest(){
-    	if (!IS_AJAX) {
-            $this->error('快回去别闹',U('Index/index'));
-            exit;
-        }
-        $val = I('post.val');
+    // public function codetest(){
+    // 	if (!IS_AJAX) {
+    //         $this->error('快回去别闹',U('Index/index'));
+    //         exit;
+    //     }
+    //     $val = I('post.val');
 
-        if((new \Think\Verify())->check($val)){
-        	$this->ajaxReturn(true);
-        }else{
-        	$this->ajaxReturn(false);  	
-        }
-    }
+    //     if((new \Think\Verify())->check($val)){
+    //     	$this->ajaxReturn(true);
+    //     }else{
+    //     	$this->ajaxReturn(false);  	
+    //     }
+    // }
 
     public function usernametest(){
     	if (!IS_AJAX) {
@@ -49,11 +51,12 @@ class RegController extends HomeController
         	exit;
         }
 
-        /*//正则验证
-        if(!preg_match("/^[a-zA-Z0-9]{2,9}$/", $val)){
-		    $this->ajaxReturn('err');
-		    exit;
-		}*/
+        //正则验证
+        if(!preg_match('/^[a-zA-z][a-zA-Z0-9_]{2,9}$/', $val)){
+            $this->ajaxReturn('err');
+            exit;
+        }
+        
 
 		//验证是否有重复
         $map['u_username'] = $val;
@@ -118,8 +121,8 @@ class RegController extends HomeController
 
             $maps = [];
             $maps['det_uid'] = $userid;
-            $maps['det_tel'] = $_POST['u_username'];
-            $maps['det_name'] = $userid;
+            $maps['det_tel'] = $_POST['u_tel'];
+            $maps['det_name'] = $_POST['u_username'];
 
             if(M('detail')->add($maps) > 0){
                 $this->success('恭喜您,注册成功!', U('Login/index'));
