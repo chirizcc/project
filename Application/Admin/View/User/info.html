@@ -1,157 +1,156 @@
 <extend name="Public/layout"/>
 <block name="content">
 
-		<div class="main-container" id="main-container">
-			<script type="text/javascript">
-				try{ace.settings.check('main-container' , 'fixed')}catch(e){}
-			</script>
+    <div class="main-container" id="main-container">
+        <div class="main-container-inner">
+            <a class="menu-toggler" id="menu-toggler" href="#">
+                <span class="menu-text"></span>
+            </a>
 
-			<div class="main-container-inner">
-				<a class="menu-toggler" id="menu-toggler" href="#">
-					<span class="menu-text"></span>
-				</a>
+            <div class="main-content" style="margin-left: 0px">
+                <div class="breadcrumbs" id="breadcrumbs">
+                    <ul class="breadcrumb">
+                        <li>
+                            <i class="icon-home home-icon"></i>
+                            <a href="<{:U('Admin/Conventional/index')}>">主页</a>
+                        </li>
+                        <li>
+                            <a href="<{:U('Admin/User/index')}>">用户管理</a>
+                        </li>
+                        <li class="active">个人信息</li>
+                    </ul><!-- .breadcrumb -->
 
-				<div class="main-content" style="margin-left: 0px">
-					<div class="breadcrumbs" id="breadcrumbs">
-						<script type="text/javascript">
-							try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
-						</script>
+                </div>
 
-						<ul class="breadcrumb">
-							<li>
-								<i class="icon-home home-icon"></i>
-								<a href="<{:U('Admin/Conventional/index')}>">主页</a>
-							</li>
-                            <li>
-                                <a href="<{:U('Admin/User/index')}>">用户管理</a>
-                            </li>
-							<li class="active">个人信息</li>
-						</ul><!-- .breadcrumb -->
+                <div class="page-content">
+                    <div class="page-header">
+                        <h1>
+                            用户信息
+                        </h1>
+                    </div><!-- /.page-header -->
 
-					</div>
-
-					<div class="page-content">
-						<div class="page-header">
-							<h1>
-								用户信息
-							</h1>
-						</div><!-- /.page-header -->
-
-						<div class="row">
-							<div class="col-xs-12">
-								<!-- PAGE CONTENT BEGINS -->
-								<div>
-									<div id="user-profile-1" class="user-profile row">
-										<div class="col-xs-12 col-sm-3 center">
-											<div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <!-- PAGE CONTENT BEGINS -->
+                            <div>
+                                <div id="user-profile-1" class="user-profile row">
+                                    <div class="col-xs-12 col-sm-3 center">
+                                        <div>
 												<span class="profile-picture">
-													<img id="avatar" class="editable img-responsive" alt="头像" src="__ROOT__/Uploads/<if condition="$data['img'] == null">Portrait/profile-pic.jpg<else /><{$data['img']}></if>" />
+													<img id="avatar" class="editable img-responsive" alt="头像"
+                                                         src="__ROOT__/Uploads/<if condition=" $data['img'] == null">Portrait/profile-pic.jpg<else/><{$data['img']}></if>" />
                                                     <div class="space-4"></div>
 												</span>
 
-												<div class="space-4"></div>
+                                            <div class="space-4"></div>
 
-												<div class="width-80 label label-info label-xlg arrowed-in arrowed-in-right">
-													<div class="inline position-relative">
-                                                        <span class="white"><{$data['username']}></span>
-													</div>
-												</div>
-											</div>
+                                            <div class="width-80 label label-info label-xlg arrowed-in arrowed-in-right">
+                                                <div class="inline position-relative">
+                                                    <span class="white"><{$data['username']}></span>
+                                                </div>
+                                            </div>
+                                        </div>
 
-											<div class="space-6"></div>
+                                        <div class="space-6"></div>
 
-											<div class="hr hr12 dotted"></div>
+                                        <div class="hr hr12 dotted"></div>
 
-										</div>
+                                    </div>
 
-										<div class="col-xs-12 col-sm-9">
-											<div class="space-12"></div>
-                                            <form action="<{:U('Admin/user/update')}>" name="form">
-                                                <input type="hidden" name="id" value="<{$data['id']}>">
-                                                <div class="profile-user-info profile-user-info-striped">
-                                                    <div class="profile-info-row">
-                                                        <div class="profile-info-name"> 姓名 </div>
+                                    <div class="col-xs-12 col-sm-9">
+                                        <div class="space-12"></div>
+                                        <style>
+                                            .profile-info-name, .profile-info-value{
+                                                min-height: 30px;
+                                            }
+                                        </style>
+                                        <form action="<{:U('Admin/user/update')}>" name="form">
+                                            <input type="hidden" name="id" value="<{$data['id']}>">
+                                            <div class="profile-user-info profile-user-info-striped">
+                                                <div class="profile-info-row">
+                                                    <div class="profile-info-name"> 姓名</div>
 
-                                                        <div class="profile-info-value">
-                                                            <span class="editable" id="name"><{$data['name']}></span>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="profile-info-row">
-                                                        <div class="profile-info-name"> 性别 </div>
-
-                                                        <div class="profile-info-value">
-                                                            <input type="hidden" name="sex_value" value="<{$data['sex']}>">
-                                                            <span class="editable" id="sex">
-                                                                <if condition="($data['sex'] eq 0) ">女
-                                                                    <elseif condition="($data['sex'] eq 1)"/>男
-                                                                    <else /> 保密
-                                                                </if>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="profile-info-row">
-                                                        <div class="profile-info-name"> 电话 </div>
-
-                                                        <div class="profile-info-value">
-                                                            <span class="editable" id="tel"><{$data['tel']}></span>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="profile-info-row">
-                                                        <div class="profile-info-name"> 邮箱 </div>
-
-                                                        <div class="profile-info-value">
-                                                            <span class="editable" id="email"><{$data['email']}></span>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="profile-info-row">
-                                                        <div class="profile-info-name"> 简介 </div>
-
-                                                        <div class="profile-info-value">
-                                                            <span class="editable" id="introduce"><{$data['introduce']}></span>
-                                                        </div>
+                                                    <div class="profile-info-value">
+                                                        <span class="editable" id="name"><{$data['name']}></span>
                                                     </div>
                                                 </div>
 
-                                            </form>
+                                                <div class="profile-info-row">
+                                                    <div class="profile-info-name"> 性别</div>
 
-                                            <div class="space-10"></div>
+                                                    <div class="profile-info-value">
+                                                        <input type="hidden" name="sex_value" value="<{$data['sex']}>">
+                                                            <span class="editable" id="sex">
+                                                                <if condition="($data['sex'] eq 0) ">女
+                                                                    <elseif condition="($data['sex'] eq 1)"/>男
+                                                                    <else/> 保密
+                                                                </if>
+                                                            </span>
+                                                    </div>
+                                                </div>
 
-                                            <div id="btn_box1" style="margin-left: 10px">
-                                                <button id="edit" class="btn btn-app btn-primary btn-xs radius-4" >
-                                                    <i class="icon-edit bigger-160"></i>
-                                                    编辑
-                                                </button>
+                                                <div class="profile-info-row">
+                                                    <div class="profile-info-name"> 电话</div>
+
+                                                    <div class="profile-info-value">
+                                                        <span class="editable" id="tel"><{$data['tel']}></span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="profile-info-row">
+                                                    <div class="profile-info-name"> 邮箱</div>
+
+                                                    <div class="profile-info-value">
+                                                        <span class="editable" id="email"><{$data['email']}></span>
+                                                    </div>
+                                                </div>
+
+                                                <div class="profile-info-row">
+                                                    <div class="profile-info-name"> 简介</div>
+
+                                                    <div class="profile-info-value">
+                                                        <span class="editable"
+                                                              id="introduce"><{$data['introduce']}></span>
+                                                    </div>
+                                                </div>
                                             </div>
 
-                                            <div id="btn_box2" style="margin-left: 10px" style="display: none">
-                                                <button class="btn btn-app btn-primary btn-xs radius-4">
-                                                    <i class="icon-save bigger-160" id="save"></i>保存
-                                                </button>
-                                                <button class="btn btn-app btn-grey btn-xs radius-4">
-                                                    <i class="icon-trash bigger-160" id="cancel"></i>取消
-                                                </button>
-                                            </div>
+                                        </form>
 
-										</div>
-									</div>
-								</div>
+                                        <div class="space-10"></div>
 
-								<!-- PAGE CONTENT ENDS -->
-							</div><!-- /.col -->
-						</div><!-- /.row -->
-					</div><!-- /.page-content -->
-				</div><!-- /.main-content -->
+                                        <div id="btn_box1" style="margin-left: 10px">
+                                            <button id="edit" class="btn btn-app btn-primary btn-xs radius-4">
+                                                <i class="icon-edit bigger-160"></i>
+                                                编辑
+                                            </button>
+                                        </div>
 
-			</div><!-- /.main-container-inner -->
+                                        <div id="btn_box2" style="margin-left: 10px" style="display: none">
+                                            <button class="btn btn-app btn-primary btn-xs radius-4">
+                                                <i class="icon-save bigger-160" id="save"></i>保存
+                                            </button>
+                                            <button class="btn btn-app btn-grey btn-xs radius-4">
+                                                <i class="icon-trash bigger-160" id="cancel"></i>取消
+                                            </button>
+                                        </div>
 
-			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
-				<i class="icon-double-angle-up icon-only bigger-110"></i>
-			</a>
-		</div><!-- /.main-container -->
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- PAGE CONTENT ENDS -->
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+                </div><!-- /.page-content -->
+            </div><!-- /.main-content -->
+
+        </div><!-- /.main-container-inner -->
+
+        <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+            <i class="icon-double-angle-up icon-only bigger-110"></i>
+        </a>
+    </div><!-- /.main-container -->
 
     <!--[if !IE]> -->
     <script src="__PUBLIC__/js/jquery-2.0.3.min.js"></script>
@@ -163,18 +162,18 @@
 
     <!--[if !IE]> -->
     <script type="text/javascript">
-        window.jQuery || document.write("<script src='__PUBLIC__/ace/assets/js/jquery-2.0.3.min.js'>"+"</"+"script>");
+        window.jQuery || document.write("<script src='__PUBLIC__/ace/assets/js/jquery-2.0.3.min.js'>" + "</" + "script>");
     </script>
     <!-- <![endif]-->
 
     <!--[if IE]>
     <script type="text/javascript">
-        window.jQuery || document.write("<script src='__PUBLIC__/ace/assets/js/jquery-1.10.2.min.js'>"+"</"+"script>");
+        window.jQuery || document.write("<script src='__PUBLIC__/ace/assets/js/jquery-1.10.2.min.js'>" + "</" + "script>");
     </script>
     <![endif]-->
 
     <script type="text/javascript">
-        if("ontouchend" in document) document.write("<script src='__PUBLIC__/ace/assets/js/jquery.mobile.custom.min.js'>"+"</"+"script>");
+        if ("ontouchend" in document) document.write("<script src='__PUBLIC__/ace/assets/js/jquery.mobile.custom.min.js'>" + "</" + "script>");
     </script>
 
     <!--引入layui-->
@@ -182,12 +181,12 @@
 
     <script>
 
-        $(document).ready(function(){
+        $(document).ready(function () {
 
             $('#btn_box2').hide();
 
             // 点击编辑按钮
-            $('#edit').click(function() {
+            $('#edit').click(function () {
                 var name = $('#name').html();
                 var sexValue = form.sex_value.value;
 
@@ -214,10 +213,10 @@
                     $('#name').html(name);
 
                     var sex = '保密';
-                    if(sexValue == 0) {
+                    if (sexValue == 0) {
                         sex = '女';
-                    }else if(sexValue == 1) {
-                        sex  = '男';
+                    } else if (sexValue == 1) {
+                        sex = '男';
                     }
 
                     $('#sex').html(sex);
@@ -233,24 +232,24 @@
             // 点击保存按钮
             $('#save').click(function () {
                 var data = {
-                    'det_id':form.id.value,
+                    'det_id': form.id.value,
                     'det_name': form.name.value,
-                    'det_sex':form.sex.value,
-                    'det_tel':form.tel.value,
-                    'det_email':form.email.value,
-                    'det_introduce':form.introduce.value,
+                    'det_sex': form.sex.value,
+                    'det_tel': form.tel.value,
+                    'det_email': form.email.value,
+                    'det_introduce': form.introduce.value,
                 };
 
-                $.post('<{:U("Admin/user/update")}>',data,function(data){
-                    if(data == true) {
+                $.post('<{:U("Admin/user/update")}>', data, function (data) {
+                    if (data == true) {
                         $('#name').html(form.name.value);
                         form.sex_value.value = form.sex.value;
 
                         var sex = '保密';
-                        if(form.sex_value.value == 0) {
+                        if (form.sex_value.value == 0) {
                             sex = '女';
-                        }else if(form.sex_value.value == 1){
-                            sex  = '男';
+                        } else if (form.sex_value.value == 1) {
+                            sex = '男';
                         }
 
                         $('#sex').html(sex);
@@ -261,14 +260,14 @@
                         $('#btn_box2').hide();
                         $('#btn_box1').show();
 
-                        layui.use('layer', function(){
+                        layui.use('layer', function () {
                             var layer = layui.layer;
 
                             //信息框-例4
                             layer.msg('修改成功', {icon: 6});
                         });
                     } else {
-                        layui.use('layer', function(){
+                        layui.use('layer', function () {
                             var layer = layui.layer;
 
                             //信息框-例4
@@ -277,7 +276,7 @@
                     }
                 });
             });
-            
+
         });
 
     </script>
