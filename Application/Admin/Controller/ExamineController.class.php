@@ -15,7 +15,7 @@ class ExamineController extends AdminController
             $map['b_name'] = ['like', '%' . $search . '%'];
             // var_dump($map);exit;
         }
-        $map['b_status'] = 0;
+        $map['b_status'] = array('not in','1,3');
         //分页
         $count = $book->where($map)->count();// 查询满足要求的总记录数
         $Page = new \Org\Util\MyPage($count, 3);// 实例化分页类 传入总记录数和每页显示的记录数
@@ -105,7 +105,7 @@ class ExamineController extends AdminController
             $info['i_time'] = time();
             //将消息发给作者
             if(M('info')->add($info)){
-                $this->success('恭喜您,审核通过成功!', U('index'));
+                $this->success($bookinfo['b_name'].'审核不通过!', U('index'));
             }else{
                 $this->error('通过审核失败');
             } 
