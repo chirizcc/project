@@ -46,8 +46,12 @@
                                     <td>手机号</td>
                                     <td>
                                         <{$data['det_tel']}>
-                                        <button class="layui-btn layui-btn-mini layui-btn-disabled">已验证</button>
-                                        <button class="layui-btn layui-btn-mini layui-btn-normal">修改</button>
+                                        <button class="layui-btn layui-btn-mini layui-btn-disabled">
+                                            <if condition="$data['det_tel'] eq null ">未验证
+                                                <else /> 已验证
+                                            </if>   
+                                        </button>
+                                        <button class="layui-btn layui-btn-mini layui-btn-normal" onclick="changeTel()">修改</button>
 
                                     </td>
                                 </tr>
@@ -55,8 +59,13 @@
                                     <td>邮箱</td>
                                     <td>
                                         <{$data['det_email']}>
-                                        <button class="layui-btn layui-btn-mini layui-btn-disabled">未验证</button>
+                                        <button class="layui-btn layui-btn-mini layui-btn-disabled">
+                                            <if condition="$data['det_email'] eq null ">未验证
+                                                <else /> 已验证
+                                            </if>
+                                        </button>
                                         <button class="layui-btn layui-btn-mini layui-btn-normal" onclick="changeEmail()">修改</button>
+
                                     </td>
                                 </tr>
                             </table>
