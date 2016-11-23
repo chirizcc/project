@@ -56,7 +56,7 @@
                                     <td>
                                         <{$data['det_email']}>
                                         <button class="layui-btn layui-btn-mini layui-btn-disabled">未验证</button>
-                                        <button class="layui-btn layui-btn-mini layui-btn-normal">修改</button>
+                                        <button class="layui-btn layui-btn-mini layui-btn-normal" onclick="changeEmail()">修改</button>
                                     </td>
                                 </tr>
                             </table>
@@ -66,4 +66,33 @@
             </div>
         </fieldset>
     </div>
+
+    <script src="__PUBLIC__/js/jquery.min.js"></script>
+
+    <!--引入layui-->
+    <script src="__PUBLIC__/layui/layui.js"></script>
+
+    <script>
+        function changeEmail() {
+            layui.use('layer', function(){
+                var layer = layui.layer;
+
+                // 弹出窗口
+                layer.open({
+                    closeBtn:0,
+                    btn: ['确认', '取消'], //可以无限个按钮
+                    type: 1,
+                    title:'修改邮箱',
+                    content: '<div class="col-md-10 col-md-offset-1">' +
+                    '<div class="sp-10"></div>' +
+                    '<div class="form-group" >' +
+                    '<div class="input-group">' +
+                    '<div class="input-group-addon">邮箱</div>' +
+                    '<input class="form-control" type="email" placeholder="请输入邮箱" value="<{$data['det_email']}>"></div>' +
+                    '</div>' +
+                    '</div>',
+                });
+            });
+        }
+    </script>
 </block>
