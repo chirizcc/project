@@ -7,6 +7,10 @@ class UserController extends AdminController
     // 一页显示多少个
     private $size = 8;
 
+    /**
+     * 获取所有用户列表 并显示
+     * @param string $search 搜索参数
+     */
     public function index($search = null)
     {
         $map = [];
@@ -49,6 +53,9 @@ class UserController extends AdminController
         $this->display();
     }
 
+    /**
+     * 获取登录人的信息 并显示页面
+     */
     public function myInfo()
     {
         $u_id = session('id');
@@ -58,17 +65,28 @@ class UserController extends AdminController
         $this->display();
     }
 
+    /**
+     * Ajax更新用户信息
+     */
     public function update()
     {
-        $user = M('detail');
+        $user = D('detail');
         $data = I('post.');
-        if (false === $user->save($data)) {
-            $this->ajaxReturn(false);
+        if ($user->create()) {
+            if (false === $user->save($data)) {
+                $this->ajaxReturn(false);
+            } else {
+                $this->ajaxReturn(true);
+            }
         } else {
-            $this->ajaxReturn(true);
+            $this->ajaxReturn(false);
         }
     }
 
+    /**
+     * Ajax上传登录用户的头像
+     * @param number $det_id 该用户的detail表的id
+     */
     public function updatePortrait($det_id)
     {
         $upload = new \Think\Upload();// 实例化上传类
@@ -76,7 +94,7 @@ class UserController extends AdminController
         $upload->exts = array('jpg', 'gif', 'png', 'jpeg');// 设置附件上传类型
         $upload->rootPath = './Uploads/'; // 设置附件上传根目录
         $upload->savePath = 'Portrait'; // 设置附件上传（子）目录
-// 上传文件
+        // 上传文件
         $info = $upload->upload();
 
         if (!$info) {// 上传错误提示错误信息
@@ -123,6 +141,10 @@ class UserController extends AdminController
         $this->ajaxReturn($data);
     }
 
+    /**
+     * 获取指定用户的信息 并显示
+     * @param number $u_id 该用户的user表id
+     */
     public function info($u_id)
     {
 
@@ -154,28 +176,16 @@ class UserController extends AdminController
         }
     }
 
+    /**
+     * 禁用指定用户
+     * @param $u_id $u_id 该用户的user表id
+     */
     public function del($u_id)
     {
         if ($u_id == session('id')) {
             $this->ajaxReturn(false);
         }
 
-        /*// 删除前获取用户头像
-        $imgData = M('detail')->where(['det_uid' => $u_id])->field('det_img')->find();
-        $img = $imgData['det_img'];
-
-        // 从user表删除
-        if(M('user')->delete($u_id)) {
-            // 从detail表删除
-            M('detail')->where(['det_uid' => $u_id])->delete();
-            
-            if(!empty($img)) {
-                unlink('./Uploads/'.$img);
-            }
-            $this->ajaxReturn(true);
-        }else {
-            $this->ajaxReturn(false);
-        }*/
         $data['u_id'] = $u_id;
         $data['u_istype'] = 0;
 
@@ -190,6 +200,10 @@ class UserController extends AdminController
         }
     }
 
+    /**
+     * 启用指定用户
+     * @param $u_id $u_id 该用户的user表id
+     */
     public function enable($u_id = null)
     {
         if (empty($u_id)) {
@@ -210,6 +224,10 @@ class UserController extends AdminController
         }
     }
 
+    /**
+     * 重置指定用户密码
+     * @param $u_id $u_id 该用户的user表id
+     */
     public function resetPwd($u_id = null)
     {
         if (empty($u_id)) {
@@ -230,11 +248,17 @@ class UserController extends AdminController
         }
     }
 
+    /**
+     * 添加用户的表单
+     */
     public function add()
     {
         $this->display();
     }
 
+    /**
+     * 添加用户写入到数据库中
+     */
     public function insert()
     {
         if (I('post.u_password') !== I('post.u_password2')) {
