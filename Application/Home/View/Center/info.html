@@ -2,8 +2,7 @@
 <block name="content">
     <div>
         <fieldset class="layui-elem-field layui-field-title">
-            <legend>个人信息&nbsp;<a href="<{:U('Home/Center/edit')}>" class="btn btn-info glyphicon glyphicon-pencil"
-                                 style="margin-bottom: 4px;" title="编辑"></a></legend>
+            <legend>个人信息&nbsp;<a href="<{:U('Home/Center/edit')}>" class="btn btn-info glyphicon glyphicon-pencil"style="margin-bottom: 4px;" title="编辑"></a></legend>
             <div class="row my-info-content">
                 <div class="col-md-6 col-sm-8" style="margin-left: 10px">
                     <table class="myInfo" cellpadding="3px" cellspacing="0">
@@ -23,14 +22,6 @@
                             </td>
                         </tr>
                         <tr>
-                            <td>手机号</td>
-                            <td><{$data['det_tel']}></td>
-                        </tr>
-                        <tr>
-                            <td>邮箱</td>
-                            <td><{$data['det_email']}></td>
-                        </tr>
-                        <tr>
                             <td>注册时间</td>
                             <td><{$data['regTime']}></td>
                         </tr>
@@ -41,6 +32,36 @@
                             </td>
                         </tr>
                     </table>
+                </div>
+            </div>
+
+            <div class="sp-10"></div>
+            <div class="row  my-info-content">
+                <div class="col-md-6 col-sm-8" style="margin-left: 10px">
+                    <fieldset class="layui-elem-field layui-field-title">
+                        <legend>账号安全相关</legend>
+                        <div class="layui-field-box">
+                            <table class="myInfo" cellpadding="3px" cellspacing="0">
+                                <tr>
+                                    <td>手机号</td>
+                                    <td>
+                                        <{$data['det_tel']}>
+                                        <button class="layui-btn layui-btn-mini layui-btn-disabled">已验证</button>
+                                        <button class="layui-btn layui-btn-mini layui-btn-normal">修改</button>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>邮箱</td>
+                                    <td>
+                                        <{$data['det_email']}>
+                                        <button class="layui-btn layui-btn-mini layui-btn-disabled">未验证</button>
+                                        <button class="layui-btn layui-btn-mini layui-btn-normal">修改</button>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </fieldset>
                 </div>
             </div>
         </fieldset>
