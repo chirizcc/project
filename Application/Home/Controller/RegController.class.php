@@ -22,19 +22,19 @@ class RegController extends HomeController
     	$Verify->entry();
     }
 
-    // public function codetest(){
-    // 	if (!IS_AJAX) {
-    //         $this->error('快回去别闹',U('Index/index'));
-    //         exit;
-    //     }
-    //     $val = I('post.val');
+     public function codetest(){
+     	if (!IS_AJAX) {
+             $this->error('快回去别闹',U('Index/index'));
+             exit;
+         }
+         $val = I('post.val');
 
-    //     if((new \Think\Verify())->check($val)){
-    //     	$this->ajaxReturn(true);
-    //     }else{
-    //     	$this->ajaxReturn(false);  	
-    //     }
-    // }
+         if((new \Think\Verify())->check($val)){
+         	$this->ajaxReturn(true);
+         }else{
+         	$this->ajaxReturn(false);
+         }
+     }
 
     public function usernametest(){
     	if (!IS_AJAX) {
@@ -139,13 +139,13 @@ class RegController extends HomeController
     public function emailReg()
     {
         $data = I('post.');
-        $username = I('post.u_username');
+        $email = I('post.email');
 
-        if(!empty(M('user')->where(['u_username' => $username])->find())) {
+        if(!empty(M('user')->where(['u_username' => I('post.u_username')])->find())) {
             $this->error('该用户名已被注册！');
         }
 
-        $data['u_username'] = 'ls'.mt_rand(0, 99999);
+        $data['u_username'] = I('post.u_username');
         $data['u_istype'] = 0;
 
         $user = D('user');
@@ -153,14 +153,14 @@ class RegController extends HomeController
             $uid = $user->add();
             if($uid) {
                 $wait = D('wait');
-                $wData = ['w_uid' => $uid,'w_email' => $username];
+                $wData = ['w_uid' => $uid,'w_email' => $email];
                 if($wait->create($wData)) {
                     $wid = $wait->add();
                     if($wid) {
                         $title = '注册验证';
                         // 发送到邮箱的链接采用base64加密
-                        $content = '尊敬的用户'.$username.': 感谢您注册终点中文网，您可以通过点击以下链接激活您的账号: <a href="'.U('Home/Reg/activa',['w_id' => base64_encode($wid)], 'html', true).'">'.U('Home/Reg/activa',['w_id' => base64_encode($wid)], 'html', true).'</a>';
-                        if($this->sendEmail($username, $title, $content)) {
+                        $content = '尊敬的用户'.I('post.u_username').': 感谢您注册终点中文网，您可以通过点击以下链接激活您的账号: <a href="'.U('Home/Reg/activa',['w_id' => base64_encode($wid)], 'html', true).'">'.U('Home/Reg/activa',['w_id' => base64_encode($wid)], 'html', true).'</a>';
+                        if($this->sendEmail($email, $title, $content)) {
                             $this->success('邮件发送成功，请前往激活您的账号！', U('Home/Reg/wait'));
                         } else {
                             $this->error('注册失败，请稍后再试！');
@@ -192,8 +192,8 @@ class RegController extends HomeController
             $this->error('验证出错，请重新注册！', U('Home/Reg/index'));
         }
 
-        D('user')->where(['u_id' => $res['w_uid']])->save(['u_username' => $res['w_email'], 'u_istype' => 3]);
-        D('detail')->add(['det_uid' => $res['w_uid'], 'det_name' => $res['w_email'], 'det_email' => $res['w_email']]);
+        D('user')->where(['u_id' => $res['w_uid']])->save(['u_istype' => 3]);
+        D('detail')->add(['det_uid' => $res['w_uid'], 'det_name' => 'ls'.mt_rand(10000, 99999), 'det_email' => $res['w_email']]);
         D('wait')->where(['w_id' => $w_id])->delete();
 
         $this->success('激活成功!', U('Home/Login/index'));
