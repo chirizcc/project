@@ -131,4 +131,24 @@ class CenterController extends JudgeController
         $path = './Uploads/' . $url;
         unlink($path);
     }
+
+    //发送短信
+    public function sendSms()
+    {
+        if (!IS_AJAX) {
+            $this->error('滚吧',U('Index/index'));
+            exit;
+        }
+
+        //正则验证 
+        $tel = I('post.val');
+        if(!preg_match('/^1[3|4|5|7|8][0-9]\d{8}$/', $tel)){
+            $this->ajaxReturn('err');
+            exit;
+        }else{
+            $sms = $this->shortMessage($tel);
+            $this->ajaxReturn($sms);
+        }
+
+    }
 }
