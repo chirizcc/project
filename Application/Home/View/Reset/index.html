@@ -218,7 +218,7 @@
             if (pwd1 != pwd2) {
                 layui.use('layer', function () {
                     var layer = layui.layer;
-                    layer.tips('新密码与确认密码不相同', '#pwd2');
+                    layer.tips('新密码与确认密码不相同', '#passwd2');
                 });
                 return false
             }
@@ -292,7 +292,7 @@
                 layer.tips('恭喜，验证码正确', '#phonecode');
             }else{
                 vCode = 0;
-                // layer.tips('验证码不正确!', '#phonecode', {tips: [1, '#0FA6D8']});
+                layer.tips('验证码不正确!', '#phonecode', {tips: [1, '#0FA6D8']});
             }
         })
          
