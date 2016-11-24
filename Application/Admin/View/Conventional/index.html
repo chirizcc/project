@@ -1,139 +1,142 @@
-<extend  name="Public/layout"/>
-<body>
+<extend name="Public/layout"/>
 <block name="content">
-	<div class="page-content">
-	 <div class="page-header">
-		<h1>
-			常规管理
-			<small>
-				<i class="icon-double-angle-right"></i>
-				服务器数据
-			</small>
-		</h1>
-	 </div>
-		<div class="nav-search " id="nav-search">
-                <form class="form-search">
+    <div class="page-content">
+        <div class="page-header">
+            <h1>
+                常规管理
+                <small>
+                    <i class="icon-double-angle-right"></i>
+                    服务器数据
+                </small>
+            </h1>
+        </div>
+        <div class="nav-search " id="nav-search">
+            <form class="form-search">
                     <span class="input-icon">
-                        <input type="text" placeholder="请输入城市" class="nav-search-input" id="weather" autocomplete="off"  />
+                        <input type="text" placeholder="请输入城市" class="nav-search-input" id="weather"
+                               autocomplete="off"/>
                         <i class="icon-search nav-search-icon"></i>
                     </span>
-                </form>
-            </div>	 
-	</div>
-	<div class="col-sm-8"></div><div class="col-sm-4"><h2 class="h2">天气：<span id="title"></span></h2></div><hr>
-	<div id="body">
-	<div class="col-sm-9"></div><div class="col-sm-3" id="">城市:&nbsp;&nbsp;&nbsp;&nbsp;<span id="city"></div>
-	<div class="col-sm-9"></div><div class="col-sm-3" id="">天气:&nbsp;&nbsp;&nbsp;&nbsp;<span id="wt"></div>
-	<div class="col-sm-9"></div><div class="col-sm-3" id="">气温:&nbsp;&nbsp;&nbsp;&nbsp;<span id="tp"></div>
-	<div class="col-sm-9"></div><div class="col-sm-3" id="">污染程度:&nbsp;&nbsp;&nbsp;&nbsp;<span id="pl"></div>
-	<div class="col-sm-9"></div><div class="col-sm-3" id="">更新时间:&nbsp;&nbsp;&nbsp;&nbsp;<span id="time"></div>
-	</div>
-	<div class="col-sm-12">
-	<table class="table table-striped table-bordered table-hover ">
-	 <tr >
-	  <th>服务器</th>
-	  <th>数据</th>
-	 </tr>
-	 <tr>
-		<td>服务器的 IP 地址</td>
-		<td><{$server.SERVER_ADDR}></td>
-	 </tr>
-	<tr>
-		<td>服务器的主机名</td>
-		<td><{$server.SERVER_NAME}></td>
-	</tr>
-	<tr>
-		<td>请求页面时通信协议的名称和版本</td>
-		<td><{$server.SERVER_PROTOCOL}></td>
-	</tr>
-	<tr>
-		<td>浏览当前页面的语言类型</td>
-		<td><{$server.HTTP_ACCEPT_LANGUAGE}></td>
-	</tr>
-	<tr>
-		<td>用户机器上连接到 Web 服务器所使用的端口号</td>
-		<td><{$server.REMOTE_PORT}></td>
-	</tr>
-	<tr>
-		<td>路径</td>
-		<td><{$server.DOCUMENT_ROOT}></td>
-	</tr>
-	<tr>
-		<td>用户代理的信息</td>
-		<td><{$server.HTTP_USER_AGENT}></td>
-	</tr>
-	<tr>
-		<td>Apache和PHP版本</td>
-		<td><{$server.SERVER_SOFTWARE}></td>
-	</tr>
-	<tr>
-		<td>服务器使用的端口</td>
-		<td><{$server.SERVER_PORT}></td>
-	</tr>
-	
-	
-	</table>
-	</div>
-	<script src="__PUBLIC__/js/jquery.min.js"></script>
-	<script>
+            </form>
+        </div>
+    </div>
+    <div class="col-sm-8"></div>
+    <div class="col-sm-4"><h2 class="h2">天气：<span id="title"></span></h2></div>
+    <hr>
+    <div id="body">
+        <div class="col-sm-9"></div>
+        <div class="col-sm-3" id="">城市:&nbsp;&nbsp;&nbsp;&nbsp;<span id="city"></div>
+        <div class="col-sm-9"></div>
+        <div class="col-sm-3" id="">天气:&nbsp;&nbsp;&nbsp;&nbsp;<span id="wt"></div>
+        <div class="col-sm-9"></div>
+        <div class="col-sm-3" id="">气温:&nbsp;&nbsp;&nbsp;&nbsp;<span id="tp"></div>
+        <div class="col-sm-9"></div>
+        <div class="col-sm-3" id="">污染程度:&nbsp;&nbsp;&nbsp;&nbsp;<span id="pl"></div>
+        <div class="col-sm-9"></div>
+        <div class="col-sm-3" id="">更新时间:&nbsp;&nbsp;&nbsp;&nbsp;<span id="time"></div>
+    </div>
+    <div class="col-sm-12">
+        <table class="table table-striped table-bordered table-hover ">
+            <tr>
+                <th>服务器</th>
+                <th>数据</th>
+            </tr>
+            <tr>
+                <td>服务器的 IP 地址</td>
+                <td><{$server.SERVER_ADDR}></td>
+            </tr>
+            <tr>
+                <td>服务器的主机名</td>
+                <td><{$server.SERVER_NAME}></td>
+            </tr>
+            <tr>
+                <td>请求页面时通信协议的名称和版本</td>
+                <td><{$server.SERVER_PROTOCOL}></td>
+            </tr>
+            <tr>
+                <td>浏览当前页面的语言类型</td>
+                <td><{$server.HTTP_ACCEPT_LANGUAGE}></td>
+            </tr>
+            <tr>
+                <td>用户机器上连接到 Web 服务器所使用的端口号</td>
+                <td><{$server.REMOTE_PORT}></td>
+            </tr>
+            <tr>
+                <td>路径</td>
+                <td><{$server.DOCUMENT_ROOT}></td>
+            </tr>
+            <tr>
+                <td>用户代理的信息</td>
+                <td><{$server.HTTP_USER_AGENT}></td>
+            </tr>
+            <tr>
+                <td>Apache和PHP版本</td>
+                <td><{$server.SERVER_SOFTWARE}></td>
+            </tr>
+            <tr>
+                <td>服务器使用的端口</td>
+                <td><{$server.SERVER_PORT}></td>
+            </tr>
 
-        $(document).ready(function(){
-            $('#weather').blur(function() {
+
+        </table>
+    </div>
+    <script src="__PUBLIC__/js/jquery.min.js"></script>
+    <script>
+
+        $(document).ready(function () {
+            $('#weather').blur(function () {
                 var val = $(this).val();
-               
-                    // location.href = '<{:U("Admin/Conventional/weather","","")}>/c/' + val;
-                    $.ajax({
-			            type:'get',
-			            url:"<{:U('weather','','')}>/city/" + val,
-			            dataType:'json',
-			            success:function(data){
-			                // var d = eval(data);
-			                
-			                console.log(data);
-			                if(data == 0){
-			                	title.innerHTML = '暂无数据';
-			                	body.style.display = "none";
-			                	title.style.display = "block";
-			                }else{
-			                	body.style.display = "block";
-			                	title.style.display = "none";
-			                city.innerHTML = data['Weather']['city'];
-			                wt.innerHTML = data['Weather']['status1']+"转"+data['Weather']['status2'];
-			                tp.innerHTML = data['Weather']['temperature2']+"℃ ~ "+data['Weather']['temperature1']+"℃";
-			                pl.innerHTML = data['Weather']['pollution_l'];
-			               time.innerHTML = data['Weather']['udatetime'];
-			               
-			                }
-			            }
-			        })
-               
+
+                // location.href = '<{:U("Admin/Conventional/weather","","")}>/c/' + val;
+                $.ajax({
+                    type: 'get',
+                    url: "<{:U('weather','','')}>/city/" + val,
+                    dataType: 'json',
+                    success: function (data) {
+                        // var d = eval(data);
+
+                        console.log(data);
+                        if (data == 0) {
+                            title.innerHTML = '暂无数据';
+                            body.style.display = "none";
+                            title.style.display = "block";
+                        } else {
+                            body.style.display = "block";
+                            title.style.display = "none";
+                            city.innerHTML = data['Weather']['city'];
+                            wt.innerHTML = data['Weather']['status1'] + "转" + data['Weather']['status2'];
+                            tp.innerHTML = data['Weather']['temperature2'] + "℃ ~ " + data['Weather']['temperature1'] + "℃";
+                            pl.innerHTML = data['Weather']['pollution_l'];
+                            time.innerHTML = data['Weather']['udatetime'];
+
+                        }
+                    }
+                })
+
             });
         });
 
-        $(document).ready(function(){
-            $('#weather').ready(function() {
+        $(document).ready(function () {
+            $('#weather').ready(function () {
                 var val = $(this).val();
-               
-                    // location.href = '<{:U("Admin/Conventional/weather","","")}>/c/' + val;
-                    $.ajax({
-			            type:'get',
-			            url:"<{:U('weather','','')}>/city/" + val,
-			            dataType:'json',
-			            success:function(data){			               			              			               
-			                city.innerHTML = data['Weather']['city'];
-			                wt.innerHTML = data['Weather']['status1']+"转"+data['Weather']['status2'];
-			                tp.innerHTML = data['Weather']['temperature2']+"℃ ~ "+data['Weather']['temperature1']+"℃";
-			                pl.innerHTML = data['Weather']['pollution_l'];
-			               time.innerHTML = data['Weather']['udatetime'];
-			               
-			            }
-			        })
-               
+
+                // location.href = '<{:U("Admin/Conventional/weather","","")}>/c/' + val;
+                $.ajax({
+                    type: 'get',
+                    url: "<{:U('weather','','')}>/city/" + val,
+                    dataType: 'json',
+                    success: function (data) {
+                        city.innerHTML = data['Weather']['city'];
+                        wt.innerHTML = data['Weather']['status1'] + "转" + data['Weather']['status2'];
+                        tp.innerHTML = data['Weather']['temperature2'] + "℃ ~ " + data['Weather']['temperature1'] + "℃";
+                        pl.innerHTML = data['Weather']['pollution_l'];
+                        time.innerHTML = data['Weather']['udatetime'];
+
+                    }
+                })
+
             });
         });
-
-
     </script>
 </block>
-</body>
-</html>

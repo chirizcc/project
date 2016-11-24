@@ -17,7 +17,7 @@
 			<div class="col-xs-8">
 			<div class="layui-form-item">
 				<div class="layui-input-inline">
-					 <div><img src="/Uploads/<if condition='$data["b_img"] == null'>img/book.jpg<else /><{$data.b_img}></if>"  id="show"></div>
+					 <div><img src="__ROOT__/Uploads/<if condition='$data["b_img"] == null'>img/book.jpg<else /><{$data.b_img}></if>"  id="show"></div>
 				</div>
 		  	</div>
 			<div class="layui-form-item">
@@ -127,8 +127,6 @@
             $('#b_img').val('');
         }
         $('#show').attr('src',"/Uploads/<if condition='$data["b_img"] == null'>img/book.jpg<else /><{$data.b_img}></if>");
-        /*$.post('<{:U("Admin/Book/delImg")}>',{'img':$('#b_img').val()});
-         $('#b_img').val('');*/
     }
 
     layui.use('form', function(){  //如果只加载一个组件，可以不填数组。如：layui.use('form')

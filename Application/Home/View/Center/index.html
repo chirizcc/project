@@ -182,7 +182,7 @@
                     }
                     ,success: function(res){ //上传成功后的回调
                         layer.close(load);
-                        $('#img').attr('src','/Uploads/' + res.url);
+                        $('#img').attr('src','__ROOT__/Uploads/' + res.url);
                         $('#img').attr('val',res.url);
                         $('#img').val(res.url);
                     }

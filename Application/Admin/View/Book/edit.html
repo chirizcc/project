@@ -158,9 +158,7 @@
             $.post('<{:U("Admin/Book/delImg")}>',{'img':$('#b_img').val()});
             $('#b_img').val('');
         }
-        $('#show').attr('src',"/Uploads/<if condition='$data["b_img"] == null'>img/book.jpg<else /><{$data.b_img}></if>");
-        /*$.post('<{:U("Admin/Book/delImg")}>',{'img':$('#b_img').val()});
-         $('#b_img').val('');*/
+        $('#show').attr('src',"__ROOT__/Uploads/<if condition='$data["b_img"] == null'>img/book.jpg<else /><{$data.b_img}></if>");
     }
 	</script>
 </block>	
