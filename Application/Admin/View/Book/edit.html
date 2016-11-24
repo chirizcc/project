@@ -155,10 +155,11 @@
     function resetImg() {
         $('#imgShow').hide();
         if($('#b_img').val() != '') {
-            $.post('<{:U("Admin/Book/delImg")}>',{'img':$('#b_img').val()});
-            $('#b_img').val('');
+            $.post('<{:U("Admin/Book/delImg")}>',{'img':$('#b_img').val(),'id':('<{$data.b_id}>')});
+            $('#b_img').attr('value','<{$data.b_img}>');
         }
         $('#show').attr('src',"__ROOT__/Uploads/<if condition='$data["b_img"] == null'>img/book.jpg<else /><{$data.b_img}></if>");
+        $('#b_img').attr('value','<{$data.b_img}>');
     }
 	</script>
 </block>	

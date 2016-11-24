@@ -153,9 +153,10 @@ class AuthoreditController extends JudgeController
         $this->display('Authoredit/edit');
     }
 
-    public function delImg($img = null)
-    {
-        if (empty($img)) {
+     public function delImg($img = null,$id)
+    {   
+        $path = D('book')->where(['b_id'=>$id])->field('b_img')->find();
+        if (empty($img) || $path['b_img'] ==$img) {
             return;
         }
 
@@ -186,7 +187,7 @@ class AuthoreditController extends JudgeController
             if ($bookModel->save() > 0) {
                 // 如果有更改图片则删除旧图片
                 if (I('post.b_img') != $oldImg) {
-                    $this->delImg($oldImg);
+                    $this->delImg($oldImg,I('post.b_id'));
                 }
                 $this->success('恭喜您,编辑成功!', U('index'));
             } else {
