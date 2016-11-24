@@ -153,7 +153,7 @@ class AuthoreditController extends JudgeController
         $this->display('Authoredit/edit');
     }
 
-     public function delImg($img = null,$id)
+     public function delImg($img = null,$id=null)
     {   
         $path = D('book')->where(['b_id'=>$id])->field('b_img')->find();
         if (empty($img) || $path['b_img'] ==$img) {
