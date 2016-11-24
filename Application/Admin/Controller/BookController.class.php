@@ -162,7 +162,7 @@ class BookController extends AdminController
     }
 
     // 点击重置按钮时删除图片
-    public function delImg($img = null,$id=null)
+    public function delImg($img = null,$id=0)
     {   
         $path = D('book')->where(['b_id'=>$id])->field('b_img')->find();
         if (empty($img) || $path['b_img'] ==$img) {
@@ -203,7 +203,7 @@ class BookController extends AdminController
                 if (I('post.b_img') != $oldImg) {
                     $this->delImg(I('post.b_img'));
                 }
-                $this->error('编辑失败....');
+                $this->error('编辑失败....',U('index'));
             }
         } else {
             if (I('post.b_img') != $oldImg) {
