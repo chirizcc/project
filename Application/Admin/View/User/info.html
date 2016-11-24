@@ -38,7 +38,8 @@
                                         <div>
 												<span class="profile-picture">
 													<img id="avatar" class="editable img-responsive" alt="头像"
-                                                         src="__ROOT__/Uploads/<if condition=" $data['img'] == null">Portrait/profile-pic.jpg<else/><{$data['img']}></if>" />
+                                                         src="__ROOT__/Uploads/<if condition=" $data['img'] == null">Portrait/profile-pic.jpg<else/><{$data['img']}></if>
+                                                    " />
                                                     <div class="space-4"></div>
 												</span>
 
@@ -60,79 +61,67 @@
                                     <div class="col-xs-12 col-sm-9">
                                         <div class="space-12"></div>
                                         <style>
-                                            .profile-info-name, .profile-info-value{
+                                            .profile-info-name, .profile-info-value {
                                                 min-height: 30px;
                                             }
                                         </style>
-                                        <form action="<{:U('Admin/user/update')}>" name="form">
-                                            <input type="hidden" name="id" value="<{$data['id']}>">
-                                            <div class="profile-user-info profile-user-info-striped">
-                                                <div class="profile-info-row">
-                                                    <div class="profile-info-name"> 姓名</div>
+                                        <div class="profile-user-info profile-user-info-striped">
+                                            <div class="profile-info-row">
+                                                <div class="profile-info-name"> 姓名</div>
 
-                                                    <div class="profile-info-value">
-                                                        <span class="editable" id="name"><{$data['name']}></span>
-                                                    </div>
+                                                <div class="profile-info-value">
+                                                    <span class="editable" id="name"><{$data['name']}></span>
                                                 </div>
+                                            </div>
 
-                                                <div class="profile-info-row">
-                                                    <div class="profile-info-name"> 性别</div>
+                                            <div class="profile-info-row">
+                                                <div class="profile-info-name"> 性别</div>
 
-                                                    <div class="profile-info-value">
-                                                        <input type="hidden" name="sex_value" value="<{$data['sex']}>">
+                                                <div class="profile-info-value">
+                                                    <input type="hidden" name="sex_value" value="<{$data['sex']}>">
                                                             <span class="editable" id="sex">
                                                                 <if condition="($data['sex'] eq 0) ">女
                                                                     <elseif condition="($data['sex'] eq 1)"/>男
                                                                     <else/> 保密
                                                                 </if>
                                                             </span>
-                                                    </div>
-                                                </div>
-
-                                                <div class="profile-info-row">
-                                                    <div class="profile-info-name"> 电话</div>
-
-                                                    <div class="profile-info-value">
-                                                        <span class="editable" id="tel"><{$data['tel']}></span>
-                                                    </div>
-                                                </div>
-
-                                                <div class="profile-info-row">
-                                                    <div class="profile-info-name"> 邮箱</div>
-
-                                                    <div class="profile-info-value">
-                                                        <span class="editable" id="email"><{$data['email']}></span>
-                                                    </div>
-                                                </div>
-
-                                                <div class="profile-info-row">
-                                                    <div class="profile-info-name"> 简介</div>
-
-                                                    <div class="profile-info-value">
-                                                        <span class="editable"
-                                                              id="introduce"><{$data['introduce']}></span>
-                                                    </div>
                                                 </div>
                                             </div>
 
-                                        </form>
+                                            <div class="profile-info-row">
+                                                <div class="profile-info-name"> 电话</div>
+
+                                                <div class="profile-info-value">
+                                                    <span class="editable" id="tel"><{$data['tel']}></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="profile-info-row">
+                                                <div class="profile-info-name"> 邮箱</div>
+
+                                                <div class="profile-info-value">
+                                                    <span class="editable" id="email"><{$data['email']}></span>
+                                                </div>
+                                            </div>
+
+                                            <div class="profile-info-row">
+                                                <div class="profile-info-name"> 简介</div>
+
+                                                <div class="profile-info-value">
+                                                        <span class="editable"
+                                                              id="introduce"><{$data['introduce']}></span>
+                                                </div>
+                                            </div>
+                                        </div>
+
 
                                         <div class="space-10"></div>
 
-                                        <div id="btn_box1" style="margin-left: 10px">
-                                            <button id="edit" class="btn btn-app btn-primary btn-xs radius-4">
+                                        <div style="margin-left: 10px">
+                                            <a  href="<{:U('Admin/User/edit', ['u_id' => $data['u_id']])}>" class="btn btn-app btn-primary btn-xs radius-4">
                                                 <i class="icon-edit bigger-160"></i>
                                                 编辑
-                                            </button>
-                                        </div>
-
-                                        <div id="btn_box2" style="margin-left: 10px" style="display: none">
-                                            <button class="btn btn-app btn-primary btn-xs radius-4">
-                                                <i class="icon-save bigger-160" id="save"></i>保存
-                                            </button>
-                                            <button class="btn btn-app btn-grey btn-xs radius-4">
-                                                <i class="icon-trash bigger-160" id="cancel"></i>取消
-                                            </button>
+                                            </a>
                                         </div>
 
                                     </div>
@@ -180,104 +169,6 @@
     <script src="__PUBLIC__/layui/layui.js"></script>
 
     <script>
-
-        $(document).ready(function () {
-
-            $('#btn_box2').hide();
-
-            // 点击编辑按钮
-            $('#edit').click(function () {
-                var name = $('#name').html();
-                var sexValue = form.sex_value.value;
-
-                var tel = $('#tel').html();
-                var email = $('#email').html();
-                var introduce = $('#introduce').html();
-                $('#name').html('<input type="text" name="name" value="' + $('#name').html() + '">');
-                $('#sex').html('<input type="radio" name="sex" value="0">女<input type="radio" name="sex" value="1">男<input type="radio" name="sex" value="2">保密');
-                $('#tel').html('<input type="text" name="tel" value="' + $('#tel').html() + '">');
-                $('#email').html('<input type="text" name="email" value="' + $('#email').html() + '">');
-                $('#introduce').html('<textarea name="introduce" style="width: 100%;height: 80px;">' + $('#introduce').html() + '</textarea>');
-
-                $('#sex').children().each(function () {
-                    if ($(this).val() == sexValue) {
-                        $(this).attr('checked', true);
-                    }
-                });
-
-                $('#btn_box1').hide();
-                $('#btn_box2').show();
-
-                // 点击取消按钮
-                $('#cancel').click(function () {
-                    $('#name').html(name);
-
-                    var sex = '保密';
-                    if (sexValue == 0) {
-                        sex = '女';
-                    } else if (sexValue == 1) {
-                        sex = '男';
-                    }
-
-                    $('#sex').html(sex);
-                    $('#tel').html(tel);
-                    $('#email').html(email);
-                    $('#introduce').html(introduce);
-
-                    $('#btn_box2').hide();
-                    $('#btn_box1').show();
-                });
-            });
-
-            // 点击保存按钮
-            $('#save').click(function () {
-                var data = {
-                    'det_id': form.id.value,
-                    'det_name': form.name.value,
-                    'det_sex': form.sex.value,
-                    'det_tel': form.tel.value,
-                    'det_email': form.email.value,
-                    'det_introduce': form.introduce.value,
-                };
-
-                $.post('<{:U("Admin/user/update")}>', data, function (data) {
-                    if (data == true) {
-                        $('#name').html(form.name.value);
-                        form.sex_value.value = form.sex.value;
-
-                        var sex = '保密';
-                        if (form.sex_value.value == 0) {
-                            sex = '女';
-                        } else if (form.sex_value.value == 1) {
-                            sex = '男';
-                        }
-
-                        $('#sex').html(sex);
-                        $('#tel').html(form.tel.value);
-                        $('#email').html(form.email.value);
-                        $('#introduce').html(form.introduce.value);
-
-                        $('#btn_box2').hide();
-                        $('#btn_box1').show();
-
-                        layui.use('layer', function () {
-                            var layer = layui.layer;
-
-                            //信息框-例4
-                            layer.msg('修改成功', {icon: 6});
-                        });
-                    } else {
-                        layui.use('layer', function () {
-                            var layer = layui.layer;
-
-                            //信息框-例4
-                            layer.msg('修改失败', {icon: 5});
-                        });
-                    }
-                });
-            });
-
-        });
 
     </script>
 

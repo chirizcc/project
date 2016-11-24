@@ -1,0 +1,176 @@
+<extend name="Public/layout"/>
+<block name="content">
+
+    <div class="main-container" id="main-container">
+        <div class="main-container-inner">
+            <a class="menu-toggler" id="menu-toggler" href="#">
+                <span class="menu-text"></span>
+            </a>
+
+            <div class="main-content" style="margin-left: 0px">
+                <div class="breadcrumbs" id="breadcrumbs">
+                    <ul class="breadcrumb">
+                        <li>
+                            <i class="icon-home home-icon"></i>
+                            <a href="<{:U('Admin/Conventional/index')}>">主页</a>
+                        </li>
+                        <li>
+                            <a href="<{:U('Admin/User/index')}>">用户管理</a>
+                        </li>
+                        <li class="active">修改信息</li>
+                    </ul><!-- .breadcrumb -->
+
+                </div>
+
+                <div class="page-content">
+                    <div class="page-header">
+                        <h1>
+                            修改用户信息
+                        </h1>
+                    </div><!-- /.page-header -->
+
+                    <div class="row">
+                        <div class="col-xs-12">
+                            <!-- PAGE CONTENT BEGINS -->
+                            <div>
+                                <div id="user-profile-1" class="user-profile row">
+                                    <div class="col-xs-12 col-sm-3 center">
+                                        <div>
+                                            <span class="profile-picture">
+                                                <img id="avatar" class="editable img-responsive" alt="头像"
+                                                     src="__ROOT__/Uploads/<if condition=" $data['img'] == null">Portrait/profile-pic.jpg<else/><{$data['img']}></if>
+                                                " />
+                                                <div class="space-4"></div>
+                                            </span>
+
+                                            <div class="space-4"></div>
+
+                                            <div class="width-80 label label-info label-xlg arrowed-in arrowed-in-right">
+                                                <div class="inline position-relative">
+                                                    <span class="white"><{$data['username']}></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="space-6"></div>
+                                        <div class="hr hr12 dotted"></div>
+                                    </div>
+
+                                    <div class="col-xs-12 col-sm-9">
+                                        <div class="space-12"></div>
+                                        <style>
+                                            .profile-info-name, .profile-info-value {
+                                                min-height: 30px;
+                                            }
+                                        </style>
+                                        <form action="<{:U('Admin/user/update')}>" method="post" class="layui-form">
+                                            <input type="hidden" name="det_id" value="<{$data['id']}>">
+                                            <input type="hidden" name="u_id" value="<{$data['u_id']}>">
+                                            <div class="profile-user-info profile-user-info-striped">
+                                                <div class="profile-info-row">
+                                                    <div class="profile-info-name"> 姓名</div>
+
+                                                    <div class="profile-info-value">
+                                                        <input type="text" name="det_name" value="<{$data['name']}>" lay-verify="required">
+                                                    </div>
+                                                </div>
+
+                                                <div class="profile-info-row">
+                                                    <div class="profile-info-name"> 性别</div>
+                                                    <div class="profile-info-value">
+                                                        <input type="radio" name="det_sex" value="0"
+                                                        <if condition="($data['sex'] eq 0) ">checked</if>
+                                                        title="女" >
+                                                        <input type="radio" name="det_sex" value="1"
+                                                        <if condition="($data['sex'] eq 1) ">checked</if>
+                                                        title="男" >
+                                                        <input type="radio" name="det_sex" value="2"
+                                                        <if condition="($data['sex'] eq 2) ">checked</if>
+                                                        title="保密" >
+                                                    </div>
+                                                </div>
+
+                                                <div class="profile-info-row">
+                                                    <div class="profile-info-name"> 电话</div>
+
+                                                    <div class="profile-info-value">
+                                                        <input type="text" name="det_tes" value="<{$data['tel']}>" lay-verify="phone">
+                                                    </div>
+                                                </div>
+
+                                                <div class="profile-info-row">
+                                                    <div class="profile-info-name"> 邮箱</div>
+
+                                                    <div class="profile-info-value">
+                                                        <input type="text" name="det_email" value="<{$data['email']}>" lay-verify="email">
+                                                    </div>
+                                                </div>
+
+                                                <div class="profile-info-row">
+                                                    <div class="profile-info-name"> 简介</div>
+
+                                                    <div class="profile-info-value">
+                                                        <textarea name="det_introduce" cols="30"
+                                                                  rows="10"><{$data['introduce']}></textarea>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                            <div style="margin-left: 10px">
+                                                <button href="<{:U('Admin/User/edit', ['u_id' => $data['u_id']])}>" class="btn btn-app btn-primary btn-xs radius-4" lay-submit>
+                                                    修改
+                                                </button>
+                                            </div>
+                                        </form>
+
+                                        <div class="space-10"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- PAGE CONTENT ENDS -->
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+                </div><!-- /.page-content -->
+            </div><!-- /.main-content -->
+
+        </div><!-- /.main-container-inner -->
+
+        <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+            <i class="icon-double-angle-up icon-only bigger-110"></i>
+        </a>
+    </div><!-- /.main-container -->
+
+    <!--[if !IE]> -->
+    <script src="__PUBLIC__/js/jquery-2.0.3.min.js"></script>
+    <!-- <![endif]-->
+
+    <!--[if IE]>
+    <script src="__PUBLIC__/js/jquery-1.10.2.min.js"></script>
+    <![endif]-->
+
+    <!--[if !IE]> -->
+    <script type="text/javascript">
+        window.jQuery || document.write("<script src='__PUBLIC__/ace/assets/js/jquery-2.0.3.min.js'>" + "</" + "script>");
+    </script>
+    <!-- <![endif]-->
+
+    <!--[if IE]>
+    <script type="text/javascript">
+        window.jQuery || document.write("<script src='__PUBLIC__/ace/assets/js/jquery-1.10.2.min.js'>" + "</" + "script>");
+    </script>
+    <![endif]-->
+
+    <script type="text/javascript">
+        if ("ontouchend" in document) document.write("<script src='__PUBLIC__/ace/assets/js/jquery.mobile.custom.min.js'>" + "</" + "script>");
+    </script>
+
+    <!--引入layui-->
+    <script src="__PUBLIC__/layui/layui.js"></script>
+
+    <script>
+        layui.use('form', function () {
+            var form = layui.form();
+        });
+    </script>
+
+</block>

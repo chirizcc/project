@@ -71,15 +71,14 @@ class UserController extends AdminController
     public function update()
     {
         $user = D('detail');
-        $data = I('post.');
         if ($user->create()) {
-            if (false === $user->save($data)) {
-                $this->ajaxReturn(false);
+            if (false === $user->save()) {
+                $this->error('修改失败，请稍后再试!');
             } else {
-                $this->ajaxReturn(true);
+                $this->success('修改成功', U('Admin/User/info', ['u_id' => I('post.u_id')]));
             }
         } else {
-            $this->ajaxReturn(false);
+            $this->error('修改失败，请稍后再试!');
         }
     }
 
@@ -154,7 +153,7 @@ class UserController extends AdminController
         }
 
         $model = M('user');
-        $data = $model->table('zd_user as u,zd_detail as d')->where('u.u_id = d.det_uid	and u.u_id = %d', $u_id)->field('u.u_id as u_id,d.det_id as id,u_username as username,u_istype as istype,det_name as name,det_sex as sex,det_tel as tel,det_email as email,det_introduce as introduce,det_img as img')->find();
+        $data = $model->table('zd_user as u,zd_detail as d')->where('u.u_id = d.det_uid	and u.u_id = %d', $u_id)->field('u.u_id as u_id,d.det_id as id,u_username as username,det_name as name,det_sex as sex,det_tel as tel,det_email as email,det_introduce as introduce,det_img as img')->find();
         // 判断是否有查询到数据
         if ($data === null) {
             $this->redirect('Admin/User/index');
@@ -164,18 +163,23 @@ class UserController extends AdminController
         $this->display();
     }
 
-    public function changeType()
+    /**
+     * 获取指定用户编辑表单
+     * @param number $u_id 该用户的user表id
+     */
+    public function edit($u_id)
     {
-        $user = M('user');
-        $data = I('post.');
-
-        if (false === $user->save($data)) {
-            $this->ajaxReturn(false);
-        } else {
-            $this->ajaxReturn(true);
+        $model = M('user');
+        $data = $model->table('zd_user as u,zd_detail as d')->where('u.u_id = d.det_uid	and u.u_id = %d', $u_id)->field('u.u_id as u_id,d.det_id as id,u_username as username,det_name as name,det_sex as sex,det_tel as tel,det_email as email,det_introduce as introduce,det_img as img')->find();
+        // 判断是否有查询到数据
+        if ($data === null) {
+            $this->redirect('Admin/User/index');
+            die;
         }
+        $this->assign('data', $data);
+        $this->display();
     }
-
+    
     /**
      * 禁用指定用户
      * @param $u_id $u_id 该用户的user表id
