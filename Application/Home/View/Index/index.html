@@ -152,8 +152,8 @@
                             </a>
                             <p><{$vo['b_author']}></p>
                             <p>
-                                <a href="#" class="btn btn-primary btn-sm" role="button">Button</a>
-                                <a href="#" class="btn btn-default btn-sm" role="button">Button</a></p>
+                                <a href="<{:U('Home/History/read',['b_id' => $vo['b_id']])}>" class="btn btn-primary btn-sm" role="button">马上阅读</a>
+                            </p>
                         </div>
                     </div>
                  </div>
@@ -210,8 +210,8 @@
                 <div class="col-md-2">
                     <div class="thumbnail" style="border: none">
                         <a href="<{:U('Home/Details/index',['b_id' => $hotBooks[$i]['b_id']])}>">
-                        <img width="150" alt="..." lay-src="__ROOT__/Uploads/<if condition="$hotBooks[$i]['b_img'] == null">img/book.jpg<else/><{$hotBooks[$i]['b_img']}></if>">
-                    </a>
+                            <img width="150" alt="..." lay-src="__ROOT__/Uploads/<if condition="$hotBooks[$i]['b_img'] == null">img/book.jpg<else/><{$hotBooks[$i]['b_img']}></if>">
+                        </a>
                         <p style="text-align: center" class="h4">
                             <a href="<{:U('Home/Details/index',['b_id' => $hotBooks[$i]['b_id']])}>"><{$hotBooks[$i]['b_name']}></a>
                         </p>
@@ -227,8 +227,8 @@
 
     </div> <!--container  -->
     <script src="__PUBLIC__/js/jquery.min.js"></script>
+    <!--<script src="__PUBLIC__/js/jquery-2.0.3.min.js"></script>-->
     <script src="__PUBLIC__/layui/layui.js"></script>
-    <script src="__PUBLIC__/js/jquery-2.0.3.min.js"></script>
     <script>
         // 图片流加载
         layui.use('flow', function(){

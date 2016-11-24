@@ -128,10 +128,9 @@
         </div>
         <div class="footer-map" id="mapBox">
             <div class="panel panel-default">
-                <div class="panel-heading">地址<span style="float: right" class="glyphicon glyphicon-remove"
-                                                   onclick="$('#mapBox').css('display', 'none')"></span></div>
+                <div class="panel-heading">地址<span style="float: right" class="glyphicon glyphicon-remove" onclick="$('#mapBox').css('display', 'none')"></span></div>
                 <div class="panel-body">
-                    <img id="mapImg" src="" alt="地图加载中">
+                    <img id="mapImg" lay-src="http://api.map.baidu.com/staticimage?width=500&height=400&center=121.449248,31.299169&zoom=16&markers=121.446553,31.299216&markerStyles=l,a" alt="地图加载中">
                 </div>
             </div>
         </div>
@@ -151,7 +150,6 @@
 
     function showMap() {
         $('#mapBox').css('display', 'block');
-        $('#mapImg').attr('src', "http://api.map.baidu.com/staticimage?width=500&height=400&center=121.449248,31.299169&zoom=16&markers=121.446553,31.299216&markerStyles=l,a");
     }
 
 </script>

@@ -25,6 +25,9 @@ class LinkWidget extends Controller
             for($m = 0; $m < 3; $m++) {
                 echo '<li><a href="'.$data[$j]['l_url'].'">'.$data[$j]['l_name'].'</a></li>';
                 $j++;
+                if($j >= count($data)) {
+                    break;
+                }
             }
             echo '</div>';
         }
