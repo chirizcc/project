@@ -9,14 +9,14 @@
 	font-size: 25px;
 	font-family: 宋体;
 	font-weight: bold;
-	background: url('/Uploads/bgimg/bg2.jpg') no-repeat;
+	background: url('__ROOT__/Uploads/bgimg/bg2.jpg') no-repeat;
 	text-decoration: none;
 	border-radius: 30px;
 }
 
 .ad:hover{
 	text-decoration: none;
-	background: url('/Uploads/bgimg/bg2.jpg') no-repeat right 0px top 0px;
+	background: url('__ROOT__/Uploads/bgimg/bg2.jpg') no-repeat right 0px top 0px;
 
 }
 
@@ -24,7 +24,7 @@
 	display: block;
 	width: 180px;
 	height: 140px;
-	background: url('/Uploads/bgimg/bg3.jpg') no-repeat;
+	background: url('__ROOT__/Uploads/bgimg/bg3.jpg') no-repeat;
 	color:#000;
 	margin-bottom: 10px;
 	padding: 20px;
@@ -38,7 +38,7 @@
 }
 
 .ad1:hover{
-	background: url('/Uploads/bgimg/bg3.jpg') no-repeat right 0px top 0px;
+	background: url('__ROOT__/Uploads/bgimg/bg3.jpg') no-repeat right 0px top 0px;
 	text-decoration: none;
 	/*color:#fff;*/
 
@@ -48,7 +48,7 @@
 	display: block;
 	width: 180px;
 	height: 140px;
-	background: url('/Uploads/bgimg/bg1.jpg') no-repeat;
+	background: url('__ROOT__/Uploads/bgimg/bg1.jpg') no-repeat;
 	color:#000;
 	margin-bottom: 10px;
 	padding: 20px;
@@ -63,7 +63,7 @@
 
 .ad2:hover{
 	text-decoration: none;
-	background: url('/Uploads/bgimg/bg1.jpg') no-repeat right 0px top 0px;
+	background: url('__ROOT__/Uploads/bgimg/bg1.jpg') no-repeat right 0px top 0px;
 }
 
 .sinfo{

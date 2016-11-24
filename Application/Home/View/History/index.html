@@ -33,7 +33,7 @@
 	<div class="row">
 		<volist name="data" id="v">
 			<div class="bookbox col-md-2">
-				<a href="<{:U('Home/Details/index',['b_id'=>$v['id']])}>" target="_top"><img src="/Uploads/<{$v.img}>" alt="" ></a>
+				<a href="<{:U('Home/Details/index',['b_id'=>$v['id']])}>" target="_top"><img src="__ROOT__/Uploads/<{$v.img}>" alt="" ></a>
 				<div class="info">书名：<{$v.bookname}></div>
 				<div class="info2"><{:date('Y-m-d H:i:s',$v['time'])}></div>
 			</div>
