@@ -121,6 +121,9 @@
     <script src="__PUBLIC__/layui/layui.js"></script>
     <script src="__PUBLIC__/js/jquery.min.js"></script>
     <script>
+
+        document.title = '<{$data['b_name']}> | 终点中文网'
+
         layui.use('layedit', function () {
             var layedit = layui.layedit;
             input = layedit.build('demo',
