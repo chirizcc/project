@@ -219,6 +219,7 @@ class ExamineController extends AdminController
             // var_dump($map);exit;
         }
         $map['c.cata_status'] = '0';
+        $map['b.b_status'] = '1';
 
         //分页
         $count = $cat->table('zd_catalog c,zd_book b')->where($map)->where('c.cata_bid = b.b_id')->count();
@@ -266,10 +267,13 @@ class ExamineController extends AdminController
             $data = $cat->table('zd_catalog c,zd_book b')->where($maps)->where('c.cata_bid = b.b_id')->find();
             // var_dump($data);exit;
             $message = "您的书籍".$data['b_name']."的".$data['cata_name']."审核通过";
+            $readerMessage = "您收藏的书籍".$data['b_name']."发布新章节了，赶紧去看看吧";
             $info = [];
             $info['i_uid'] = $data['b_uid'];
             $info['i_info'] = $message;
             $info['i_time'] = time();
+            //将消息发送给订阅的读者
+            
             //将消息发给作者
             if(M('info')->add($info)){
                 $this->success('恭喜您,审核通过成功!', U('Examine/content'));
