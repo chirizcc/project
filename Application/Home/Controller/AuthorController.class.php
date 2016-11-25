@@ -35,20 +35,20 @@ class AuthorController extends JudgeController
         if ($_POST['det_tel'] == null) {
             $this->error('手机不能为空,请去修改', U('Home/Center/info'));
             exit;
-        } 
-        
+        }
+
 
         // 判断邮箱是否为空
         if ($_POST['det_email'] == null) {
             $this->error('邮箱不能为空,请去修改', U('Home/Center/info'));
             exit;
-        } 
+        }
 
         // 判断笔名是否为空
-       
+
 
         $data = $det->where('det_id =' . session('home_id'))->save($_POST);
-       
+
         $user = M('user')->where('u_id = ' . session('home_id'))->save($_POST);
         if ($data || $user) {
             $this->success('已成功提交申请', U('index'));

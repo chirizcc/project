@@ -1,8 +1,15 @@
 <?php
+/**
+ * 分类页控制器
+ * author 张德昌
+ */
 namespace Home\Controller;
 
 class TypeController extends HomeController
 {
+    /**
+     * 显示分类页
+     */
     public function index()
     {
         $t_pid = I('get.t_pid');
@@ -31,10 +38,11 @@ class TypeController extends HomeController
         } elseif (!empty($search)) {
             // 通过搜索进入分类页
             $crumb[] = ['t_name' => '搜索结果'];
-            $map['b_name'] = ['like', '%'.$search.'%'];
+            $map['b_name'] = ['like', '%' . $search . '%'];
             $data = M('book')->where(['b_status' => 1])->where($map)->select();
         } else {
-            $this->redirect('Home/index/index');
+            $this->redirect('Home/Index/index');
+            die;
         }
 
         $types = D('type')->getTypes();
