@@ -1,7 +1,7 @@
 <?php
 namespace Home\Controller;
 use Think\Controller;
-
+// 修改密码
 class ResetController extends JudgeController
 {
 	public function index()
@@ -10,7 +10,7 @@ class ResetController extends JudgeController
 		$this->assign('data',$data[0]);
 		$this->display();
 	}
-
+    // 验证码
 	public function code()
 	{
     	$Verify = new \Think\Verify();
@@ -20,7 +20,7 @@ class ResetController extends JudgeController
 		$Verify->imageH = 0;
     	$Verify->entry();
     }
-
+    // 发送验证码
     public function codetest()
     {
     	if (!IS_AJAX) {
@@ -35,7 +35,7 @@ class ResetController extends JudgeController
         	$this->ajaxReturn(false);  	
         }
     }
-
+    // 修改密码
     public function res(){
     	if (empty($_POST)) {
             $this->redirect('Home/Reset/index');
@@ -52,7 +52,7 @@ class ResetController extends JudgeController
         }
 
     }
-
+    // 发送信息
     public function sendSms()
     {
         if (!IS_AJAX) {
@@ -71,19 +71,20 @@ class ResetController extends JudgeController
         }
 
     }
-
+    // 发送邮箱信息
     public function emailReset()
     {
              $pass =  md5($_POST['u_password']); 
              $username = I('post.u_username');           
              $wait = D('wait');
+             // 把数据存在数组中
              $wData = ['w_uid' =>session('home_id'),'w_email' => $username];
 
            
              if($wait->create($wData)) {
              	$wid = $wait->add();
              	if($wid){
-	             $title = '修改密码验证';   
+	            $title = '修改密码验证';   
 	            // 发送到邮箱的链接采用base64加密
 	            $content = '尊敬的用户'.$username.': 感谢您注册终点中文网，您可以通过点击以下链接激活您的账号: <a href="'.U('Home/Reset/activa',['w_id' => base64_encode($wid),'pass'=>base64_encode($pass)], 'html', true).'">'.U('Home/Reset/activa',['w_id' => base64_encode($wid),'pass'=>base64_encode($pass)], 'html', true).'</a>';
 	          
@@ -105,7 +106,7 @@ class ResetController extends JudgeController
         if(empty($w_id)) {
             $this->redirect('Home/Index/index');
         }
-
+        // 解密接收的数据
         $w_id =  base64_decode($w_id);
         $pass =  base64_decode($pass);
         $res = D('wait')->where(['w_id' => $w_id])->find();
@@ -114,10 +115,10 @@ class ResetController extends JudgeController
         if(!$res) {
             $this->error('验证出错，请重新修改！', U('Home/Center/reset'));
         }
-
+        // 修改密码
         D('user')->where(['u_id'=>$res['w_uid']])->save(['u_password'=>$pass]);
        
-       	
+       	// 删除wait
         D('wait')->where(['w_id' => $w_id])->delete();
 
         $this->success('修改成功!', U('Home/Center/index'));
