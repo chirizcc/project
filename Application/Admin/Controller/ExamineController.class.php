@@ -273,7 +273,20 @@ class ExamineController extends AdminController
             $info['i_info'] = $message;
             $info['i_time'] = time();
             //将消息发送给订阅的读者
-            // $collecter = M('collect')->
+            $wheres = [];
+            $wheres['col_bookid'] = $data['b_id'];
+            $collecter = M('collect')->where($wheres)->select();
+            // var_dump($collecter);exit;
+            $collectCount = count($collecter);
+            if(!empty($collecter)){
+                for ($i=0; $i < $collectCount ; $i++) { 
+                    $infos = [];
+                    $infos['i_uid'] = $collecter[$i]['col_uid'];
+                    $infos['i_info'] = $readerMessage;
+                    $infos['i_time'] = time();
+                    M('info')->add($infos);
+                }
+            }
             //将消息发给作者
             if(M('info')->add($info)){
                 $this->success('恭喜您,审核通过成功!', U('Examine/content'));

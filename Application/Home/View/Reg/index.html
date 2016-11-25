@@ -328,8 +328,8 @@
                     if (data == 'err') {
                         layer.tips('手机号不正确!', '#username', {tips: [1, '#0FA6D8']});
                     } else {
-                        v = data;
-                        console.log(data);
+                        // v = data;
+                        // console.log(data);
                         $('#sendMessage').attr('disabled', 'disabled');
                         $('#sendMessage').html('60秒后重新发送');
                         timer = setInterval(demo, 1000);
@@ -354,14 +354,21 @@
 
         //判断验证码是否一致
         $('#phonecode').blur(function () {
-            if (v == $('#phonecode').val()) {
-                vCode = 1;
-                layer.tips('恭喜，验证码正确', '#phonecode');
-            } else {
-                vCode = 0;
-                // layer.tips('验证码不正确!', '#phonecode', {tips: [1, '#0FA6D8']});
-            }
+            $.ajax({
+                url: "<{:U('Reg/comparesms')}>",
+                data: "val=" + $('#phonecode').val(),
+                type: 'POST',
+                success: function (data) {
+                    if (data == false) {
+                        vCode = 0;
+                        layer.tips('验证码不正确!', '#phonecode', {tips: [1, '#0FA6D8']});
+                    } else {
+                        vCode = 1;
+                    }
+                }
+            })            
         })
+
         //判断账号是否重复
         $('#account').blur(function () {
             $.ajax({
