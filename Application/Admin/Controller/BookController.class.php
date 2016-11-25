@@ -1,12 +1,19 @@
 <?php
+/**
+ * 书籍控制器
+ * author 张德昌 张一飞
+ */
 namespace Admin\Controller;
-
-use Think\Controller;
 
 class BookController extends AdminController
 {
+    // 书籍列表单页显示条数
     private $size = 6;
 
+    /**
+     * 显示所有书籍列表
+     * @param $search string 搜索参数
+     */
     public function index($search = null)
     {
         $p = I('get.p/d');
@@ -21,7 +28,6 @@ class BookController extends AdminController
 
         $data = M('book')->where($map)->order('b_id desc')->page($p, $this->size)->select();
         $count = M('book')->where($map)->count();// 查询满足要求的总记录数
-
 
         $Page = new \Org\Util\MyPage($count, $this->size);
 
@@ -38,6 +44,9 @@ class BookController extends AdminController
         $this->display();
     }
 
+    /**
+     * 下架书籍
+     */
     public function del()
     {
         if (empty($_GET['id'])) {
@@ -55,18 +64,20 @@ class BookController extends AdminController
         }
     }
 
-    //添加页面
+    /**
+     * 书籍添加页面
+     */
     public function add()
     {
-
         $data = M('type')->where('t_pid=0')->order('t_id desc')->select();
         $this->assign('list', $data);
 
         $this->display('Book/add');
-
-
     }
 
+    /**
+     * Ajax获取2级分类
+     */
     public function getadd()
     {
         $b_id = I('get.b_id/d');
@@ -78,9 +89,11 @@ class BookController extends AdminController
         $this->assign('data', $data);
     }
 
+    /**
+     * 从POST获取添加书籍的信息并写入到数据库
+     */
     public function insert()
     {
-
         if (empty($_POST)) {
             $this->redirect('Admin/Book/add');
             exit;
@@ -102,6 +115,9 @@ class BookController extends AdminController
         }
     }
 
+    /**
+     * 书籍编辑页面
+     */
     public function edit()
     {
         $id = I('get.id/d');
@@ -126,6 +142,10 @@ class BookController extends AdminController
         $this->display('Book/edit');
     }
 
+    /**
+     * Ajax上传头像
+     * @return array
+     */
     public function upload()
     {
         $upload = new \Think\Upload();// 实例化上传类
@@ -161,11 +181,15 @@ class BookController extends AdminController
         $this->ajaxReturn($data);
     }
 
-    // 点击重置按钮时删除图片
-    public function delImg($img = null,$id=0)
-    {   
-        $path = D('book')->where(['b_id'=>$id])->field('b_img')->find();
-        if (empty($img) || $path['b_img'] ==$img) {
+    /**
+     * 删除图片
+     * @param $img string 图片路径
+     * @param $id int 书的ID
+     */
+    public function delImg($img = null, $id = 0)
+    {
+        $path = D('book')->where(['b_id' => $id])->field('b_img')->find();
+        if (empty($img) || $path['b_img'] == $img) {
             return;
         }
 
@@ -173,7 +197,9 @@ class BookController extends AdminController
         unlink($path);
     }
 
-
+    /**
+     * 从POST获取编辑书籍的信息并写入到数据库
+     */
     public function update()
     {
         if (empty($_POST)) {
@@ -196,14 +222,14 @@ class BookController extends AdminController
             if ($bookModel->save() > 0) {
                 // 如果有更改图片则删除旧图片
                 if (I('post.b_img') != $oldImg) {
-                    $this->delImg($oldImg,I('post.b_id'));
+                    $this->delImg($oldImg, I('post.b_id'));
                 }
                 $this->success('恭喜您,编辑成功!', U('index'));
             } else {
                 if (I('post.b_img') != $oldImg) {
                     $this->delImg(I('post.b_img'));
                 }
-                $this->error('编辑失败....',U('index'));
+                $this->error('编辑失败....', U('index'));
             }
         } else {
             if (I('post.b_img') != $oldImg) {
@@ -211,6 +237,5 @@ class BookController extends AdminController
             }
             $this->error($bookModel->getError());
         }
-
     }
 }
