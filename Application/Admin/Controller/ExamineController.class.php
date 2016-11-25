@@ -273,7 +273,7 @@ class ExamineController extends AdminController
             $info['i_info'] = $message;
             $info['i_time'] = time();
             //将消息发送给订阅的读者
-            
+            // $collecter = M('collect')->
             //将消息发给作者
             if(M('info')->add($info)){
                 $this->success('恭喜您,审核通过成功!', U('Examine/content'));
