@@ -128,7 +128,7 @@
         function resetImg() {
             $('#imgShow').hide();
             if ($('#b_img').val() != '') {
-                $.post('<{:U("Admin/Book/delImg")}>', {'img': $('#b_img').val()});
+                $.post('<{:U("Home/Authoredit/delImg")}>', {'img': $('#b_img').val()});
                 $('#b_img').val('');
             }
         }

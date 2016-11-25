@@ -106,7 +106,7 @@
                 });
                 return;
             }
-            $.post('<{:U("Admin/Catalog/changeOrder")}>', {
+            $.post('<{:U("Catalog/changeOrder")}>', {
                 'cata_id': cata_id,
                 'cata_order': cata_order
             }, function (data) {
@@ -126,7 +126,7 @@
         }
 
         function del(obj, id) {
-            $.post('<{:U("Admin/Catalog/del")}>', {'cata_id': id}, function (data) {
+            $.post('<{:U("Catalog/del")}>', {'cata_id': id}, function (data) {
                 if (data == true) {
                     $(obj).parentsUntil('tbody').hide();
                     layui.use('layer', function () {

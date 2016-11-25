@@ -123,4 +123,29 @@
 	            $this->error($cata->getError());
 	        }
 	    }
+	     public function changeOrder()
+	    {
+	        $catalog = M('catalog');
+
+	        if($catalog->where(['cata_id' => I('post.cata_id')])->setField('cata_order',I('post.cata_order'))) {
+	            $this->ajaxReturn(true);
+	        }
+
+	        $this->ajaxReturn(false);
+	    }
+
+	    public function del($cata_id = null)
+	    {
+	        if(empty($cata_id)) {
+	            $this->ajaxReturn(false);
+	        }
+
+	        $cata = M('catalog');
+	        if($cata->delete($cata_id)) {
+	            M('content')->where(['con_catid' => $cata_id])->delete();
+	            $this->ajaxReturn(true);
+	        } else {
+	            $this->ajaxReturn(false);
+	        }
+	    }
 	}

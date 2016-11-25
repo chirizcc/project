@@ -97,7 +97,7 @@
     // 上传文件
     layui.use('upload', function(){
         layui.upload({
-            url: "<{:U('Admin/Book/upload')}>" //上传接口
+            url: "<{:U('Home/Authoredit/upload')}>" //上传接口
             ,method: 'post',
             data:1
             ,before: function(input){
@@ -123,7 +123,7 @@
      function resetImg() {
         $('#imgShow').hide();
         if($('#b_img').val() != '') {
-            $.post('<{:U("Admin/Book/delImg")}>',{'img':$('#b_img').val(),'id':('<{$data.b_id}>')});
+            $.post('<{:U("Home/Authoredit/delImg")}>',{'img':$('#b_img').val(),'id':('<{$data.b_id}>')});
             $('#b_img').attr('value','<{$data.b_img}>');
         }
         $('#show').attr('src',"__ROOT__/Uploads/<if condition='$data["b_img"] == null'>img/book.jpg<else /><{$data.b_img}></if>");
