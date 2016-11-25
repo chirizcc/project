@@ -16,7 +16,7 @@ class AuthoreditController extends JudgeController
             $this->error('请先申请成为作者', U('Author/index'));
         }
     }
-
+    // 首页遍历
     public function index()
     {
         $p = I('get.p/d');
@@ -42,16 +42,17 @@ class AuthoreditController extends JudgeController
                 $Page->parameter[$key] = urlencode($val);
             }
         }
-
         $show = $Page->show();
+        // 发送数据
         $this->assign('list', $data);
         $this->assign('page', $show);
         $this->display();
 
     }
-
+    // 添加书籍
     public function add()
-    {
+    {   
+        // 查询分类数据
         $data = M('type')->where('t_pid=0')->order('t_id desc')->select();
         $this->assign('list', $data);
         $this->display();
@@ -59,13 +60,13 @@ class AuthoreditController extends JudgeController
 
     // 书籍类别联动
     public function getadd()
-    {
+    {   //接收参数
         $b_id = I('get.b_id/d');
-
+        // 查询子分类
         $data = M('type')->where('t_pid=' . $b_id)->select();
+        // 转化json格式
         $json_d = json_encode($data);
         $this->ajaxReturn($json_d);
-
         $this->assign('data', $data);
     }
 
@@ -82,6 +83,7 @@ class AuthoreditController extends JudgeController
         }
 
         $bookModel = D('book');
+        // 判断是否添加
         if ($bookModel->create()) {
             if ($bookModel->add() > 0) {
                 $this->success('恭喜您,添加成功!', U('index'));
@@ -152,14 +154,15 @@ class AuthoreditController extends JudgeController
         $this->assign('type3', $type3);
         $this->display('Authoredit/edit');
     }
-
+    // 删除图片
     public function delImg($img = null, $id = 0)
-    {
+    {   //查询数据
         $path = D('book')->where(['b_id' => $id])->field('b_img')->find();
+        // 如果为空或原来的图片则返回
         if (empty($img) || $path['b_img'] == $img) {
             return;
         }
-
+        // 删除替换的图片
         $path = './Uploads/' . $img;
         unlink($path);
     }

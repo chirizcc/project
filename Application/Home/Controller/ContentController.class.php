@@ -13,15 +13,15 @@ class ContentController extends JudgeController
         }
 
         $content = $this->isExist($cata_id);
-
+        // 查询数据
         $cata_name = M('catalog')->field('cata_name')->find($cata_id);
-
+        // 发送数据
         $this->assign('cata_id', $cata_id);
         $this->assign('cata_name', $cata_name['cata_name']);
         $this->assign('data', $content);
         $this->display();
     }
-
+    // 更新页面
     public function edit($cata_id = null)
     {
         if (empty($cata_id)) {
@@ -30,15 +30,15 @@ class ContentController extends JudgeController
         }
 
         $content = $this->isExist($cata_id);
-
+        // 查询符合条件的数据
         $cata_name = M('catalog')->field('cata_name')->find($cata_id);
-
+        // 发送数据
         $this->assign('cata_id', $cata_id);
         $this->assign('cata_name', $cata_name['cata_name']);
         $this->assign('data', $content);
         $this->display();
     }
-
+    // 更新
     public function update($cata_id = null)
     {
         $con = D('content');
