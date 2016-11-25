@@ -2,9 +2,14 @@
 namespace Admin\Controller;
 
 use Think\Controller;
-
+/**
+*	轮播图控制器
+*/
 class CarouselController extends AdminController
-{
+{	
+	/**
+	*	轮播图首页
+	*/
 	public function index()
 	{
 		$count = M('play')->count();// 查询满足要求的总记录数
@@ -18,6 +23,9 @@ class CarouselController extends AdminController
 		$this->display();
 	}
 
+	/**
+	*	轮播图添加页
+	*/
 	public function add()
 	{
 		//查出第一级分类的数据
@@ -29,7 +37,11 @@ class CarouselController extends AdminController
 		$this->display();
 	}
 
-	//查出第二级分类的数据
+	/**
+	**  轮播图首页
+	**	@return array 二级分类
+	** @param 	$typeid
+	*/
 	public function selectf()
 	{
 		if (empty($_POST)) {
@@ -47,7 +59,11 @@ class CarouselController extends AdminController
         $this->ajaxReturn($stype);
         // var_dump($p_id);exit;
 	}
-
+	/**
+	**  轮播图首页
+	**	@return array 三级分类
+	** @param 	$typeid
+	*/
 	//查出第二级分类的数据
 	public function selects()
 	{
@@ -67,7 +83,10 @@ class CarouselController extends AdminController
         // var_dump($p_id);exit;
 	}
 
-	//图片上传
+	/**
+	**  轮播图图片上传方法
+	**	@return array 图片路径
+	*/
 	public function picupload()
 	{
 	    $upload = new \Think\Upload();// 实例化上传类
@@ -98,7 +117,10 @@ class CarouselController extends AdminController
         	$this->ajaxReturn($a);
 	    }
 	}
-
+	/**
+	**  执行轮播图添加
+	** @param 	$_POST
+	*/
 	public function insert()
 	{
 		if (empty($_POST)) {
@@ -236,11 +258,9 @@ class CarouselController extends AdminController
         $map = [];
         $map['p_id'] = $id;
 		$data = M('play')->table('zd_play as p,zd_book as b')->where($map)->where('p.p_link = b.b_id')->field('p.p_id id,b.b_name name,p.p_type type,p.p_link link,p.p_pic pic')->order('p.p_id desc')->select();
-		// var_dump($data);exit;
 		$this->assign('data',$data);
 
 		$this->display();
-		// $this->display();
 
 	}
 
