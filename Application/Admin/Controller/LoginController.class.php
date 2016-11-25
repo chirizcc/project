@@ -46,8 +46,8 @@ class LoginController extends Controller
 	    $map['u_username'] = $username;
 	    $map['u_password'] = md5($password);
 		$user = M('user')->where($map)->find();
-
-		if (!empty($user)) {
+        // var_dump($user['u_istype']);exit;
+		if (!empty($user) && $user['u_istype'] != '0') {
 
             //获取该用户的权限
             $list = M('user_role')->table('zd_user_role ur,zd_role r,zd_role_node rn,zd_node n')->where('ur.ur_rid = r.r_id and r.r_id = rn.rn_rid and rn.rn_nid = n.n_id and ur.ur_uid = '.$user['u_id'])->field('n.n_controller controller,n.n_action action')->select();
