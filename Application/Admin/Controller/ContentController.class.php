@@ -1,9 +1,16 @@
 <?php
-
+/**
+ * 内容控制器
+ * author 张德昌
+ */
 namespace Admin\Controller;
 
 class ContentController extends AdminController
 {
+    /**
+     * 显示指定章节的内容
+     * @param $cata_id int 指定章节的catalog表的cata_id值
+     */
     public function index($cata_id = null)
     {
         if (empty($cata_id)) {
@@ -21,6 +28,10 @@ class ContentController extends AdminController
         $this->display();
     }
 
+    /**
+     * 显示编辑指定章节内容的页面
+     * @param $cata_id int 指定章节的catalog表的cata_id值
+    */
     public function edit($cata_id = null)
     {
         if (empty($cata_id)) {
@@ -38,6 +49,10 @@ class ContentController extends AdminController
         $this->display();
     }
 
+    /**
+     * 从POST获取编辑的内容并更新数据库
+     * @param $cata_id int 指定章节的catalog表的cata_id值
+     */
     public function update($cata_id = null)
     {
         $con = D('content');
