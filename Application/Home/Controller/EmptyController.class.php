@@ -1,5 +1,8 @@
 <?php
-
+/**
+ * 空控制器
+ * author 张德昌
+*/
 namespace Home\Controller;
 
 use Think\Controller;

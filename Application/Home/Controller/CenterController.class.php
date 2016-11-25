@@ -1,10 +1,16 @@
 <?php
-
+/**
+ * 个人中心控制器
+ * author 张德昌
+*/
 namespace Home\Controller;
 
 // 个人中心控制器
 class CenterController extends JudgeController
 {
+    /**
+     * 个人中心分帧主页
+    */
     public function index()
     {
         $u_id = session('home_id');
@@ -15,11 +21,17 @@ class CenterController extends JudgeController
         $this->display();
     }
 
-    public function show()
+    /**
+     * 个人中心默认页
+    */
+    public function look()
     {
         $this->display();
     }
 
+    /**
+     * 个人信息页
+    */
     public function info()
     {
         $u_id = session('home_id');
@@ -32,6 +44,9 @@ class CenterController extends JudgeController
         $this->display();
     }
 
+    /**
+     * 修改个人信息页
+    */
     public function edit()
     {
         $u_id = session('home_id');
@@ -40,6 +55,9 @@ class CenterController extends JudgeController
         $this->display();
     }
 
+    /**
+     * 个人信息修改写入数据库
+     */
     public function update()
     {
         $de = D('detail');
@@ -54,6 +72,9 @@ class CenterController extends JudgeController
         }
     }
 
+    /**
+     * 上传头像
+    */
     public function uploadPortrait()
     {
         $upload = new \Think\Upload();// 实例化上传类
@@ -91,6 +112,9 @@ class CenterController extends JudgeController
         $this->ajaxReturn($data);
     }
 
+    /**
+     * 保存头像
+    */
     public function insertPortrait()
     {
         $data = [
@@ -131,8 +155,10 @@ class CenterController extends JudgeController
         $path = './Uploads/' . $url;
         unlink($path);
     }
-
-    //发送短信
+    
+    /**
+     * 发送短信 
+    */
     public function sendSms()
     {
         if (!IS_AJAX) {

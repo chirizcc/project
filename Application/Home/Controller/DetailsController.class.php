@@ -1,10 +1,19 @@
 <?php
+/**
+ * 书籍详情控制器
+ * author 张德昌 沈悦群 张一飞
+*/
 namespace Home\Controller;
 
 class DetailsController extends HomeController
 {
+    // 评论分页每页个数
     private $commentSize = 5;
-    
+
+    /**
+     * 显示该书详情页面
+     * @param $b_id int 该书在book表的b_id
+    */
     public function index($b_id = null){
         if(empty($b_id)) {
             $this->redirect('Home/Index/index');
@@ -46,6 +55,12 @@ class DetailsController extends HomeController
         $this->display();
     }
 
+    /**
+     * 获取该书的评论
+     * @param $b_id int 该书在book表的b_id
+     * @param $p int 分页参数
+     * @return array 以数组形式返回该书的评论
+    */
     public function getComment($b_id, $p = 0)
     {
         $data = M('comment')->table('zd_comment c,zd_detail d')->where('c.com_uid = d.det_uid and c.com_bid = '.$b_id)->field('d.det_name,d.det_img,com_content,com_time')->order('c.com_id desc')->page($p, $this->commentSize)->select();
@@ -54,8 +69,6 @@ class DetailsController extends HomeController
         $Page = new \Org\Util\MyPage($count, $this->commentSize);// 实例化分页类 传入总记录数和每页显示的记录数
 
         $Page->anchor = '#comment';
-        /*dump($Page->anchor);
-        die;*/
         $show = $Page->show();// 分页显示输出
         $this->assign('page',$show);// 赋值分页输出
         
