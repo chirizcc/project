@@ -2,9 +2,14 @@
 namespace Home\Controller;
 
 use Think\Controller;
-
+/*
+	*搜索模块控制器
+	*@param ajax $_POST[]
+	*@return ajaxReturn 
+*/
 class SearchController extends HomeController
-{
+{	
+
 	public function index()
 	{
 		//判断有无参数传递过来 没有当做空字符串处理
@@ -15,7 +20,6 @@ class SearchController extends HomeController
 
 		//获取字符串内容
 		$str = $_POST['val'];
-		//$str = trim($str);//去空格
 
 		//输入空格不显示
 		if($str == ''){

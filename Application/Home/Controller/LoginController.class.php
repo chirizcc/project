@@ -1,12 +1,16 @@
 <?php
 namespace Home\Controller;
 use Think\Controller;
+
+//前台登录控制器
 class LoginController extends HomeController
 {
+	//首页方法
 	public function index(){
 		$this->display();
 	}
 
+	//登录验证方法
 	public function yanzheng(){
 		if (empty($_POST)) {
 	        $this->redirect('Home/Index/index');
@@ -18,7 +22,6 @@ class LoginController extends HomeController
 	    $password = $_POST['password'];
 	    $password = trim($password);
 	    $password = md5($password);
-	    // var_dump($password);exit;
 
 	    $map = [];
 	    $map['u_username'] = $username;
@@ -33,10 +36,8 @@ class LoginController extends HomeController
             session('home_id',$user['u_id']);
             session('home_type',$user['u_istype']);
             $this->success('恭喜您,登录成功!', U('Index/index'));
-    		// $this->redirect('Index/index');
         } else {
            $this->error('账号或密码错误....');
-    		// $this->redirect('Login/index', array('tip' => '账号或密码错误'));
         }
 	}
 
@@ -45,10 +46,6 @@ class LoginController extends HomeController
         session('home_id',null);
         session('home_type',null);
         $this->redirect('Index/index');
-	}
-
-	public function reg(){
-		
 	}
 
 }

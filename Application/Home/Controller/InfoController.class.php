@@ -48,7 +48,6 @@ class InfoController extends JudgeController
         }
 
 		$id = I('get.id/d');
-		// var_dump($id);exit;
 
 		$info = M('info');
 
@@ -64,7 +63,6 @@ class InfoController extends JudgeController
 			}else{
 				$this->error('失败，请重试');
 			}
-
 	}
 
 }

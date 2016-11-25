@@ -123,6 +123,7 @@ class RegController extends HomeController
         }
     }
 
+    //执行注册
     public function reg()
     {
         if (empty($_POST)) {
