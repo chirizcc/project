@@ -236,10 +236,11 @@ class RegController extends HomeController
         }
 
         $val = I('post.val');
-        if($val == session('sms'){
+        if($val == session('sms')){
             $this->ajaxReturn(true);
         }else{
             $this->ajaxReturn(false);
         }
     }
+
 }
