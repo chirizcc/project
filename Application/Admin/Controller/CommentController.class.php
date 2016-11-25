@@ -5,9 +5,8 @@ namespace Admin\Controller;
 // 评论管理控制器
 class CommentController extends AdminController
 {
-	// private $pid = null;
-	// private $bkname = null;
 
+    //首页控制器
 	public function index($search = null,$pid = null,$bkid = null)
 	{
 		$com = M('comment');
@@ -19,18 +18,15 @@ class CommentController extends AdminController
         //判断类别
         $pidmap = [];
         if(!empty($pid)){
-        	// var_dump($pid);exit;
             $pidmap['b.b_tid'] =  $pid;
         }
         //判断类别
         $bkidmap = [];
         if(!empty($bkid)){
-        	// var_dump($bkid);exit;
             $bkidmap['b.b_id'] =  $bkid;
         }
 
 		$count = $com->table('zd_user as u,zd_comment as c,zd_book as b')->where('c.com_bid = b.b_id and c.com_uid = u.u_id')->where($map)->where($pidmap)->where($bkidmap)->count();
-		// var_dump($count);exit;
 		$Page =  new \Org\Util\MyPage($count,5);// 实例化分页类 传入总记录数和每页显示的记录数
 		$show = $Page->show();// 分页显示输出
 
@@ -69,7 +65,6 @@ class CommentController extends AdminController
         $map = [];
         $map['com_id'] = $id;
         $data = $com->where($map)->find();
-        // var_dump($data);exit();
         $message = "您的评论:".$data['com_content']."被管理员删除，请遵守网络公约，不要发表不适当的言论！";
         $info = [];
         $info['i_uid'] = $data['com_uid'];
@@ -77,7 +72,6 @@ class CommentController extends AdminController
         $info['i_time'] = time();
         //将消息发给作者
         if(M('info')->add($info)){
-            // $this->success('恭喜您,删除成功!', U('index'));
             if ($com->delete($id) > 0) {
                 $this->success('恭喜您,删除成功!', U('index'));
             }else{
@@ -121,9 +115,7 @@ class CommentController extends AdminController
         $map['b_tid'] = $p_id; 
 
         $ttype = M('book')->where($map)->select();
-
         $this->ajaxReturn($ttype);
-
 	}
 
 }

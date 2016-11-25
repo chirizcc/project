@@ -2,15 +2,16 @@
 namespace Admin\Controller;
 use Think\Controller;
 
+//分类管理控制器
 class TypeController extends AdminController
 {
+    //分类管理首页
 	public function index($pid = 0){
 		$time = date('Y-m-d',time());
 		$type = M('type');
 
 		//判断get是否由传参  没有的话显示顶级目录
 		$pid = I('get.pid');
-		// var_dump($pid);
 		if($pid == 0){
 			$map = [];
 		    $map['t_pid'] = $pid;
@@ -44,8 +45,6 @@ class TypeController extends AdminController
             exit;
         }
         //接收参数
-        // $id = $_GET['id'];
-        // I() 方法 过滤输入的数据 
         $id = I('get.id/d');
         // echo $id;exit;
 
@@ -55,9 +54,6 @@ class TypeController extends AdminController
 		$map['t_pid'] = $id;
 		$data = $type->where($map)->select();
 		if(!empty($data)){
-			/*echo "<script>alert('该类别还有子分类，无法删除');</script>";
-			$this->redirect('Type/index', array('tip' => '该类别还有子分类，无法删除'));
-			exit;*/
             $this->error('删除失败....', U('index'));
 		}
 
@@ -95,10 +91,7 @@ class TypeController extends AdminController
         }else{
         	$_POST['t_path'] = "0,".$_POST['t_pid'];
         }
-
-        //1.自己手动过滤POST数据
-        //2.M('user')->data()  自动生成数据
-        //3.推荐!
+        
         M('type')->create();
 
         //执行添加

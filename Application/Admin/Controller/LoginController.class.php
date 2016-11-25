@@ -1,13 +1,18 @@
 <?php
 namespace Admin\Controller;
 use Think\Controller;
-
+/**
+    **  登录控制器
+    ** @param   $_POST
+*/
 class LoginController extends Controller
 {
+    //首页方法
 	public function index(){	
 		$this->display('Login/index');
 	}
 
+    //生成验证码
 	public function code(){
     	$Verify = new \Think\Verify();
     	$Verify->fontSize = 30;
@@ -17,6 +22,7 @@ class LoginController extends Controller
     	$Verify->entry();
     }
 
+    //ajax比对
     public function yz(){
     	if (!IS_AJAX) {
             $this->error('您老迷路了吧? 赶紧回首页吧!',U('Index/index'));
@@ -31,6 +37,7 @@ class LoginController extends Controller
         }
     }
 
+    //判断登录信息
     public function login(){
 		if (empty($_POST)) {
 	        $this->redirect('Admin/Login/index');
@@ -81,6 +88,7 @@ class LoginController extends Controller
 
     }
 
+    //退出登录 清空session
     public function logout(){
         session('name',null);
         session('id',null);
