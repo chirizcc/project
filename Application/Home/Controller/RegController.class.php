@@ -207,7 +207,7 @@ class RegController extends HomeController
         }
         $this->display();
     }
-
+    //发送短信
     public function sendSms()
     {
         if (!IS_AJAX) {
@@ -222,8 +222,24 @@ class RegController extends HomeController
             exit;
         }else{
             $sms = $this->shortMessage($tel);
-            $this->ajaxReturn($sms);
+            session('sms',$sms);
         }
 
+    }
+
+    //判断验证码是否一致
+    public function comparesms()
+    {
+        if (!IS_AJAX) {
+            $this->error('滚吧',U('Index/index'));
+            exit;
+        }
+
+        $val = I('post.val');
+        if($val == session('sms'){
+            $this->ajaxReturn(true);
+        }else{
+            $this->ajaxReturn(false);
+        }
     }
 }
