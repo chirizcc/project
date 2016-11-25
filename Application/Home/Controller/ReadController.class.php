@@ -119,7 +119,6 @@ class ReadController extends HomeController
 
         //历史上的今天
         $his = $this->his();
-        // var_dump($his);exit;
 
         $this->assign('his', $his);
         $this->assign('last', $last);
