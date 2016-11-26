@@ -1,0 +1,185 @@
+<extend name="Public/layout"/>
+<block name="content">
+
+    <div class="container">
+        <h2 class="text-center h2">终点中文网
+            <small>&nbsp;&nbsp;&nbsp;&nbsp;设置账号及密码</small>
+        </h2>
+
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><{$data['type']}>用户</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-8 col-md-offset-2">
+                                <form action="<{:U('Home/Three/insertUser')}>" method="post" class="layui-form layui-form-pane"
+                                      onsubmit="return judged()">
+
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">账号</label>
+                                        <div class="layui-input-inline">
+                                            <input name="u_username" placeholder="3~10位字母数字，不能以数字开头" autocomplete="off"
+                                                   class="layui-input" type="text" id="account"
+                                                   value="<{$data['name']}>">
+                                        </div>
+                                    </div>
+
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">密码</label>
+                                        <div class="layui-input-inline">
+                                            <input name="u_password" lay-verify="pass" placeholder="请输入密码"
+                                                   autocomplete="off" class="layui-input" type="password"
+                                                   id="pwd1">
+                                        </div>
+                                    </div>
+
+                                    <div class="layui-form-item">
+                                        <label class="layui-form-label">确认密码</label>
+                                        <div class="layui-input-inline">
+                                            <input name="u_password2" lay-verify="pass" placeholder="请确认密码"
+                                                   autocomplete="off" class="layui-input" type="password"
+                                                   id="pwd2">
+                                        </div>
+                                    </div>
+
+                                    <div class="layui-form-item">
+                                        <div class="layui-input-block">
+                                            <button class="layui-btn layui-btn-big" lay-submit lay-filter="*">确认
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <style>
+                                        .layui-form-pane .layui-form-label {
+                                            width: 100px;
+                                        }
+
+                                        .code img {
+                                            height: 37px;
+                                            border: 1px solid #E6E6E6;
+                                        }
+                                    </style>
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div style="height: 60px"></div>
+    <!--[if !IE]> -->
+    <script type="text/javascript" src="__PUBLIC__/js/jquery-2.0.3.min.js"></script>
+    <!-- <![endif]-->
+
+    <!--[if !IE]> -->
+    <script type="text/javascript">
+        window.jQuery || document.write("<script src='__PUBLIC__/ace/assets/js/jquery-2.0.3.min.js'>" + "<" + "/script>");
+    </script>
+    <!-- <![endif]-->
+
+    <script type="text/javascript">
+        if ("ontouchend" in document) document.write("<script src='__PUBLIC__/ace/assets/js/jquery.mobile.custom.min.js'>" + "<" + "/script>");
+    </script>
+    <script type="text/javascript" src="__PUBLIC__/layer/layer.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/layui/layui.js"></script>
+
+    <script>
+        var vName = 0;
+
+        layui.use('form', function () {
+            var form = layui.form();
+
+            form.verify({
+                pass: [
+                    /((?=.*\d)(?=.*\D)|(?=.*[a-zA-Z])(?=.*[^a-zA-Z]))^.{8,16}$/
+                    , '密码必须8到16位，数字、字母、字符至少包含两种'
+                ]
+            });
+
+        });
+
+        //判断账号是否重复
+        $('#account').blur(function () {
+            $.ajax({
+                url: "<{:U('Home/Reg/usernametest')}>",
+                data: "val=" + $('#account').val(),
+                type: 'POST',
+                success: function (data) {
+                    switch (data) {
+                        case 'err':
+                            layer.tips('用户名必须!', '#account', {tips: [1, '#ff0000']});
+                            vName = 0;
+                            break;
+                        case 'null':
+                            layer.tips('用户名不能为空!', '#account', {tips: [1, '#ff0000']});
+                            vName = 0;
+                            break;
+                        case false:
+                            layer.tips('用户名已被使用!', '#account', {tips: [1, '#ff0000']});
+                            vName = 0;
+                            break;
+                        case true:
+                            layer.tips('用户名可以使用!', '#account', {tips: [1, '#0FA6D8']});
+                            vName = 1;
+                            break;
+                    }
+                }
+            })
+        })
+
+        function judged() {
+            var pwd1 = $('#pwd1').val();
+            var pwd2 = $('#pwd2').val();
+            if (pwd1 != pwd2) {
+                layui.use('layer', function () {
+                    var layer = layui.layer;
+                    layer.tips('密码与确认密码不相同', '#pwd2');
+                });
+                return false
+            }
+
+            if (vName == 0) {
+                layui.use('layer', function () {
+                    var layer = layui.layer;
+                    $.ajax({
+                        url: "<{:U('Home/Reg/usernametest')}>",
+                        data: "val=" + $('#account').val(),
+                        type: 'POST',
+                        success: function (data) {
+                            switch (data) {
+                                case 'err':
+                                    layer.tips('用户名格式不正确!', '#account', {tips: [1, '#ff0000']});
+                                    vName = 0;
+                                    break;
+                                case 'null':
+                                    layer.tips('用户名不能为空!', '#account', {tips: [1, '#ff0000']});
+                                    vName = 0;
+                                    break;
+                                case false:
+                                    layer.tips('用户名已被使用!', '#account', {tips: [1, '#ff0000']});
+                                    vName = 0;
+                                    break;
+                                case true:
+                                    layer.tips('用户名可以使用!', '#account', {tips: [1, '#0FA6D8']});
+                                    vName = 1;
+                                    break;
+                            }
+                        }
+                    })
+                });
+            }
+
+            if (vName == 1) {
+                return true
+            }
+
+            return false;
+        }
+    </script>
+
+</block>

@@ -1,25 +1,6 @@
 <extend name="Public/layout"/>
 <block name="content">
-    <style>
-        .reg {
-            margin: 50px 320px;
-        }
 
-        .inputs {
-            width: 280px;
-        }
-
-        .floatinputs {
-            width: 140px;
-            float: left;
-        }
-
-        img {
-            width: 140px;
-            height: 32px;
-            float: left;
-        }
-    </style>
     <div class="container">
         <h2 class="text-center h2">终点中文网
             <small>&nbsp;&nbsp;&nbsp;&nbsp;注册加入我们</small>
@@ -43,7 +24,7 @@
                                         <div class="layui-form-item">
                                             <label class="layui-form-label">账号</label>
                                             <div class="layui-input-inline">
-                                                <input name="u_username" placeholder="请输入登录号码" autocomplete="off"
+                                                <input name="u_username" placeholder="3~10位，不能以数字开头" autocomplete="off"
                                                        class="layui-input" type="text" id="account">
                                             </div>
                                         </div>
@@ -106,7 +87,7 @@
                                         <div class="layui-form-item">
                                             <label class="layui-form-label">账号</label>
                                             <div class="layui-input-inline">
-                                                <input name="u_username" placeholder="请输入登录号码" autocomplete="off"
+                                                <input name="u_username" lay-verify="required" placeholder="3~10位，不能以数字开头" autocomplete="off"
                                                        class="layui-input" type="text" id="username1">
                                             </div>
                                         </div>
@@ -116,7 +97,7 @@
                                             <div class="layui-input-inline">
                                                 <input name="email" lay-verify="email" placeholder="请输入邮箱"
                                                        autocomplete="off" class="layui-input" type="text"
-                                                       >
+                                                >
                                             </div>
                                         </div>
 
@@ -167,6 +148,11 @@
                             </div>
                         </div>
                     </div>
+                </div>
+
+                <div>
+                    <a href="<{:U('Home/Three/login',['type' => 'sina'])}>"><img src="__ROOT__/Uploads/img/sina.png"
+                                                                                 alt="用新浪微博登录"></a>
                 </div>
             </div>
         </div>
@@ -232,14 +218,14 @@
                 return false
             }
 
-            if(vCode == 0) {
+            if (vCode == 0) {
                 layui.use('layer', function () {
                     var layer = layui.layer;
                     layer.tips('验证码不正确!', '#code', {tips: [1, '#0FA6D8']});
                 });
             }
 
-            if(vName == 0) {
+            if (vName == 0) {
                 layui.use('layer', function () {
                     var layer = layui.layer;
                     layer.tips('用户名出问题啦!', '#username1', {tips: [1, '#0FA6D8']});
@@ -366,7 +352,7 @@
                         vCode = 1;
                     }
                 }
-            })            
+            })
         })
 
         //判断账号是否重复
