@@ -222,7 +222,7 @@ class CenterController extends JudgeController
 
     /**
      * 修改邮箱时邮箱里的链接处理
-     * @param $w_id wait表的主键
+     * @param $w_id int wait表的主键
      */
     public function activa($w_id = null)
     {
