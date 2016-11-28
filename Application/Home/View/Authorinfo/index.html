@@ -9,7 +9,7 @@
         <div class="row-fluid">
             <div class="col-sm-12">
                 <div class="col-sm-3">
-                    <img src="/Uploads/<if condition='$data["img"] == null'>Portrait/profile-pic.jpg<else /><{$data.img}></if>" alt="" class="img-rounded" width="150"
+                    <img src="__ROOT__/Uploads/<if condition='$data["img"] == null'>Portrait/profile-pic.jpg<else /><{$data.img}></if>" alt="" class="img-rounded" width="150"
                                     height="200"/>
                 </div>
                 <div class="col-sm-4">
@@ -43,7 +43,7 @@
                     <div class="row">
                             <volist name="list" id="v">
                                 <div class="bookbox col-md-2">
-                                    <a href="<{:U('Home/Details/index',['b_id'=>$v['b_id']])}>" target="_top"><img src="/Uploads/<if condition='$v["b_img"] == null'>img/book.jpg<else /><{$v.b_img}></if>" alt="" width="150"></a>
+                                    <a href="<{:U('Home/Details/index',['b_id'=>$v['b_id']])}>" target="_top"><img src="__ROOT__/Uploads/<if condition='$v["b_img"] == null'>img/book.jpg<else /><{$v.b_img}></if>" alt="" width="150"></a>
                                     <div class="info">书名：<{$v[b_name]}></div>
                                     <div class="info2"><{:date('Y-m-d H:i:s',$v['b_time'])}></div>
                                 </div>
