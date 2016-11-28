@@ -64,6 +64,7 @@ class ThreeController extends HomeController
 
     /**
      * 第三方账号第一次登录 添加用户表单
+     * @param $type string 第三方登录的类型
      */
     public function newUser($type)
     {
